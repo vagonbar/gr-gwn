@@ -1,0 +1,14 @@
+notas
+build
+draft 
+viejos 
+otros 
+gwn/logs 
+*.log 
+*.pyc 
+*.bin 
+*.hex 
+*.py~ 
+*.txt~ 
+*.sh~ 
+*~
