@@ -31,9 +31,9 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    gwnblock.py
     msg_sender_m.py
-    msg_receiver_m.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    msg_receiver_m.py
+    gwnblock.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################

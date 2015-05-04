@@ -36,14 +36,13 @@ lock_obj = threading.Lock()
 
 
 import sys
-#sys.path += ['/home/victor/IIE/GWNcode/gwn']
-#import gwnevents.api_events as api_events
-sys.path += ['./libgwn']
+
+# by now, requires adjustment of PYTHONPAHT to work!
 from gwnevents import api_events as api_events 
 
 
 
-### support classes and functions for GWNBlock
+### support classes and functions for gwnblock
 #from libgwnblock import GWNTimer, GWNOutPort, GWNInPort, mutex_prt
 
 def mutex_prt(msg):
@@ -234,13 +233,13 @@ class GWNTimer(GWNPort, threading.Thread):
 
 
 
-class GWNBlock(gr.basic_block):
+class gwnblock(gr.basic_block):
     '''The GWN basic block.
     '''
     def __init__(self, blkname, blkid, number_in=0, number_out=0, \
             number_timers=0):
         gr.basic_block.__init__(self,
-            name='GWNBlock',
+            name='gwnblock',
             in_sig=[],   #[<+numpy.float+>],
             out_sig=[])  #[<+numpy.float+>])
 
@@ -402,7 +401,7 @@ class GWNBlock(gr.basic_block):
 
     # other functiones
     def __str__(self):
-        ss = 'GWNblock {0}, id: {1}; {2} ports_in, {3} ports_out, {4} timers'. \
+        ss = 'gwnblock {0}, id: {1}; {2} ports_in, {3} ports_out, {4} timers'. \
             format(self.blkname, self.blkid, len(self.ports_in), 
                 len(self.ports_out), len(self.timers) )
         return ss
@@ -412,12 +411,15 @@ class GWNBlock(gr.basic_block):
 
 
 if __name__ == "__main__":
+    print "Run test on msg_receiver_.py"
+    print "   python msg_receiver_.py"
 
+"""
 
     ### test timers and messages
 
     tb = gr.top_block()
-    blk = GWNBlock('blk001', 'FirsBlck', number_timers=2, number_in=1,
+    blk = gwnblock('blk001', 'FirsBlck', number_timers=2, number_in=1,
         number_out=1)
 
     #tb.nicknameconnect(blk, 'nicknameout', blk, 'timer0')
@@ -448,4 +450,4 @@ if __name__ == "__main__":
 
     tb.stop()
     tb.wait()
-
+"""

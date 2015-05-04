@@ -1,38 +1,66 @@
 <?xml version="1.0"?>
+<!--
+###################################################
+## Message Sender
+###################################################
+ -->
 <block>
   <name>msg_sender_m</name>
   <key>gwn_msg_sender_m</key>
-  <category>gwn</category>
+  <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.msg_sender_m($blkname, $blkid, $interrupt, $interval, $retry, $)</make>
-  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
-       Sub-nodes:
-       * name
-       * key (makes the value accessible as $keyname, e.g. in the make node)
-       * type -->
+  <make>gwn.msg_sender_m($blkname, $blkid)</make>
+
   <param>
-    <name>...</name>
-    <key>...</key>
-    <type>...</type>
+    <name>blkname</name>
+    <key>blkname</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>blkid</name>
+    <key>blkid</key>
+    <type>string</type>
   </param>
 
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
-  <sink>
-    <name>in</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
-  </sink>
+  <param>
+    <name>interrupt</name>
+    <key>interrupt</key>
+    <type>int</type>
+  </param>
 
-  <!-- Make one 'source' node per output. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
-  <source>
-    <name>out</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
-  </source>
+  <param>
+    <name>interval</name>
+    <key>interval</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>retry</name>
+    <key>retry</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>nickname1</name>
+    <key>nickname1</key>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>nickname2</name>
+    <key>nickname2</key>
+    <type>string</type>
+  </param>
+
+	<source>
+		<name>out0</name>
+		<type>message</type>
+		<optional>1</optional>
+	</source>
+	<source>
+		<name>out1</name>
+		<type>message</type>
+		<optional>1</optional>
+	</source>
 </block>
+

@@ -31,7 +31,8 @@ except ImportError:
 	pass
 
 # import any pure python here
-from gwnblock import gwnblock
+
 from msg_sender_m import msg_sender_m
 from msg_receiver_m import msg_receiver_m
+from gwnblock import gwnblock
 #

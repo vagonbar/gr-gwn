@@ -23,19 +23,19 @@ import numpy
 from gnuradio import gr
 
 # GWN imports
-from gwnblock import GWNBlock           # for all GWN blocks
+from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # block specific, for this block
 import time                             # block specific, for this block
 
 
 
-class msg_sender_m(GWNBlock):
+class msg_sender_m(gwnblock):
     '''A test block, sends messages produced by 2 timers, one set by user.
     '''
 
     def __init__(self, blkname, blkid, interrupt=False, interval=2, retry=3, 
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
-        GWNBlock.__init__(self, blkid, blkname, 
+        gwnblock.__init__(self, blkid, blkname, 
             number_in=0, number_out=2, number_timers=2)
         self.time_init = time.time()    
 

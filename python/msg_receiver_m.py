@@ -23,17 +23,17 @@ import numpy
 from gnuradio import gr
 
 # GWN imports
-from gwnblock import GWNBlock           # for all GWN blocks
+from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # block specific, for this block
 import time                             # block specific, for this block
 
 
 
-class msg_receiver_m(GWNBlock):
+class msg_receiver_m(gwnblock):
     '''A test block, receives messages; one input, no outputs, no timers.
     '''
     def __init__(self, blkname, blkid):
-        GWNBlock.__init__(self, blkid, blkname, 
+        gwnblock.__init__(self, blkid, blkname, 
             number_in=1, number_out=0, number_timers=0)
         return
 
