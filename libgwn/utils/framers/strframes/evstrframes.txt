@@ -1,0 +1,90 @@
+GN evstrframes, doctest file
+
+
+>>> from evstrframes import *
+>>> import gwnevents.api_events as events
+
+>>> #ev = mkevent("MgmtBeacon", ev_dc={})
+>>> ev = mkevent("MgmtBeacon", ev_dc={})
+>>> ev.ev_dc['src_addr'] = "111"
+>>> ev.ev_dc['dst_addr'] =  "112"
+>>> print "=== Event:"; print ev
+=== Event:
+Event class name: EventFrameMgmt
+  Nickname: 'MgmtBeacon'; Type: 'Mgmt'; SubType: 'Beacon'
+  retry: 0
+  src_addr: 111
+  peerlinkId: 0
+  duration: 10
+  frame_length: 0
+  dst_addr: 112
+  Frame packet: ''
+  Payload: ''
+
+>>> frame = mkframe(ev)
+>>> ev.ev_dc['frame_length'] = len(frame)
+>>> print "=== Frame:", frame
+=== Frame: MgmtBeacon,0,{'retry': 0, 'src_addr': '111', 'peerlinkId': 0, 'duration': 10, 'frame_length': 0, 'dst_addr': '112'}
+
+>>> evfromframe = mkevent(frame=frame)
+>>> print "=== Event from frame:"; print evfromframe
+=== Event from frame:
+Event class name: EventFrameMgmt
+  Nickname: 'MgmtBeacon'; Type: 'Mgmt'; SubType: 'Beacon'
+  retry: 0
+  src_addr: 111
+  peerlinkId: 0
+  duration: 10
+  frame_length: 115
+  dst_addr: 112
+  Frame packet: "MgmtBeacon,0,{'retry': 0, 'src_addr': '111', 'peerlinkId': 0, 'duration': 10, 'frame_length': 0, 'dst_addr': '112'}"
+  Payload: ''
+>>> evfromframe == ev
+True
+
+>>> ev_dc = {'src_addr':'111', 'dst_addr':'112', 'peerlinkId':222, 'duration':333}
+>>> ev = mkevent("MgmtBeacon", ev_dc=ev_dc)
+>>> frame = mkframe(ev)
+>>> evfromframe = mkevent(frame=frame)
+>>> ev == evfromframe, len(frame), ev.ev_dc['frame_length']
+(True, 118, 118)
+
+>>> ev = mkevent("ActionConfirm", ev_dc=ev_dc)
+>>> frame = mkframe(ev)
+>>> evfromframe = mkevent(frame=frame)
+>>> ev == evfromframe, len(frame), ev.ev_dc['frame_length']
+(True, 121, 121)
+
+>>> ev = mkevent("CtrlACK", ev_dc=ev_dc)
+>>> frame = mkframe(ev)
+>>> evfromframe = mkevent(frame=frame)
+>>> ev == evfromframe, len(frame), ev.ev_dc['frame_length']
+(True, 115, 115)
+
+>>> payload = 'a testing payload, in DataData event'
+>>> ev = mkevent("DataData", ev_dc=ev_dc, payload=payload)
+>>> frame = mkframe(ev)
+>>> print frame
+DataData,36,{'retry': 0, 'src_addr': '111', 'peerlinkId': 222, 'duration': 333, 'frame_length': 0, 'dst_addr': '112'},a testing payload, in DataData event
+
+>>> evfromframe = mkevent(frame=frame)
+>>> print evfromframe
+Event class name: EventFrame
+  Nickname: 'DataData'; Type: 'Data'; SubType: 'Data'
+  retry: 0
+  src_addr: 111
+  peerlinkId: 222
+  duration: 333
+  frame_length: 154
+  dst_addr: 112
+  Frame packet: "DataData,36,{'retry': 0, 'src_addr': '111', 'peerlinkId': 222, 'duration': 333, 'frame_length': 0, 'dst_addr': '112'},a testing payload, in DataData event"
+  Payload: 'a testing payload, in DataData event'
+
+>>> ev == evfromframe, len(frame), ev.ev_dc['frame_length']
+(True, 154, 154)
+
+
+
+
+
+

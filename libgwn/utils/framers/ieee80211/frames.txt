@@ -1,0 +1,44 @@
+GWN frames.txt: a doctest file
+
+
+### test for MAC address conversions
+
+>>> from frames import addrmac2pkt, addrpkt2mac
+
+Example 1:
+>>> dirmac = '6c:62:6d:1c:cf:09'
+>>> dirpkt = addrmac2pkt(dirmac)
+>>> dirpkt, len(dirpkt), type(dirpkt)
+('lbm\x1c\xcf\t', 6, <type 'str'>)
+>>> dirstr = addrpkt2mac(dirpkt)
+>>> dirstr
+'6c:62:6d:1c:cf:09'
+>>> dirstr == dirmac
+True
+
+Example 2:
+>>> dirmac = '00:0a:15:f0:0f:ff'
+>>> dirpkt = addrmac2pkt(dirmac)
+>>> dirpkt, len(dirpkt), type(dirpkt)
+('\x00\n\x15\xf0\x0f\xff', 6, <type 'str'>)
+>>> dirstr = addrpkt2mac(dirpkt)
+>>> dirstr
+'00:0a:15:f0:0f:ff'
+>>> dirstr == dirmac
+True
+
+Example 3: erroneous MAC addresses
+>>> dirmac = 'error:mac'   # not in 'bb:bb:bb:bb:bb:bb' format
+>>> dirpkt = addrmac2pkt(dirmac)
+>>> dirpkt, len(dirpkt), type(dirpkt)
+('\x00\x00\x00\x00\x00\x00', 6, <type 'str'>)
+
+Error in packed 
+>>> dirpkt = 'error'  # not in 'bbbbbb' format
+>>> dirstr = addrpkt2mac(dirpkt)
+>>> dirstr
+'00:00:00:00:00:00'
+
+
+
+

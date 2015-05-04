@@ -1,0 +1,110 @@
+====
+==== mac_ctrl.txt : a doctest file for MAC control frames.
+====
+
+>>> import os
+>>> #import mac_frcl
+>>> #import mac_ctrl
+>>> #import frames
+>>> import mac_frmbld
+
+
+===
+=== RTS
+===
+
+>>> ob_rts = mac_frmbld.ACtrlFrame('RTS')
+
+>>> mac_dc_fldvals = { \
+...     #'frame_ctrl' : 0, \  # if set may alter frame type!
+...     'duration'   : 23, \
+...     'ra'         : 'rxaddr', \
+...     'ta'         : 'txaddr', \
+...     'fcs'         : 0 }
+>>> ob_rts = mac_frmbld.ACtrlFrame('RTS', dc_fldvals=mac_dc_fldvals)
+>>> print ob_rts
+Frame type  : RTS
+Bit or bytes: bytes
+Frame length: 20
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  46080
+  duration: bytes, no bitmask   2    4  False     !H :  23
+        ra: bytes, no bitmask   4   10  False    !6s :  'rxaddr'
+        ta: bytes, no bitmask  10   16  False    !6s :  'txaddr'
+       fcs: bytes, no bitmask  16   20  False     !I :  0
+<BLANKLINE>
+
+>>> pkrts = ob_rts.mkpkt()
+>>> pkrts, len(pkrts)
+('\xb4\x00\x00\x17rxaddrtxaddr\x00\x00\x00\x00', 20)
+
+===
+=== Change field values, except frame control
+===
+>>> ob_rts.updtfldvals({'duration':111, 'ra':'rx1111', 'ta':'tx1111'})
+>>> print ob_rts
+Frame type  : RTS
+Bit or bytes: bytes
+Frame length: 20
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  46080
+  duration: bytes, no bitmask   2    4  False     !H :  111
+        ra: bytes, no bitmask   4   10  False    !6s :  'rx1111'
+        ta: bytes, no bitmask  10   16  False    !6s :  'tx1111'
+       fcs: bytes, no bitmask  16   20  False     !I :  0
+<BLANKLINE>
+
+--- Verify data attributes in class specs is not altered:
+Field values in class:
+>>> mac_frmbld.CtrlRTS.dc_fldvals
+{'duration': 0, 'ta': 'ta-rts', 'ra': 'ra-rts', 'fcs': 0, 'frame_ctrl': 0}
+
+Field values in object:
+>>> ob_rts.dc_fldvals
+{'fcs': 0, 'ra': 'rx1111', 'duration': 111, 'ta': 'tx1111', 'frame_ctrl': 46080}
+
+
+===
+=== Create object specifying frame control and frame fields
+===
+>>> ob_rts = mac_frmbld.ACtrlFrame('RTS', dc_frcl_fldvals={'ToDS':1}, dc_fldvals={'fcs':42})
+>>> ob_rts._fc_obj.dc_fldvals['ToDS'], ob_rts.dc_fldvals['fcs']
+(1, 42)
+
+===
+=== unpack into dictionary
+===
+>>> pkrts2 = ob_rts.mkpkt()
+>>> dc_fldvals = ob_rts.mkdic(pkrts2)
+>>> dc_fldvals
+{'duration': 0, 'ta': 'ta-rts', 'ra': 'ra-rts', 'fcs': 42, 'frame_ctrl': 46081}
+
+===
+=== Frame coding: frame construction and packing
+===
+
+>>> del ob_rts
+>>> ob_rts = mac_frmbld.ACtrlFrame('RTS')
+>>> pk_rts = ob_rts.mkpkt()
+>>> pk_rts
+'\xb4\x00\x00\x00ra-rtsta-rts\x00\x00\x00\x00'
+
+>>> ob_cts = mac_frmbld.ACtrlFrame('CTS')
+>>> pk_cts = ob_cts.mkpkt()
+>>> pk_cts
+'\xc4\x00\x00\x00ra-cts\x00\x00\x00\x00'
+
+>>> ob_ack = mac_frmbld.ACtrlFrame('ACK')
+>>> pk_ack = ob_ack.mkpkt()
+>>> pk_ack
+'\xd4\x00\x00\x00ra-ack\x00\x00\x00\x00'
+
+
+== Create files for wireshark reading
+
+>>> ret = ob_rts.mkhexfl('aux/pk_ctrl_rts')
+>>> ret = ob_cts.mkhexfl('aux/pk_ctrl_cts')
+>>> ret = ob_ack.mkhexfl('aux/pk_ctrl_ack')
+>>> ret = os.system('cat aux/pk_ctrl_???.hex > aux/pk_ctrl.hex')
+>>> ret = os.system('rm aux/pk_ctrl_???.*')
+
+
+

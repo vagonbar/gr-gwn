@@ -18,5 +18,7 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    DESTINATION share/gnuradio/grc/blocks
+    gwn_gwnblock.xml
+    gwn_msg_sender_m.xml
+    gwn_msg_receiver_m.xml DESTINATION share/gnuradio/grc/blocks
 )

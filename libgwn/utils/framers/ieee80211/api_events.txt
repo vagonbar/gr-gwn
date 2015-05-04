@@ -1,0 +1,175 @@
+GWN api_events.txt: doctest file
+
+>>> #from events import *
+>>> import gwnevents.api_events as events
+>>> import api_frames
+>>> import api_frmevs as if_events
+
+
+
+=====         ===== 
+===== evtofrm =====
+=====         ===== 
+
+
+--- Action frames ---
+
+>>> ev_dc = {'src_addr':'ladir1', 'dst_addr':'ladir2', 'duration':55, 'peerlinkId':27}
+>>> ev_actconfirm = events.mkevent('ActionConfirm', ev_dc=ev_dc)
+>>> print ev_actconfirm
+Event class name: EventFrameMgmt
+  Nickname: 'ActionConfirm'; Type: 'Mgmt'; SubType: 'Action'
+  retry: 0
+  src_addr: ladir1
+  peerlinkId: 27
+  duration: 55
+  frame_length: 0
+  dst_addr: ladir2
+  Frame packet: ''
+  Payload: ''
+>>> frm_actconfirm = if_events.evtofrm(ev_actconfirm)
+>>> print frm_actconfirm
+Frame type  : Action
+Bit or bytes: bytes
+Frame length: 35
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  53248
+  duration: bytes, no bitmask   2    4  False     !H :  55
+ address_1: bytes, no bitmask   4   10  False    !6s :  'ladir1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'ladir2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3-'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+frame_body: bytes, no bitmask  24   31  False    !7s :  '\r\x02\x00\x00\x00\x00\x1b'
+       fcs: bytes, no bitmask  -4   35  False     !I :  0
+<BLANKLINE>
+
+
+--- Beacon frames ---
+
+>>> ev_dc = {'src_addr':'beac_1', 'dst_addr':'beac_2', 'duration':20, 'peerlinkId':21}
+>>> ev_bcn = events.mkevent('MgmtBeacon', ev_dc=ev_dc)
+>>> print ev_bcn
+Event class name: EventFrameMgmt
+  Nickname: 'MgmtBeacon'; Type: 'Mgmt'; SubType: 'Beacon'
+  retry: 0
+  src_addr: beac_1
+  peerlinkId: 21
+  duration: 20
+  frame_length: 0
+  dst_addr: beac_2
+  Frame packet: ''
+  Payload: ''
+>>> dc_frbd_fldvals = {'SSID':'--- SSID field, length 34 '.ljust(34,'-')}
+>>> frm_bcn = if_events.evtofrm(ev_bcn, fr_dc_frbd_fldvals=dc_frbd_fldvals)
+>>> print frm_bcn
+Frame type  : Beacon
+Bit or bytes: bytes
+Frame length: 88
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  32768
+  duration: bytes, no bitmask   2    4  False     !H :  20
+ address_1: bytes, no bitmask   4   10  False    !6s :  'beac_1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'beac_2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3-'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+frame_body: bytes, no bitmask  24   84  False   !60s :  '\x00\x00\x00\x00\x00\x00\x00\x01\x00\x01\x00\x01--- SSID field, length 34 --------------------\x00\x15'
+       fcs: bytes, no bitmask  -4   88  False     !I :  0
+<BLANKLINE>
+
+
+--- DATA frames ---
+
+>>> ev_dc = {'src_addr':'data_1', 'dst_addr':'data_2', 'duration':55} 
+>>> payload = 'a DATA frame under test of mkevent'
+>>> ev_data = events.mkevent('DataData', ev_dc=ev_dc, payload=payload)
+>>> print ev_data
+Event class name: EventFrame
+  Nickname: 'DataData'; Type: 'Data'; SubType: 'Data'
+  retry: 0
+  src_addr: data_1
+  peerlinkId: 0
+  duration: 55
+  frame_length: 0
+  dst_addr: data_2
+  Frame packet: ''
+  Payload: 'a DATA frame under test of mkevent'
+>>> frm_data = if_events.evtofrm(ev_data)
+>>> print frm_data
+Frame type  : Data
+Bit or bytes: bytes
+Frame length: 74
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  2048
+  duration: bytes, no bitmask   2    4  False     !H :  55
+ address_1: bytes, no bitmask   4   10  False    !6s :  'data_1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'data_2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3-'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+       qos: bytes, no bitmask  24   26  False     !H :  0
+        ht: bytes, no bitmask  26   30  False     !I :  0
+ address_4: bytes, no bitmask  30   36  False    !6s :  'dt-ad2-'
+frame_body: bytes, no bitmask  36   70  False   !34s :  'a DATA frame under test of mkevent'
+       fcs: bytes, no bitmask  -4   74  False     !I :  0
+<BLANKLINE>
+>>> print repr(ev_data.frmpkt)    # frame packet added to event by evtofrm()
+'\x08\x00\x007data_1data_2dt-ad3\x00\x00\x00\x00\x00\x00\x00\x00dt-ad2a DATA frame under test of mkevent\x00\x00\x00\x00'
+
+
+
+=====         ===== 
+===== frmtoev =====
+=====         ===== 
+
+--- frame Action Confirm ---
+>>> ev_obj = if_events.frmtoev(frm_actconfirm)
+>>> print ev_obj
+Event class name: EventFrameMgmt
+  Nickname: 'ActionConfirm'; Type: 'Mgmt'; SubType: 'Action'
+  retry: 0
+  src_addr: ladir1
+  peerlinkId: 27
+  duration: 55
+  frame_length: 35
+  dst_addr: ladir2
+  Frame packet: None
+  Payload: ''
+
+
+=====                            ===== 
+===== simulation of transmission =====
+=====                            =====
+       Event 1 --> Frame obj 1 --> pkt 1   transmitted
+received pkt  --> Frame obj 2 --> Event 2
+
+>>> import blocks.framers.ieee80211 as libframes
+
+>>> ev1 = events.mkevent('ActionClose', ev_dc={'peerlinkId':11, 'duration':12})
+>>> fr1 = if_events.evtofrm(ev1)
+>>> pk1 = fr1.mkpkt()
+>>> fr2 = api_frames.objfrompkt(pk1)
+>>> ev2 = if_events.frmtoev(fr2)
+>>> ev2 == ev1
+True
+
+
+>>> ev1 = events.mkevent('MgmtBeacon', ev_dc={'peerlinkId':21, 'duration':22})
+>>> fr1 = if_events.evtofrm(ev1)
+>>> pk1 = fr1.mkpkt()
+>>> fr2 = api_frames.objfrompkt(pk1)
+>>> ev2 = if_events.frmtoev(fr2)
+>>> ev2 == ev1
+True
+
+>>> ev1 = events.mkevent('CtrlACK', ev_dc={'duration':22})
+>>> fr1 = if_events.evtofrm(ev1)
+>>> pk1 = fr1.mkpkt()
+>>> fr2 = api_frames.objfrompkt(pk1)
+>>> ev2 = if_events.frmtoev(fr2)
+>>> ev2 == ev1
+True
+
+>>> ev1 = events.mkevent('DataData', ev_dc={'duration':33, 'payload':'A Data frame payload'})
+>>> fr1 = if_events.evtofrm(ev1)
+>>> pk1 = fr1.mkpkt()
+>>> fr2 = api_frames.objfrompkt(pk1)
+>>> ev2 = if_events.frmtoev(fr2)
+>>> ev2 == ev1
+True
+

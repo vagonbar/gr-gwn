@@ -1,0 +1,33 @@
+###
+### exampletest.txt: doctest file for exampletest.py
+###
+
+This file can be directly invoked for testing with command
+  python -m doctest exampletest.txt
+If all tests are passed, no messages are printed.
+
+In this doctest file, all lines are considered comments except when started by '>>>'. Lines started by '>>>' are excecuted by the python interpreter.
+
+The doctest file structure:
+  command: a line preceded by '>>>'
+  output: the expected output of the former command.
+  blankline: indicates end of expected output. If a blank line is part of the output, then write it as <BLANKLINE>. A line started by '>>>' is also understood as an end of the former output.
+
+>>> print "Hello World"
+Hello World
+>>> print "Hello World\n"
+Hello World
+<BLANKLINE>
+
+--- tests for exampletest.py ---
+
+>>> import exampletest
+>>> ob_a = exampletest.AClass('the value of par 1')
+>>> print ob_a
+Object from class exampletest.AClass, value: the value of par 1
+
+
+
+### end of file exampletest.txt
+
+
