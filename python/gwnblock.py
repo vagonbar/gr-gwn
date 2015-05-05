@@ -37,7 +37,8 @@ lock_obj = threading.Lock()
 
 import sys
 
-# by now, requires adjustment of PYTHONPAHT to work!
+# requires adjustment of PYTHONPAHT to libgwn
+#   export PYTHONPATH=$PYTHONPATH:<path_to>/gr-gwn/libgwn
 from gwnevents import api_events as api_events 
 
 
