@@ -125,7 +125,7 @@ class GWNTimer(GWNPort, threading.Thread):
 
     Objects of this class can attached to a gwnblock to act as internal timers. An object of this class sends messages to the block to which it is attached, at regular intervals. A timer object sends a message for an specified number of times, then a final second message to indicate the first series has exhausted.
     '''
-    def __init__(self, block, port, port_nr, interrupt=True, interval=1, \
+    def __init__(self, block, port, port_nr, interrupt=True, interval=1.0, \
             retry=1, nickname1='TimerTOR1', nickname2='TimerTOR2', add_info=None):
         '''Constructor.
 

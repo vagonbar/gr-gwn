@@ -31,11 +31,20 @@ import time                             # block specific, for this block
 
 class msg_sender_m(gwnblock):
     '''A test block, sends messages produced by 2 timers, one set by user.
+    
+    A test block which produces events based on two timers. Timer on port 0 can be set by the user, the other is internal and produces a fixed number of predefined timer events.
+    @param blkname: block name.
+    @param blkid: block identifier.
+    @param interrupt: if True, timer does not generate events.
+    @param interval: time betweeen events.
+    @param retry: how many events to produce.
+    @param nickname1: event nickname of event to produce on each interval.
+    @param nickname2: event nickname of event to produce when retry has exhausted.
     '''
 
-    def __init__(self, blkname, blkid, interrupt=False, interval=2, retry=3, 
+    def __init__(self, blkname, blkid, interrupt=False, interval=2.0, retry=3, 
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
-        gwnblock.__init__(self, blkid, blkname, 
+        gwnblock.__init__(self, blkname, blkid, 
             number_in=0, number_out=2, number_timers=2)
         self.time_init = time.time()    
 
@@ -43,8 +52,8 @@ class msg_sender_m(gwnblock):
             nickname1=nickname1, nickname2=nickname2)
         #self.set_timer(0, interrupt=False, interval=2, retry=3, 
         #    nickname1='TimerTOR1', nickname2='TimerTOR2')
-        #self.set_timer(1, interrupt=False, interval=1, retry=8, 
-        #    nickname1='TimerTOC', nickname2='TimerTOH')
+        self.set_timer(1, interrupt=False, interval=1.0, retry=8, 
+            nickname1='TimerTOC', nickname2='TimerTOH')
 
         self.start_timers()
         return
@@ -58,18 +67,18 @@ class msg_sender_m(gwnblock):
 
     def process_data(self, ev):
         '''Sends timer events produced by the internal timers.'''
-        ss = '--- Sender {0}, ev nickname {1}, time {2:4.1f}'.\
+        ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
             format(self.blkname, ev.nickname, self.elapsed_time() )
         mutex_prt(ss)
         #self.write_out(ev)    # write on all output ports
 
         # write on different output ports according to timer events
-        if 'TOR' in ev.nickname:
-            #print '--- ev.nickname:', ev.nickname, 'en puerto', 0
-            self.write_out(ev, port_nr=0)
-        elif 'TOH' in ev.nickname or 'TOC' in ev.nickname:
+        if 'TOH' in ev.nickname or 'TOC' in ev.nickname:    # internal timer
             #print '--- ev.nickname:', ev.nickname, 'en puerto', 1
             self.write_out(ev, port_nr=1)
+        else:                                               # user timer
+            #print '--- ev.nickname:', ev.nickname, 'en puerto', 0
+            self.write_out(ev, port_nr=0)
         return
 
 

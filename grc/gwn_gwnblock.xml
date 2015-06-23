@@ -2,7 +2,7 @@
 <block>
   <name>gwnblock</name>
   <key>gwn_gwnblock</key>
-  <category>gwn</category>
+  <category>GWN</category>
   <import>import gwn</import>
   <make>gwn.gwnblock($blkname, $blkid, $number_in, $number_out, $number_timers)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.

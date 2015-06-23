@@ -31,7 +31,7 @@
   <param>
     <name>interval</name>
     <key>interval</key>
-    <type>int</type>
+    <type>float</type>
   </param>
 
   <param>

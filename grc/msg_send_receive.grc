@@ -104,11 +104,11 @@
     </param>
     <param>
       <key>blkname</key>
-      <value></value>
+      <value>Receiver ONE</value>
     </param>
     <param>
       <key>blkid</key>
-      <value></value>
+      <value>blk02</value>
     </param>
     <param>
       <key>alias</key>
@@ -128,6 +128,41 @@
     </param>
   </block>
   <block>
+    <key>gwn_msg_receiver_m</key>
+    <param>
+      <key>id</key>
+      <value>gwn_msg_receiver_m_1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value>Receiver TWO</value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value>blk03</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(400, 203)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>gwn_msg_sender_m</key>
     <param>
       <key>id</key>
@@ -139,11 +174,11 @@
     </param>
     <param>
       <key>blkname</key>
-      <value></value>
+      <value>Sender ONE</value>
     </param>
     <param>
       <key>blkid</key>
-      <value></value>
+      <value>blk0</value>
     </param>
     <param>
       <key>interrupt</key>
@@ -190,51 +225,16 @@
       <value>0</value>
     </param>
   </block>
-  <block>
-    <key>gwn_msg_receiver_m</key>
-    <param>
-      <key>id</key>
-      <value>gwn_msg_receiver_m_1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(400, 187)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <connection>
-    <source_block_id>gwn_msg_sender_m_0</source_block_id>
-    <sink_block_id>gwn_msg_receiver_m_1</sink_block_id>
-    <source_key>out1</source_key>
-    <sink_key>in0</sink_key>
-  </connection>
   <connection>
     <source_block_id>gwn_msg_sender_m_0</source_block_id>
     <sink_block_id>gwn_msg_receiver_m_0</sink_block_id>
     <source_key>out0</source_key>
+    <sink_key>in0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_msg_sender_m_0</source_block_id>
+    <sink_block_id>gwn_msg_receiver_m_1</sink_block_id>
+    <source_key>out1</source_key>
     <sink_key>in0</sink_key>
   </connection>
 </flow_graph>

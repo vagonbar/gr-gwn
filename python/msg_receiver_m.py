@@ -33,7 +33,7 @@ class msg_receiver_m(gwnblock):
     '''A test block, receives messages; one input, no outputs, no timers.
     '''
     def __init__(self, blkname, blkid):
-        gwnblock.__init__(self, blkid, blkname, 
+        gwnblock.__init__(self, blkname, blkid,
             number_in=1, number_out=0, number_timers=0)
         return
 
@@ -41,7 +41,7 @@ class msg_receiver_m(gwnblock):
     def process_data(self, ev):
         '''Receives events, prints.
         '''
-        ss = '  --- blkname {0}, blkid {1}, event:'.\
+        ss = '  --- receive {0}, blkid {1}, event:'.\
             format(self.blkname, self.blkid)
         ss = ss +   ' ' + ev.nickname
         #ss = ss + '\n  ' + ev.__str__() + '\n'
@@ -58,9 +58,9 @@ def test_1():
     '''Tests timers, block with timers sends to receive block.
     '''
     tb = gr.top_block()
-    blk_snd = msg_sender_m('blk001', 'SendTimerEvs')
-    blk_rec1 = msg_receiver_m('blk002', 'Receiver ONE')
-    blk_rec2 = msg_receiver_m('blk003', 'Receiver TWO')
+    blk_snd = msg_sender_m('SendTimerEvs', 'blk001')
+    blk_rec1 = msg_receiver_m('Receiver ONE', 'blk002')
+    blk_rec2 = msg_receiver_m('Receiver TWO', 'blk003')
 
     tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, blk_rec1, blk_rec1.ports_in[0].port)
     tb.msg_connect(blk_snd, blk_snd.ports_out[1].port, blk_rec2, blk_rec2.ports_in[0].port)
@@ -72,7 +72,7 @@ def test_1():
     # set timers, may be done inside block
     blk_snd.set_timer(0, interrupt=False, interval=2, retry=3, 
         nickname1='TimerTOR1', nickname2='TimerTOR2')
-    blk_snd.set_timer(1, interrupt=False, interval=1, retry=8, 
+    blk_snd.set_timer(1, interrupt=False, interval=1.5, retry=12, 
         nickname1='TimerTOC', nickname2='TimerTOH')
 
     print '--- sender, timers started\n'
