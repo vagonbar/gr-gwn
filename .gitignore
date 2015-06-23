@@ -5,7 +5,7 @@ viejos
 otros 
 gwn/logs 
 *.log 
-*.pyc 
+*.pyc
 *.bin 
 *.hex 
 *.py~ 
