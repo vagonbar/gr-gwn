@@ -33,7 +33,13 @@ GR_PYTHON_INSTALL(
     __init__.py
     msg_sender_m.py
     msg_receiver_m.py
-    gwnblock.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    gwnblock.py
+    hier_rx_psk.py
+    gwnutils.py
+    gwncrc.py
+    hier_tx_psk.py
+    gwn_if_psk_tx.py
+    gwn_if_psk_rx.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -45,3 +51,7 @@ set(GR_TEST_TARGET_DEPS gnuradio-gwn)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
 GR_ADD_TEST(qa_msg_sender_m ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_sender_m.py)
 GR_ADD_TEST(qa_msg_receiver_m ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_receiver_m.py)
+GR_ADD_TEST(qa_hier_rx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hier_rx_psk.py)
+GR_ADD_TEST(qa_hier_tx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hier_tx_psk.py)
+GR_ADD_TEST(qa_gwn_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_tx.py)
+GR_ADD_TEST(qa_gwn_if_psk_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_rx.py)

@@ -72,6 +72,7 @@ class msg_sender_m(gwnblock):
         mutex_prt(ss)
         #self.write_out(ev)    # write on all output ports
 
+        ev.frmpkt = 'Timer_Event_framepacket'
         # write on different output ports according to timer events
         if 'TOH' in ev.nickname or 'TOC' in ev.nickname:    # internal timer
             #print '--- ev.nickname:', ev.nickname, 'en puerto', 1

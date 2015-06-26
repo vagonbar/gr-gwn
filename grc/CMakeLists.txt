@@ -20,5 +20,9 @@
 install(FILES
     gwn_gwnblock.xml
     gwn_msg_sender_m.xml
-    gwn_msg_receiver_m.xml DESTINATION share/gnuradio/grc/blocks
+    gwn_msg_receiver_m.xml
+    gwn_hier_rx_psk.xml
+    gwn_hier_tx_psk.xml
+    gwn_gwn_if_psk_tx.xml
+    gwn_gwn_if_psk_rx.xml DESTINATION share/gnuradio/grc/blocks
 )
