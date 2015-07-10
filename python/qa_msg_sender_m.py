@@ -33,19 +33,7 @@ class qa_msg_sender_m (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
-        #self.tb.run ()
-        # check data
-
-        blk_snd = msg_sender_m('MsgSender','blk001')
-        #blk_snd.debug = True
-
-        self.tb.start()
-        time.sleep(10)
-
-        self.tb.stop()
-        self.tb.wait()
-
+        pass
 
 
 
