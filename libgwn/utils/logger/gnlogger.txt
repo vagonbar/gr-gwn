@@ -1,0 +1,29 @@
+###
+### gnlogger.txt, a doctest file to test gnlogger.
+###
+
+This file shows how to use the GWN logger facility.
+
+
+Import logging libraries and modules:
+>>> import utils.logger.gnlogger as gnlogger
+>>> import logging
+
+Prepare logger:
+>>> module_logger = logging.getLogger(__name__)
+>>> logger = module_logger
+>>> gnlogger.logconf(fnm='gnlogger.log', lgd='/tmp/')
+
+Use logger:
+>>> logger.debug('a debug message')
+>>> logger.critical('a critical message')
+>>> logger.error('an error message')
+>>> logger.info('an info message')
+
+Show logs:
+>>> flogs = open('/tmp/gnlogger.log', 'r').read()
+>>> print flogs
+WARNING: this error is normal!
+It is not possible to record here content of this file, log includes date and time, which vary on each run.
+
+

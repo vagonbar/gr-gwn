@@ -1,0 +1,80 @@
+GWN events.txt: doctest file
+
+>>> import api_events as events
+
+
+
+=====
+===== events created by the mkevent() function
+=====
+
+--- a CTS event ---
+>>> ev_ob_frm = events.mkevent('CtrlCTS')
+>>> print ev_ob_frm
+Event class name: EventFrame
+  Nickname: 'CtrlCTS'; Type: 'Ctrl'; SubType: 'CTS'
+  retry: 0
+  src_addr: addr_1
+  peerlinkId: 0
+  duration: 10
+  frame_length: 0
+  dst_addr: addr_1
+  Frame packet: ''
+  Payload: ''
+
+--- an ActionOpen event ---
+>>> ev_mg = events.mkevent('ActionOpen', ev_dc={'src_addr':'aaaa', 'dst_addr':'bbbb', 'peerlinkId':11})
+>>> print ev_mg
+Event class name: EventFrameMgmt
+  Nickname: 'ActionOpen'; Type: 'Mgmt'; SubType: 'Action'
+  retry: 0
+  src_addr: aaaa
+  peerlinkId: 11
+  duration: 10
+  frame_length: 0
+  dst_addr: bbbb
+  Frame packet: ''
+  Payload: ''
+
+--- a TimerTOH event
+>>> ev_ob_tmr = events.mkevent('TimerTOH')
+>>> print ev_ob_tmr
+Event class name: EventTimer
+  Nickname: 'TimerTOH'; Type: 'Timer'; SubType: 'TOH'
+
+>>> ev_dc={'add_info':'additional info, testing', 'frmpkt': 'AFramePacket'}
+>>> ev_ob_tmr = events.mkevent('TimerTOH', ev_dc=ev_dc)
+>>> print ev_ob_tmr
+Event class name: EventTimer
+  Nickname: 'TimerTOH'; Type: 'Timer'; SubType: 'TOH'
+  add_info: additional info, testing
+  frmpkt: AFramePacket
+  frame_length: 12
+
+--- events test for equality
+>>> ac1 = events.mkevent('ActionConfirm')
+>>> ac2 = events.mkevent('ActionConfirm')
+>>> ac3 = events.mkevent('ActionConfirm', ev_dc={'peerlinkId':55})
+>>> be1 = events.mkevent('MgmtBeacon')
+>>> ac1 == ac2, ac2 == ac3, be1 == ac3
+(True, False, False)
+
+
+
+===
+=== events created directly by their class constructors
+===
+
+--- EventComm events
+>>> import gwnevent
+>>> evcom1 = gwnevent.EventComm('DataIn', 'Data', 'DataIn', src_addr='00:01:11:22:aa:ff', dst_addr='error', payload='the_payload')
+>>> print repr(evcom1.src_addr), repr(evcom1.dst_addr)
+'\x00\x01\x11"\xaa\xff' '\x00\x00\x00\x00\x00\x00'
+>>> print evcom1
+Event class name: EventComm
+  Nickname: 'DataIn'; Type: 'Data'; SubType: 'DataIn'
+  src_addr: 00:01:11:22:aa:ff
+  dst_addr: 00:00:00:00:00:00
+  payload: the_payload
+  frmpk: ''
+

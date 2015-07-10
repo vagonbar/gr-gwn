@@ -1,0 +1,73 @@
+====
+==== mac_action.txt : Management, Action
+====
+
+2014-03-20: changed output to reflect ad-hoc addition of peerlinkId in frame body.
+
+
+
+>>> import os
+>>> import mac_frmbld
+
+Action frame, Mesh Peering Open, Category=13, Action=1
+
+>>> ac_ob1 = mac_frmbld.AMgmtFrame('Action', dc_frbd_fldvals={'Action':1})
+>>> print ac_ob1
+Frame type  : Action
+Bit or bytes: bytes
+Frame length: 35
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  53248
+  duration: bytes, no bitmask   2    4  False     !H :  0
+ address_1: bytes, no bitmask   4   10  False    !6s :  'dt-ad1-'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'dt-ad2-'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3-'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+frame_body: bytes, no bitmask  24   31  False    !7s :  '\r\x01\x00\x00\x00\x00\x00'
+       fcs: bytes, no bitmask  -4   35  False     !I :  0
+<BLANKLINE>
+
+>>> print ac_ob1._fb_obj
+Frame type  : FrameBody
+Bit or bytes: bytes
+Frame length: 7
+  Category: bytes, no bitmask   0    1  False     !B :  13
+    Action: bytes, no bitmask   1    2  False     !B :  1
+    Dialog: bytes, no bitmask   2    3  False     !B :  0
+    TCPreq: bytes, no bitmask   3    5  False     !H :  0
+peerlinkId: bytes, no bitmask   5    7  False     !H :  0
+<BLANKLINE>
+
+>>> print ac_ob1._fc_obj
+Frame type  : FC
+Bit or bytes: bits
+Frame length: 2
+   ProtVer: 0000001100000000   6    8      0    int :  0
+      Type: 0000110000000000   4    6      0    int :  0
+   SubType: 1111000000000000   0    4      0    int :  13
+      ToDS: 0000000000000001  15   16  False   bool :  False
+    FromDS: 0000000000000010  14   15  False   bool :  False
+ MoreFrags: 0000000000000100  13   14  False   bool :  False
+     Retry: 0000000000001000  12   13  False   bool :  False
+   PwrMgmt: 0000000000010000  11   12  False   bool :  False
+  MoreData: 0000000000100000  10   11  False   bool :  False
+ Protected: 0000000001000000   9   10  False   bool :  False
+     Order: 0000000010000000   8    9  False   bool :  False
+<BLANKLINE>
+
+>>> ac_ob1_pk = ac_ob1.mkpkt()
+>>> ac_ob1_pk, len(ac_ob1_pk)
+('\xd0\x00\x00\x00dt-ad1dt-ad2dt-ad3\x00\x00\r\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00', 35)
+>>> ret = ac_ob1.mkhexfl('aux/pk_act1')
+
+Action frame, Mesh Peering Confirm, Category=13, Action=2
+>>> ac_ob2 = mac_frmbld.AMgmtFrame('Action', dc_frbd_fldvals={'Action':2})
+>>> ret = ac_ob2.mkhexfl('aux/pk_act2')
+
+Action frame, Mesh Peering Close, Category=13, Action=3
+>>> ac_ob3 = mac_frmbld.AMgmtFrame('Action', dc_frbd_fldvals={'Action':3})
+>>> ret = ac_ob3.mkhexfl('aux/pk_act3')
+
+
+>>> ret = os.system('cat aux/pk_act?.hex > aux/pk_action.hex')
+>>> ret = os.system('rm aux/pk_act?.hex aux/pk_act?.bin')
+

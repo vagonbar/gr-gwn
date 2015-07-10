@@ -1,0 +1,210 @@
+====
+==== mac_data.txt : a doctest file for module formats.
+====
+
+>>> import os
+>>> import mac_frmbld, mac_frmspecs
+
+
+===
+=== DATA
+===
+
+Set field values for Data frame
+>>> dc_fldvals = { \
+...     #'frame_ctrl' : 0, \  # Do not set directly! Frame type sets it.
+...     'duration'   : 23, \
+...     'address_1'  : 'addr_1', \
+...     'address_2'  : 'addr_2', \
+...     'address_3'  : 'addr_3', \
+...     'seq_ctrl'   : 0, \
+...     'qos'        : 0, \
+...     'ht'         : 0, \
+...     'address_4'  : 'addr_4', \
+...     'frame_body' : 'this is the frame body!', \
+...     'fcs'         : 0 }
+
+Build frame object, show template and field values
+>>> dt_ob1 = mac_frmbld.ADataFrame('Data', dc_fldvals=dc_fldvals)
+>>> print dt_ob1
+Frame type  : Data
+Bit or bytes: bytes
+Frame length: 63
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  2048
+  duration: bytes, no bitmask   2    4  False     !H :  23
+ address_1: bytes, no bitmask   4   10  False    !6s :  'addr_1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'addr_2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'addr_3'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+       qos: bytes, no bitmask  24   26  False     !H :  0
+        ht: bytes, no bitmask  26   30  False     !I :  0
+ address_4: bytes, no bitmask  30   36  False    !6s :  'addr_4'
+frame_body: bytes, no bitmask  36   59  False   !23s :  'this is the frame body!'
+       fcs: bytes, no bitmask  -4   63  False     !I :  0
+<BLANKLINE>
+
+Verify contents of Frame Control in this Data frame:
+>>> print dt_ob1._fc_obj
+Frame type  : FC
+Bit or bytes: bits
+Frame length: 2
+   ProtVer: 0000001100000000   6    8      0    int :  0
+      Type: 0000110000000000   4    6      0    int :  2
+   SubType: 1111000000000000   0    4      0    int :  0
+      ToDS: 0000000000000001  15   16  False   bool :  False
+    FromDS: 0000000000000010  14   15  False   bool :  False
+ MoreFrags: 0000000000000100  13   14  False   bool :  False
+     Retry: 0000000000001000  12   13  False   bool :  False
+   PwrMgmt: 0000000000010000  11   12  False   bool :  False
+  MoreData: 0000000000100000  10   11  False   bool :  False
+ Protected: 0000000001000000   9   10  False   bool :  False
+     Order: 0000000010000000   8    9  False   bool :  False
+<BLANKLINE>
+
+Pack data frame, save to file in hex format for Wireshark
+>>> dt_ob1_pk = dt_ob1.mkpkt()
+>>> dt_ob1_pk, len(dt_ob1_pk)
+('\x08\x00\x00\x17addr_1addr_2addr_3\x00\x00\x00\x00\x00\x00\x00\x00addr_4this is the frame body!\x00\x00\x00\x00', 63)
+
+
+Create a null data frame, pack, save to file in hex format for Wireshark:
+>>> dt_ob2 = mac_frmbld.ADataFrame('Data', dc_fldvals={'frame_body':''} )
+>>> dt_ob2_pk = dt_ob2.mkpkt()
+>>> dt_ob2_pk, len(dt_ob2_pk)
+('\x08\x00\x00\x00dt-ad1dt-ad2dt-ad3\x00\x00\x00\x00\x00\x00\x00\x00dt-ad2\x00\x00\x00\x00', 40)
+
+
+===
+=== Decode a data frame
+===
+
+Decode a Data frame, show field values
+>>> frm_ob1 = mac_frmbld.mkfrmobj(dt_ob1_pk)
+>>> print frm_ob1
+Frame type  : Data
+Bit or bytes: bytes
+Frame length: 63
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  2048
+  duration: bytes, no bitmask   2    4  False     !H :  23
+ address_1: bytes, no bitmask   4   10  False    !6s :  'addr_1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'addr_2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'addr_3'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+       qos: bytes, no bitmask  24   26  False     !H :  0
+        ht: bytes, no bitmask  26   30  False     !I :  0
+ address_4: bytes, no bitmask  30   36  False    !6s :  'addr_4'
+frame_body: bytes, no bitmask  36   59  False   !23s :  'this is the frame body!'
+       fcs: bytes, no bitmask  -4   63  False     !I :  0
+<BLANKLINE>
+
+Verify frame control fields of decoded frame
+>>> print frm_ob1._fc_obj
+Frame type  : FC
+Bit or bytes: bits
+Frame length: 2
+   ProtVer: 0000001100000000   6    8      0    int :  0
+      Type: 0000110000000000   4    6      0    int :  2
+   SubType: 1111000000000000   0    4      0    int :  0
+      ToDS: 0000000000000001  15   16  False   bool :  0
+    FromDS: 0000000000000010  14   15  False   bool :  0
+ MoreFrags: 0000000000000100  13   14  False   bool :  0
+     Retry: 0000000000001000  12   13  False   bool :  0
+   PwrMgmt: 0000000000010000  11   12  False   bool :  0
+  MoreData: 0000000000100000  10   11  False   bool :  0
+ Protected: 0000000001000000   9   10  False   bool :  0
+     Order: 0000000010000000   8    9  False   bool :  0
+<BLANKLINE>
+
+
+Decode Data frame with null frame body, show field values
+>>> frm_ob2 = mac_frmbld.mkfrmobj(dt_ob2_pk)
+>>> print frm_ob2
+Frame type  : Data
+Bit or bytes: bytes
+Frame length: 40
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  2048
+  duration: bytes, no bitmask   2    4  False     !H :  0
+ address_1: bytes, no bitmask   4   10  False    !6s :  'dt-ad1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'dt-ad2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+       qos: bytes, no bitmask  24   26  False     !H :  0
+        ht: bytes, no bitmask  26   30  False     !I :  0
+ address_4: bytes, no bitmask  30   36  False    !6s :  'dt-ad2'
+frame_body: bytes, no bitmask  36   36  False    !0s :  ''
+       fcs: bytes, no bitmask  -4   40  False     !I :  0
+<BLANKLINE>
+
+
+
+=== A complete encoding:
+=
+
+
+>>> dt_ob3 = mac_frmbld.ADataFrame('Data', \
+...     dc_frcl_fldvals={'ToDS':1, 'FromDS':1, 'Retry':1}, \
+...     dc_fldvals={'frame_body':'a new frame body!', 'duration':3, 'fcs':55})
+>>> dt_ob3.dc_fields['frame_body']
+FieldTemplate(beg=36, end=53, inv=False, fmt='!17s', btmsk='bytes, no bitmask')
+>>> dt_ob3.dc_fields['fcs']
+FieldTemplate(beg=-4, end=57, inv=False, fmt='!I', btmsk='bytes, no bitmask')
+>>> print dt_ob3
+Frame type  : Data
+Bit or bytes: bytes
+Frame length: 57
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  2059
+  duration: bytes, no bitmask   2    4  False     !H :  3
+ address_1: bytes, no bitmask   4   10  False    !6s :  'dt-ad1-'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'dt-ad2-'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3-'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+       qos: bytes, no bitmask  24   26  False     !H :  0
+        ht: bytes, no bitmask  26   30  False     !I :  0
+ address_4: bytes, no bitmask  30   36  False    !6s :  'dt-ad2-'
+frame_body: bytes, no bitmask  36   53  False   !17s :  'a new frame body!'
+       fcs: bytes, no bitmask  -4   57  False     !I :  55
+<BLANKLINE>
+
+>>> dt_ob3_pk = dt_ob3.mkpkt()
+>>> dt_ob3_pk, len(dt_ob3_pk)
+('\x08\x0b\x00\x03dt-ad1dt-ad2dt-ad3\x00\x00\x00\x00\x00\x00\x00\x00dt-ad2a new frame body!\x00\x00\x007', 57)
+
+
+===
+=== Frame decoding: unpacking and construction of FC and frame dictionaries
+===
+
+>>> obj3 = mac_frmbld.mkfrmobj(dt_ob3_pk)
+
+>>> dt_ob3.dc_fields['frame_body']
+FieldTemplate(beg=36, end=53, inv=False, fmt='!17s', btmsk='bytes, no bitmask')
+
+>>> print obj3
+Frame type  : Data
+Bit or bytes: bytes
+Frame length: 57
+frame_ctrl: bytes, no bitmask   0    2  False     !H :  2059
+  duration: bytes, no bitmask   2    4  False     !H :  3
+ address_1: bytes, no bitmask   4   10  False    !6s :  'dt-ad1'
+ address_2: bytes, no bitmask  10   16  False    !6s :  'dt-ad2'
+ address_3: bytes, no bitmask  16   22  False    !6s :  'dt-ad3'
+  seq_ctrl: bytes, no bitmask  22   24  False     !H :  0
+       qos: bytes, no bitmask  24   26  False     !H :  0
+        ht: bytes, no bitmask  26   30  False     !I :  0
+ address_4: bytes, no bitmask  30   36  False    !6s :  'dt-ad2'
+frame_body: bytes, no bitmask  36   53  False   !17s :  'a new frame body!'
+       fcs: bytes, no bitmask  -4   57  False     !I :  55
+<BLANKLINE>
+
+
+
+
+== Create files for wireshark reading
+
+>>> ret = dt_ob1.mkhexfl('aux/pk_dt1')
+>>> ret = dt_ob2.mkhexfl('aux/pk_dt2')
+>>> ret = dt_ob3.mkhexfl('aux/pk_dt3')
+
+>>> ret = os.system('cat aux/pk_dt?.hex > aux/pk_data.hex')
+>>> ret = os.system('rm aux/pk_dt?*.hex aux/pk_dt?*.bin')
+

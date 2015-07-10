@@ -1,0 +1,45 @@
+====
+==== mac_frcl.txt : a doctest file for Frame Control field.
+====
+
+
+>>> import mac_frmbld
+>>> fc_rts = mac_frmbld.AFrameControl('RTS')
+>>> print fc_rts
+Frame type  : FC
+Bit or bytes: bits
+Frame length: 2
+   ProtVer: 0000001100000000   6    8      0    int :  0
+      Type: 0000110000000000   4    6      0    int :  1
+   SubType: 1111000000000000   0    4      0    int :  11
+      ToDS: 0000000000000001  15   16  False   bool :  False
+    FromDS: 0000000000000010  14   15  False   bool :  False
+ MoreFrags: 0000000000000100  13   14  False   bool :  False
+     Retry: 0000000000001000  12   13  False   bool :  False
+   PwrMgmt: 0000000000010000  11   12  False   bool :  False
+  MoreData: 0000000000100000  10   11  False   bool :  False
+ Protected: 0000000001000000   9   10  False   bool :  False
+     Order: 0000000010000000   8    9  False   bool :  False
+<BLANKLINE>
+
+>>> fc_ack = mac_frmbld.AFrameControl('ACK', dc_fldvals={'ToDS':1})
+>>> print fc_ack
+Frame type  : FC
+Bit or bytes: bits
+Frame length: 2
+   ProtVer: 0000001100000000   6    8      0    int :  0
+      Type: 0000110000000000   4    6      0    int :  1
+   SubType: 1111000000000000   0    4      0    int :  13
+      ToDS: 0000000000000001  15   16  False   bool :  1
+    FromDS: 0000000000000010  14   15  False   bool :  False
+ MoreFrags: 0000000000000100  13   14  False   bool :  False
+     Retry: 0000000000001000  12   13  False   bool :  False
+   PwrMgmt: 0000000000010000  11   12  False   bool :  False
+  MoreData: 0000000000100000  10   11  False   bool :  False
+ Protected: 0000000001000000   9   10  False   bool :  False
+     Order: 0000000010000000   8    9  False   bool :  False
+<BLANKLINE>
+
+
+
+
