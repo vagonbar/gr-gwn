@@ -39,9 +39,13 @@ GR_PYTHON_INSTALL(
     gwncrc.py
     hier_tx_psk.py
     gwn_if_psk_tx.py
+<<<<<<< HEAD
     gwn_if_psk_rx.py
     ev_to_pdu.py
     pdu_to_ev.py DESTINATION ${GR_PYTHON_DIR}/gwn
+=======
+    gwn_if_psk_rx.py DESTINATION ${GR_PYTHON_DIR}/gwn
+>>>>>>> d2c929c2d8b346eb442727a0d07ce1928e7ed65a
 )
 
 ########################################################################
@@ -57,5 +61,8 @@ GR_ADD_TEST(qa_hier_rx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_h
 GR_ADD_TEST(qa_hier_tx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hier_tx_psk.py)
 GR_ADD_TEST(qa_gwn_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_tx.py)
 GR_ADD_TEST(qa_gwn_if_psk_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_rx.py)
+<<<<<<< HEAD
 GR_ADD_TEST(qa_ev_to_pdu ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_to_pdu.py)
 GR_ADD_TEST(qa_pdu_to_ev ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pdu_to_ev.py)
+=======
+>>>>>>> d2c929c2d8b346eb442727a0d07ce1928e7ed65a

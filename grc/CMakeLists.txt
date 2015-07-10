@@ -24,7 +24,11 @@ install(FILES
     gwn_hier_rx_psk.xml
     gwn_hier_tx_psk.xml
     gwn_gwn_if_psk_tx.xml
+<<<<<<< HEAD
     gwn_gwn_if_psk_rx.xml
     gwn_ev_to_pdu.xml
     gwn_pdu_to_ev.xml DESTINATION share/gnuradio/grc/blocks
+=======
+    gwn_gwn_if_psk_rx.xml DESTINATION share/gnuradio/grc/blocks
+>>>>>>> d2c929c2d8b346eb442727a0d07ce1928e7ed65a
 )
