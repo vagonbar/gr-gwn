@@ -22,6 +22,7 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from msg_sender_m import msg_sender_m
+import time
 
 class qa_msg_sender_m (gr_unittest.TestCase):
 
@@ -33,8 +34,20 @@ class qa_msg_sender_m (gr_unittest.TestCase):
 
     def test_001_t (self):
         # set up fg
-        self.tb.run ()
+        #self.tb.run ()
         # check data
+
+        blk_snd = msg_sender_m('MsgSender','blk001')
+        #blk_snd.debug = True
+
+        self.tb.start()
+        time.sleep(10)
+
+        self.tb.stop()
+        self.tb.wait()
+
+
+
 
 
 if __name__ == '__main__':

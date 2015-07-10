@@ -52,8 +52,8 @@ class ev_to_pdu(gwnblock):
     def process_data(self, ev):
         '''Receives an Event, converts to PDU, writes on output.
         '''
-        #send_str = pickle.dumps(ev)    # serializes Event object
-        send_str = '10101010'
+        send_str = pickle.dumps(ev)    # serializes Event object
+        #send_str = '10101010'
         # Create an empty PMT (contains only spaces):
         send_pmt = pmt.make_u8vector(len(send_str), ord(' '))
         # Copy all characters to the u8vector:

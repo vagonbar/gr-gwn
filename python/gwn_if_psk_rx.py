@@ -32,10 +32,8 @@ class gwn_if_psk_rx(gr.sync_block):
     def __init__(self):
         gr.sync_block.__init__(self,
             name="gwn_if_psk_rx",
-            in_sig=0,
-            out_sig=0)
-            in_sig=[<+numpy.float+>],
-            out_sig=[<+numpy.float+>])
+            in_sig=0,  #[<+numpy.float+>],
+            out_sig=0) #[<+numpy.float+>])
 
 
     def work(self, input_items, output_items):

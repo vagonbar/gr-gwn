@@ -39,11 +39,12 @@ from hier_rx_psk import hier_rx_psk
 from gwnutils import gwnutils
 from gwncrc import gwncrc
 from hier_tx_psk import hier_tx_psk
-from gwn_if_psk_tx import gwn_if_psk_tx
-from gwn_if_psk_rx import gwn_if_psk_rx
-<<<<<<< HEAD
+
 from ev_to_pdu import ev_to_pdu
 from pdu_to_ev import pdu_to_ev
-=======
->>>>>>> d2c929c2d8b346eb442727a0d07ce1928e7ed65a
+from timer_source import timer_source
+from event_sink import event_sink
+from gwn_if_psk_rx import gwn_if_psk_rx
+from gwn_if_psk_tx import gwn_if_psk_tx
+
 #

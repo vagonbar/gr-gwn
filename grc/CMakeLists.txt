@@ -16,19 +16,18 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-
 install(FILES
     gwn_gwnblock.xml
     gwn_msg_sender_m.xml
     gwn_msg_receiver_m.xml
     gwn_hier_rx_psk.xml
     gwn_hier_tx_psk.xml
-    gwn_gwn_if_psk_tx.xml
-<<<<<<< HEAD
-    gwn_gwn_if_psk_rx.xml
     gwn_ev_to_pdu.xml
-    gwn_pdu_to_ev.xml DESTINATION share/gnuradio/grc/blocks
-=======
-    gwn_gwn_if_psk_rx.xml DESTINATION share/gnuradio/grc/blocks
->>>>>>> d2c929c2d8b346eb442727a0d07ce1928e7ed65a
+    gwn_pdu_to_ev.xml
+    gwn_timer_source.xml
+    gwn_event_sink.xml
+    gwn_gwn_if_psk_rx.xml
+    #gwn_gwn_if_psk_tx.xml DESTINATION share/gnuradio/grc/blocks
+    #gwn_gwn_if_psk_rx.xml 
+    DESTINATION share/gnuradio/grc/blocks
 )

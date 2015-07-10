@@ -80,7 +80,6 @@ if __name__ == "__main__":
     #               blk_rec, blk_rec.ports_in[0].port)
     tb.msg_connect(blk_ifz, blk_ifz.ports_out[0].port, 
                    blk_msg_dbg, 'print_pdu')
-    #               blk_msg_dbg, 'print')
     tb.start()
     print tb.msg_edge_list()
 

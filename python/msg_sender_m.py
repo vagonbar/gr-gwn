@@ -42,7 +42,8 @@ class msg_sender_m(gwnblock):
     @param nickname2: event nickname of event to produce when retry has exhausted.
     '''
 
-    def __init__(self, blkname, blkid, interrupt=False, interval=2.0, retry=3, 
+    def __init__(self, blkname, blkid, 
+            interrupt=False, interval=2.0, retry=3, 
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
         gwnblock.__init__(self, blkname, blkid, 
             number_in=0, number_out=2, number_timers=2)

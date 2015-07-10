@@ -25,21 +25,31 @@
 import numpy
 from gnuradio import gr
 
-class pdu_to_ev(gr.sync_block):
-    """
-    docstring for block pdu_to_ev
-    """
-    def __init__(self, blkname='pdu_to_ev', blkid='pdu_to_ev'):
-        gr.sync_block.__init__(self,
-            name="pdu_to_ev",
-            in_sig=0,
-            out_sig=0)
+# GWN imports
+from gwnblock import gwnblock           # for all GWN blocks
+from gwnblock import mutex_prt          # block specific, for this block
+import time                             # block specific, for this block
 
 
-    def work(self, input_items, output_items):
-        in0 = input_items[0]
-        out = output_items[0]
-        # <+signal processing here+>
-        out[:] = in0
-        return len(output_items[0])
+
+class event_sink(gwnblock):
+    '''Event sink, receives and shows Event objects.
+    '''
+
+    def __init__(self, blkname='event_sink', blkid='event_sink'):
+        gwnblock.__init__(self, blkname, blkid,
+            number_in=1, number_out=0, number_timers=0)
+        return
+
+
+    def process_data(self, ev):
+        '''Receives events, prints.
+        '''
+        ss = '  --- receive {0}, blkid {1}, event:'.\
+            format(self.blkname, self.blkid)
+        ss = ss +   ' ' + ev.nickname
+        #ss = ss + '\n  ' + ev.__str__() + '\n'
+        mutex_prt(ss)
+
+        return
 

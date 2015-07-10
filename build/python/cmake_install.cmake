@@ -2,7 +2,7 @@
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/home/victor/IIE/target")
+  SET(CMAKE_INSTALL_PREFIX "/home/victor/IIE/GNURadio/gr-gwn")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -42,7 +42,10 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/victor/IIE/GNURadio/gr-gwn/python/gwnutils.py"
     "/home/victor/IIE/GNURadio/gr-gwn/python/gwncrc.py"
     "/home/victor/IIE/GNURadio/gr-gwn/python/hier_tx_psk.py"
-    "/home/victor/IIE/GNURadio/gr-gwn/python/gwn_if_psk_tx.py"
+    "/home/victor/IIE/GNURadio/gr-gwn/python/ev_to_pdu.py"
+    "/home/victor/IIE/GNURadio/gr-gwn/python/pdu_to_ev.py"
+    "/home/victor/IIE/GNURadio/gr-gwn/python/timer_source.py"
+    "/home/victor/IIE/GNURadio/gr-gwn/python/event_sink.py"
     "/home/victor/IIE/GNURadio/gr-gwn/python/gwn_if_psk_rx.py"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -57,7 +60,10 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwnutils.pyc"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwncrc.pyc"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/hier_tx_psk.pyc"
-    "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwn_if_psk_tx.pyc"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/ev_to_pdu.pyc"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/pdu_to_ev.pyc"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/timer_source.pyc"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/event_sink.pyc"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwn_if_psk_rx.pyc"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/__init__.pyo"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/msg_sender_m.pyo"
@@ -67,7 +73,10 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwnutils.pyo"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwncrc.pyo"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/hier_tx_psk.pyo"
-    "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwn_if_psk_tx.pyo"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/ev_to_pdu.pyo"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/pdu_to_ev.pyo"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/timer_source.pyo"
+    "/home/victor/IIE/GNURadio/gr-gwn/build/python/event_sink.pyo"
     "/home/victor/IIE/GNURadio/gr-gwn/build/python/gwn_if_psk_rx.pyo"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")

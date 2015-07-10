@@ -24,13 +24,13 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from ev_to_pdu import ev_to_pdu
 from timer_source import timer_source
+from event_sink import event_sink
 import time
-from gwnblock import mutex_prt
+from gwnblock import mutex_prt 
 
 
-class qa_ev_to_pdu (gr_unittest.TestCase):
+class qa_event_sink (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -39,41 +39,35 @@ class qa_ev_to_pdu (gr_unittest.TestCase):
         self.tb = None
 
 
-    def test_with_timer_source (self):
-        '''Timer Source to Event To PDU to Message Debug.
+    def test_with_timer_source(self):
+        '''Timer Source to Event Sink.
         '''
-        
-        ### blocks Timer Source --> Event To PDU --> Message Debug
-        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
-        blk_snd.debug = True  # to enable timer source print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
-        blk_dbg = blocks.message_debug()
 
-        self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-            blk_ev2pdu, blk_ev2pdu.ports_in[0].port )
-        self.tb.msg_connect(blk_ev2pdu, 'pdu', 
-                            blk_dbg, 'print_pdu')
-        #self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-        #                    blk_dbg, 'print')
+        # blocks Timer Source --> Event Sink
+        blk_src = timer_source('TimerSource', 'blk001', retry=2)
+        blk_snk = event_sink('EventSink','blk002')
+        self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
+                            blk_snk, blk_snk.ports_in[0].port)
 
         #self.tb.run()  # for flowgraphs that will stop on its own!
-        self.tb.start() 
+        self.tb.start()
         mutex_prt(self.tb.msg_edge_list())
-        #print tb.dump(
-
+        #print tb.dump()
+        
         secs = 5
         print '--- sender, timer started, waiting %d seconds\n' % (secs,)
         time.sleep(secs)
-
-        blk_snd.stop_timers()
-        print '\n--- sender, timers stopped'
         
+        blk_src.stop_timers()
+        print '\n--- sender, timers stopped'
+
         self.tb.stop()
         self.tb.wait()
         print '\n--- top block stopped'
-        
+
         return
 
 
+
 if __name__ == '__main__':
-    gr_unittest.run(qa_ev_to_pdu, "qa_ev_to_pdu.xml")
+    gr_unittest.run(qa_event_sink, "qa_event_sink.xml")

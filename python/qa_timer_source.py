@@ -24,13 +24,12 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from ev_to_pdu import ev_to_pdu
 from timer_source import timer_source
 import time
 from gwnblock import mutex_prt
 
 
-class qa_ev_to_pdu (gr_unittest.TestCase):
+class qa_timer_source (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -38,28 +37,21 @@ class qa_ev_to_pdu (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-
-    def test_with_timer_source (self):
-        '''Timer Source to Event To PDU to Message Debug.
+    
+    def test_with_message_debug(self):
+        '''Timer Source to Message Debug.
         '''
-        
-        ### blocks Timer Source --> Event To PDU --> Message Debug
-        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
-        blk_snd.debug = True  # to enable timer source print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
-        blk_dbg = blocks.message_debug()
 
+        ### blocks Timer Source --> Message Debug
+        blk_snd = timer_source('TimerSource', 'blk001', retry=2)
+        blk_dbg = blocks.message_debug()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-            blk_ev2pdu, blk_ev2pdu.ports_in[0].port )
-        self.tb.msg_connect(blk_ev2pdu, 'pdu', 
-                            blk_dbg, 'print_pdu')
-        #self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-        #                    blk_dbg, 'print')
+                            blk_dbg, 'print')
 
         #self.tb.run()  # for flowgraphs that will stop on its own!
         self.tb.start() 
         mutex_prt(self.tb.msg_edge_list())
-        #print tb.dump(
+        #print tb.dump()
 
         secs = 5
         print '--- sender, timer started, waiting %d seconds\n' % (secs,)
@@ -67,13 +59,13 @@ class qa_ev_to_pdu (gr_unittest.TestCase):
 
         blk_snd.stop_timers()
         print '\n--- sender, timers stopped'
-        
+
         self.tb.stop()
         self.tb.wait()
         print '\n--- top block stopped'
-        
+
         return
-
-
+        
+        
 if __name__ == '__main__':
-    gr_unittest.run(qa_ev_to_pdu, "qa_ev_to_pdu.xml")
+    gr_unittest.run(qa_timer_source, "qa_timer_source.xml")

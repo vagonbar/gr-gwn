@@ -2,7 +2,7 @@
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/home/victor/IIE/target")
+  SET(CMAKE_INSTALL_PREFIX "/home/victor/IIE/GNURadio/gr-gwn")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,10 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_msg_receiver_m.xml"
     "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_hier_rx_psk.xml"
     "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_hier_tx_psk.xml"
-    "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_gwn_if_psk_tx.xml"
+    "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_ev_to_pdu.xml"
+    "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_pdu_to_ev.xml"
+    "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_timer_source.xml"
+    "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_event_sink.xml"
     "/home/victor/IIE/GNURadio/gr-gwn/grc/gwn_gwn_if_psk_rx.xml"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
