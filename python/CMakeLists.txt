@@ -35,15 +35,13 @@ GR_PYTHON_INSTALL(
     msg_receiver_m.py
     gwnblock.py
     hier_rx_psk.py
-    gwnutils.py
     hier_tx_psk.py
     ev_to_pdu.py
     pdu_to_ev.py
     event_sink.py
     gwn_if_psk_rx.py
-    gwnutils.py
     timer_source.py
-    gwncrc.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################

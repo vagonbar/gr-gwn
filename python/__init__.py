@@ -33,8 +33,8 @@ except ImportError:
 # import any pure python here
 
 from gwnblock import gwnblock
-from gwnutils import gwnutils
-from gwncrc import gwncrc
+
+
 
 from hier_rx_psk import hier_rx_psk
 from hier_tx_psk import hier_tx_psk
@@ -49,6 +49,8 @@ from pdu_to_ev import pdu_to_ev
 
 from timer_source import timer_source
 from event_sink import event_sink
+
+
 
 
 
