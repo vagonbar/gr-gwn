@@ -6,6 +6,7 @@ otros
 gwn/logs 
 *.log 
 *.pyc
+*.pyo
 *.bin 
 *.hex 
 *.py~ 

@@ -2,7 +2,7 @@
 <block>
   <name>gwn_if_psk_tx</name>
   <key>gwn_gwn_if_psk_tx</key>
-  <category>gwn</category>
+  <category>GWN</category>
   <import>import gwn</import>
   <make>gwn.gwn_if_psk_tx()</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.

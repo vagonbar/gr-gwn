@@ -26,6 +26,13 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from pdu_to_ev import pdu_to_ev
 
+from ev_to_pdu import ev_to_pdu
+from timer_source import timer_source
+from event_sink import event_sink
+import time
+from gwnblock import mutex_prt
+
+
 class qa_pdu_to_ev (gr_unittest.TestCase):
 
     def setUp (self):
@@ -34,11 +41,49 @@ class qa_pdu_to_ev (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_001_t (self):
-        # set up fg
-        self.tb.run ()
-        # check data
+
+    def test_with_timer_source (self):
+        '''Timer Source to Event To PDU to Message Debug.
+        '''
+        
+        ### Timer Source --> Event To PDU --> PDU To Event --> Message Debug
+        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
+        blk_snd.debug = False      # set to True to enable debug print
+        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
+        blk_ev2pdu.debug = False   # set to True to enable debug print
+        blk_pdu2ev = pdu_to_ev('PDUToEv', 'blk003')
+        blk_pdu2ev.debug = False  # set to True to enable debug print
+        #blk_dbg = blocks.message_debug()
+        blk_evsink = event_sink('EventSink', 'blk004')
+
+        self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
+                            blk_ev2pdu, blk_ev2pdu.ports_in[0].port )
+        self.tb.msg_connect(blk_ev2pdu, 'pdu',
+                            blk_pdu2ev, 'pdu')
+        #self.tb.msg_connect(blk_pdu2ev, blk_pdu2ev.ports_out[0].port,
+        #                    blk_dbg, 'print')
+        self.tb.msg_connect(blk_pdu2ev, blk_pdu2ev.ports_out[0].port,
+                            blk_evsink, blk_evsink.ports_in[0].port)
+
+        #self.tb.run()  # for flowgraphs that will stop on its own!
+        self.tb.start() 
+        mutex_prt(self.tb.msg_edge_list())
+        #print tb.dump(
+
+        secs = 5
+        print '--- sender, timer started, waiting %d seconds\n' % (secs,)
+        time.sleep(secs)
+
+        blk_snd.stop_timers()
+        print '\n--- sender, timers stopped'
+        
+        self.tb.stop()
+        self.tb.wait()
+        print '\n--- top block stopped'
+        
+        return
 
 
 if __name__ == '__main__':
     gr_unittest.run(qa_pdu_to_ev, "qa_pdu_to_ev.xml")
+    

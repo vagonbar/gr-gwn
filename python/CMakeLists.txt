@@ -36,16 +36,14 @@ GR_PYTHON_INSTALL(
     gwnblock.py
     hier_rx_psk.py
     gwnutils.py
-    gwncrc.py
     hier_tx_psk.py
     ev_to_pdu.py
     pdu_to_ev.py
-    timer_source.py
     event_sink.py
     gwn_if_psk_rx.py
-    #gwn_if_psk_tx.py 
-    DESTINATION ${GR_PYTHON_DIR}/gwn
-    #gwn_if_psk_rx.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    gwnutils.py
+    timer_source.py
+    gwncrc.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -61,7 +59,7 @@ GR_ADD_TEST(qa_hier_rx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_h
 GR_ADD_TEST(qa_hier_tx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hier_tx_psk.py)
 GR_ADD_TEST(qa_ev_to_pdu ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_to_pdu.py)
 GR_ADD_TEST(qa_pdu_to_ev ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pdu_to_ev.py)
-GR_ADD_TEST(qa_timer_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_timer_source.py)
 GR_ADD_TEST(qa_event_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_event_sink.py)
 GR_ADD_TEST(qa_gwn_if_psk_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_rx.py)
 GR_ADD_TEST(qa_gwn_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_tx.py)
+GR_ADD_TEST(qa_timer_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_timer_source.py)

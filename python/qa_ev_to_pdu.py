@@ -52,7 +52,7 @@ class qa_ev_to_pdu (gr_unittest.TestCase):
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
             blk_ev2pdu, blk_ev2pdu.ports_in[0].port )
         self.tb.msg_connect(blk_ev2pdu, 'pdu', 
-                            blk_dbg, 'print_pdu')
+                            blk_dbg, 'print')
         #self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
         #                    blk_dbg, 'print')
 
