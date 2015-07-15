@@ -5,7 +5,7 @@
 ###################################################
  -->
 <block>
-  <name>msg_sender_m</name>
+  <name>Message Sender</name>
   <key>gwn_msg_sender_m</key>
   <category>GWN</category>
   <import>import gwn</import>
@@ -25,30 +25,35 @@
   <param>
     <name>interrupt</name>
     <key>interrupt</key>
+    <value>False</value>
     <type>int</type>
   </param>
 
   <param>
     <name>interval</name>
     <key>interval</key>
+    <value>1.0</value>
     <type>float</type>
   </param>
 
   <param>
     <name>retry</name>
     <key>retry</key>
+    <value>3</value>
     <type>int</type>
   </param>
 
   <param>
     <name>nickname1</name>
     <key>nickname1</key>
+    <value>TimerTOC</value>
     <type>string</type>
   </param>
 
   <param>
     <name>nickname2</name>
     <key>nickname2</key>
+    <value>TimerTOH</value>
     <type>string</type>
   </param>
 

@@ -19,16 +19,12 @@
 
 
   <sink>
-    <name>event</name>
+    <name>in0</name>
     <type>message</type>
+    <optional>1</optional>
   </sink>
 
   <doc>
-    Event sink, receives and shows Event objects.
-
-    Receives an Event object, shows it.
-    @param blkname: block name.
-    @param blkid: block identifier.
   </doc>
 
 </block>

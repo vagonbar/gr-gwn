@@ -41,13 +41,11 @@ class qa_timer_source (gr_unittest.TestCase):
     def test_with_message_debug(self):
         '''Timer Source to Message Debug.
         '''
-
         ### blocks Timer Source --> Message Debug
         blk_snd = timer_source('TimerSource', 'blk001', retry=2)
         blk_dbg = blocks.message_debug()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_dbg, 'print')
-
         #self.tb.run()  # for flowgraphs that will stop on its own!
         self.tb.start() 
         mutex_prt(self.tb.msg_edge_list())
@@ -56,10 +54,8 @@ class qa_timer_source (gr_unittest.TestCase):
         secs = 5
         print '--- sender, timer started, waiting %d seconds\n' % (secs,)
         time.sleep(secs)
-
         blk_snd.stop_timers()
         print '\n--- sender, timers stopped'
-
         self.tb.stop()
         self.tb.wait()
         print '\n--- top block stopped'

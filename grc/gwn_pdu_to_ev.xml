@@ -21,18 +21,14 @@
   <sink>
     <name>pdu</name>
     <type>message</type>
+    <optional>1</optional>
   </sink>
   <source>
-    <name>event</name>
+    <name>out0</name>
     <type>message</type>
+    <optional>1</optional>
   </source>
 
-  <doc>
-    Receives a PDU and produces an Event object from it.
-
-    Receives a PDU message, deserializes content into an Event object, sends Event object on its output port.
-    @param blkname: block name.
-    @param blkid: block identifier.
-  </doc>
+  <doc></doc>
   
 </block>

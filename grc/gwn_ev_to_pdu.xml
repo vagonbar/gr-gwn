@@ -19,21 +19,17 @@
 
 
   <sink>
-    <name>event</name>
+    <name>in0</name>
     <type>message</type>
+    <optional>1</optional>
   </sink>
 
   <source>
     <name>pdu</name>
     <type>message</type>
+    <optional>1</optional>
   </source>
 
-  <doc>
-    Converts an Event object to PDU.
-
-    Receives an Event object on input port, produces a PDU (Process Data Unit) on its output port.
-    @param blkname: block name.
-    @param blkid: block identifier.
-  </doc>
+  <doc></doc>
 </block>
 

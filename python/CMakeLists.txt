@@ -40,6 +40,7 @@ GR_PYTHON_INSTALL(
     pdu_to_ev.py
     event_sink.py
     gwn_if_psk_rx.py
+    gwn_if_psk_tx.py
     timer_source.py
     DESTINATION ${GR_PYTHON_DIR}/gwn
 )

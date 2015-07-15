@@ -48,21 +48,11 @@
   </param>
 
   <source>
-    <name>event</name>
+    <name>out0</name>
     <type>message</type>
+    <optional>1</optional>
   </source>
 
-  <doc>
-    Timer events source, produces Timer Event objects.
-    
-    Timer events source block, produces Timer Event objects based on an internal timer set by the user.
-    @param blkname: block name.
-    @param blkid: block identifier.
-    @param interrupt: if set to True, timer does not generate events.
-    @param interval: time betweeen successive events.
-    @param retry: how many events to produce.
-    @param nickname1: event nickname of event to produce on each interval.
-    @param nickname2: event nickname of event to produce when retry has exhausted.
-  </doc>
+  <doc></doc>
   
 </block>

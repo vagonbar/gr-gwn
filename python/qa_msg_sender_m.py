@@ -23,6 +23,8 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from msg_sender_m import msg_sender_m
 import time
+from gwnblock import mutex_prt
+
 
 class qa_msg_sender_m (gr_unittest.TestCase):
 
@@ -32,9 +34,33 @@ class qa_msg_sender_m (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_001_t (self):
-        pass
 
+    def test_with_message_debug(self):
+        '''Message Sender to Message Debug.
+        '''
+        ### blocks Timer Source --> Message Debug
+        blk_snd = msg_sender_m('MessageSender', 'blk001', retry=2)
+        blk_snd.debug = True
+        blk_dbg = blocks.message_debug()
+        self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
+                            blk_dbg, 'print')
+        #self.tb.msg_connect(blk_snd, blk_snd.ports_out[1].port, 
+        #                    blk_dbg, 'print')
+        #self.tb.run()  # for flowgraphs that will stop on its own!
+        self.tb.start() 
+        mutex_prt(self.tb.msg_edge_list())
+        #print tb.dump()
+
+        secs = 5
+        print '--- sender, timer started, waiting %d seconds\n' % (secs,)
+        time.sleep(secs)
+        blk_snd.stop_timers()
+        print '\n--- sender, timers stopped'
+        self.tb.stop()
+        self.tb.wait()
+        print '\n--- top block stopped'
+
+        return
 
 
 

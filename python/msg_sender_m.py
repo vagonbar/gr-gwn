@@ -47,16 +47,16 @@ class msg_sender_m(gwnblock):
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
         gwnblock.__init__(self, blkname, blkid, 
             number_in=0, number_out=2, number_timers=2)
-        self.time_init = time.time()    
 
+        self.debug = False  # please set from outside for debug print
+        
+        self.time_init = time.time()    
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 
             nickname1=nickname1, nickname2=nickname2)
-        #self.set_timer(0, interrupt=False, interval=2, retry=3, 
-        #    nickname1='TimerTOR1', nickname2='TimerTOR2')
-        self.set_timer(1, interrupt=False, interval=1.0, retry=8, 
+        self.set_timer(1, interrupt=False, interval=1.0, retry=1, 
             nickname1='TimerTOC', nickname2='TimerTOH')
-
         self.start_timers()
+
         return
 
 
@@ -68,9 +68,10 @@ class msg_sender_m(gwnblock):
 
     def process_data(self, ev):
         '''Sends timer events produced by the internal timers.'''
-        ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
-            format(self.blkname, ev.nickname, self.elapsed_time() )
-        mutex_prt(ss)
+        if self.debug:
+            ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
+                format(self.blkname, ev.nickname, self.elapsed_time() )
+            mutex_prt(ss)
         #self.write_out(ev)    # write on all output ports
 
         ev.frmpkt = 'Timer_Event_framepacket'

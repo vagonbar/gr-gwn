@@ -5,7 +5,7 @@
 ###################################################
  -->
 <block>
-  <name>msg_receiver_m</name>
+  <name>Message Receiver</name>
   <key>gwn_msg_receiver_m</key>
   <category>GWN</category>
   <import>import gwn</import>
