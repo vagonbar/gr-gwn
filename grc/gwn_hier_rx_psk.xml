@@ -4,35 +4,107 @@
   <key>gwn_hier_rx_psk</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.hier_rx_psk($bw_clock_sync, $bw_fll, $bw_costas, $n_filts, $len_sym_srrc, $constellation, $1-1j, $1+1j, $-1+1j], $[], $4, $1).base(), $samp_per_sym, $alfa, $bits_per_sym, $agc_attack_rate, $agc_decay_rate, $agc_reference, $agc_gain, $alpha_probe, $th_probe)</make>
-  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
-       Sub-nodes:
-       * name
-       * key (makes the value accessible as $keyname, e.g. in the make node)
-       * type -->
+  <make>gwn.hier_rx_psk($bw_clock_sync, $bw_fll, $bw_costas, $n_filts, $len_sym_srrc, $constellation, $samp_per_sym, $alpha, $bits_per_sym, $agc_attack_rate, $agc_decay_rate, $agc_reference, $agc_gain, $alpha_probe, $th_probe)</make>
+
   <param>
-    <name>...</name>
-    <key>...</key>
-    <type>...</type>
+    <name>bw clock sync</name>
+    <key>bw_clock_sync</key>
+    <value> 2*3.14/100 </value> 
+    <type>float</type>
   </param>
 
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
+  <param>
+    <name>bw fll </name>
+    <key>bw_fll</key>
+    <value> 3.14/1600 </value> 
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>bw costas loop </name>
+    <key>bw_costas</key>
+    <value> 2*3.14/100 </value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>length in symbols of srrc </name>
+    <key>len_sym_srrc</key>
+    <value> 7 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>number filters bank </name>
+    <key>n_filts</key>
+    <value> 32 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>Constellation Object</name>
+    <key>constellation</key>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>samples per symbol </name>
+    <key>samp_per_sym</key>
+    <value> 5 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>excess bandwdth </name>
+    <key>alpha</key>
+    <value>0.35</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>bits per symbol </name>
+    <key>bits_per_sym</key>
+    <value> 2 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>AGC attack rate </name>
+    <key>agc_attack_rate</key>
+    <value>0.1</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>AGC decay rate </name>
+    <key>agc_decay_rate</key>
+    <value>0.1</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>AGC reference </name>
+    <key>agc_reference</key>
+    <value>1.0</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>AGC gain </name>
+    <key>agc_gain</key>
+    <value>1.0</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>alpha_probe </name>
+    <key>alpha_probe</key>
+    <value>0.1</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>th_probe </name>
+    <key>th_probe</key>
+    <value>0</value> 
+    <type>float</type>
+  </param>
+
   <sink>
     <name>in</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <type>complex</type>
   </sink>
 
-  <!-- Make one 'source' node per output. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
   <source>
     <name>out</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <type>byte</type>
   </source>
 </block>

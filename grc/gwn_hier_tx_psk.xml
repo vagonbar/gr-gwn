@@ -4,35 +4,51 @@
   <key>gwn_hier_tx_psk</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.hier_tx_psk($alfa, $samp_per_sym, $bits_per_sym, $constellation, $1-1j, $1+1j, $-1+1j], $len_sym_srrc, $out_const_mul)</make>
-  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
-       Sub-nodes:
-       * name
-       * key (makes the value accessible as $keyname, e.g. in the make node)
-       * type -->
+  <make>gwn.hier_tx_psk($alpha, $samp_per_sym, $bits_per_sym, $constellation, $len_sym_srrc, $out_const_mul)</make>
   <param>
-    <name>...</name>
-    <key>...</key>
-    <type>...</type>
+    <name>Constellation Points</name>
+    <key>constellation</key>
+    <value>[-1-1j, -1+1j, 1+1j, 1-1j]</value>
+    <type>complex_vector</type>
+  </param>
+  <param>
+    <name>samples per symbol </name>
+    <key>samp_per_sym</key>
+    <value> 5 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>excess bandwdth </name>
+    <key>alpha</key>
+    <value>0.35</value> 
+    <type>float</type>
+  </param>
+  <param>
+    <name>bits per symbol </name>
+    <key>bits_per_sym</key>
+    <value> 2 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>length in symbols of srrc </name>
+    <key>len_sym_srrc</key>
+    <value> 7 </value> 
+    <type>int</type>
+  </param>
+  <param>
+    <name>multiplicative output constant </name>
+    <key>out_const_mul</key>
+    <value> 0.4 </value> 
+    <type>float</type>
   </param>
 
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
   <sink>
     <name>in</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <type>byte</type>
   </sink>
 
-  <!-- Make one 'source' node per output. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
   <source>
     <name>out</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <type>complex</type>
   </source>
 </block>
