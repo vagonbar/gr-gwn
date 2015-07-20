@@ -36,20 +36,22 @@ from gwnutils import unmake_packet
 
 
 class if_psk_rx(gwnblock):
-    '''PSK receiver interface, for testing.
+    '''PSK receiver interface.
+
+    Receives a PDU, extracts content, rebuilds into string and outputs content as a string message (not a PDU).
     '''
     def __init__(self, blkname="gwn_if_psk_tx", blkid='0'):
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
             number_in=0, number_out=0, number_timers=0)
 
-        self.debug = True
+        self.debug = False
 
         # register input port for PDUS and set function handler
         self.message_port_register_in(pmt.intern('pdu'))
         self.set_msg_handler(pmt.intern('pdu'), self.handle_pdu_msg)
 
         # register output port for PDUs
-        self.message_port_register_out(pmt.intern('pdu'))
+        self.message_port_register_out(pmt.intern('msg'))
 
 
     def handle_pdu_msg(self, msg_pmt):
@@ -61,27 +63,23 @@ class if_psk_rx(gwnblock):
             else:
                 #mutex_prt('[PMT metadata]: None')
                 pass
-        #mutex_prt('[PMT message]; '  + content)
-        #print pmt.to_python(content)
+            mutex_prt('[PMT message]:')
+            mutex_prt(pmt.to_python(content))
+        # converts received u8 vector into string of chars 0 and 1
         msg_str = "".join([str(x) for x in pmt.u8vector_elements(content)])
-        #lschars = [(x) for x in pmt.u8vector_elements(content)]
+        # converts 1s and 0s  string into a packed binary string
         lschars, pad = conv_1_0_string_to_packed_binary_string(msg_str)
-        #print lschars
-        #print "El Tipo:", type(msg_str)
-        #print msg_str
-        #print lschars
+        # unmakes packet, checks CRC
         ok, payload = unmake_packet(lschars)
-        print ok
-        print payload        
-        #print [x for x in pmt.u8vector_elements(content)]    
-
-        #to_string = content.to_string()
-        #mutex_prt('[to_string]; '  + to_string)
-        #msg_send = pmt.cons(pmt.PMT_NIL, content)
-        #self.write_out(msg_send)
+        if self.debug:
+            mutex_prt('if_psk_rx, CRC ok: ' + str(ok))
+            mutex_prt(payload)
+            mutex_prt('if_psk_rx payload type: ' + str(type(payload)))
         if ok:
-            self.message_port_pub( pmt.intern('pdu'), 
-                pmt.cons(pmt.PMT_NIL, payload) )
+            # sends payload as a list of one member
+            send_pmt = pmt.pmt_to_python.python_to_pmt( [payload] )
+            self.message_port_pub( pmt.intern('msg'), 
+                pmt.cons(pmt.PMT_NIL, send_pmt) )
         else:
             mutex_prt('Invalid CRC, discarding packet')
 

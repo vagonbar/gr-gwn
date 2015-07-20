@@ -31,13 +31,14 @@ def gen_and_append_crc32(s):
     crc = digital.crc32(s)
     return s + struct.pack(">I", gru.hexint(crc) & 0xFFFFFFFF)
 
-def check_crc32(s):
+def check_crc32(s, debug=False):
     if len(s) < 4:
         return (False, '')
     msg = s[:-4]
-    print "msg = '%s'" % (msg,)
     actual = digital.crc32(msg)
     (expected,) = struct.unpack(">I", s[-4:])
-    print "actual =", hex(actual), "expected =", hex(expected)
+    if debug:
+        print "msg = '%s'" % (msg,)
+        print "actual =", hex(actual), "expected =", hex(expected)
     return (actual == expected, msg)
 

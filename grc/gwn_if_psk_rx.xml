@@ -13,7 +13,7 @@
   </sink>
 
   <source>
-    <name>pdu</name>
+    <name>msg</name>
     <type>message</type>
     <optional>1</optional>
   </source>
