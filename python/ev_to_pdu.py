@@ -40,11 +40,14 @@ class ev_to_pdu(gwnblock):
     Receives an Event object on input port, produces a PDU (Process Data Unit) on its output port.
     @param blkname: block name.
     @param blkid: block identifier.
+    @param in_type: type of input, may be "event" or "message".
     '''
-    def __init__(self, blkname='ev_to_pdu', blkid='id_ev_to_pdu'):
+    def __init__(self, blkname='ev_to_pdu', blkid='id_ev_to_pdu',
+            in_type='event'):
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
             number_in=1, number_out=0, number_timers=0)
 
+        self.in_type = in_type
         self.debug = False  # please set from outside for debug print
 
         # register output port for PDUs
@@ -55,7 +58,10 @@ class ev_to_pdu(gwnblock):
     def process_data(self, ev):
         '''Receives an Event, converts to PDU, writes on output.
         '''
-        send_str = pickle.dumps(ev)    # serializes Event object
+        if self.in_type is 'event':
+            send_str = pickle.dumps(ev)    # serializes Event object
+        elif self.in_type is 'message':
+            send_str = ev
         #send_str = '10101010'
         # Create an empty PMT (contains only spaces):
         send_pmt = pmt.make_u8vector(len(send_str), ord(' '))

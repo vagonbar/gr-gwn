@@ -42,7 +42,7 @@ GR_PYTHON_INSTALL(
     gwn_if_psk_rx.py
     gwn_if_psk_tx.py
     timer_source.py
-    DESTINATION ${GR_PYTHON_DIR}/gwn
+    if_psk_rx.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -62,3 +62,4 @@ GR_ADD_TEST(qa_event_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev
 GR_ADD_TEST(qa_gwn_if_psk_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_rx.py)
 GR_ADD_TEST(qa_gwn_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gwn_if_psk_tx.py)
 GR_ADD_TEST(qa_timer_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_timer_source.py)
+GR_ADD_TEST(qa_if_psk_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_if_psk_rx.py)

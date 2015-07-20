@@ -25,5 +25,7 @@ install(FILES
     gwn_pdu_to_ev.xml
     gwn_event_sink.xml
     gwn_gwn_if_psk_rx.xml
-    gwn_timer_source.xml DESTINATION share/gnuradio/grc/blocks
+    gwn_gwn_if_psk_tx.xml
+    gwn_timer_source.xml
+    gwn_if_psk_rx.xml DESTINATION share/gnuradio/grc/blocks
 )

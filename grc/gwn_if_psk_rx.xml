@@ -1,22 +1,21 @@
 <?xml version="1.0"?>
 <block>
-  <name>gwn_if_psk_tx</name>
-  <key>gwn_gwn_if_psk_tx</key>
+  <name>If PSK_Receive</name>
+  <key>gwn_if_psk_rx</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.gwn_if_psk_tx()</make>
-
+  <make>gwn.if_psk_rx()</make>
 
   <sink>
-    <name>in0</name>
+    <name>pdu</name>
     <type>message</type>
     <optional>1</optional>
   </sink>
 
   <source>
-    <name>out0</name>
+    <name>pdu</name>
     <type>message</type>
     <optional>1</optional>
   </source>
-  
+
 </block>
