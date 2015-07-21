@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message to event</name>
+  <key>gwn_msg_to_event</key>
+  <category>GWN</category>
+  <import>import gwn</import>
+  <make>gwn.msg_to_event()</make>
+
+ <param>
+    <name>blkname</name>
+    <key>blkname</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>blkid</name>
+    <key>blkid</key>
+    <type>string</type>
+  </param>
+
+
+  <sink>
+    <name>msg</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+  <doc></doc>
+
+</block>

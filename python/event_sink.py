@@ -41,7 +41,7 @@ class event_sink(gwnblock):
     '''
 
     def __init__(self, blkname='event_sink', blkid='event_sink'):
-        gwnblock.__init__(self, blkname, blkid,
+        gwnblock.__init__(self, blkname=blkname, blkid=blkid,
             number_in=1, number_out=0, number_timers=0)
         return
 
@@ -49,7 +49,7 @@ class event_sink(gwnblock):
     def process_data(self, ev):
         '''Receives events, prints.
         '''
-        ss = '  --- receive {0}, blkid {1}, event:'.\
+        ss = '  --- received by block {0}, id {1}, event:'.\
             format(self.blkname, self.blkid)
         ss = ss +   ' ' + ev.nickname
         #ss = ss + '\n  ' + ev.__str__() + '\n'
