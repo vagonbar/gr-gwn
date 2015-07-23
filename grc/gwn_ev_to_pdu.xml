@@ -30,9 +30,6 @@
       </option>
   </param>
 
-
-
-
   <sink>
     <name>in0</name>
     <type>message</type>

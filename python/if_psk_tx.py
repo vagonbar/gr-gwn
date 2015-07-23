@@ -1,25 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# # 
-# # Copyright 2015
-# #   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
-# #   Universidad de la Republica, Uruguay.
-# # 
-# # This is free software; you can redistribute it and/or modify
-# # it under the terms of the GNU General Public License as published by
-# # the Free Software Foundation; either version 3, or (at your option)
-# # any later version.
-# # 
-# # This software is distributed in the hope that it will be useful,
-# # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# # GNU General Public License for more details.
-# # 
-# # You should have received a copy of the GNU General Public License
-# # along with this software; see the file COPYING.  If not, write to
-# # the Free Software Foundation, Inc., 51 Franklin Street,
-# # Boston, MA 02110-1301, USA.
-# #
+# 
+# Copyright 2015
+#   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
+#   Universidad de la Republica, Uruguay.
+# 
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+# 
 # 
 
 import numpy
@@ -29,11 +29,11 @@ import gwnutils as packet_utils
 from gwnblock import gwnblock
 
 
-class gwn_if_psk_tx(gwnblock):
-    """
-    docstring for block gwn_if_psk_tx
-    """
-    def __init__(self):
+class if_psk_tx(gwnblock):
+    '''Receives an Event object, inserts into a packet.
+    
+    Receives an event, extracts payload, inserts payload into a packet, outputs packet as a message.'''
+    def __init__(self, blkname='if_psk_tx', blkid='if_psk_tx'):
         gwnblock.__init__(self, blkname="gwn_if_psk_tx", blkid='0', 
             number_in=1, number_out=1, number_timers=0)
 

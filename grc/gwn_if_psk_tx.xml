@@ -1,11 +1,21 @@
 <?xml version="1.0"?>
 <block>
-  <name>gwn_if_psk_tx</name>
-  <key>gwn_gwn_if_psk_tx</key>
+  <name>IF PSK Transmit</name>
+  <key>gwn_if_psk_tx</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.gwn_if_psk_tx()</make>
+  <make>gwn.if_psk_tx($blkname, $blkid)</make>
 
+  <param>
+    <name>blkname</name>
+    <key>blkname</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>blkid</name>
+    <key>blkid</key>
+    <type>string</type>
+  </param>
 
   <sink>
     <name>in0</name>
@@ -18,5 +28,5 @@
     <type>message</type>
     <optional>1</optional>
   </source>
-  
+
 </block>

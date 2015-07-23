@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>Message to event</name>
+  <name>Message to Event</name>
   <key>gwn_msg_to_event</key>
   <category>GWN</category>
   <import>import gwn</import>

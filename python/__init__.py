@@ -38,8 +38,8 @@ from gwnblock import gwnblock
 
 from hier_rx_psk import hier_rx_psk
 from hier_tx_psk import hier_tx_psk
-from gwn_if_psk_rx import gwn_if_psk_rx
-from gwn_if_psk_tx import gwn_if_psk_tx
+
+
 
 from msg_sender_m import msg_sender_m
 from msg_receiver_m import msg_receiver_m
@@ -51,6 +51,7 @@ from timer_source import timer_source
 from event_sink import event_sink
 from if_psk_rx import if_psk_rx
 from msg_to_event import msg_to_event
+from if_psk_tx import if_psk_tx
 
 
 

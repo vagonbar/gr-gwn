@@ -1,10 +1,21 @@
 <?xml version="1.0"?>
 <block>
-  <name>If PSK_Receive</name>
+  <name>IF PSK Receive</name>
   <key>gwn_if_psk_rx</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.if_psk_rx()</make>
+  <make>gwn.if_psk_rx($blkname, $blkid)</make>
+
+  <param>
+    <name>blkname</name>
+    <key>blkname</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>blkid</name>
+    <key>blkid</key>
+    <type>string</type>
+  </param>
 
   <sink>
     <name>pdu</name>
