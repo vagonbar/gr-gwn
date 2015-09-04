@@ -1,0 +1,6 @@
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="10.050">
+  <testcase classname="__main__.qa_event_sink" name="test_with_timer_source" time="5.0299"></testcase>
+  <testcase classname="__main__.qa_event_sink" name="test_with_timer_source_2" time="5.0203"></testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>IEEE 802.11 deframer</name>
+  <key>gwn_ieee80211_deframer</key>
+  <category>GWN</category>
+  <import>import gwn</import>
+  <make>gwn.ieee80211_deframer($blkname, $blkid)</make>
+
+
+ <param>
+    <name>blkname</name>
+    <key>blkname</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>blkid</name>
+    <key>blkid</key>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>pdu</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>
