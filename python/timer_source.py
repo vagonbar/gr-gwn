@@ -1,25 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# # 
-# # Copyright 2015
-# #   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
-# #   Universidad de la Republica, Uruguay.
-# # 
-# # This is free software; you can redistribute it and/or modify
-# # it under the terms of the GNU General Public License as published by
-# # the Free Software Foundation; either version 3, or (at your option)
-# # any later version.
-# # 
-# # This software is distributed in the hope that it will be useful,
-# # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# # GNU General Public License for more details.
-# # 
-# # You should have received a copy of the GNU General Public License
-# # along with this software; see the file COPYING.  If not, write to
-# # the Free Software Foundation, Inc., 51 Franklin Street,
-# # Boston, MA 02110-1301, USA.
-# #
+# 
+# Copyright 2015
+#   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
+#   Universidad de la Republica, Uruguay.
+# 
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+#
 # 
 
 import numpy
@@ -50,6 +50,7 @@ class timer_source(gwnblock):
             number_in=0, number_out=1, number_timers=1)
 
         self.debug = False  # please set from outside for debug print
+        self.counter = 1
 
         self.time_init = time.time()    
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 
@@ -67,11 +68,14 @@ class timer_source(gwnblock):
 
     def process_data(self, ev):
         '''Sends timer events produced by the internal timer.'''
+	# set event duration, required for deframing. TODO: see if correct
+        ev.ev_dc['duration'] = 0
         if self.debug:
             ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
                 format(self.blkname, ev.nickname, self.elapsed_time() )
             mutex_prt(ss)
-        ev.frmpkt = 'Timer_Event_framepacket'   # load someting on frame packet
+        ev.frmpkt = 'Timer Event ' + str(self.counter)  # load frame packet
+        self.counter += 1
         self.write_out(ev, port_nr=0)
 
         return

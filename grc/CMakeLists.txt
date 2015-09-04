@@ -27,6 +27,7 @@ install(FILES
     gwn_timer_source.xml
     gwn_msg_to_event.xml
     gwn_if_psk_rx.xml
-    gwn_if_psk_tx.xml  
-    DESTINATION share/gnuradio/grc/blocks
+    gwn_if_psk_tx.xml
+    gwn_ieee80211_framer.xml
+    gwn_ieee80211_deframer.xml DESTINATION share/gnuradio/grc/blocks
 )

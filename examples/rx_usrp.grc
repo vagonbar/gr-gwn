@@ -69,33 +69,6 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>access_code</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>gwnutils.default_access_code</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(400, 11)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
       <value>samp_rate</value>
     </param>
     <param>
@@ -120,85 +93,26 @@
     </param>
   </block>
   <block>
-    <key>digital_correlate_access_code_xx_ts</key>
+    <key>variable</key>
     <param>
       <key>id</key>
-      <value>digital_correlate_access_code_xx_ts_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>access_code</key>
       <value>access_code</value>
     </param>
     <param>
-      <key>threshold</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>tagname</key>
-      <value>correlate</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(48, 379)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_event_sink</key>
-    <param>
-      <key>id</key>
-      <value>gwn_event_sink_0</value>
-    </param>
-    <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>blkname</key>
-      <value>Event Sink</value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value>evsink1</value>
+      <key>value</key>
+      <value>gwnutils.default_access_code</value>
     </param>
     <param>
       <key>alias</key>
       <value></value>
     </param>
     <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
       <key>_coordinate</key>
-      <value>(928, 387)</value>
+      <value>(400, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -253,135 +167,6 @@
     <param>
       <key>_coordinate</key>
       <value>(280, 19)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_tagged_stream_to_pdu</key>
-    <param>
-      <key>id</key>
-      <value>blocks_tagged_stream_to_pdu_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>correlate</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(344, 395)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_if_psk_rx</key>
-    <param>
-      <key>id</key>
-      <value>gwn_if_psk_rx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(576, 387)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_msg_to_event</key>
-    <param>
-      <key>id</key>
-      <value>gwn_msg_to_event_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value>Msg_to_Ev</value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value>msg_to_ev</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(744, 387)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1298,29 +1083,226 @@
       <value>0</value>
     </param>
   </block>
+  <block>
+    <key>gwn_msg_to_event</key>
+    <param>
+      <key>id</key>
+      <value>gwn_msg_to_event_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value>Msg_to_Ev</value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value>msg_to_ev</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(744, 307)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_if_psk_rx</key>
+    <param>
+      <key>id</key>
+      <value>gwn_if_psk_rx_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value></value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value></value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(576, 307)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_event_sink</key>
+    <param>
+      <key>id</key>
+      <value>gwn_event_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value>Event Sink</value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value>evsink1</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(928, 307)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_correlate_access_code_xx_ts</key>
+    <param>
+      <key>id</key>
+      <value>digital_correlate_access_code_xx_ts_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>access_code</key>
+      <value>access_code</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>tagname</key>
+      <value>correlate</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(48, 299)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_tagged_stream_to_pdu</key>
+    <param>
+      <key>id</key>
+      <value>blocks_tagged_stream_to_pdu_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>tag</key>
+      <value>correlate</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 315)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
   <connection>
-    <source_block_id>gwn_hier_rx_psk_0</source_block_id>
-    <sink_block_id>digital_correlate_access_code_xx_ts_0</sink_block_id>
+    <source_block_id>uhd_usrp_source_0</source_block_id>
+    <sink_block_id>gwn_hier_rx_psk_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>digital_correlate_access_code_xx_ts_0</source_block_id>
-    <sink_block_id>blocks_tagged_stream_to_pdu_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gwn_msg_to_event_0</source_block_id>
-    <sink_block_id>gwn_event_sink_0</sink_block_id>
-    <source_key>out0</source_key>
-    <sink_key>in0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gwn_if_psk_rx_0</source_block_id>
-    <sink_block_id>gwn_msg_to_event_0</sink_block_id>
-    <source_key>msg</source_key>
-    <sink_key>msg</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_tagged_stream_to_pdu_0</source_block_id>
@@ -1329,8 +1311,26 @@
     <sink_key>pdu</sink_key>
   </connection>
   <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>gwn_hier_rx_psk_0</sink_block_id>
+    <source_block_id>gwn_if_psk_rx_0</source_block_id>
+    <sink_block_id>gwn_msg_to_event_0</sink_block_id>
+    <source_key>msg</source_key>
+    <sink_key>msg</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_msg_to_event_0</source_block_id>
+    <sink_block_id>gwn_event_sink_0</sink_block_id>
+    <source_key>out0</source_key>
+    <sink_key>in0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_correlate_access_code_xx_ts_0</source_block_id>
+    <sink_block_id>blocks_tagged_stream_to_pdu_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_hier_rx_psk_0</source_block_id>
+    <sink_block_id>digital_correlate_access_code_xx_ts_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

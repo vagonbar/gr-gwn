@@ -39,44 +39,6 @@ class qa_if_psk_rx (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    """    def test_with_timer_source (self):
-        '''Timer Source to Event To PDU to Message Debug.
-        '''
-        
-        ### blocks Timer Source --> Event To PDU --> Message Debug
-        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
-        blk_snd.debug = False  # to enable timer source print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
-        blk_dbg = blocks.message_debug()
-        #blk_rx = if_psk_rx('If PSK Receive', 'blk003')
-        #blk_rx.debug = True  # to enable print
-
-        self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-            blk_ev2pdu, blk_ev2pdu.ports_in[0].port )
-        self.tb.msg_connect(blk_ev2pdu, 'pdu', 
-                            blk_dbg, 'print')
-        #self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-        #                    blk_dbg, 'print')
-
-        #self.tb.run()  # for flowgraphs that will stop on its own!
-        self.tb.start() 
-        mutex_prt(self.tb.msg_edge_list())
-        #print tb.dump(
-
-        secs = 5
-        print '--- sender, timer started, waiting %d seconds\n' % (secs,)
-        time.sleep(secs)
-
-        blk_snd.stop_timers()
-        print '\n--- sender, timers stopped'
-        
-        self.tb.stop()
-        self.tb.wait()
-        print '\n--- top block stopped'
-        
-        return
-    """
-
     def test_with_timer_source (self):
         '''Timer Source to Event To PDU to Message Debug.
         '''

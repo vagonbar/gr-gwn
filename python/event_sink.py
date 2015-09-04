@@ -43,6 +43,9 @@ class event_sink(gwnblock):
     def __init__(self, blkname='event_sink', blkid='event_sink'):
         gwnblock.__init__(self, blkname=blkname, blkid=blkid,
             number_in=1, number_out=0, number_timers=0)
+
+        self.debug = False  # please set from outside for debug print
+
         return
 
 
@@ -54,6 +57,12 @@ class event_sink(gwnblock):
         ss = ss +   ' ' + ev.nickname
         #ss = ss + '\n  ' + ev.__str__() + '\n'
         mutex_prt(ss)
+        if self.debug:
+            mutex_prt(ev)
+            try:
+                mutex_prt('  frame packet: ' + ev.frmpkt)
+            except:
+                pass
 
         return
 
