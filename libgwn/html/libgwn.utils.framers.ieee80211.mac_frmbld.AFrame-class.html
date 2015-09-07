@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>libgwn.utils.framers.ieee80211.mac_frmbld.AFrame</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libGWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="libgwn-module.html">Package&nbsp;libgwn</a> ::
+        <a href="libgwn.utils-module.html">Package&nbsp;utils</a> ::
+        <a href="libgwn.utils.framers-module.html">Package&nbsp;framers</a> ::
+        <a href="libgwn.utils.framers.ieee80211-module.html">Package&nbsp;ieee80211</a> ::
+        <a href="libgwn.utils.framers.ieee80211.mac_frmbld-module.html">Module&nbsp;mac_frmbld</a> ::
+        Class&nbsp;AFrame
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="libgwn.utils.framers.ieee80211.mac_frmbld.AFrame-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class AFrame</h1><p class="nomargin-top"><span class="codelink"><a href="libgwn.utils.framers.ieee80211.mac_frmbld-pysrc.html#AFrame">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+  object --+    
+           |    
+<a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html">frames.Frame</a> --+
+               |
+              <strong class="uidshort">AFrame</strong>
+</pre>
+
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="libgwn.utils.framers.ieee80211.mac_frmbld.ACtrlFrame-class.html">ACtrlFrame</a></li><li>, <a href="libgwn.utils.framers.ieee80211.mac_frmbld.ADataFrame-class.html">ADataFrame</a></li><li>, <a href="libgwn.utils.framers.ieee80211.mac_frmbld.AMgmtFrame-class.html">AMgmtFrame</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>A frame of any type, uses frame specs to build.</p>
+
+<hr />
+<div class="fields">      <p><strong>To Do:</strong>
+        revise coordination with ancestor class Frame.
+      </p>
+</div><!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.mac_frmbld.AFrame-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">frmtype</span>,
+        <span class="summary-sig-arg">dc_frcl_fldvals</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="summary-sig-arg">dc_fldvals</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="summary-sig-arg">dc_frbd_fldvals</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span><br />
+      Builds a frame of any type, according to given  parameter values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.mac_frmbld-pysrc.html#AFrame.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html">frames.Frame</a></code></b>:
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#__str__">__str__</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#consistchk">consistchk</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#fillfldvals">fillfldvals</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkdcfields">mkdcfields</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkdic">mkdic</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkhexfl">mkhexfl</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkpkt">mkpkt</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#setfrmbdy">setfrmbdy</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#updtfldvals">updtfldvals</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_fb_obj"></a><span class="summary-name">_fb_obj</span><br />
+      a frame body object for the frame body of this frame, if the frame 
+      body is structured, as in Management Mesh Action frames; None if 
+      frame body is data.
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_fc_obj"></a><span class="summary-name">_fc_obj</span><br />
+      a Frame Control object for this frame.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="bitbyte"></a><span class="summary-name">bitbyte</span><br />
+      'bits' or 'bytes', indicates how this frame will be parsed.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="dc_fields"></a><span class="summary-name">dc_fields</span><br />
+      a dictionary {field: tuple}, tuple defines field structure.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="dc_fldvals"></a><span class="summary-name">dc_fldvals</span><br />
+      a dictionary {field: value}; the key is the field name, value is the 
+      content in bytes of this field.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="frame_len"></a><span class="summary-name">frame_len</span><br />
+      length of this frame.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="libgwn.utils.framers.ieee80211.mac_frmbld.AFrame-class.html#frmpkt" class="summary-name">frmpkt</a><br />
+      the frame packed into binary data as for transmission.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="frmtype"></a><span class="summary-name">frmtype</span><br />
+      a conventional name for the type of frame.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html">frames.Frame</a></code></b>:
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#body_len">body_len</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#ls_fields">ls_fields</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mask_len">mask_len</a></code>,
+      <code><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#max_frame_len">max_frame_len</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">frmtype</span>,
+        <span class="sig-arg">dc_frcl_fldvals</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="sig-arg">dc_fldvals</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="sig-arg">dc_frbd_fldvals</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.mac_frmbld-pysrc.html#AFrame.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Builds a frame of any type, according to given  parameter values.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>frmtype</code></strong> - a conventional name for the type of frame.</li>
+        <li><strong class="pname"><code>dc_frcl_fldvals</code></strong> - a dictionary of {field: value} to update dictionary of field 
+          values in Frame Control field.</li>
+        <li><strong class="pname"><code>dc_fldvals</code></strong> - a dictionary of {field: value} to update dictionary of field 
+          values in this frame.</li>
+        <li><strong class="pname"><code>dc_frbd_fldvals</code></strong> - a dictionary of {field: value} to update dictionary of field 
+          values in frame body.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>ac1 = AFrame(<span class="py-string">'Action'</span>, dc_fldvals={<span class="py-string">'fcs'</span>:555, <span class="py-string">'address_1'</span>:<span class="py-string">'aaaaaa'</span>, <span class="py-string">'address_2'</span>:<span class="py-string">'bbbbbb'</span>}, dc_frbd_fldvals={<span class="py-string">'TCPreq'</span>:222}, dc_frcl_fldvals={<span class="py-string">'ToDS'</span>:True})
+<span class="py-prompt">&gt;&gt;&gt; </span>ac1.dc_fldvals[<span class="py-string">'fcs'</span>], ac1.dc_fldvals[<span class="py-string">'address_1'</span>], ac1.dc_fldvals[<span class="py-string">'address_2'</span>]
+<span class="py-output">(555, 'aaaaaa', 'bbbbbb')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>ac1.dc_frbd_fldvals[<span class="py-string">'TCPreq'</span>]
+<span class="py-output">222</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>ac1.dc_frcl_fldvals[<span class="py-string">'ToDS'</span>]
+<span class="py-output">True</span></pre></li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="frmpkt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">frmpkt</h3>
+  the frame packed into binary data as for transmission. Defaults to None, 
+  load using self.mkpkt().
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libGWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep  7 12:33:16 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>libgwn.utils.framers.ieee80211.frames.Frame</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libGWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="libgwn-module.html">Package&nbsp;libgwn</a> ::
+        <a href="libgwn.utils-module.html">Package&nbsp;utils</a> ::
+        <a href="libgwn.utils.framers-module.html">Package&nbsp;framers</a> ::
+        <a href="libgwn.utils.framers.ieee80211-module.html">Package&nbsp;ieee80211</a> ::
+        <a href="libgwn.utils.framers.ieee80211.frames-module.html">Module&nbsp;frames</a> ::
+        Class&nbsp;Frame
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Frame</h1><p class="nomargin-top"><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">Frame</strong>
+</pre>
+
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="libgwn.utils.framers.ieee80211.mac_frmbld.AFrame-class.html">mac_frmbld.AFrame</a></li><li>, <a href="libgwn.utils.framers.ieee80211.mac_frmbld.AFrameBody-class.html">mac_frmbld.AFrameBody</a></li><li>, <a href="libgwn.utils.framers.ieee80211.mac_frmbld.AFrameControl-class.html">mac_frmbld.AFrameControl</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>A class to represent a general data communication frame or packet.</p>
+  <p>An instantiation of this class with adequate values in member 
+  variables will represent a particular type of frame, such as a MAC frame,
+  or the Frame Control field of a MAC frame, or any other type of frame. 
+  This class assumes a frame is a sequence of bytes which can be decomposed
+  in a series of fields where different type of data are contained. Some 
+  variable members in this class describe these fields, and some others 
+  record the actual values for each field. This class allows the packing of
+  data into a frame, and the unpacking of data from a frame. Field 
+  frontiers may be byte or bit defined; a variable member defines this.</p>
+
+<hr />
+<div class="fields">      <strong>To Do:</strong>
+      <ul class="nomargin-top">
+        <li>
+        for bit fields, there may be a limit size; verify this, state limit.
+        </li>
+        <li>
+        check these lengths for redundancy! Some may be calculated.
+        </li>
+      </ul>
+      <p><strong>Warning:</strong>
+        not totally independent of frame structure. For instance, assumes 
+        FCS field of 4 bytes at end of frame; this is used to adjust length
+        in frame body for data of variable length loaded in frame body.
+      </p>
+</div><!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkdcfields" class="summary-sig-name">mkdcfields</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dc_fields</span>)</span><br />
+      Makes dictionary of field structure using named tuples as values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkdcfields">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#fillfldvals" class="summary-sig-name">fillfldvals</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fillchr</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">0</code><code class="variable-quote">'</code></span>)</span><br />
+      Fill values in {field : value} dictionary with int or character.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.fillfldvals">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#consistchk" class="summary-sig-name">consistchk</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Run a consistency check on var members.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.consistchk">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#setfrmbdy" class="summary-sig-name">setfrmbdy</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">new_frmbdy</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Set new frame body, adjust frame body template.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.setfrmbdy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#updtfldvals" class="summary-sig-name">updtfldvals</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dc_fldvals</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Update frame with new values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.updtfldvals">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkpkt" class="summary-sig-name">mkpkt</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dbg</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Convert this frame into binary data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkpkt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkdic" class="summary-sig-name">mkdic</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pk</span>)</span><br />
+      Make dictionary {field: value}.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkdic">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkhexfl" class="summary-sig-name">mkhexfl</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fname</span>,
+        <span class="summary-sig-arg">data</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Make a hex file from packet to be imported by wireshark.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkhexfl">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Show all object attributes.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.__str__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="bitbyte"></a><span class="summary-name">bitbyte</span><br />
+      'bits' or 'bytes', indicates how this frame will be parsed.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="body_len"></a><span class="summary-name">body_len</span><br />
+      actual frame body length.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="libgwn.utils.framers.ieee80211.frames.Frame-class.html#dc_fields" class="summary-name">dc_fields</a><br />
+      a dictionary {field: tuple}, tuple defines field structure.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="dc_fldvals"></a><span class="summary-name">dc_fldvals</span><br />
+      a dictionary {field: value}; the key is the field name, value is the 
+      content in bytes of this field.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="frame_len"></a><span class="summary-name">frame_len</span><br />
+      length of this frame.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ls_fields"></a><span class="summary-name">ls_fields</span><br />
+      a list of field names used to display or process them in the usual 
+      order.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="mask_len"></a><span class="summary-name">mask_len</span><br />
+      length of mask, for bit fields.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="max_frame_len"></a><span class="summary-name">max_frame_len</span><br />
+      maximum admitted frame length.
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mkdcfields"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mkdcfields</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dc_fields</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkdcfields">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Makes dictionary of field structure using named tuples as values.</p>
+  <p>Stores dictionary as instance attribute in object 
+  (self._dc_fields).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dc_fields</code></strong> - a dictionary {field: tuple}, tuple defines field structure.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fillfldvals"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fillfldvals</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fillchr</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">0</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.fillfldvals">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Fill values in {field : value} dictionary with int or character.</p>
+  <p>For byte fields, if field is a string, values are filled with fillchr 
+  according to length and type of data in field values dictionary; if field
+  is not a string, value is set to 0. For bit fields, values are set to 
+  0.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fillchr</code></strong> - the fill character, defaults to '0' for bytes, 0 for bits.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="consistchk"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">consistchk</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.consistchk">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Run a consistency check on var members.</p>
+  <p>Verifies:</p>
+  <ul>
+    <li>
+      if keys in dc_fldvals have descriptions in dc_fields.
+    </li>
+    <li>
+      lengths in frame and fields.
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="libgwn.utils.framers.ieee80211.frames.FrameException-class.html">FrameException</a></strong></code> - on consistency errors.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="setfrmbdy"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setfrmbdy</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">new_frmbdy</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.setfrmbdy">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set new frame body, adjust frame body template.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>new_frmbdy</code></strong> - new frame body, even if it is the null string. If None, returns 
+          with no action.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="updtfldvals"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">updtfldvals</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dc_fldvals</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.updtfldvals">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Update frame with new values.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dc_fldvals</code></strong> - a dictionary {field: value}.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mkpkt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mkpkt</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dbg</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkpkt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Convert this frame into binary data.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dbg</code></strong> - debug, if True prints info on each field packing.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>a string of binary data (a packet).</dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="libgwn.utils.framers.ieee80211.frames.FrameException-class.html">FrameException</a></strong></code> - on errors in field template, lengths.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mkdic"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mkdic</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pk</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkdic">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Make dictionary {field: value}.</p>
+  <p>This function returns a dictionary {field: value}.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>pk</code></strong> - the packet to decode.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>a dictionary of {field: value}.</dd>
+  </dl>
+<div class="fields">      <p><strong>Warning:</strong>
+        does not automatically update var member dictionary.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="mkhexfl"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mkhexfl</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fname</span>,
+        <span class="sig-arg">data</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.mkhexfl">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Make a hex file from packet to be imported by wireshark.</p>
+  <p>Creates a .bin file and a .hex file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fname</code></strong> - a file name with no extensions, 'bin' and 'hex' added by 
+          function.</li>
+        <li><strong class="pname"><code>data</code></strong> - a string as produced by mkpkt().</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>the return code of system command od, which converts to hex.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__str__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="libgwn.utils.framers.ieee80211.frames-pysrc.html#Frame.__str__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Show all object attributes.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__str__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="dc_fields"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">dc_fields</h3>
+  a dictionary {field: tuple}, tuple defines field structure. The 
+  dictionary of fields in frame describes the position, structure, and type
+  of data kept in each field. Key is field name, value is a named tuple <a 
+  href="libgwn.utils.framers.ieee80211.frames.FieldTemplate-class.html" 
+  class="link">FieldTemplate</a> including (begin, end, inv, type of data, 
+  bitmask); bitmask is used to extract bit fields; begin, end indicate 
+  positions of field in packed frame; inv is True if bits or bytes in field
+  must be inverted for packing and unpacking; type indicates on which type 
+  each field is to be unpacked.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libGWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep  7 12:33:16 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

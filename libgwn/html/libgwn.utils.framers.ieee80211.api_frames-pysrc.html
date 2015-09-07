@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>libgwn.utils.framers.ieee80211.api_frames</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libGWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="libgwn-module.html">Package&nbsp;libgwn</a> ::
+        <a href="libgwn.utils-module.html">Package&nbsp;utils</a> ::
+        <a href="libgwn.utils.framers-module.html">Package&nbsp;framers</a> ::
+        <a href="libgwn.utils.framers.ieee80211-module.html">Package&nbsp;ieee80211</a> ::
+        Module&nbsp;api_frames
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="libgwn.utils.framers.ieee80211.api_frames-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="libgwn.utils.framers.ieee80211.api_frames-module.html">Module libgwn.utils.framers.ieee80211.api_frames</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#    This file is part of GNUWiNetwork,</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#    Copyright (C) 2014 by </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#        Pablo Belzarena, Gabriel Gomez Sena, Victor Gonzalez Barbone,</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#        Facultad de Ingenieria, Universidad de la Republica, Uruguay.</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment">#    GNUWiNetwork is free software: you can redistribute it and/or modify</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#    it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment">#    the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#    (at your option) any later version.</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment">#    GNUWiNetwork is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment">#    but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#    GNU General Public License for more details.</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment">#    You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment">#    along with GNUWiNetwork.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">'''An API to the IEEE 802.11 frame library.</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">This module intends to be the only one a developer must know to create frame objects, pack frames into binary string format, unpack binary string formats into frame objects. This module offers functions to get information on known types of frames and their corresponding fields.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module libgwn.utils.framers.ieee80211.mac_frmbld=libgwn.utils.framers.ieee80211.mac_frmbld-module.html"><a title="libgwn.utils.framers.ieee80211.mac_frmbld" class="py-name" href="#" onclick="return doclink('link-0', 'mac_frmbld', 'link-0');">mac_frmbld</a></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module libgwn.utils.framers.ieee80211.mac_frmspecs=libgwn.utils.framers.ieee80211.mac_frmspecs-module.html"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs" class="py-name" href="#" onclick="return doclink('link-1', 'mac_frmspecs', 'link-1');">mac_frmspecs</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="objfrompkt"></a><div id="objfrompkt-def"><a name="L33"></a><tt class="py-lineno"> 33</tt> <a class="py-toggle" href="#" id="objfrompkt-toggle" onclick="return toggle('objfrompkt');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.framers.ieee80211.api_frames-module.html#objfrompkt">objfrompkt</a><tt class="py-op">(</tt><tt class="py-param">frmpkt</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="objfrompkt-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="objfrompkt-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-docstring">'''Create a frame object from a binary string format frame.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    @param frmpkt: a frame in binary string format.</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">    @return: a frame object.</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-2" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmbld" class="py-name" href="#" onclick="return doclink('link-2', 'mac_frmbld', 'link-0');">mac_frmbld</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Function libgwn.utils.framers.ieee80211.mac_frmbld.mkfrmobj()=libgwn.utils.framers.ieee80211.mac_frmbld-module.html#mkfrmobj"><a title="libgwn.utils.framers.ieee80211.mac_frmbld.mkfrmobj" class="py-name" href="#" onclick="return doclink('link-3', 'mkfrmobj', 'link-3');">mkfrmobj</a></tt><tt class="py-op">(</tt><tt class="py-name">frmpkt</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="pktfromobj"></a><div id="pktfromobj-def"><a name="L42"></a><tt class="py-lineno"> 42</tt> <a class="py-toggle" href="#" id="pktfromobj-toggle" onclick="return toggle('pktfromobj');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.framers.ieee80211.api_frames-module.html#pktfromobj">pktfromobj</a><tt class="py-op">(</tt><tt class="py-param">frmobj</tt><tt class="py-op">)</tt><tt class="py-op">:</tt>  <tt class="py-comment"># pack</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt class="py-docstring">'''Create a frame in binary string format from a frame object.</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">    @param frmobj: a frame object.</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">    @return: a frame in binary string format.</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">frmobj</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method libgwn.utils.framers.ieee80211.frames.Frame.mkpkt()=libgwn.utils.framers.ieee80211.frames.Frame-class.html#mkpkt"><a title="libgwn.utils.framers.ieee80211.frames.Frame.mkpkt" class="py-name" href="#" onclick="return doclink('link-4', 'mkpkt', 'link-4');">mkpkt</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="mkframeobj"></a><div id="mkframeobj-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="mkframeobj-toggle" onclick="return toggle('mkframeobj');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.framers.ieee80211.api_frames-module.html#mkframeobj">mkframeobj</a><tt class="py-op">(</tt><tt class="py-param">frmname</tt><tt class="py-op">,</tt> <tt class="py-param">dc_frcl_fldvals</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt><tt class="py-op">,</tt> <tt class="py-param">dc_fldvals</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt><tt class="py-op">,</tt> <tt class="py-param">dc_frbd_fldvals</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mkframeobj-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="mkframeobj-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">    <tt class="py-docstring">'''Create a frame object from a frame name and dictionary of fields.</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">    @param frmname: a conventional name for the type of frame.</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">    @param dc_frcl_fldvals: a dictionary of {field: value} to update dictionary of field values in Frame Control field.</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">    @param dc_fldvals: a dictionary of {field: value} to update dictionary of field values in this frame.</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    @param dc_frbd_fldvals: a dictionary of {field: value} to update dictionary of field values in frame body.</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">    @return: a frame object.</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-comment">#frmclass, frmbodyclass = mac_getfrmclass(frmname)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-5" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmbld" class="py-name" href="#" onclick="return doclink('link-5', 'mac_frmbld', 'link-0');">mac_frmbld</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Class libgwn.utils.framers.ieee80211.mac_frmbld.AFrame=libgwn.utils.framers.ieee80211.mac_frmbld.AFrame-class.html"><a title="libgwn.utils.framers.ieee80211.mac_frmbld.AFrame" class="py-name" href="#" onclick="return doclink('link-6', 'AFrame', 'link-6');">AFrame</a></tt><tt class="py-op">(</tt><tt class="py-name">frmname</tt><tt class="py-op">,</tt> <tt class="py-name">dc_frcl_fldvals</tt><tt class="py-op">=</tt><tt class="py-name">dc_frcl_fldvals</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt id="link-7" class="py-name" targets="Variable libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.Data.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.Data-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody-class.html#dc_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame-class.html#dc_fldvals"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.Data.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_fldvals" class="py-name" href="#" onclick="return doclink('link-7', 'dc_fldvals', 'link-7');">dc_fldvals</a></tt><tt class="py-op">=</tt><tt id="link-8" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.Data.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_fldvals" class="py-name" href="#" onclick="return doclink('link-8', 'dc_fldvals', 'link-7');">dc_fldvals</a></tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name" targets="Variable libgwn.utils.framers.ieee80211.evframes80211.dc_frbd_fldvals=libgwn.utils.framers.ieee80211.evframes80211-module.html#dc_frbd_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_frbd_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK-class.html#dc_frbd_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_frbd_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS-class.html#dc_frbd_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_frbd_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS-class.html#dc_frbd_fldvals,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_frbd_fldvals=libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame-class.html#dc_frbd_fldvals"><a title="libgwn.utils.framers.ieee80211.evframes80211.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_frbd_fldvals" class="py-name" href="#" onclick="return doclink('link-9', 'dc_frbd_fldvals', 'link-9');">dc_frbd_fldvals</a></tt><tt class="py-op">=</tt><tt id="link-10" class="py-name"><a title="libgwn.utils.framers.ieee80211.evframes80211.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_frbd_fldvals" class="py-name" href="#" onclick="return doclink('link-10', 'dc_frbd_fldvals', 'link-9');">dc_frbd_fldvals</a></tt> <tt class="py-op">)</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">  </tt>
+<a name="showfldvals"></a><div id="showfldvals-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="showfldvals-toggle" onclick="return toggle('showfldvals');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.framers.ieee80211.api_frames-module.html#showfldvals">showfldvals</a><tt class="py-op">(</tt><tt class="py-param">frmobj</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="showfldvals-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="showfldvals-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-docstring">'''Show values for all fields in a frame object.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    @param frmobj: a frame object.</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-11" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs" class="py-name" href="#" onclick="return doclink('link-11', 'mac_frmspecs', 'link-1');">mac_frmspecs</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Function libgwn.utils.framers.ieee80211.api_frames.showfldvals()=libgwn.utils.framers.ieee80211.api_frames-module.html#showfldvals,Function libgwn.utils.framers.ieee80211.mac_frmspecs.showfldvals()=libgwn.utils.framers.ieee80211.mac_frmspecs-module.html#showfldvals"><a title="libgwn.utils.framers.ieee80211.api_frames.showfldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.showfldvals" class="py-name" href="#" onclick="return doclink('link-12', 'showfldvals', 'link-12');">showfldvals</a></tt><tt class="py-op">(</tt><tt class="py-name">frmobj</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="showfieldnames"></a><div id="showfieldnames-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="showfieldnames-toggle" onclick="return toggle('showfieldnames');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.framers.ieee80211.api_frames-module.html#showfieldnames">showfieldnames</a><tt class="py-op">(</tt><tt class="py-param">frmname</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="showfieldnames-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="showfieldnames-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-docstring">'''Show all field names for a frame object of given frame name.</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">    @param frmname: a frame name.</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">    <tt class="py-name">frmclass</tt><tt class="py-op">,</tt> <tt class="py-name">frmbodyclass</tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs" class="py-name" href="#" onclick="return doclink('link-13', 'mac_frmspecs', 'link-1');">mac_frmspecs</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Function libgwn.utils.framers.ieee80211.mac_frmspecs.getfrmclass()=libgwn.utils.framers.ieee80211.mac_frmspecs-module.html#getfrmclass"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.getfrmclass" class="py-name" href="#" onclick="return doclink('link-14', 'getfrmclass', 'link-14');">getfrmclass</a></tt><tt class="py-op">(</tt><tt class="py-name">frmname</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'--- Fields for frame name: '</tt> <tt class="py-op">+</tt> <tt class="py-name">frmname</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'-- Frame Control field names:'</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt id="link-15" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs" class="py-name" href="#" onclick="return doclink('link-15', 'mac_frmspecs', 'link-1');">mac_frmspecs</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Class libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs=libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs-class.html"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs" class="py-name" href="#" onclick="return doclink('link-16', 'FrmCtrlSpecs', 'link-16');">FrmCtrlSpecs</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Variable libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.Data.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.Data-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody-class.html#ls_fields,Variable libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.ls_fields=libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame-class.html#ls_fields"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.Data.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.ls_fields" class="py-name" href="#" onclick="return doclink('link-17', 'ls_fields', 'link-17');">ls_fields</a></tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'-- '</tt> <tt class="py-op">+</tt> <tt class="py-name">frmname</tt> <tt class="py-op">+</tt><tt class="py-string">' frame field names:'</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-name">frmclass</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.Data.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.ls_fields" class="py-name" href="#" onclick="return doclink('link-18', 'ls_fields', 'link-17');">ls_fields</a></tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">frmbodyclass</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'-- Frame body field names:'</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">frmbodyclass</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.Data.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.ls_fields
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.ls_fields" class="py-name" href="#" onclick="return doclink('link-19', 'ls_fields', 'link-17');">ls_fields</a></tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'===\n'</tt> </tt>
+</div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="test"></a><div id="test-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="test-toggle" onclick="return toggle('test');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.framers.ieee80211.api_frames-module.html#test">test</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="test-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-docstring">'''A test function for the frames interface.</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    For the types of frame known, create a frame object, pack it into binary string format, create a second frame object from the packed frame.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'=== TEST 1: object creation, packing, unpacking to object\n'</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-name">ls_known</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'Beacon'</tt><tt class="py-op">,</tt> <tt class="py-string">'RTS'</tt><tt class="py-op">,</tt> <tt class="py-string">'CTS'</tt><tt class="py-op">,</tt> <tt class="py-string">'ACK'</tt><tt class="py-op">,</tt> <tt class="py-string">'Data'</tt><tt class="py-op">,</tt> <tt class="py-string">'Action'</tt><tt class="py-op">]</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">frtype</tt> <tt class="py-keyword">in</tt> <tt class="py-name">ls_known</tt><tt class="py-op">:</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'--- %15s ... '</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">frtype</tt><tt class="py-op">.</tt><tt class="py-name">ljust</tt><tt class="py-op">(</tt><tt class="py-number">15</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-name">ob</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name" targets="Function libgwn.utils.framers.ieee80211.api_frames.mkframeobj()=libgwn.utils.framers.ieee80211.api_frames-module.html#mkframeobj"><a title="libgwn.utils.framers.ieee80211.api_frames.mkframeobj" class="py-name" href="#" onclick="return doclink('link-20', 'mkframeobj', 'link-20');">mkframeobj</a></tt><tt class="py-op">(</tt><tt class="py-name">frtype</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">' Object creation Error'</tt>         </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-name">pk_ob</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name" targets="Function libgwn.utils.framers.ieee80211.api_frames.pktfromobj()=libgwn.utils.framers.ieee80211.api_frames-module.html#pktfromobj"><a title="libgwn.utils.framers.ieee80211.api_frames.pktfromobj" class="py-name" href="#" onclick="return doclink('link-21', 'pktfromobj', 'link-21');">pktfromobj</a></tt><tt class="py-op">(</tt><tt class="py-name">ob</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">' Packing error'</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">            <tt class="py-name">ob2</tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name" targets="Function libgwn.utils.framers.ieee80211.api_frames.objfrompkt()=libgwn.utils.framers.ieee80211.api_frames-module.html#objfrompkt"><a title="libgwn.utils.framers.ieee80211.api_frames.objfrompkt" class="py-name" href="#" onclick="return doclink('link-22', 'objfrompkt', 'link-22');">objfrompkt</a></tt><tt class="py-op">(</tt><tt class="py-name">pk_ob</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">'Unpacking error'</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">            <tt class="py-keyword">continue</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'OK'</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'\n=== TEST 2: show field names as help to set values\n'</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">name</tt> <tt class="py-keyword">in</tt> <tt class="py-name">ls_known</tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt id="link-23" class="py-name" targets="Function libgwn.utils.framers.ieee80211.api_frames.showfieldnames()=libgwn.utils.framers.ieee80211.api_frames-module.html#showfieldnames"><a title="libgwn.utils.framers.ieee80211.api_frames.showfieldnames" class="py-name" href="#" onclick="return doclink('link-23', 'showfieldnames', 'link-23');">showfieldnames</a></tt><tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">     </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'\n=== TEST 3: object creation setting field values\n'</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-comment">#ac1 = mac_frmbld.AFrame('Action', \</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-name">ac1</tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="libgwn.utils.framers.ieee80211.api_frames.mkframeobj" class="py-name" href="#" onclick="return doclink('link-24', 'mkframeobj', 'link-20');">mkframeobj</a></tt><tt class="py-op">(</tt><tt class="py-string">'Action'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt id="link-25" class="py-name"><a title="libgwn.utils.framers.ieee80211.mac_frmspecs.BeaconFrameBody.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.Data.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.FrmCtrlSpecs.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MeshActionFrameBody.dc_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_fldvals" class="py-name" href="#" onclick="return doclink('link-25', 'dc_fldvals', 'link-7');">dc_fldvals</a></tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'fcs'</tt><tt class="py-op">:</tt><tt class="py-number">555</tt><tt class="py-op">,</tt> <tt class="py-string">'address_1'</tt><tt class="py-op">:</tt><tt class="py-string">'aaaaaa'</tt><tt class="py-op">,</tt> <tt class="py-string">'address_2'</tt><tt class="py-op">:</tt><tt class="py-string">'bbbbbb'</tt><tt class="py-op">}</tt><tt class="py-op">,</tt>\ </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt id="link-26" class="py-name"><a title="libgwn.utils.framers.ieee80211.evframes80211.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlACK.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlCTS.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.CtrlRTS.dc_frbd_fldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.MgmtFrame.dc_frbd_fldvals" class="py-name" href="#" onclick="return doclink('link-26', 'dc_frbd_fldvals', 'link-9');">dc_frbd_fldvals</a></tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'TCPreq'</tt><tt class="py-op">:</tt><tt class="py-number">222</tt><tt class="py-op">}</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-name">dc_frcl_fldvals</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'ToDS'</tt><tt class="py-op">:</tt><tt class="py-name">True</tt><tt class="py-op">}</tt> <tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt id="link-27" class="py-name"><a title="libgwn.utils.framers.ieee80211.api_frames.showfldvals
+libgwn.utils.framers.ieee80211.mac_frmspecs.showfldvals" class="py-name" href="#" onclick="return doclink('link-27', 'showfldvals', 'link-12');">showfldvals</a></tt><tt class="py-op">(</tt><tt class="py-name">ac1</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt id="link-28" class="py-name" targets="Function libgwn.utils.framers.ieee80211.api_frames.test()=libgwn.utils.framers.ieee80211.api_frames-module.html#test"><a title="libgwn.utils.framers.ieee80211.api_frames.test" class="py-name" href="#" onclick="return doclink('link-28', 'test', 'link-28');">test</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">KeyboardInterrupt</tt><tt class="py-op">:</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libGWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep  7 12:33:16 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
