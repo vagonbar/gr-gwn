@@ -44,7 +44,8 @@ GR_PYTHON_INSTALL(
     msg_to_event.py
     if_psk_tx.py
     ieee80211_framer.py
-    ieee80211_deframer.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    ieee80211_deframer.py
+    virtual_channel.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -67,3 +68,4 @@ GR_ADD_TEST(qa_msg_to_event ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_
 GR_ADD_TEST(qa_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_if_psk_tx.py)
 GR_ADD_TEST(qa_ieee80211_framer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ieee80211_framer.py)
 GR_ADD_TEST(qa_ieee80211_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ieee80211_deframer.py)
+GR_ADD_TEST(qa_virtual_channel ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_virtual_channel.py)

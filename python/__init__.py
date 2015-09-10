@@ -69,6 +69,7 @@ from msg_to_event import msg_to_event
 from if_psk_tx import if_psk_tx
 from ieee80211_framer import ieee80211_framer
 from ieee80211_deframer import ieee80211_deframer
+from virtual_channel import virtual_channel
 
 
 

@@ -29,5 +29,6 @@ install(FILES
     gwn_if_psk_rx.xml
     gwn_if_psk_tx.xml
     gwn_ieee80211_framer.xml
-    gwn_ieee80211_deframer.xml DESTINATION share/gnuradio/grc/blocks
+    gwn_ieee80211_deframer.xml
+    gwn_virtual_channel.xml DESTINATION share/gnuradio/grc/blocks
 )
