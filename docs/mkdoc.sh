@@ -2,7 +2,7 @@
 # mkdoc.sh: makes epydoc
 
 
-EXCLUDES="CMakeLists.*|__init__.*|build_utils_codes.*|build_utils.*"
+EXCLUDES="CMakeLists.*|__init__.*|build_utils_codes.*|qa_*" #build_utils.*"
 if [ ! "$1" ]
 then
   PRJNM=GR-GWN

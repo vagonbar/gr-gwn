@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2004,2009,2012 Free Software Foundation, Inc.
 #
@@ -19,8 +21,8 @@
 # Boston, MA 02110-1301, USA.
 #
 
-"""Misc utilities used at build time
-"""
+'''Misc utilities used at build time.
+'''
 
 import re, os, os.path
 from build_utils_codes import *

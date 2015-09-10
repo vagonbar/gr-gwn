@@ -19,6 +19,10 @@
 # Boston, MA 02110-1301, USA.
 # 
 
+'''
+A message receiver, shows message.
+'''
+
 import numpy
 from gnuradio import gr
 

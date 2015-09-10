@@ -60,8 +60,25 @@
 </table>
 <!-- ==================== PACKAGE DESCRIPTION ==================== -->
 <h1 class="epydoc">Package python</h1><p class="nomargin-top"><span class="codelink"><a href="python-pysrc.html">source&nbsp;code</a></span></p>
-<p>This is the GNU Radio GWN module. Place your Python package 
-  description here (python/__init__.py).</p>
+<p>The GNU Wireless Network project, GNUWiNetwork: data networking on GNU
+  Radio.</p>
+  <p>Copyright (C) 2014-2015 by:</p>
+<pre class="literalblock">
+   Pablo Belzarena, Gabriel Gomez Sena, Victor Gonzalez Barbone.
+   Departamento de Telecomunicaciones, Instituto de Ingenier&#237;a Electrica,
+   Facultad de Ingenieria, Universidad de la Republica,
+   Uruguay.
+</pre>
+  <p>GNUWiNetwork is free software: you can redistribute it and/or modify 
+  it under the terms of the GNU General Public License as published by the 
+  Free Software Foundation, either version 3 of the License, or (at your 
+  option) any later version.</p>
+  <p>GNUWiNetwork is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General 
+  Public License for more details.</p>
+  <p>You should have received a copy of the GNU General Public License 
+  along with GNUWiNetwork. If not, see http://www.gnu.org/licenses/.</p>
 
 <!-- ==================== SUBMODULES ==================== -->
 <a name="section-Submodules"></a>
@@ -82,10 +99,11 @@
 </tr>
   <tr><td class="summary">
   <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="python.build_utils-module.html">python.build_utils</a></strong>: <em class="summary">Misc utilities used at build time.</em>    </li>
     <li> <strong class="uidlink">python.ev_to_pdu</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.ev_to_pdu%27-module.html">python.ev_to_pdu'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.ev_to_pdu%27-module.html">python.ev_to_pdu'</a></strong>: <em class="summary">A converter from Event object to PDU.</em>    </li>
     <li> <strong class="uidlink">python.event_sink</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.event_sink%27-module.html">python.event_sink'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.event_sink%27-module.html">python.event_sink'</a></strong>: <em class="summary">An Event sink block; receives and prints event information.</em>    </li>
     <li> <strong class="uidlink"><a href="python.gwn_if_psk_rx-module.html">python.gwn_if_psk_rx</a></strong>    </li>
     <li> <strong class="uidlink"><a href="python.gwn_if_psk_tx-module.html">python.gwn_if_psk_tx</a></strong>    </li>
     <li> <strong class="uidlink">python.gwnblock</strong>    </li>
@@ -96,37 +114,24 @@
     <li> <strong class="uidlink">python.hier_tx_psk</strong>    </li>
     <li> <strong class="uidlink"><a href="python.hier_tx_psk%27-module.html">python.hier_tx_psk'</a></strong>    </li>
     <li> <strong class="uidlink">python.ieee80211_deframer</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.ieee80211_deframer%27-module.html">python.ieee80211_deframer'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.ieee80211_deframer%27-module.html">python.ieee80211_deframer'</a></strong>: <em class="summary">An IEEE 802.11 deframer, converts frame to Event.</em>    </li>
     <li> <strong class="uidlink">python.ieee80211_framer</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.ieee80211_framer%27-module.html">python.ieee80211_framer'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.ieee80211_framer%27-module.html">python.ieee80211_framer'</a></strong>: <em class="summary">An IEEE 802.11 framer, converts Event object to frame.</em>    </li>
     <li> <strong class="uidlink">python.if_psk_rx</strong>    </li>
     <li> <strong class="uidlink"><a href="python.if_psk_rx%27-module.html">python.if_psk_rx'</a></strong>    </li>
     <li> <strong class="uidlink">python.if_psk_tx</strong>    </li>
     <li> <strong class="uidlink"><a href="python.if_psk_tx%27-module.html">python.if_psk_tx'</a></strong>    </li>
     <li> <strong class="uidlink">python.msg_receiver_m</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.msg_receiver_m%27-module.html">python.msg_receiver_m'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.msg_receiver_m%27-module.html">python.msg_receiver_m'</a></strong>: <em class="summary">A message receiver, shows message.</em>    </li>
     <li> <strong class="uidlink">python.msg_sender_m</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.msg_sender_m%27-module.html">python.msg_sender_m'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.msg_sender_m%27-module.html">python.msg_sender_m'</a></strong>: <em class="summary">A message sender, sends messages produced by timers.</em>    </li>
     <li> <strong class="uidlink">python.msg_to_event</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.msg_to_event%27-module.html">python.msg_to_event'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.msg_to_event%27-module.html">python.msg_to_event'</a></strong>: <em class="summary">A message to Event converter.</em>    </li>
     <li> <strong class="uidlink">python.pdu_to_ev</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.pdu_to_ev%27-module.html">python.pdu_to_ev'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.pdu_to_ev%27-module.html">python.pdu_to_ev'</a></strong>: <em class="summary">A PDU to event converter.</em>    </li>
     <li> <strong class="uidlink"><a href="python.prueba_pmt-module.html">python.prueba_pmt</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_ev_to_pdu-module.html">python.qa_ev_to_pdu</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_event_sink-module.html">python.qa_event_sink</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_hier_rx_psk-module.html">python.qa_hier_rx_psk</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_hier_tx_psk-module.html">python.qa_hier_tx_psk</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_ieee80211_deframer-module.html">python.qa_ieee80211_deframer</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_ieee80211_framer-module.html">python.qa_ieee80211_framer</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_if_psk_rx-module.html">python.qa_if_psk_rx</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_if_psk_tx-module.html">python.qa_if_psk_tx</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_msg_receiver_m-module.html">python.qa_msg_receiver_m</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_msg_sender_m-module.html">python.qa_msg_sender_m</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_msg_to_event-module.html">python.qa_msg_to_event</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_pdu_to_ev-module.html">python.qa_pdu_to_ev</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="python.qa_timer_source-module.html">python.qa_timer_source</a></strong>    </li>
     <li> <strong class="uidlink">python.timer_source</strong>    </li>
-    <li> <strong class="uidlink"><a href="python.timer_source%27-module.html">python.timer_source'</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="python.timer_source%27-module.html">python.timer_source'</a></strong>: <em class="summary">A timer Event source, sends events produced by an internal timer.</em>    </li>
   </ul></td></tr>
 </table>
 
@@ -187,7 +192,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Sep  4 15:51:47 2015
+    Generated by Epydoc 3.0.1 on Thu Sep 10 11:41:42 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

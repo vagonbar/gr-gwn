@@ -22,6 +22,10 @@
 # 
 # 
 
+'''
+An IEEE 802.11 deframer, converts frame to Event.
+'''
+
 import numpy
 from gnuradio import gr
 import pmt

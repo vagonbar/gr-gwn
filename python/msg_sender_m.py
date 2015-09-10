@@ -19,6 +19,10 @@
 # Boston, MA 02110-1301, USA.
 # 
 
+'''
+A message sender, sends messages produced by timers.
+'''
+
 import numpy
 from gnuradio import gr
 

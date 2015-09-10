@@ -22,6 +22,10 @@
 #
 # 
 
+'''
+A timer Event source, sends events produced by an internal timer.
+'''
+
 import numpy
 from gnuradio import gr
 
@@ -32,7 +36,7 @@ import time
 
 
 class timer_source(gwnblock):
-    '''Timer events source, produces Timer Event objects.
+    '''Timer events source, sends Events produced by an internal timer.
     
     Timer events source block, produces Timer Event objects based on an internal timer set by the user.
     @param blkname: block name.

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2004 Free Software Foundation, Inc.
 #
@@ -18,6 +20,10 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 #
+
+'''
+Build utils codes.
+'''
 
 def i_code (code3):
     return code3[0]

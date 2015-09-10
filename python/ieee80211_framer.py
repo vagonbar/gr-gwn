@@ -22,6 +22,10 @@
 # 
 # 
 
+'''
+An IEEE 802.11 framer, converts Event object to frame.
+'''
+
 import numpy
 from gnuradio import gr
 import pmt
