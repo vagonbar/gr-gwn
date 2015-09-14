@@ -1,38 +1,56 @@
 <?xml version="1.0"?>
 <block>
-  <name>virtual_channel</name>
+  <name>Virtual Channel</name>
   <key>gwn_virtual_channel</key>
-  <category>gwn</category>
+  <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.virtual_channel()</make>
-  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
-       Sub-nodes:
-       * name
-       * key (makes the value accessible as $keyname, e.g. in the make node)
-       * type -->
+  <make>gwn.virtual_channel($blkname, $blkid, $prob_loss)</make>
+
   <param>
-    <name>...</name>
-    <key>...</key>
-    <type>...</type>
+    <name>blkname</name>
+    <key>blkname</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>blkid</name>
+    <key>blkid</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Probability Loss</name>
+    <key>prob_loss</key>
+    <value> 0.0 </value>
+    <type>float</type>
   </param>
 
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
+  <!-- event sink node -->
   <sink>
-    <name>in</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
   </sink>
 
-  <!-- Make one 'source' node per output. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
+  <!-- PDU sink node -->
+  <sink>
+    <name>pdu</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- event source node -->
   <source>
-    <name>out</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
   </source>
+
+  <!-- PDU source node -->
+  <source>
+    <name>pdu</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+  <doc></doc>
+
 </block>

@@ -45,6 +45,8 @@ class virtual_channel(gwnblock):
 
     def __init__(self, blkname='virtual_chanel', blkid='id_virtual_channel', 
             prob_loss=0):
+
+        # invocation of ancestor constructor
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
             number_in=1, number_out=1, number_timers=0)
 
@@ -71,9 +73,9 @@ class virtual_channel(gwnblock):
                 '; rand_nr=' + str(rand_nr)
             mutex_prt(dbg_msg)
         if rand_nr <= self.prob_loss:
-            pass
+            pass					# no output
         else:
-            self.write_out(ev)
+            self.write_out(ev)		# write event on output
         return
 
 
@@ -83,17 +85,15 @@ class virtual_channel(gwnblock):
         @param msg_pmt: a PDU.
         '''
         rand_nr = random.random()
-        #rand_nr = 0.5
         if self.debug:
             dbg_msg = '  prob_loss=' + str(self.prob_loss) + \
                 '; rand_nr=' + str(rand_nr)
             mutex_prt(dbg_msg)
         if rand_nr <= self.prob_loss:
-            pass
+            pass					# no output
         else:
-            # Send the message:
+            # send the message on PDU output port
             self.message_port_pub( pmt.intern('pdu'), msg_pmt)
-            #    pmt.cons(pmt.PMT_NIL, send_pmt) )
         return
 
 

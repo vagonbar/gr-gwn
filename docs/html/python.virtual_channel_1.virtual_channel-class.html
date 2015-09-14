@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>python.ev_to_pdu'.ev_to_pdu</title>
+  <title>python.virtual_channel_1.virtual_channel</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -43,8 +43,8 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="python-module.html">Package&nbsp;python</a> ::
-        <a href="python.ev_to_pdu%27-module.html">Module&nbsp;ev_to_pdu'</a> ::
-        Class&nbsp;ev_to_pdu
+        <a href="python.virtual_channel_1-module.html">Module&nbsp;virtual_channel_1</a> ::
+        Class&nbsp;virtual_channel
       </span>
     </td>
     <td>
@@ -54,14 +54,14 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="python.ev_to_pdu%27.ev_to_pdu-class.html"
+            >]&nbsp;|&nbsp;<a href="python.virtual_channel_1.virtual_channel-class.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class ev_to_pdu</h1><p class="nomargin-top"><span class="codelink"><a href="python.ev_to_pdu%27-pysrc.html#ev_to_pdu">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class virtual_channel</h1><p class="nomargin-top"><span class="codelink"><a href="python.virtual_channel_1-pysrc.html#virtual_channel">source&nbsp;code</a></span></p>
 <pre class="base-tree">
                        object --+            
                                 |            
@@ -71,13 +71,13 @@ gnuradio.gr.gateway.gateway_block --+
                                         |    
                        <a href="python.gwnblock%27.gwnblock-class.html">gwnblock'.gwnblock</a> --+
                                             |
-                                           <strong class="uidshort">ev_to_pdu</strong>
+                                           <strong class="uidshort">virtual_channel</strong>
 </pre>
 
 <hr />
-<p>Converts an Event object to PDU.</p>
-  <p>Receives an Event object on input port, produces a PDU (Protocol Data 
-  Unit) on its output port.</p>
+<p>A virtual channel, outputs items with probability loss.</p>
+  <p>Receives an Event on its Event input port, outputs the same item on 
+  corresponding output port with a probability of loss.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -102,13 +102,13 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.ev_to_pdu%27.ev_to_pdu-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">ev_to_pdu</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">id_ev_to_pdu</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">in_type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">event</code><code class="variable-quote">'</code></span>)</span><br />
+          <td><span class="summary-sig"><a href="python.virtual_channel_1.virtual_channel-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">virtual_chanel</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">id_virtual_channel</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">prob_loss</span>=<span class="summary-sig-default">0</span>)</span><br />
       x.__init__(...) initializes x; see help(type(x)) for signature</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.ev_to_pdu%27-pysrc.html#ev_to_pdu.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.virtual_channel_1-pysrc.html#virtual_channel.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -122,11 +122,11 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.ev_to_pdu%27.ev_to_pdu-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="python.virtual_channel_1.virtual_channel-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">ev</span>)</span><br />
       Receives an Event, converts to PDU, writes on output.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.ev_to_pdu%27-pysrc.html#ev_to_pdu.process_data">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.virtual_channel_1-pysrc.html#virtual_channel.process_data">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -223,13 +223,13 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">ev_to_pdu</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">id_ev_to_pdu</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">in_type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">event</code><code class="variable-quote">'</code></span>)</span>
+        <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">virtual_chanel</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">id_virtual_channel</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">prob_loss</span>=<span class="sig-default">0</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.ev_to_pdu%27-pysrc.html#ev_to_pdu.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.virtual_channel_1-pysrc.html#virtual_channel.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -239,7 +239,7 @@ gnuradio.gr.gateway.gateway_block --+
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>blkname</code></strong> - block name.</li>
         <li><strong class="pname"><code>blkid</code></strong> - block identifier.</li>
-        <li><strong class="pname"><code>in_type</code></strong> - type of input, may be &quot;event&quot; or &quot;message&quot;.</li>
+        <li><strong class="pname"><code>prob_loss</code></strong> - probability of loss, float value in [0,1].</li>
     </ul></dd>
     <dt>Overrides:
         object.__init__
@@ -259,7 +259,7 @@ gnuradio.gr.gateway.gateway_block --+
         <span class="sig-arg">ev</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.ev_to_pdu%27-pysrc.html#ev_to_pdu.process_data">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.virtual_channel_1-pysrc.html#virtual_channel.process_data">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   

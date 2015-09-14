@@ -50,6 +50,8 @@ class timer_source(gwnblock):
     def __init__(self,  blkname='timer_source', blkid='timer_source', 
             interrupt=False, interval=1.0, retry=5, 
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
+
+        # invocation of ancestor constructor
         gwnblock.__init__(self, blkname, blkid,
             number_in=0, number_out=1, number_timers=1)
 
@@ -66,19 +68,23 @@ class timer_source(gwnblock):
 
     def elapsed_time(self):
         '''Time elapsed since construction of block.
+
+        @return: time elapsed.
         '''
         return time.time() - self.time_init
 
 
     def process_data(self, ev):
-        '''Sends timer events produced by the internal timer.'''
-	# set event duration, required for deframing. TODO: see if correct
-        ev.ev_dc['duration'] = 0
+        '''Sends timer events produced by the internal timer.
+
+        @param ev: an Event object.
+        '''
         if self.debug:
             ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
                 format(self.blkname, ev.nickname, self.elapsed_time() )
             mutex_prt(ss)
-        ev.frmpkt = 'Timer Event ' + str(self.counter)  # load frame packet
+        if self.debug:
+            ev.frmpkt = 'Timer Event ' + str(self.counter)  # load frame packet
         self.counter += 1
         self.write_out(ev, port_nr=0)
 
