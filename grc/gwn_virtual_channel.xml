@@ -7,12 +7,12 @@
   <make>gwn.virtual_channel($blkname, $blkid, $prob_loss)</make>
 
   <param>
-    <name>blkname</name>
+    <name>Block Name</name>
     <key>blkname</key>
     <type>string</type>
   </param>
   <param>
-    <name>blkid</name>
+    <name>Block Id</name>
     <key>blkid</key>
     <type>string</type>
   </param>
