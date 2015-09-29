@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>IEEE 802.11 deframer</name>
+  <name>IEEE 802.11 Deframer</name>
   <key>gwn_ieee80211_deframer</key>
   <category>GWN</category>
   <import>import gwn</import>

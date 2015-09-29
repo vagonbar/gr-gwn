@@ -27,7 +27,9 @@ from gnuradio import blocks
 from virtual_channel import virtual_channel
 
 from timer_source import timer_source
+from event_sink import event_sink
 from ev_to_pdu import ev_to_pdu
+
 import time
 from gwnblock import mutex_prt
 
@@ -39,6 +41,42 @@ class qa_virtual_channel (gr_unittest.TestCase):
 
     def tearDown (self):
         self.tb = None
+
+
+    def test_msg_loss (self):
+        '''Timer Source to Virtual Channel to Event Sink.
+        '''
+        
+        ### blocks Timer Source --> Virtual Channel --> Event Sink
+        blk_snd = timer_source('EvSource', 'blk001', retry=10)
+        #blk_snd.debug = True  # to enable timer source print
+        blk_vchan = virtual_channel('VirChannel', 'blk002', 0.5)
+        blk_vchan.debug = True  # to see probability of loss
+        blk_snk = event_sink('EventSink', 'blk003')
+
+        self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
+            				blk_vchan, blk_vchan.ports_in[0].port )
+        self.tb.msg_connect(blk_vchan, blk_vchan.ports_out[0].port, 
+                            blk_snk, blk_snk.ports_in[0].port)
+
+        #self.tb.run()  # for flowgraphs that will stop on its own!
+        self.tb.start() 
+        mutex_prt(self.tb.msg_edge_list())
+        #print tb.dump(
+
+        secs = 12
+        print '=== Testing message loss ==='
+        print '--- sender, timer started, waiting %d seconds\n' % (secs,)
+        time.sleep(secs)
+
+        blk_snd.stop_timers()
+        print '\n--- sender, timers stopped'
+        
+        self.tb.stop()
+        self.tb.wait()
+        print '\n--- top block stopped'
+        
+        return
 
 
     def test_pdu_loss (self):
@@ -66,6 +104,7 @@ class qa_virtual_channel (gr_unittest.TestCase):
         #print tb.dump(
 
         secs = 12
+        print '=== Testing PDU loss ==='
         print '--- sender, timer started, waiting %d seconds\n' % (secs,)
         time.sleep(secs)
 
@@ -77,6 +116,7 @@ class qa_virtual_channel (gr_unittest.TestCase):
         print '\n--- top block stopped'
         
         return
+
 
 if __name__ == '__main__':
     gr_unittest.run(qa_virtual_channel, "qa_virtual_channel.xml")

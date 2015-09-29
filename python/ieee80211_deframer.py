@@ -82,6 +82,9 @@ class ieee80211_deframer(gwnblock):
             ev = api_frmevs.frmtoev(frm_obj)
         except:
             mutex_prt("Error trying to create Event from frame\n")
+            if meta is not None:
+                mutex_prt ("[METADATA]: " + meta)
+            mutex_prt ("[CONTENTS]: " + msg_str )
             return
 
         self.process_data(ev)

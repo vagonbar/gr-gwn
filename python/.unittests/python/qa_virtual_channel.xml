@@ -1,5 +1,6 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="12.044">
-  <testcase classname="__main__.qa_virtual_channel" name="test_event_loss" time="12.0434"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="24.049">
+  <testcase classname="__main__.qa_virtual_channel" name="test_msg_loss" time="12.0184"></testcase>
+  <testcase classname="__main__.qa_virtual_channel" name="test_pdu_loss" time="12.0301"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
