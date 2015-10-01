@@ -1,5 +1,5 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="5.018">
-  <testcase classname="__main__.qa_timer_source" name="test_with_message_debug" time="5.0177"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="19.024">
+  <testcase classname="__main__.qa_timer_source" name="test_interrupt" time="19.0239"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

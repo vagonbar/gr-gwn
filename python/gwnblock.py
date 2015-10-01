@@ -1,25 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# # 
-# # Copyright 2015
-# #   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
-# #   Universidad de la Republica, Uruguay.
-# # 
-# # This is free software; you can redistribute it and/or modify
-# # it under the terms of the GNU General Public License as published by
-# # the Free Software Foundation; either version 3, or (at your option)
-# # any later version.
-# # 
-# # This software is distributed in the hope that it will be useful,
-# # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# # GNU General Public License for more details.
-# # 
-# # You should have received a copy of the GNU General Public License
-# # along with this software; see the file COPYING.  If not, write to
-# # the Free Software Foundation, Inc., 51 Franklin Street,
-# # Boston, MA 02110-1301, USA.
-# #
+# 
+# Copyright 2015
+#   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
+#   Universidad de la Republica, Uruguay.
+# 
+# This is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+# 
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this software; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+#
 # 
 
 '''GWN block with message inputs, message outputs and timers; inherits from gr.basic_block.
@@ -152,50 +152,61 @@ class GWNTimer(GWNPort, threading.Thread):
         self.add_info = add_info
 
         self.counter = 0
-        self.exit_flag = False   # ir True, ends timer
-        #mutex_prt ("Timer built, retry:" + str(self.retry))
+        self.exit_flag = False   # if True, ends timer
+        self.debug = False  # please set from outside for debug print
+        if self.debug:
+            mutex_prt ("GWNTimer built, retry:" + str(self.retry))
         return
 
 
     def set_interrupt(self, interrupt):
         '''Interrupts generation of timer messages.'''
+        if self.debug:
+            ss = '   GWNTimer, interrupt set ' + str(interrupt)
+            mutex_prt(ss)
+        #lock_obj.acquire()
         self.interrupt = interrupt
+        #lock_obj.release()
 
 
     def stop(self):
         '''Stops timer thread.'''
-        #ss = '  ...stopping timer %d in block %s' % 
-        #    (self.port_nr, self.block.blkname)
-        # mutex_prt(ss)
+        if self.debug:
+            ss = '   GWNTimer, stopping timer %d in block %s' % \
+               (self.port_nr, self.block.blkname)
+            mutex_prt(ss)
         self.exit_flag = True
         return
 
 
     def run(self):
-        '''Runs timer thread.'''
+        '''Runs timer thread, uses time.sleep.'''
         while not self.exit_flag:               # timer not stopped
-            #mutex_prt("In timer, counter" + str(self.counter))
-            if not self.interrupt:              # timer not interrupted
+            #if not self.interrupt:              # timer not interrupted
                 self.counter = 0
+                ## post timer messages
                 while self.counter <= self.retry and not self.exit_flag: 
                     # sends messages until count reaches number of retries
                     self.counter = self.counter + 1
+                    if self.debug:
+                        mutex_prt("   GWNTimer, counter" + str(self.counter))
                     if not self.interrupt:
-                        # test repetition required, things may have changed!
+                        # test repetition required inside while
                         self.post_message(self.nickname1)
-                    else:
-                        break
+                    else:                # interrupted, does send but counts
+                        pass #break  # no message sent
+                        #self.post_message(self.nickname2)
                     time.sleep(self.interval)   # waits interval
+                ## post final message
                 if not self.interrupt and not self.exit_flag:
                     # test repetition required, things may have changed!
                     if self.nickname2 is not None:
                         self.post_message(self.nickname2)
                     self.interrupt = True
             #else:
-            #    time.sleep(0.01)
+            #    time.sleep(1.0)
         return
 
-    ### handle and post message functions
     
     def post_message(self, nickname):
         '''Posts timer event and timer metadata on block port.'''
@@ -231,8 +242,6 @@ class GWNTimer(GWNPort, threading.Thread):
         return  '  timer %s index %d in block %s' % \
             (self.port, self.port_nr, self.block.blkname)
         return 
-
-###
 
 
 
