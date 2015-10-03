@@ -75,7 +75,7 @@ cdr = pmt.cdr(rec_pdu)
 print "[PDU received]"
 print "   [car]", car
 print "   [cdr]", cdr
-print
+print
 # Convert to string:
 rec_str = "".join([chr(x) for x in pmt.u8vector_elements(cdr)])
 

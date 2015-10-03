@@ -126,6 +126,7 @@ class GWNTimer(GWNPort, threading.Thread):
     '''A timer class to add inside timers to GWN blocks.
 
     Objects of this class can attached to a gwnblock to act as internal timers. An object of this class sends messages to the block to which it is attached, at regular intervals. A timer object sends a message for an specified number of times, then a final second message to indicate the first series has exhausted.
+    Messages are sent only if the corresponding nicknames are given; no message sent if nicknames are the null string or None.
     '''
     def __init__(self, block, port, port_nr, interrupt=True, interval=1.0, \
             retry=1, nickname1='TimerTOR1', nickname2='TimerTOR2', add_info=None):
@@ -161,21 +162,41 @@ class GWNTimer(GWNPort, threading.Thread):
 
     def set_interrupt(self, interrupt):
         '''Interrupts generation of timer messages.'''
-        if self.debug:
-            ss = '   GWNTimer, interrupt set ' + str(interrupt)
-            mutex_prt(ss)
         #lock_obj.acquire()
         self.interrupt = interrupt
         #lock_obj.release()
+        if self.debug:
+            ss = '   GWNTimer, interrupt set to ' + str(interrupt)
+            mutex_prt(ss)
 
 
     def stop(self):
         '''Stops timer thread.'''
         if self.debug:
-            ss = '   GWNTimer, stopping timer %d in block %s' % \
+            ss = '   GWNTimer STOP, stopping timer %d in block %s' % \
                (self.port_nr, self.block.blkname)
             mutex_prt(ss)
         self.exit_flag = True
+        return
+
+
+    def reset(self, retry=None):
+        '''Resets counter to 0, starts timing again.
+
+        Sets interrupt to False and starts timing again, from 0 count.
+        @param retry: new retry value, default None.
+        '''
+        if retry:
+            self.retry = retry
+        self.counter = 0
+        self.set_interrupt(False)
+        if self.debug:
+            ss = '   GWNTimer RESET, counter=0, '
+            if retry and self.debug:
+                ss += 'new retry value ' +  str(retry)
+            elif self.debug:
+                ss += 'retry value left in ' + str(self.retry)
+            mutex_prt(ss)
         return
 
 
@@ -185,22 +206,21 @@ class GWNTimer(GWNPort, threading.Thread):
             #if not self.interrupt:              # timer not interrupted
                 self.counter = 0
                 ## post timer messages
-                while self.counter <= self.retry and not self.exit_flag: 
+                while self.counter < self.retry and not self.exit_flag: 
                     # sends messages until count reaches number of retries
                     self.counter = self.counter + 1
                     if self.debug:
                         mutex_prt("   GWNTimer, counter" + str(self.counter))
-                    if not self.interrupt:
-                        # test repetition required inside while
+                    if not self.interrupt and self.nickname1:
+                        # post message only if nickname1 given
                         self.post_message(self.nickname1)
                     else:                # interrupted, does send but counts
                         pass #break  # no message sent
-                        #self.post_message(self.nickname2)
                     time.sleep(self.interval)   # waits interval
-                ## post final message
+                ## post final message, only if nickname2 given
                 if not self.interrupt and not self.exit_flag:
                     # test repetition required, things may have changed!
-                    if self.nickname2 is not None:
+                    if self.nickname2:
                         self.post_message(self.nickname2)
                     self.interrupt = True
             #else:

@@ -25,8 +25,12 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from timer_source import timer_source
+from event_sink import event_sink
 import time
 from gwnblock import mutex_prt
+
+import qa_timer_source_result as results
+
 
 
 class qa_timer_source (gr_unittest.TestCase):
@@ -63,33 +67,31 @@ class qa_timer_source (gr_unittest.TestCase):
 
 
     def test_interrupt(self):
-        '''Timer Source to Message Debug with interruption.
+        '''Timer Source to Event Sink with interruption.
         '''
         ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=13, interval=1.0)
-        blk_snd.timers[0].debug = True
-        blk_dbg = blocks.message_debug()
+        blk_snd = timer_source('TimerSource', 'blk001', retry=10, interval=1.0)
+        blk_snd.timers[0].debug = True     # print debug on timer
+        blk_snk = event_sink()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-                            blk_dbg, 'print')
+                            blk_snk, blk_snk.ports_in[0].port)
         #self.tb.run()  # for flowgraphs that will stop on its own!
         self.tb.start() 
         mutex_prt(self.tb.msg_edge_list())
         #print tb.dump()
 
-        secs = 5
-        time.sleep(secs)
-
+        time.sleep(4)
         blk_snd.timers[0].set_interrupt(True)
-        secs = 4 
-        time.sleep(secs)
-
+        time.sleep(4)
         blk_snd.timers[0].set_interrupt(False)
-        secs = 8 
-        time.sleep(8)
+        time.sleep(6)
+        blk_snd.timers[0].reset(retry=3)      # reset timer, adjust retry
+        time.sleep(7)
 
         blk_snd.stop_timers()
         print '\n--- sender, timers stopped'
         time.sleep(2)
+
         self.tb.stop()
         self.tb.wait()
         print '\n--- top block stopped'

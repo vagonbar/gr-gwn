@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>python.gwnblock'.GWNTimer</title>
+  <title>python.mytimer.GWNTimer</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -43,7 +43,7 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="python-module.html">Package&nbsp;python</a> ::
-        <a href="python.gwnblock%27-module.html">Module&nbsp;gwnblock'</a> ::
+        <a href="python.mytimer-module.html">Module&nbsp;mytimer</a> ::
         Class&nbsp;GWNTimer
       </span>
     </td>
@@ -54,16 +54,16 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="python.gwnblock%27.GWNTimer-class.html"
+            >]&nbsp;|&nbsp;<a href="python.mytimer.GWNTimer-class.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class GWNTimer</h1><p class="nomargin-top"><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class GWNTimer</h1><p class="nomargin-top"><span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer">source&nbsp;code</a></span></p>
 <pre class="base-tree">
-               <a href="python.gwnblock%27.GWNPort-class.html">GWNPort</a> --+
+     <a href="python.gwnblock%27.GWNPort-class.html">gwnblock'.GWNPort</a> --+
                          |
         object --+       |
                  |       |
@@ -80,9 +80,7 @@ threading._Verbose --+   |
   timers. An object of this class sends messages to the block to which it 
   is attached, at regular intervals. A timer object sends a message for an 
   specified number of times, then a final second message to indicate the 
-  first series has exhausted. Messages are sent only if the corresponding 
-  nicknames are given; no message sent if nicknames are the null string or 
-  None.</p>
+  first series has exhausted.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -107,7 +105,7 @@ threading._Verbose --+   |
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="python.mytimer.GWNTimer-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">block</span>,
         <span class="summary-sig-arg">port</span>,
         <span class="summary-sig-arg">port_nr</span>,
@@ -119,95 +117,7 @@ threading._Verbose --+   |
         <span class="summary-sig-arg">add_info</span>=<span class="summary-sig-default">None</span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.__init__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      str(x)</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.__str__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="handle_msg"></a><span class="summary-sig-name">handle_msg</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">msg_pmt</span>)</span><br />
-      Timer message handler, regenerates event, passes to process_data.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.handle_msg">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="post_message"></a><span class="summary-sig-name">post_message</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">nickname</span>)</span><br />
-      Posts timer event and timer metadata on block port.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.post_message">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#reset" class="summary-sig-name">reset</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Resets counter to 0, starts timing again.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.reset">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#run" class="summary-sig-name">run</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Runs timer thread, uses time.sleep.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.run">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -225,7 +135,7 @@ threading._Verbose --+   |
         <span class="summary-sig-arg">interrupt</span>)</span><br />
       Interrupts generation of timer messages.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.set_interrupt">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.set_interrupt">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -242,7 +152,95 @@ threading._Verbose --+   |
           <td><span class="summary-sig"><a name="stop"></a><span class="summary-sig-name">stop</span>(<span class="summary-sig-arg">self</span>)</span><br />
       Stops timer thread.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.stop">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.mytimer.GWNTimer-class.html#reset" class="summary-sig-name">reset</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Resets counter to 0, starts timing again.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.reset">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.mytimer.GWNTimer-class.html#run" class="summary-sig-name">run</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Runs timer thread, uses time.sleep.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.run">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="post_message"></a><span class="summary-sig-name">post_message</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">nickname</span>)</span><br />
+      Posts timer event and timer metadata on block port.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.post_message">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="handle_msg"></a><span class="summary-sig-name">handle_msg</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg_pmt</span>)</span><br />
+      Timer message handler, regenerates event, passes to process_data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.handle_msg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.mytimer.GWNTimer-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.__str__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -357,7 +355,7 @@ threading._Verbose --+   |
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -378,30 +376,6 @@ threading._Verbose --+   |
   </dl>
 </td></tr></table>
 </div>
-<a name="__str__"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
-    <br /><em class="fname">(Informal representation operator)</em>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.__str__">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>str(x)</p>
-  <dl class="fields">
-    <dt>Overrides:
-        object.__str__
-        <dd><em class="note">(inherited documentation)</em></dd>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
 <a name="reset"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -413,7 +387,7 @@ threading._Verbose --+   |
         <span class="sig-arg">retry</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.reset">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.reset">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -437,7 +411,7 @@ threading._Verbose --+   |
   <h3 class="epydoc"><span class="sig"><span class="sig-name">run</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.run">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.run">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -445,6 +419,30 @@ threading._Verbose --+   |
   <dl class="fields">
     <dt>Overrides:
         threading.Thread.run
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__str__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.mytimer-pysrc.html#GWNTimer.__str__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>str(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__str__
+        <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
 </td></tr></table>
