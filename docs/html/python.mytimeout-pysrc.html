@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>python.mytimeout</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="python-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >GR-GWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="python-module.html">Package&nbsp;python</a> ::
+        Module&nbsp;mytimeout
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="python.mytimeout-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="python.mytimeout-module.html">Module python.mytimeout</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Class python.gwnblock'.gwnblock=python.gwnblock%27.gwnblock-class.html"><a title="python.gwnblock'.gwnblock" class="py-name" href="#" onclick="return doclink('link-0', 'gwnblock', 'link-0');">gwnblock</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class python.gwnblock'.GWNPort=python.gwnblock%27.GWNPort-class.html"><a title="python.gwnblock'.GWNPort" class="py-name" href="#" onclick="return doclink('link-1', 'GWNPort', 'link-1');">GWNPort</a></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">threading</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="python.gwnblock'.gwnblock" class="py-name" href="#" onclick="return doclink('link-2', 'gwnblock', 'link-0');">gwnblock</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Function python.gwnblock'.mutex_prt()=python.gwnblock%27-module.html#mutex_prt"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-3', 'mutex_prt', 'link-3');">mutex_prt</a></tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="GWNTimeout"></a><div id="GWNTimeout-def"><a name="L10"></a><tt class="py-lineno"> 10</tt> <a class="py-toggle" href="#" id="GWNTimeout-toggle" onclick="return toggle('GWNTimeout');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html">GWNTimeout</a><tt class="py-op">(</tt><tt class="py-base-class">GWNPort</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="GWNTimeout-expanded"><a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line">    <tt class="py-docstring">'''A time class to add implement timeouts inside GWN blocks.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">    Objects of this class can attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="GWNTimeout.__init__"></a><div id="GWNTimeout.__init__-def"><a name="L15"></a><tt class="py-lineno"> 15</tt> <a class="py-toggle" href="#" id="GWNTimeout.__init__-toggle" onclick="return toggle('GWNTimeout.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">,</tt> <tt class="py-param">port_nr</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt><tt class="py-op">=</tt><tt class="py-number">1.0</tt><tt class="py-op">,</tt> <tt class="py-param">nickname</tt><tt class="py-op">=</tt><tt class="py-string">'TimerTOR2'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GWNTimeout.__init__-expanded"><a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">        <tt class="py-docstring">'''Constructor.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">        @param timeout: timeout in seconds.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        @param nickname: message to send at timeut.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        #@param add_info: additional information for this timeout.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt id="link-4" class="py-name"><a title="python.gwnblock'.GWNPort" class="py-name" href="#" onclick="return doclink('link-4', 'GWNPort', 'link-1');">GWNPort</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method python.ev_to_pdu'.ev_to_pdu.__init__()=python.ev_to_pdu%27.ev_to_pdu-class.html#__init__,Method python.event_sink'.event_sink.__init__()=python.event_sink%27.event_sink-class.html#__init__,Method python.gwn_if_psk_rx.gwn_if_psk_rx.__init__()=python.gwn_if_psk_rx.gwn_if_psk_rx-class.html#__init__,Method python.gwn_if_psk_tx.gwn_if_psk_tx.__init__()=python.gwn_if_psk_tx.gwn_if_psk_tx-class.html#__init__,Method python.gwnblock'.GWNPort.__init__()=python.gwnblock%27.GWNPort-class.html#__init__,Method python.gwnblock'.GWNTimeout.__init__()=python.gwnblock%27.GWNTimeout-class.html#__init__,Method python.gwnblock'.GWNTimer.__init__()=python.gwnblock%27.GWNTimer-class.html#__init__,Method python.gwnblock'.gwnblock.__init__()=python.gwnblock%27.gwnblock-class.html#__init__,Method python.hier_rx_psk'.hier_rx_psk.__init__()=python.hier_rx_psk%27.hier_rx_psk-class.html#__init__,Method python.hier_tx_psk'.hier_tx_psk.__init__()=python.hier_tx_psk%27.hier_tx_psk-class.html#__init__,Method python.ieee80211_deframer'.ieee80211_deframer.__init__()=python.ieee80211_deframer%27.ieee80211_deframer-class.html#__init__,Method python.ieee80211_framer'.ieee80211_framer.__init__()=python.ieee80211_framer%27.ieee80211_framer-class.html#__init__,Method python.if_psk_rx'.if_psk_rx.__init__()=python.if_psk_rx%27.if_psk_rx-class.html#__init__,Method python.if_psk_tx'.if_psk_tx.__init__()=python.if_psk_tx%27.if_psk_tx-class.html#__init__,Method python.msg_receiver_m'.msg_receiver_m.__init__()=python.msg_receiver_m%27.msg_receiver_m-class.html#__init__,Method python.msg_sender_m'.msg_sender_m.__init__()=python.msg_sender_m%27.msg_sender_m-class.html#__init__,Method python.msg_to_event'.msg_to_event.__init__()=python.msg_to_event%27.msg_to_event-class.html#__init__,Method python.mytimeout.GWNTimeout.__init__()=python.mytimeout.GWNTimeout-class.html#__init__,Method python.mytimer.GWNTimer.__init__()=python.mytimer.GWNTimer-class.html#__init__,Method python.pdu_to_ev'.pdu_to_ev.__init__()=python.pdu_to_ev%27.pdu_to_ev-class.html#__init__,Method python.timer_source'.timer_source.__init__()=python.timer_source%27.timer_source-class.html#__init__,Method python.virtual_channel'.virtual_channel.__init__()=python.virtual_channel%27.virtual_channel-class.html#__init__"><a title="python.ev_to_pdu'.ev_to_pdu.__init__
+python.event_sink'.event_sink.__init__
+python.gwn_if_psk_rx.gwn_if_psk_rx.__init__
+python.gwn_if_psk_tx.gwn_if_psk_tx.__init__
+python.gwnblock'.GWNPort.__init__
+python.gwnblock'.GWNTimeout.__init__
+python.gwnblock'.GWNTimer.__init__
+python.gwnblock'.gwnblock.__init__
+python.hier_rx_psk'.hier_rx_psk.__init__
+python.hier_tx_psk'.hier_tx_psk.__init__
+python.ieee80211_deframer'.ieee80211_deframer.__init__
+python.ieee80211_framer'.ieee80211_framer.__init__
+python.if_psk_rx'.if_psk_rx.__init__
+python.if_psk_tx'.if_psk_tx.__init__
+python.msg_receiver_m'.msg_receiver_m.__init__
+python.msg_sender_m'.msg_sender_m.__init__
+python.msg_to_event'.msg_to_event.__init__
+python.mytimeout.GWNTimeout.__init__
+python.mytimer.GWNTimer.__init__
+python.pdu_to_ev'.pdu_to_ev.__init__
+python.timer_source'.timer_source.__init__
+python.virtual_channel'.virtual_channel.__init__" class="py-name" href="#" onclick="return doclink('link-5', '__init__', 'link-5');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">block</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">,</tt> <tt class="py-name">port_nr</tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">block</tt> <tt class="py-op">=</tt> <tt class="py-name">block</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">port</tt> <tt class="py-op">=</tt> <tt class="py-name">port</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">port_nr</tt> <tt class="py-op">=</tt> <tt class="py-name">port_nr</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt> <tt class="py-op">=</tt> <tt class="py-name">timeout</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nickname</tt> <tt class="py-op">=</tt> <tt class="py-name">nickname</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-comment">#self.add_info = add_info</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timer</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-string">"""self.counter = 0</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-string">        self.exit_flag = False   # ir True, ends timer</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-string">        self.debug = True</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-string">        self.ini_time = time.time()"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt id="link-6" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-6', 'mutex_prt', 'link-3');">mutex_prt</a></tt> <tt class="py-op">(</tt><tt class="py-string">"   GWNTimeout BUILT, timeout:"</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="GWNTimeout.start"></a><div id="GWNTimeout.start-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="GWNTimeout.start-toggle" onclick="return toggle('GWNTimeout.start');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html#start">start</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">nickname</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout.start-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GWNTimeout.start-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-docstring">'''Starts timer until timeout.'''</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">timeout</tt><tt class="py-op">:</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt> <tt class="py-op">=</tt> <tt class="py-name">timeout</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">nickname</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nickname</tt> <tt class="py-op">=</tt> <tt class="py-name">nickname</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timer</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Timer</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method python.gwnblock'.GWNOutPort.post_message()=python.gwnblock%27.GWNOutPort-class.html#post_message,Method python.gwnblock'.GWNTimeout.post_message()=python.gwnblock%27.GWNTimeout-class.html#post_message,Method python.gwnblock'.GWNTimer.post_message()=python.gwnblock%27.GWNTimer-class.html#post_message,Method python.mytimeout.GWNTimeout.post_message()=python.mytimeout.GWNTimeout-class.html#post_message,Method python.mytimer.GWNTimer.post_message()=python.mytimer.GWNTimer-class.html#post_message"><a title="python.gwnblock'.GWNOutPort.post_message
+python.gwnblock'.GWNTimeout.post_message
+python.gwnblock'.GWNTimer.post_message
+python.mytimeout.GWNTimeout.post_message
+python.mytimer.GWNTimer.post_message" class="py-name" href="#" onclick="return doclink('link-7', 'post_message', 'link-7');">post_message</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timer</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method python.gwnblock'.GWNTimeout.start()=python.gwnblock%27.GWNTimeout-class.html#start,Method python.mytimeout.GWNTimeout.start()=python.mytimeout.GWNTimeout-class.html#start"><a title="python.gwnblock'.GWNTimeout.start
+python.mytimeout.GWNTimeout.start" class="py-name" href="#" onclick="return doclink('link-8', 'start', 'link-8');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">            <tt class="py-name">ss</tt> <tt class="py-op">=</tt> <tt class="py-string">'   GWNTimeout STARTED, timeout  '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> \ </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                <tt class="py-string">', nickname '</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nickname</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt id="link-9" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-9', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-name">ss</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="GWNTimeout.stop"></a><div id="GWNTimeout.stop-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="GWNTimeout.stop-toggle" onclick="return toggle('GWNTimeout.stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html#stop">stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout.stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GWNTimeout.stop-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-docstring">'''Stops timer if action has not started.'''</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timer</tt><tt class="py-op">.</tt><tt class="py-name">is_alive</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timer</tt><tt class="py-op">.</tt><tt class="py-name">cancel</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">            <tt class="py-name">ss</tt> <tt class="py-op">=</tt> <tt class="py-string">'   GWNTimeout CANCEL done'</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">            <tt class="py-name">ss</tt> <tt class="py-op">=</tt> <tt class="py-string">'   GWNTimeout not alive'</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">            <tt class="py-comment"># ss = '   GWNTimeout not alive, timeout %d in block %s' % \</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-comment">#    (0, 'Timer0')</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt class="py-comment">#    (self.port_nr, self.block.blkname)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt id="link-10" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-10', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-name">ss</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">del</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timer</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-comment">### handle and post message functions</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">     </tt>
+<a name="GWNTimeout.post_message"></a><div id="GWNTimeout.post_message-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="GWNTimeout.post_message-toggle" onclick="return toggle('GWNTimeout.post_message');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html#post_message">post_message</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout.post_message-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GWNTimeout.post_message-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-docstring">'''Posts timer event and timer metadata on block port.'''</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">ss</tt> <tt class="py-op">=</tt> <tt class="py-string">'   GWN Timeout, in post_message, nickname '</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nickname</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-comment">#ss = 'in post message, message %s, elapsed time %f' % \</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-comment">#    (nickname, time.time() - self.ini_time)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt id="link-11" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-11', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-name">ss</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt>  <tt class="py-comment"># destroy timer object</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="GWNTimeout.handle_msg"></a><div id="GWNTimeout.handle_msg-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="GWNTimeout.handle_msg-toggle" onclick="return toggle('GWNTimeout.handle_msg');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html#handle_msg">handle_msg</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg_pmt</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout.handle_msg-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GWNTimeout.handle_msg-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-docstring">'''Timer message handler, regenerates event, passes to process_data.'''</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="GWNTimeout.__str__"></a><div id="GWNTimeout.__str__-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="GWNTimeout.__str__-toggle" onclick="return toggle('GWNTimeout.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.mytimeout.GWNTimeout-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GWNTimeout.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GWNTimeout.__str__-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt>  <tt class="py-string">'  timer %s index %d in block %s'</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">port</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">port_nr</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">blkname</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt>  </tt>
+</div></div><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'test'</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-name">tmr</tt> <tt class="py-op">=</tt> <tt id="link-12" class="py-name" targets="Class python.gwnblock'.GWNTimeout=python.gwnblock%27.GWNTimeout-class.html,Class python.mytimeout.GWNTimeout=python.mytimeout.GWNTimeout-class.html"><a title="python.gwnblock'.GWNTimeout
+python.mytimeout.GWNTimeout" class="py-name" href="#" onclick="return doclink('link-12', 'GWNTimeout', 'link-12');">GWNTimeout</a></tt><tt class="py-op">(</tt><tt class="py-string">'blockBB'</tt><tt class="py-op">,</tt> <tt class="py-string">'portPP'</tt><tt class="py-op">,</tt> <tt class="py-string">'portNrNN'</tt><tt class="py-op">,</tt> <tt class="py-name">timeout</tt><tt class="py-op">=</tt><tt class="py-number">1.0</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">    <tt class="py-name">tmr</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="python.gwnblock'.GWNTimeout.start
+python.mytimeout.GWNTimeout.start" class="py-name" href="#" onclick="return doclink('link-13', 'start', 'link-8');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">    <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">    <tt class="py-name">tmr</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method python.gwnblock'.GWNTimeout.stop()=python.gwnblock%27.GWNTimeout-class.html#stop,Method python.gwnblock'.GWNTimer.stop()=python.gwnblock%27.GWNTimer-class.html#stop,Method python.mytimeout.GWNTimeout.stop()=python.mytimeout.GWNTimeout-class.html#stop,Method python.mytimer.GWNTimer.stop()=python.mytimer.GWNTimer-class.html#stop"><a title="python.gwnblock'.GWNTimeout.stop
+python.gwnblock'.GWNTimer.stop
+python.mytimeout.GWNTimeout.stop
+python.mytimer.GWNTimer.stop" class="py-name" href="#" onclick="return doclink('link-14', 'stop', 'link-14');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">    <tt class="py-name">tmr</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="python.gwnblock'.GWNTimeout.start
+python.mytimeout.GWNTimeout.start" class="py-name" href="#" onclick="return doclink('link-15', 'start', 'link-8');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">timeout</tt><tt class="py-op">=</tt><tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-name">nickname</tt><tt class="py-op">=</tt><tt class="py-string">'TimerTOH'</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">4</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-name">tmr</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="python.gwnblock'.GWNTimeout.start
+python.mytimeout.GWNTimeout.start" class="py-name" href="#" onclick="return doclink('link-16', 'start', 'link-8');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">timeout</tt><tt class="py-op">=</tt><tt class="py-number">3</tt><tt class="py-op">,</tt> <tt class="py-name">nickname</tt><tt class="py-op">=</tt><tt class="py-string">'TimerTOC'</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt class="py-name">tmr</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="python.gwnblock'.GWNTimeout.stop
+python.gwnblock'.GWNTimer.stop
+python.mytimeout.GWNTimeout.stop
+python.mytimer.GWNTimer.stop" class="py-name" href="#" onclick="return doclink('link-17', 'stop', 'link-14');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-string">"""</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-string">    tmr.set_interrupt(True)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-string">    time.sleep(4)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-string">    #print '   timer restored (uninterupted)'</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-string">    tmr.set_interrupt(False)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-string">    time.sleep(6)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-string">    #print '   timer reset, conter back to 0'</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-string">    tmr.reset()</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-string">    time.sleep(4)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-string">    tmr.reset(retry=4)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-string">    time.sleep(7)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-string">    #print '    timer stopped'</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-string">    tmr.stop()</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-string">    tmr.exit_flag = True</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-string">    time.sleep(2)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-string">    """</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="python-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >GR-GWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Oct  5 15:04:52 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

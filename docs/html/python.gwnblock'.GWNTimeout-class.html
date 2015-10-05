@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>python.msg_receiver_m'.msg_receiver_m</title>
+  <title>python.gwnblock'.GWNTimeout</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -43,8 +43,8 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="python-module.html">Package&nbsp;python</a> ::
-        <a href="python.msg_receiver_m%27-module.html">Module&nbsp;msg_receiver_m'</a> ::
-        Class&nbsp;msg_receiver_m
+        <a href="python.gwnblock%27-module.html">Module&nbsp;gwnblock'</a> ::
+        Class&nbsp;GWNTimeout
       </span>
     </td>
     <td>
@@ -54,28 +54,26 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="python.msg_receiver_m%27.msg_receiver_m-class.html"
+            >]&nbsp;|&nbsp;<a href="python.gwnblock%27.GWNTimeout-class.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class msg_receiver_m</h1><p class="nomargin-top"><span class="codelink"><a href="python.msg_receiver_m%27-pysrc.html#msg_receiver_m">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class GWNTimeout</h1><p class="nomargin-top"><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout">source&nbsp;code</a></span></p>
 <pre class="base-tree">
-                       object --+            
-                                |            
-gnuradio.gr.gateway.gateway_block --+        
-                                    |        
-      gnuradio.gr.gateway.basic_block --+    
-                                        |    
-                       <a href="python.gwnblock%27.gwnblock-class.html">gwnblock'.gwnblock</a> --+
-                                            |
-                                           <strong class="uidshort">msg_receiver_m</strong>
+<a href="python.gwnblock%27.GWNPort-class.html">GWNPort</a> --+
+          |
+         <strong class="uidshort">GWNTimeout</strong>
 </pre>
 
 <hr />
-<p>A test block, receives messages; one input, no outputs, no timers.</p>
+<p>A time class to implement timeouts inside GWN blocks.</p>
+  <p>Objects of this class can be attached to a gwnblock to act as internal
+  timeouts. An object of this class sends a messages to the block to which 
+  it is attached once the specified time has elapsed. A timeout object can 
+  be interrupted before its action starts, i.e. sends a message.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -100,12 +98,15 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.msg_receiver_m%27.msg_receiver_m-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">blkname</span>,
-        <span class="summary-sig-arg">blkid</span>)</span><br />
-      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimeout-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">block</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">port_nr</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">1.0</span>,
+        <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span><br />
+      Constructor.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.msg_receiver_m%27-pysrc.html#msg_receiver_m.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -119,11 +120,9 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.msg_receiver_m%27.msg_receiver_m-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">ev</span>)</span><br />
-      Receives events, prints.</td>
+          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimeout-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.msg_receiver_m%27-pysrc.html#msg_receiver_m.process_data">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.__str__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -131,67 +130,75 @@ gnuradio.gr.gateway.gateway_block --+
       
     </td>
   </tr>
-  <tr>
-    <td colspan="2" class="summary">
-    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="python.gwnblock%27.gwnblock-class.html">gwnblock'.gwnblock</a></code></b>:
-      <code><a href="python.gwnblock%27.gwnblock-class.html#__str__">__str__</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#forecast">forecast</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#general_work">general_work</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#handle_msg">handle_msg</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#set_in_size">set_in_size</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#set_out_size">set_out_size</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#set_timeout_size">set_timeout_size</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#set_timer">set_timer</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#set_timer_size">set_timer_size</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#start_timers">start_timers</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#stop_timers">stop_timers</a></code>,
-      <code><a href="python.gwnblock%27.gwnblock-class.html#write_out">write_out</a></code>
-      </p>
-    <p class="indent-wrapped-lines"><b>Inherited from <code>gnuradio.gr.gateway.gateway_block</code></b>:
-      <code>set_msg_handler</code>,
-      <code>start</code>,
-      <code>stop</code>,
-      <code>to_basic_block</code>,
-      <code>work</code>
-      </p>
-    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
-      <code>__delattr__</code>,
-      <code>__format__</code>,
-      <code>__getattribute__</code>,
-      <code>__hash__</code>,
-      <code>__new__</code>,
-      <code>__reduce__</code>,
-      <code>__reduce_ex__</code>,
-      <code>__repr__</code>,
-      <code>__setattr__</code>,
-      <code>__sizeof__</code>,
-      <code>__subclasshook__</code>
-      </p>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="handle_msg"></a><span class="summary-sig-name">handle_msg</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg_pmt</span>)</span><br />
+      Timer message handler, regenerates event, passes to process_data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.handle_msg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
     </td>
   </tr>
-</table>
-<!-- ==================== PROPERTIES ==================== -->
-<a name="section-Properties"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Properties</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Properties"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-  <tr>
-    <td colspan="2" class="summary">
-    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
-      <code>__class__</code>
-      </p>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="post_message"></a><span class="summary-sig-name">post_message</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Posts timer event and timer metadata on block port.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.post_message">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="start"></a><span class="summary-sig-name">start</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Starts timer until timeout.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.start">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="stop"></a><span class="summary-sig-name">stop</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops timer if action has not started.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.stop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
     </td>
   </tr>
 </table>
@@ -221,43 +228,51 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">blkname</span>,
-        <span class="sig-arg">blkid</span>)</span>
+        <span class="sig-arg">block</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">port_nr</span>,
+        <span class="sig-arg">timeout</span>=<span class="sig-default">1.0</span>,
+        <span class="sig-arg">nickname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.msg_receiver_m%27-pysrc.html#msg_receiver_m.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <p>Constructor.</p>
   <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>timeout</code></strong> - timeout in seconds.</li>
+        <li><strong class="pname"><code>nickname</code></strong> - message to send at timeut. #@param add_info: additional 
+          information for this timeout.</li>
+    </ul></dd>
     <dt>Overrides:
-        object.__init__
-        <dd><em class="note">(inherited documentation)</em></dd>
+        <a href="python.gwnblock%27.GWNPort-class.html#__init__">GWNPort.__init__</a>
     </dt>
   </dl>
 </td></tr></table>
 </div>
-<a name="process_data"></a>
+<a name="__str__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">process_data</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">ev</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.msg_receiver_m%27-pysrc.html#msg_receiver_m.process_data">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.__str__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Receives events, prints.</p>
+  
   <dl class="fields">
     <dt>Overrides:
-        <a href="python.gwnblock%27.gwnblock-class.html#process_data">gwnblock'.gwnblock.process_data</a>
+        <a href="python.gwnblock%27.GWNPort-class.html#__str__">GWNPort.__str__</a>
     </dt>
   </dl>
 </td></tr></table>

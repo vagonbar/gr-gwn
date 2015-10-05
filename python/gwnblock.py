@@ -122,6 +122,98 @@ class GWNOutPort(GWNPort):
 
 
 
+class GWNTimeout(GWNPort):
+    '''A time class to implement timeouts inside GWN blocks.
+
+    Objects of this class can be attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed. A timeout object can be interrupted before its action starts, i.e. sends a message.
+    '''
+    def __init__(self, block, port, port_nr, timeout=1.0, nickname='TimerTOR2'):
+        '''Constructor.
+
+        @param timeout: timeout in seconds.
+        @param nickname: message to send at timeut.
+        #@param add_info: additional information for this timeout.
+        '''
+        GWNPort.__init__(self, block, port, port_nr)
+
+        self.block = block
+        self.port = port
+        self.port_nr = port_nr
+        self.timeout = timeout
+        self.nickname = nickname
+        self.debug = True
+        #self.add_info = add_info
+        self.timer = None
+
+        mutex_prt ("  GWNTimeout BUILT, timeout=" + str(self.timeout))
+        return
+
+
+    def start(self, timeout=None, nickname=None):
+        '''Starts timer until timeout.'''
+        if timeout:
+            self.timeout = timeout
+        if nickname:
+            self.nickname = nickname
+        self.timer = threading.Timer(self.timeout, self.post_message)
+        self.timer.start()
+        if self.debug:
+            ss = '  GWNTimeout STARTED, timeout=' + str(self.timeout) + \
+                ', nickname ' + self.nickname
+            mutex_prt(ss)
+        return
+
+
+    def stop(self):
+        '''Stops timer if action has not started.'''
+        if self.timer and self.timer.is_alive():
+            self.timer.cancel()
+            ss = '  GWNTimeout CANCEL done'
+        else:
+            ss = '  GWNTimeout timer thread does not exist.'
+                 # 'timeout port %d in block %s' % \
+                 # (self.port_nr, self.block.blkname)
+        mutex_prt(ss)
+        # del(self.timer)      # not necessary if self.timeout set to None
+        self.timer = None    # last reference, garbage collector will act
+        return
+
+
+    def post_message(self):
+        '''Posts timer event and timer metadata on block port.'''
+        #ss = '  GWN Timeout, in post_message, nickname ' + self.nickname
+        evtimeout = api_events.mkevent(self.nickname)   # create timer event
+        ev_str = pickle.dumps(evtimeout)
+        msg_ls = [self.block.blkname, self.block.blkid, self.port, 
+            self.port_nr, ev_str]
+        pmt_msg = pmt.cons(pmt.PMT_NIL, 
+            pmt.pmt_to_python.python_to_pmt(msg_ls) )
+        pmt_port = pmt.intern(self.port)
+        self.block.to_basic_block()._post(pmt_port, pmt_msg)
+        if self.debug:
+            ss = '    GWN Timeout TIMEOUT REACHED, in post message, message %s' % \
+                (self.nickname)
+            mutex_prt(ss)
+        # del(self.timer)      # not necessary if self.timeout set to None
+        self.timer = None    # last reference, garbage collector will act
+        return
+
+
+    def handle_msg(self, msg_pmt):
+        '''Timer message handler, regenerates event, passes to process_data.'''
+        msg_ls = pmt.to_python(msg_pmt)[1]
+        ev = pickle.loads(msg_ls[-1])
+        self.block.process_data(ev)   # handle event to process function
+        return
+
+
+    def __str__(self):
+        return  '  GWNTimeout %s index %d in block %s' % \
+            (self.port, self.port_nr, self.block.blkname)
+        return 
+
+
+
 class GWNTimer(GWNPort, threading.Thread):
     '''A timer class to add inside timers to GWN blocks.
 
@@ -166,14 +258,14 @@ class GWNTimer(GWNPort, threading.Thread):
         self.interrupt = interrupt
         #lock_obj.release()
         if self.debug:
-            ss = '   GWNTimer, interrupt set to ' + str(interrupt)
+            ss = '  GWNTimer, interrupt set to ' + str(interrupt)
             mutex_prt(ss)
 
 
     def stop(self):
         '''Stops timer thread.'''
         if self.debug:
-            ss = '   GWNTimer STOP, stopping timer %d in block %s' % \
+            ss = '  GWNTimer STOP, stopping timer %d in block %s' % \
                (self.port_nr, self.block.blkname)
             mutex_prt(ss)
         self.exit_flag = True
@@ -191,7 +283,7 @@ class GWNTimer(GWNPort, threading.Thread):
         self.counter = 0
         self.set_interrupt(False)
         if self.debug:
-            ss = '   GWNTimer RESET, counter=0, '
+            ss = '  GWNTimer RESET, counter=0, '
             if retry and self.debug:
                 ss += 'new retry value ' +  str(retry)
             elif self.debug:
@@ -259,7 +351,7 @@ class GWNTimer(GWNPort, threading.Thread):
 
 
     def __str__(self):
-        return  '  timer %s index %d in block %s' % \
+        return  '  GWNTimer %s index %d in block %s' % \
             (self.port, self.port_nr, self.block.blkname)
         return 
 
@@ -269,22 +361,22 @@ class gwnblock(gr.basic_block):
     '''The GWN basic block.
     '''
     def __init__(self, blkname, blkid, number_in=0, number_out=0, \
-            number_timers=0):
+            number_timers=0, number_timeouts=0):
         gr.basic_block.__init__(self,
-            name='gwnblock',
-            in_sig=[],   #[<+numpy.float+>],
-            out_sig=[])  #[<+numpy.float+>])
+            name='gwnblock', in_sig=[], out_sig=[])  
 
         self.blkname = blkname
         self.blkid = blkid
         self.ports_in = []
         self.ports_out = []
+        self.timeouts = []
         self.timers = []
         self.finished = False
 
-        self.set_timer_size(number_timers)  # timer input ports
-        self.set_in_size(number_in)         # message input ports
-        self.set_out_size(number_out)       # message output ports
+        self.set_timeout_size(number_timeouts)  # timeout input ports
+        self.set_timer_size(number_timers)      # timer input ports
+        self.set_in_size(number_in)             # message input ports
+        self.set_out_size(number_out)           # message output ports
 
         return
 
@@ -336,6 +428,28 @@ class gwnblock(gr.basic_block):
             mutex_prt(myport)           # for debug
             pmt_out_port = pmt.intern(out_port)
             self.message_port_register_out(pmt_out_port)
+        return
+
+
+    ### timeout functions
+
+    def set_timeout_size(self, number_timeouts):
+
+
+        '''Creates a list of timeout objects, assigns to block.
+
+        Creates a list of timeout objects with default values.
+        @param number_timeouts: the number of timeouts to create.
+        '''
+        for i in xrange(0, number_timeouts):
+            timeout_port = 'timeout' + str(i)
+            mytimeout = GWNTimeout(self, timeout_port, i)
+            self.timeouts.append(mytimeout)
+            if mytimeout.debug:
+                mutex_prt(mytimeout)           # for debug
+            pmt_timeout_port = pmt.intern(timeout_port)
+            self.message_port_register_in(pmt_timeout_port)
+            self.set_msg_handler(pmt_timeout_port, mytimeout.handle_msg)
         return
 
 
