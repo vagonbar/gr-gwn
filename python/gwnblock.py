@@ -358,10 +358,21 @@ class GWNTimer(GWNPort, threading.Thread):
 
 
 class gwnblock(gr.basic_block):
-    '''The GWN basic block.
+    '''The GWN basic block, from which all GWN blocks inherit.
+
     '''
     def __init__(self, blkname, blkid, number_in=0, number_out=0, \
             number_timers=0, number_timeouts=0):
+        '''The GWN basic block constructor.
+
+        The GWN basic block implements facilites used by all GWN blocks. A descendent of this class may call this constructor to fix the number of ports, timers and timeouts.
+        @param blkname: the block's name.
+        @param blkid: a unique block identifier.
+        @param number_in: number of input ports.
+        @param number_out: number of output ports.
+        @param number_timers: number of internal timers.
+        @param number_timeouts: number of internal timeouts.
+        '''
         gr.basic_block.__init__(self,
             name='gwnblock', in_sig=[], out_sig=[])  
 
