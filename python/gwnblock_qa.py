@@ -40,10 +40,10 @@ print "    Timer thread object exists?", ; print blk.timeouts[0].timer
 print; print "--- Test 2, cancel before timeout"
 blk.timeouts[0].start(15)
 time.sleep(2)
-blk.timeouts[0].stop()
+blk.timeouts[0].cancel()
 print "    Timer thread object exists?", ; print blk.timeouts[0].timer
 print "Try cancel on a cancelled timer thread:"
-blk.timeouts[0].stop()
+blk.timeouts[0].cancel()
 
 print; print "--- Test 3, restart with other nickname"
 blk.timeouts[0].start(3, nickname='TimerTOH')

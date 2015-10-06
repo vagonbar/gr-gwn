@@ -143,9 +143,9 @@ python.gwnblock'.GWNPort.__init__	python.gwnblock%27.GWNPort-class.html#__init__
 python.gwnblock'.GWNTimeout	python.gwnblock%27.GWNTimeout-class.html
 python.gwnblock'.GWNTimeout.post_message	python.gwnblock%27.GWNTimeout-class.html#post_message
 python.gwnblock'.GWNTimeout.__str__	python.gwnblock%27.GWNTimeout-class.html#__str__
-python.gwnblock'.GWNTimeout.stop	python.gwnblock%27.GWNTimeout-class.html#stop
 python.gwnblock'.GWNTimeout.handle_msg	python.gwnblock%27.GWNTimeout-class.html#handle_msg
 python.gwnblock'.GWNTimeout.start	python.gwnblock%27.GWNTimeout-class.html#start
+python.gwnblock'.GWNTimeout.cancel	python.gwnblock%27.GWNTimeout-class.html#cancel
 python.gwnblock'.GWNTimeout.__init__	python.gwnblock%27.GWNTimeout-class.html#__init__
 python.gwnblock'.GWNTimer	python.gwnblock%27.GWNTimer-class.html
 python.gwnblock'.GWNTimer.__str__	python.gwnblock%27.GWNTimer-class.html#__str__

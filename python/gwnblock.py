@@ -125,7 +125,7 @@ class GWNOutPort(GWNPort):
 class GWNTimeout(GWNPort):
     '''A time class to implement timeouts inside GWN blocks.
 
-    Objects of this class can be attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed. A timeout object can be interrupted before its action starts, i.e. sends a message.
+    Objects of this class can be attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed. A timeout object can be interrupted before its action starts, i.e. before it sends its message.
     '''
     def __init__(self, block, port, port_nr, timeout=1.0, nickname='TimerTOR2'):
         '''Constructor.
@@ -163,8 +163,7 @@ class GWNTimeout(GWNPort):
             mutex_prt(ss)
         return
 
-
-    def stop(self):
+    def cancel(self):
         '''Stops timer if action has not started.'''
         if self.timer and self.timer.is_alive():
             self.timer.cancel()
