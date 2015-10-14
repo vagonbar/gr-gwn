@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>libgwn.utils.fsm.gwnfsm</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libgwn</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="libgwn-module.html">Package&nbsp;libgwn</a> ::
+        <a href="libgwn.utils-module.html">Package&nbsp;utils</a> ::
+        <a href="libgwn.utils.fsm-module.html">Package&nbsp;fsm</a> ::
+        Module&nbsp;gwnfsm
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="libgwn.utils.fsm.gwnfsm-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module gwnfsm</h1><p class="nomargin-top"><span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html">source&nbsp;code</a></span></p>
+<p>GWN implementation of a Finite State Machine (FSM).</p>
+  <p>This module implements a Finite State Machine (FSM). In addition to 
+  the usual states and transitions, the GWN FSM includes actions, memory, 
+  and conditions.</p>
+  <p>An action is a user written function executed on a transition, before 
+  setting the machine to the next state.</p>
+  <p>Memory may be any object capable of recording and retrieving 
+  information, in whatever acces mode the application may need (LIFO, FIFO,
+  etc). The memory facility is not part of the FSM machine, but an 
+  independent object. Memory may be handled in the action functions.</p>
+  <p>A conditions is a user written function or expressions which produce 
+  True or False when executed or evaluated. The action function and the 
+  transition are only executed if the condition evaluates to True. If the 
+  conditione evaluates to False, no action is executed and the machine 
+  remains in its current state.</p>
+  <p>The FSM is defined through tables of transitions. For a given input 
+  symbol the process() method uses these tables to decide which action to 
+  call and which the next state will be, if and only if the condition 
+  evaluates to True; otherwise, nothing happens.</p>
+  <p>The FSM has a table of transitions that associate:</p>
+<pre class="literalblock">
+       (input_symbol, current_state) --&gt; (action, next_statei, condition)
+</pre>
+  <p>where action is a function, and symbols and states can be any objects.
+  This table is maintained through the FSM methods add_transition() and 
+  add_transition_list().</p>
+  <p>The FSM also has a second table of transitions that associate:</p>
+<pre class="literalblock">
+       (current_state) --&gt; (action, next_state, condition)
+</pre>
+  <p>which allows to add transitions valid for any input symbol. The table 
+  of any symbol transitions is maintained through the FSM method 
+  add_transition_any().</p>
+  <p>The FSM has also one default transition not associated with any 
+  specific input_symbol or state. The default transition matches any symbol
+  on any state, and may be used as a catch-all transition. The default 
+  transition is set through the set_default_transition() method. There can 
+  be only one default transition.</p>
+  <p>On receiving a symbol, the FSM looks in the transition tables in the 
+  following order:</p>
+<pre class="literalblock">
+   1. The transitions table for (input_symbol, current_state).
+   2. The transition table for (current_state), valid for and any input symbol.
+   3. The default transition.
+   4. If no valid transition is found, the FSM will raise an exception.
+</pre>
+  <p>Matched transitions with the former criteria may produce a list of 
+  (action, next_state, condition). Condition is evaluated for each tuple in
+  the list, and the first tuple on which the condition is found True is 
+  executed: the action function is called, and the next state is set.</p>
+  <p>If no transition is defined for an input symbol, the FSM will raise an
+  exception. This can be prevented by defining a default transition.</p>
+  <p>The action function receives a reference to the FSM as a parameter, 
+  hence the action function has access to all attributes in the FSM, such 
+  as current_state, input_symbol or memory.</p>
+  <p>The GWN Finite State Machine implementation is an extension of Noah 
+  Spurrier's FSM 20020822, 
+  <code>http://www.noah.org/python/FSM/</code>.</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="libgwn.utils.fsm.gwnfsm.ExceptionFSM-class.html" class="summary-name">ExceptionFSM</a><br />
+      FSM Exception class.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="libgwn.utils.fsm.gwnfsm.FSM-class.html" class="summary-name">FSM</a><br />
+      GWN Finite State Machine (GWN-FSM).
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libgwn</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Oct 14 18:25:55 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>libgwn.utils.fsm.example02</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libgwn</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="libgwn-module.html">Package&nbsp;libgwn</a> ::
+        <a href="libgwn.utils-module.html">Package&nbsp;utils</a> ::
+        <a href="libgwn.utils.fsm-module.html">Package&nbsp;fsm</a> ::
+        Module&nbsp;example02
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="libgwn.utils.fsm.example02-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="libgwn.utils.fsm.example02-module.html">Module libgwn.utils.fsm.example02</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">''' FSM example with states, transitions, actions, and memory; no conditions.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module libgwn.utils.fsm.gwnfsm=libgwn.utils.fsm.gwnfsm-module.html"><a title="libgwn.utils.fsm.gwnfsm" class="py-name" href="#" onclick="return doclink('link-0', 'gwnfsm', 'link-0');">gwnfsm</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class libgwn.utils.fsm.gwnfsm.FSM=libgwn.utils.fsm.gwnfsm.FSM-class.html,Class libgwn.utils.libfsm.fsm.FSM=libgwn.utils.libfsm.fsm.FSM-class.html"><a title="libgwn.utils.fsm.gwnfsm.FSM
+libgwn.utils.libfsm.fsm.FSM" class="py-name" href="#" onclick="return doclink('link-1', 'FSM', 'link-1');">FSM</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">,</tt> <tt class="py-name">traceback</tt><tt class="py-op">,</tt> <tt class="py-name">optparse</tt><tt class="py-op">,</tt> <tt class="py-name">time</tt><tt class="py-op">,</tt> <tt class="py-name">string</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment">### Actions</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="gotoa"></a><div id="gotoa-def"><a name="L16"></a><tt class="py-lineno">16</tt> <a class="py-toggle" href="#" id="gotoa-toggle" onclick="return toggle('gotoa');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#gotoa">gotoa</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="gotoa-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="gotoa-expanded"><a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line">    <tt id="link-2" class="py-name" targets="Package libgwn.utils.fsm=libgwn.utils.fsm-module.html,Module libgwn.utils.libfsm.fsm=libgwn.utils.libfsm.fsm-module.html"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-2', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method libgwn.utils.fsm.gwnfsm.FSM.print_state()=libgwn.utils.fsm.gwnfsm.FSM-class.html#print_state"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-3', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"> </tt>
+<a name="gotob"></a><div id="gotob-def"><a name="L19"></a><tt class="py-lineno">19</tt> <a class="py-toggle" href="#" id="gotob-toggle" onclick="return toggle('gotob');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#gotob">gotob</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="gotob-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="gotob-expanded"><a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">    <tt id="link-4" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-4', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-5', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"> </tt>
+<a name="goinit"></a><div id="goinit-def"><a name="L22"></a><tt class="py-lineno">22</tt> <a class="py-toggle" href="#" id="goinit-toggle" onclick="return toggle('goinit');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#goinit">goinit</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="goinit-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="goinit-expanded"><a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">    <tt id="link-6" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-6', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-7', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="stay"></a><div id="stay-def"><a name="L25"></a><tt class="py-lineno">25</tt> <a class="py-toggle" href="#" id="stay-toggle" onclick="return toggle('stay');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#stay">stay</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="stay-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="stay-expanded"><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt id="link-8" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-8', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-9', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="load"></a><div id="load-def"><a name="L28"></a><tt class="py-lineno">28</tt> <a class="py-toggle" href="#" id="load-toggle" onclick="return toggle('load');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#load">load</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="load-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="load-expanded"><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">    <tt id="link-10" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-10', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt class="py-name">memory</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt id="link-11" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-11', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt class="py-name">input_symbol</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">    <tt id="link-12" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-12', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-13', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"> </tt>
+<a name="unload"></a><div id="unload-def"><a name="L32"></a><tt class="py-lineno">32</tt> <a class="py-toggle" href="#" id="unload-toggle" onclick="return toggle('unload');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#unload">unload</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="unload-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="unload-expanded"><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">    <tt class="py-name">pop_symbol</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-14', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt class="py-name">memory</tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">    <tt id="link-15" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-15', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-16', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="fn_error"></a><div id="fn_error-def"><a name="L36"></a><tt class="py-lineno">36</tt> <a class="py-toggle" href="#" id="fn_error-toggle" onclick="return toggle('fn_error');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#fn_error">fn_error</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="fn_error-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="fn_error-expanded"><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt id="link-17" class="py-name"><a title="libgwn.utils.fsm
+libgwn.utils.libfsm.fsm" class="py-name" href="#" onclick="return doclink('link-17', 'fsm', 'link-2');">fsm</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-18', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">,</tt> <tt class="py-string">'memory'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-comment">### states</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-comment"># add_transition (input_symbol, state, action=None, next_state=None):</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="myfsm"></a><div id="myfsm-def"><a name="L42"></a><tt class="py-lineno">42</tt> <a class="py-toggle" href="#" id="myfsm-toggle" onclick="return toggle('myfsm');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="libgwn.utils.fsm.example02-module.html#myfsm">myfsm</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="myfsm-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="myfsm-expanded"><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">    <tt class="py-name">f</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM
+libgwn.utils.libfsm.fsm.FSM" class="py-name" href="#" onclick="return doclink('link-19', 'FSM', 'link-1');">FSM</a></tt> <tt class="py-op">(</tt><tt class="py-string">'INIT'</tt><tt class="py-op">,</tt> <tt class="py-name">memory</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-comment"># </tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method libgwn.utils.fsm.gwnfsm.FSM.set_default_transition()=libgwn.utils.fsm.gwnfsm.FSM-class.html#set_default_transition,Method libgwn.utils.libfsm.fsm.FSM.set_default_transition()=libgwn.utils.libfsm.fsm.FSM-class.html#set_default_transition"><a title="libgwn.utils.fsm.gwnfsm.FSM.set_default_transition
+libgwn.utils.libfsm.fsm.FSM.set_default_transition" class="py-name" href="#" onclick="return doclink('link-20', 'set_default_transition', 'link-20');">set_default_transition</a></tt> <tt class="py-op">(</tt><tt id="link-21" class="py-name" targets="Function libgwn.utils.fsm.example01.fn_error()=libgwn.utils.fsm.example01-module.html#fn_error,Function libgwn.utils.fsm.example02.fn_error()=libgwn.utils.fsm.example02-module.html#fn_error,Function libgwn.utils.fsm.example03.fn_error()=libgwn.utils.fsm.example03-module.html#fn_error"><a title="libgwn.utils.fsm.example01.fn_error
+libgwn.utils.fsm.example02.fn_error
+libgwn.utils.fsm.example03.fn_error" class="py-name" href="#" onclick="return doclink('link-21', 'fn_error', 'link-21');">fn_error</a></tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method libgwn.utils.fsm.gwnfsm.FSM.add_transition_any()=libgwn.utils.fsm.gwnfsm.FSM-class.html#add_transition_any,Method libgwn.utils.libfsm.fsm.FSM.add_transition_any()=libgwn.utils.libfsm.fsm.FSM-class.html#add_transition_any"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition_any
+libgwn.utils.libfsm.fsm.FSM.add_transition_any" class="py-name" href="#" onclick="return doclink('link-22', 'add_transition_any', 'link-22');">add_transition_any</a></tt>  <tt class="py-op">(</tt><tt class="py-string">'INIT'</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt class="py-comment">#f.add_transition      (' ', 'INIT', stay, 'INIT')</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method libgwn.utils.fsm.gwnfsm.FSM.add_transition()=libgwn.utils.fsm.gwnfsm.FSM-class.html#add_transition,Method libgwn.utils.libfsm.fsm.FSM.add_transition()=libgwn.utils.libfsm.fsm.FSM-class.html#add_transition"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-23', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'a'</tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">,</tt> <tt id="link-24" class="py-name" targets="Function libgwn.utils.fsm.example01.gotoa()=libgwn.utils.fsm.example01-module.html#gotoa,Function libgwn.utils.fsm.example02.gotoa()=libgwn.utils.fsm.example02-module.html#gotoa"><a title="libgwn.utils.fsm.example01.gotoa
+libgwn.utils.fsm.example02.gotoa" class="py-name" href="#" onclick="return doclink('link-24', 'gotoa', 'link-24');">gotoa</a></tt><tt class="py-op">,</tt> <tt class="py-string">'State A'</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-25', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'b'</tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">,</tt> <tt id="link-26" class="py-name" targets="Function libgwn.utils.fsm.example01.gotob()=libgwn.utils.fsm.example01-module.html#gotob,Function libgwn.utils.fsm.example02.gotob()=libgwn.utils.fsm.example02-module.html#gotob"><a title="libgwn.utils.fsm.example01.gotob
+libgwn.utils.fsm.example02.gotob" class="py-name" href="#" onclick="return doclink('link-26', 'gotob', 'link-26');">gotob</a></tt><tt class="py-op">,</tt> <tt class="py-string">'State B'</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-27', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'r'</tt><tt class="py-op">,</tt> <tt class="py-string">'State A'</tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name" targets="Function libgwn.utils.fsm.example01.goinit()=libgwn.utils.fsm.example01-module.html#goinit,Function libgwn.utils.fsm.example02.goinit()=libgwn.utils.fsm.example02-module.html#goinit,Function libgwn.utils.fsm.example03.goinit()=libgwn.utils.fsm.example03-module.html#goinit"><a title="libgwn.utils.fsm.example01.goinit
+libgwn.utils.fsm.example02.goinit
+libgwn.utils.fsm.example03.goinit" class="py-name" href="#" onclick="return doclink('link-28', 'goinit', 'link-28');">goinit</a></tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-29', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'r'</tt><tt class="py-op">,</tt> <tt class="py-string">'State B'</tt><tt class="py-op">,</tt> <tt id="link-30" class="py-name"><a title="libgwn.utils.fsm.example01.goinit
+libgwn.utils.fsm.example02.goinit
+libgwn.utils.fsm.example03.goinit" class="py-name" href="#" onclick="return doclink('link-30', 'goinit', 'link-28');">goinit</a></tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-31', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'A'</tt><tt class="py-op">,</tt> <tt class="py-string">'State A'</tt><tt class="py-op">,</tt> <tt id="link-32" class="py-name" targets="Function libgwn.utils.fsm.example02.load()=libgwn.utils.fsm.example02-module.html#load"><a title="libgwn.utils.fsm.example02.load" class="py-name" href="#" onclick="return doclink('link-32', 'load', 'link-32');">load</a></tt><tt class="py-op">,</tt> <tt class="py-string">'State A'</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-33', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'B'</tt><tt class="py-op">,</tt> <tt class="py-string">'State B'</tt><tt class="py-op">,</tt> <tt id="link-34" class="py-name"><a title="libgwn.utils.fsm.example02.load" class="py-name" href="#" onclick="return doclink('link-34', 'load', 'link-32');">load</a></tt><tt class="py-op">,</tt> <tt class="py-string">'State B'</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-35', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'u'</tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">,</tt> <tt id="link-36" class="py-name" targets="Function libgwn.utils.fsm.example02.unload()=libgwn.utils.fsm.example02-module.html#unload"><a title="libgwn.utils.fsm.example02.unload" class="py-name" href="#" onclick="return doclink('link-36', 'unload', 'link-36');">unload</a></tt><tt class="py-op">,</tt> <tt class="py-string">'State C'</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-37', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'u'</tt><tt class="py-op">,</tt> <tt class="py-string">'State C'</tt><tt class="py-op">,</tt> <tt id="link-38" class="py-name"><a title="libgwn.utils.fsm.example02.unload" class="py-name" href="#" onclick="return doclink('link-38', 'unload', 'link-36');">unload</a></tt><tt class="py-op">,</tt> <tt class="py-string">'State C'</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.add_transition
+libgwn.utils.libfsm.fsm.FSM.add_transition" class="py-name" href="#" onclick="return doclink('link-39', 'add_transition', 'link-23');">add_transition</a></tt>      <tt class="py-op">(</tt><tt class="py-string">'r'</tt><tt class="py-op">,</tt> <tt class="py-string">'State C'</tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name"><a title="libgwn.utils.fsm.example01.goinit
+libgwn.utils.fsm.example02.goinit
+libgwn.utils.fsm.example03.goinit" class="py-name" href="#" onclick="return doclink('link-40', 'goinit', 'link-28');">goinit</a></tt><tt class="py-op">,</tt> <tt class="py-string">'INIT'</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">"--- FSM created, show state"</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="libgwn.utils.fsm.gwnfsm.FSM.print_state" class="py-name" href="#" onclick="return doclink('link-41', 'print_state', 'link-3');">print_state</a></tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-string">'state'</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">    <tt class="py-name">inputstr</tt> <tt class="py-op">=</tt> <tt class="py-string">'j aAArbBBBr uuuur'</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">"--- Transitions for input string:"</tt><tt class="py-op">,</tt> <tt class="py-name">inputstr</tt><tt class="py-op">;</tt> <tt class="py-keyword">print</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method libgwn.utils.fsm.gwnfsm.FSM.process_list()=libgwn.utils.fsm.gwnfsm.FSM-class.html#process_list,Method libgwn.utils.libfsm.fsm.FSM.process_list()=libgwn.utils.libfsm.fsm.FSM-class.html#process_list"><a title="libgwn.utils.fsm.gwnfsm.FSM.process_list
+libgwn.utils.libfsm.fsm.FSM.process_list" class="py-name" href="#" onclick="return doclink('link-42', 'process_list', 'link-42');">process_list</a></tt><tt class="py-op">(</tt><tt class="py-name">inputstr</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">        <tt class="py-name">start_time</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-name">parser</tt> <tt class="py-op">=</tt> <tt class="py-name">optparse</tt><tt class="py-op">.</tt><tt class="py-name">OptionParser</tt><tt class="py-op">(</tt><tt class="py-name">formatter</tt><tt class="py-op">=</tt><tt class="py-name">optparse</tt><tt class="py-op">.</tt><tt class="py-name">TitledHelpFormatter</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">usage</tt><tt class="py-op">=</tt><tt class="py-name">globals</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-string">'__doc__'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">version</tt><tt class="py-op">=</tt><tt class="py-string">'$Id$'</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">        <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_option</tt> <tt class="py-op">(</tt><tt class="py-string">'-v'</tt><tt class="py-op">,</tt> <tt class="py-string">'--verbose'</tt><tt class="py-op">,</tt> <tt class="py-name">action</tt><tt class="py-op">=</tt><tt class="py-string">'store_true'</tt><tt class="py-op">,</tt> <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">'verbose output'</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">,</tt> <tt class="py-name">args</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> <tt class="py-keyword">print</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">asctime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">        <tt id="link-43" class="py-name" targets="Function libgwn.utils.fsm.example01.myfsm()=libgwn.utils.fsm.example01-module.html#myfsm,Function libgwn.utils.fsm.example02.myfsm()=libgwn.utils.fsm.example02-module.html#myfsm,Function libgwn.utils.fsm.example03.myfsm()=libgwn.utils.fsm.example03-module.html#myfsm"><a title="libgwn.utils.fsm.example01.myfsm
+libgwn.utils.fsm.example02.myfsm
+libgwn.utils.fsm.example03.myfsm" class="py-name" href="#" onclick="return doclink('link-43', 'myfsm', 'link-43');">myfsm</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-comment">#main()</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> <tt class="py-keyword">print</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">asctime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> <tt class="py-keyword">print</tt> <tt class="py-string">'TOTAL TIME IN MINUTES:'</tt><tt class="py-op">,</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> <tt class="py-keyword">print</tt> <tt class="py-op">(</tt><tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">start_time</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt class="py-number">60.0</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">KeyboardInterrupt</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> <tt class="py-comment"># Ctrl-C</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">e</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">SystemExit</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> <tt class="py-comment"># sys.exit()</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">e</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'ERROR, UNEXPECTED EXCEPTION'</tt> </tt>
+<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">        <tt class="py-name">traceback</tt><tt class="py-op">.</tt><tt class="py-name">print_exc</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">_exit</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="libgwn-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >libgwn</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Oct 14 18:25:56 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
