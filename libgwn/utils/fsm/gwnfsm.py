@@ -181,11 +181,11 @@ class FSM:
             next_state = state
         #self.state_transitions_any [state] = (action, next_state, condition)
         if self.state_transitions_any.has_key(state):
-            self.state_transitions[state] = \
-                self.state_transitions[state] + \
+            self.state_transitions_any[state] = \
+                self.state_transitions_any[state] + \
                 [ (action, next_state, condition) ]
         else:
-            self.state_transitions[state] = \
+            self.state_transitions_any[state] = \
                 [ (action, next_state, condition) ]
 
 
@@ -262,26 +262,20 @@ class FSM:
         '''
         if 'state' in show:
             print "=== FSM state ==="
-            print "   state_transitions    :"
+            print "---   state_transitions:"
             for item in self.state_transitions.items():
                 print '     ', item
-            print "   state_transitions_any:"
+            print "---   state_transitions_any:"
             for item in self.state_transitions_any.items():
                 print '     ', item
-            print "   default_transition   :"
+            print "---   default_transition:"
             print "     ", self.default_transition
-            print "   initial_state  :", self.initial_state
-            print "===  ===\n"
+            print "---   initial_state:", self.initial_state
+            print "===  End FSM State ===\n"
         if 'transition' in show:
-            #print self.current_state + ' --- ' + str(self.input_symbol) + \
-            #    ' --> ' + str(self.next_state) + ', action ' + \
-            #    self.action.func_name
             print self.current_state + ' --- ' + str(self.input_symbol) + \
                 ' | ' + self.action.func_name + ' --> ' + \
                 str(self.next_state)
-            #print self.next_state,
-            #print ', action: ',
-            #print self.action.func_name 
         if 'action' in show and self.action:
             print "  action %s: state %s, symbol %s" % \
                 (self.action.func_name, self.current_state, \
