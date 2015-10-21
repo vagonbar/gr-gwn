@@ -19,19 +19,20 @@
 # along with this software; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-#
+# 
 # 
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from timer_source import timer_source
+from data_source import data_source
+
+
 from event_sink import event_sink
 import time
 from gwnblock import mutex_prt
 
 
-
-class qa_timer_source (gr_unittest.TestCase):
+class qa_data_source (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -39,38 +40,15 @@ class qa_timer_source (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_with_message_debug(self):
-        '''Timer Source to Message Debug.
+
+    def test_data_source(self):
+        '''Data Source to Event Sink.
         '''
         ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=2)
-        blk_dbg = blocks.message_debug()
-        self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
-                            blk_dbg, 'print')
-        #self.tb.run()  # for flowgraphs that will stop on its own!
-        self.tb.start() 
-        mutex_prt(self.tb.msg_edge_list())
-        #print tb.dump()
-
-        secs = 5
-        print '--- sender, timer started, waiting %d seconds\n' % (secs,)
-        time.sleep(secs)
-        blk_snd.stop_timers()
-        print '\n--- sender, timers stopped'
-        self.tb.stop()
-        self.tb.wait()
-        print '\n--- top block stopped'
-
-        return
-
-
-    def test_interrupt(self):
-        '''Timer Source to Event Sink with interruption.
-        '''
-        ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=10, interval=1.0)
-        blk_snd.timers[0].debug = True     # print debug on timer
+        blk_snd = data_source('TimerSource', 'blk001', retry=3, interval=1.0)
+        #blk_snd.timers[0].debug = True     # print debug on timer
         blk_snk = event_sink()
+        #blk_snk.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_snk, blk_snk.ports_in[0].port)
         #self.tb.run()  # for flowgraphs that will stop on its own!
@@ -78,13 +56,7 @@ class qa_timer_source (gr_unittest.TestCase):
         mutex_prt(self.tb.msg_edge_list())
         #print tb.dump()
 
-        time.sleep(4)
-        blk_snd.timers[0].set_interrupt(True)
-        time.sleep(4)
-        blk_snd.timers[0].set_interrupt(False)
-        time.sleep(6)
-        blk_snd.timers[0].reset(retry=3)      # reset timer, adjust retry
-        time.sleep(7)
+        time.sleep(5)
 
         blk_snd.stop_timers()
         print '\n--- sender, timers stopped'
@@ -97,4 +69,4 @@ class qa_timer_source (gr_unittest.TestCase):
         return
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_timer_source, "qa_timer_source.xml")
+    gr_unittest.run(qa_data_source, "qa_data_source.xml")

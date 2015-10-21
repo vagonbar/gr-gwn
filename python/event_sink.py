@@ -55,9 +55,11 @@ class event_sink(gwnblock):
     def process_data(self, ev):
         '''Receives events, prints.
         '''
-        ss = '  --- received by block {0}, id {1}, event:'.\
+        ss = '  --- received by {0}, id {1}, event:'.\
             format(self.blkname, self.blkid)
         ss = ss +   ' ' + ev.nickname
+        if ev.payload:
+            ss = ss + '\n      payload: ' + ev.payload
         #ss = ss + '\n  ' + ev.__str__() + '\n'
         mutex_prt(ss)
         if self.debug:

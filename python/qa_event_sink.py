@@ -74,6 +74,7 @@ class qa_event_sink (gr_unittest.TestCase):
         blk_src = timer_source('TimerSource', 'blk001', retry=2,
             nickname1='DataData')
         blk_snk = event_sink('EventSink','blk002')
+        blk_snk.debug = True
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_snk, blk_snk.ports_in[0].port)
 

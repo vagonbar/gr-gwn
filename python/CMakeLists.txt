@@ -45,7 +45,9 @@ GR_PYTHON_INSTALL(
     if_psk_tx.py
     ieee80211_framer.py
     ieee80211_deframer.py
-    virtual_channel.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    virtual_channel.py
+    data_source.py
+    stop_wait_ack.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -69,3 +71,5 @@ GR_ADD_TEST(qa_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_if_
 GR_ADD_TEST(qa_ieee80211_framer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ieee80211_framer.py)
 GR_ADD_TEST(qa_ieee80211_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ieee80211_deframer.py)
 GR_ADD_TEST(qa_virtual_channel ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_virtual_channel.py)
+GR_ADD_TEST(qa_data_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_source.py)
+GR_ADD_TEST(qa_stop_wait_ack ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_ack.py)
