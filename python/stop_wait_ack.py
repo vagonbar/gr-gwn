@@ -61,8 +61,8 @@ class stop_wait_ack(gwnblock):
         @param ev: an Event object.
         '''
         if self.debug:
-            dbg_msg = '  received event %s, payload %s' % \
-                (ev.nickname, ev.payload)
+            dbg_msg = '--- {0} received ev: {1}, payload: {2}'. \
+                format(self.blkname, ev.nickname, ev.payload)
             mutex_prt(dbg_msg)
         if True:        # test for some condition, i.e. CRC OK 
             ev_ack_payload = 'ACK, received event payload: ' + ev.payload

@@ -8,7 +8,7 @@ Tnis FSM has no memory, and no conditions.
 '''
 
 
-from gwnfsm import FSM
+from gwnfsmstr import FSM
 
 import sys, os, traceback, optparse, time, string
 

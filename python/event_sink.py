@@ -43,7 +43,7 @@ class event_sink(gwnblock):
     @param blkid: block identifier.
     '''
 
-    def __init__(self, blkname='event_sink', blkid='event_sink'):
+    def __init__(self, blkname='EventSink', blkid='event_sink_id'):
         gwnblock.__init__(self, blkname=blkname, blkid=blkid,
             number_in=1, number_out=0, number_timers=0)
 
@@ -55,17 +55,14 @@ class event_sink(gwnblock):
     def process_data(self, ev):
         '''Receives events, prints.
         '''
-        ss = '  --- received by {0}, id {1}, event:'.\
-            format(self.blkname, self.blkid)
-        ss = ss +   ' ' + ev.nickname
+        dbg_msg = '--- {0}, received ev: {1}'.format(self.blkname, ev.nickname)
         if ev.payload:
-            ss = ss + '\n      payload: ' + ev.payload
-        #ss = ss + '\n  ' + ev.__str__() + '\n'
-        mutex_prt(ss)
+            dbg_msg = dbg_msg + ', payload: {0}'.format(ev.payload)
+        mutex_prt(dbg_msg)
         if self.debug:
             mutex_prt(ev)
             try:
-                mutex_prt('  frame packet: ' + ev.frmpkt)
+                mutex_prt('    frame packet: ' + ev.frmpkt)
             except:
                 pass
 

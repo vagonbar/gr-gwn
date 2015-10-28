@@ -47,7 +47,7 @@ class timer_source(gwnblock):
     @param nickname1: event nickname of event to produce on each interval.
     @param nickname2: event nickname of event to produce when retry has exhausted.
     '''
-    def __init__(self,  blkname='timer_source', blkid='timer_source', 
+    def __init__(self,  blkname='TimerSource', blkid='timer_source_id', 
             interrupt=False, interval=1.0, retry=5, 
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
 

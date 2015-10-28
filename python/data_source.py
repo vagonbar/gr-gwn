@@ -88,8 +88,8 @@ class data_source(gwnblock):
         '''
         ev.payload = 'Data Event ' + str(self.counter)  # event payload
         if self.debug:
-            ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
-                format(self.blkname, ev.nickname, self.elapsed_time() )
+            ss = '--- {0}, send ev: {1}, counter: {2}'.\
+                format(self.blkname, ev.nickname, str(self.counter))
             mutex_prt(ss)
             ev.payload = 'Data Event ' + str(self.counter)  # load payoad
         self.counter += 1

@@ -31,6 +31,7 @@ print "--- Test 1, normal timeout"
 import gwnblock
 import time
 blk = gwnblock.gwnblock('block', 'id', number_timeouts=1)
+blk.timeouts[0].debug = True
 print "    Timer thread object exists?", ; print blk.timeouts[0].timer
 blk.timeouts[0].start(2)
 print "    Timer thread object exists?", ; print blk.timeouts[0].timer

@@ -141,11 +141,12 @@ class GWNTimeout(GWNPort):
         self.port_nr = port_nr
         self.timeout = timeout
         self.nickname = nickname
-        self.debug = True
+        self.debug = False
         #self.add_info = add_info
         self.timer = None
 
-        mutex_prt ("  GWNTimeout BUILT, timeout=" + str(self.timeout))
+        if self.debug:
+            mutex_prt ("    GWNTimeout BUILT, timeout=" + str(self.timeout))
         return
 
 
@@ -158,21 +159,21 @@ class GWNTimeout(GWNPort):
         self.timer = threading.Timer(self.timeout, self.post_message)
         self.timer.start()
         if self.debug:
-            ss = '  GWNTimeout STARTED, timeout=' + str(self.timeout) + \
+            msg_dbg = '    GWNTimeout STARTED, timeout=' + str(self.timeout) + \
                 ', nickname ' + self.nickname
-            mutex_prt(ss)
+            mutex_prt(msg_dbg)
         return
 
     def cancel(self):
         '''Stops timer if action has not started.'''
         if self.timer and self.timer.is_alive():
             self.timer.cancel()
-            ss = '  GWNTimeout CANCEL done'
+            msg_dbg = '    GWNTimeout CANCEL done'
         else:
-            ss = '  GWNTimeout timer thread does not exist.'
+            msg_dbg = '    GWNTimeout timer thread does not exist.'
                  # 'timeout port %d in block %s' % \
                  # (self.port_nr, self.block.blkname)
-        mutex_prt(ss)
+        mutex_prt(msg_dbg)
         # del(self.timer)      # not necessary if self.timeout set to None
         self.timer = None    # last reference, garbage collector will act
         return
@@ -190,9 +191,9 @@ class GWNTimeout(GWNPort):
         pmt_port = pmt.intern(self.port)
         self.block.to_basic_block()._post(pmt_port, pmt_msg)
         if self.debug:
-            ss = '    GWN Timeout TIMEOUT REACHED, in post message, message %s' % \
+            msg_dbg = '    GWN Timeout TIMEOUT REACHED, message: %s' % \
                 (self.nickname)
-            mutex_prt(ss)
+            mutex_prt(msg_dbg)
         # del(self.timer)      # not necessary if self.timeout set to None
         self.timer = None    # last reference, garbage collector will act
         return
@@ -207,7 +208,7 @@ class GWNTimeout(GWNPort):
 
 
     def __str__(self):
-        return  '  GWNTimeout %s index %d in block %s' % \
+        return  '   GWNTimeout %s index %d in block %s' % \
             (self.port, self.port_nr, self.block.blkname)
         return 
 
@@ -247,7 +248,7 @@ class GWNTimer(GWNPort, threading.Thread):
         self.exit_flag = False   # if True, ends timer
         self.debug = False  # please set from outside for debug print
         if self.debug:
-            mutex_prt ("GWNTimer built, retry:" + str(self.retry))
+            mutex_prt ("    GWNTimer built, retry:" + str(self.retry))
         return
 
 
@@ -257,16 +258,16 @@ class GWNTimer(GWNPort, threading.Thread):
         self.interrupt = interrupt
         #lock_obj.release()
         if self.debug:
-            ss = '  GWNTimer, interrupt set to ' + str(interrupt)
-            mutex_prt(ss)
+            msg_dbg = '    GWNTimer, interrupt set to ' + str(interrupt)
+            mutex_prt(msg_dbg)
 
 
     def stop(self):
         '''Stops timer thread.'''
         if self.debug:
-            ss = '  GWNTimer STOP, stopping timer %d in block %s' % \
+            msg_dbg = '    GWNTimer STOP, stopping timer %d in block %s' % \
                (self.port_nr, self.block.blkname)
-            mutex_prt(ss)
+            mutex_prt(msg_dbg)
         self.exit_flag = True
         return
 
@@ -282,12 +283,12 @@ class GWNTimer(GWNPort, threading.Thread):
         self.counter = 0
         self.set_interrupt(False)
         if self.debug:
-            ss = '  GWNTimer RESET, counter=0, '
+            msg_dbg = '    GWNTimer RESET, counter=0, '
             if retry and self.debug:
-                ss += 'new retry value ' +  str(retry)
+                msg_dbg += 'new retry value ' +  str(retry)
             elif self.debug:
-                ss += 'retry value left in ' + str(self.retry)
-            mutex_prt(ss)
+                msg_dbg += 'retry value left in ' + str(self.retry)
+            mutex_prt(msg_dbg)
         return
 
 
@@ -301,7 +302,7 @@ class GWNTimer(GWNPort, threading.Thread):
                     # sends messages until count reaches number of retries
                     self.counter = self.counter + 1
                     if self.debug:
-                        mutex_prt("   GWNTimer, counter" + str(self.counter))
+                        mutex_prt("    GWNTimer, counter" + str(self.counter))
                     if not self.interrupt and self.nickname1:
                         # post message only if nickname1 given
                         self.post_message(self.nickname1)
@@ -350,7 +351,7 @@ class GWNTimer(GWNPort, threading.Thread):
 
 
     def __str__(self):
-        return  '  GWNTimer %s index %d in block %s' % \
+        return  'GWNTimer %s index %d in block %s' % \
             (self.port, self.port_nr, self.block.blkname)
         return 
 

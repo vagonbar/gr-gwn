@@ -20,7 +20,7 @@
 #    along with GNUWiNetwork.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-'''GWN implementation of a Finite State Machine (FSM).
+'''A testing version of a Finite State Machine (FSM) with string symbols.
 
 This module implements a Finite State Machine (FSM). In addition to the usual states and transitions, the GWN FSM includes actions, memory, and conditions. 
 
@@ -64,6 +64,9 @@ The action function receives a reference to the FSM as a parameter, hence the ac
 The GWN Finite State Machine implementation is an extension of Noah Spurrier's FSM 20020822, C{http://www.noah.org/python/FSM/}.
 '''
 
+from gwnblock import mutex_prt
+
+
 class ExceptionFSM(Exception):
     '''FSM Exception class.'''
 
@@ -75,7 +78,7 @@ class ExceptionFSM(Exception):
 
 
 class FSM:
-    '''GWN Finite State Machine (GWN-FSM).
+    '''GWN Finite State Machine (GWN-FSM) with string symbols.
 
     @ivar state_transitions: a dictionary { (input event, current state): [ (action, next statei, condition) ] }. Defines a transition from the current state when a certain event is received.
     @ivar state_transitions_any: a dictionary of tuples { (current_state): [ (action, next_state, condition) ] }. Defines a transition from the current state when an event of any kind is received.
@@ -106,6 +109,8 @@ class FSM:
         self.next_state = None
         self.action = None
         self.memory = memory
+
+        self.debug = False
 
 
     def reset (self):
@@ -219,29 +224,68 @@ class FSM:
                 (str(input_symbol), str(state)) )
 
 
-    def process (self, input_symbol):
+    def process (self, input_symbol, event=None, block=None):
         '''Processes input, calls an action, changes state.
 
         This function calls get_transition() to find the action and next_state associated with the input_symbol and current_state. If the action is None only the current state is changed. This function processes a single input symbol. To process a list of symbols, or a string, process_list() may be called.
         @param input_symbol: the input symbol received.
+        @param block: a reference to the block to which the FSM is attached, to pass on to action functions.
+        @param ev: an Event object, to pass on to action functions.
         '''
         # list of possible destinations for (input_symbol, current_state):
         ls_dest = self.get_transition (input_symbol, self.current_state)
+        if self.debug:
+            mutex_prt( "\n    FSM process: " + input_symbol + ", " + \
+                self.current_state)
+
         for dest in ls_dest:
             action, next_state, condition = dest
-            if not condition or condition(self):  # no condition or True
+            # consider no condition, one condition, a list of conditions
+            if condition is None:
+                if self.debug:
+                    mutex_prt("    FSM Condition: None")
+                cond_val = True
+            elif type(condition) is list:
+                cond_val = True
+                for cond in condition:
+                    #this_cond = cond(self, event, block)
+                    if type(cond) is str:   # condition is a string
+                        cond_val = eval(cond)
+                    else:                   # condition is a function
+                        cond_val = cond_val and this_cond
+                    if self.debug:
+                        mutex_prt("    FSM Condition in list: " + \
+                            str(cond) + ", value: " + str(cond_val))
+            else:
+                cond_val = condition(self, event, block) 
+                if self.debug:
+                    mutex_prt("    FSM Condition is " + str(condition) + \
+                        ", value: " + str(cond_val))
+
+            if self.debug:
+                mutex_prt("    FSM cond_val: " + str(cond_val))
+
+            if cond_val:  # no condition or all conditions True
                 self.input_symbol = input_symbol
                 self.action = action
                 self.next_state = next_state
+                # execute action
                 if self.action is not None:
-                    self.action (self)                 # execute action
+                    ret_val = self.action(self, event, block)
+                else:
+                    ret_val = None
+
+                if self.debug:
+                    self.print_state(show=['transition'])
+                    mutex_prt("    FSM change state to: " + \
+                        self.next_state + "\n")
+
                 self.current_state = self.next_state   # change state
                 self.next_state = None
-                return
-            else:      # condition not met, do nothing
-                pass   # consider next destination
-        return
-
+                return ret_val
+            else:      # condition not met, consider next destination
+                continue # continue loop #return None
+        return None
 
     def process_list (self, input_symbols):
         '''Processes a list of input symbols.
@@ -260,29 +304,44 @@ class FSM:
         This function may be called in the action functions.
         @param show: whole or partial list of ["state", "transition", "memory"], shows accordingly.
         '''
-        if 'state' in show:
-            print "=== FSM state ==="
-            print "---   state_transitions:"
+        if 'state' in show:    # TODO: convert to use mutex_prt
+            mutex_prt("    FSM initial_state: " + self.initial_state)
+            mutex_prt("    FSM state_transitions:")
             for item in self.state_transitions.items():
-                print '     ', item
-            print "---   state_transitions_any:"
+                symbol, cur_state, dst_state, cond = \
+                    item[0][0], item[0][1], item[1][0][1], item[1][0][2]
+                if item[1][0][0]:
+                    function = item[1][0][0].func_name 
+                else:
+                    function = 'None' 
+                msg_dbg = '      {0} --- {1} | {2} --> {3}'.format( \
+                    cur_state, symbol, function, dst_state)
+                msg_dbg += '\n        cond = {4}'.format( \
+                    cur_state, symbol, function, dst_state, cond)
+                mutex_prt(msg_dbg)
+            print "    FSM state_transitions_any:"
             for item in self.state_transitions_any.items():
                 print '     ', item
-            print "---   default_transition:"
+            print "    FSM default_transition:"
             print "     ", self.default_transition
-            print "---   initial_state:", self.initial_state
-            print "===  End FSM State ===\n"
+            print
         if 'transition' in show:
-            print self.current_state + ' --- ' + str(self.input_symbol) + \
-                ' | ' + self.action.func_name + ' --> ' + \
-                str(self.next_state)
+            ss = '    FSM transition: ' + self.current_state + ' --- ' + \
+                str(self.input_symbol) + ' | '
+            if self.action:  # not None
+                ss += self.action.func_name 
+            else:
+                ss += "None"
+            ss += ' --> ' + str(self.next_state)
+            mutex_prt(ss)
         if 'action' in show and self.action:
-            print "  action %s: state %s, symbol %s" % \
+            ss = "    FSM action %s: state %s, symbol %s" % \
                 (self.action.func_name, self.current_state, \
-                self.input_symbol)
+                self.input_symbol) # + "\n"
+            mutex_prt(ss)
 
         if 'memory' in show:
-            print '  memory:', self.memory
+            print '    FSM memory:', self.memory
         return
 
 
