@@ -229,8 +229,8 @@ class FSM:
 
         This function calls get_transition() to find the action and next_state associated with the input_symbol and current_state. If the action is None only the current state is changed. This function processes a single input symbol. To process a list of symbols, or a string, process_list() may be called.
         @param input_symbol: the input symbol received.
-        @param block: a reference to the block to which the FSM is attached, to pass on to action functions.
         @param ev: an Event object, to pass on to action functions.
+        @param block: a reference to the block to which the FSM is attached, to pass on to action functions.
         '''
         # list of possible destinations for (input_symbol, current_state):
         ls_dest = self.get_transition (input_symbol, self.current_state)
@@ -240,12 +240,16 @@ class FSM:
 
         for dest in ls_dest:
             action, next_state, condition = dest
+
+            ### determine value of all conditions
             # consider no condition, one condition, a list of conditions
-            if condition is None:
+            if type(condition) is str:           # condition is a string
+               condition = [condition] 
+            if condition is None:           # no condition
                 if self.debug:
                     mutex_prt("    FSM Condition: None")
                 cond_val = True
-            elif type(condition) is list:
+            elif type(condition) is list:   # condition is a list of conditions
                 cond_val = True
                 for cond in condition:
                     #this_cond = cond(self, event, block)
@@ -257,14 +261,12 @@ class FSM:
                         mutex_prt("    FSM Condition in list: " + \
                             str(cond) + ", value: " + str(cond_val))
             else:
-                cond_val = condition(self, event, block) 
-                if self.debug:
-                    mutex_prt("    FSM Condition is " + str(condition) + \
-                        ", value: " + str(cond_val))
-
+                raise ExceptionFSM ('Condition must be a list of functions ' +\
+                    'or strings')
             if self.debug:
                 mutex_prt("    FSM cond_val: " + str(cond_val))
 
+            ### do transition
             if cond_val:  # no condition or all conditions True
                 self.input_symbol = input_symbol
                 self.action = action
@@ -287,13 +289,13 @@ class FSM:
                 continue # continue loop #return None
         return None
 
+
     def process_list (self, input_symbols):
         '''Processes a list of input symbols.
 
         This function takes a list of symbols and sends each symbol to the process() function. The list may be a string or any iterable object.
         @param input_symbols: a list of symbols.
         '''
-
         for s in input_symbols:
             self.process (s)
 
@@ -319,12 +321,11 @@ class FSM:
                 msg_dbg += '\n        cond = {4}'.format( \
                     cur_state, symbol, function, dst_state, cond)
                 mutex_prt(msg_dbg)
-            print "    FSM state_transitions_any:"
+            mutex_prt("    FSM state_transitions_any:")
             for item in self.state_transitions_any.items():
-                print '     ', item
-            print "    FSM default_transition:"
-            print "     ", self.default_transition
-            print
+                mutex_prt( '     ' + str(item) )
+            mutex_prt ("    FSM default_transition:")
+            mutex_prt ("     " + str(self.default_transition) + "\n")
         if 'transition' in show:
             ss = '    FSM transition: ' + self.current_state + ' --- ' + \
                 str(self.input_symbol) + ' | '
@@ -341,7 +342,7 @@ class FSM:
             mutex_prt(ss)
 
         if 'memory' in show:
-            print '    FSM memory:', self.memory
+            mutex_prt ('    FSM memory: ' + str(self.memory) )
         return
 
 

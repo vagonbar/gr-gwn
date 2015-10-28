@@ -34,21 +34,21 @@ from gwnblock import mutex_prt          # for tests
 from gwnevents import api_events as api_events   # to create ACK event
 import pmt                              # for messages and PDUs
 
-from utils.fsm.gwnfsm import FSM
+from utils.fsm.gwnfsm import FSM, ExceptionFSM
 
 
 ###
 ### FSM code
 ###
 
-# Actions
+### Actions
 
 def send(fsm, event, block):
     if not event:
         if len(fsm.ls_buffer) > 0:
             event = fsm.ls_buffer.pop(0)   # get first from list
         else:
-            print 'FSM send ERROR: no event to send'
+            mutex_prt('FSM send ERROR: no event to send')
             return None
     if fsm.wait == 'ack0':
         fsm.wait = 'ack1'
@@ -63,10 +63,10 @@ def resend(fsm, event, block):
     '''Resends event not acknowledged.
     '''
     #fsm.print_state(show=['transition', 'action'])
-    block.timeouts[0].cancel()    # in case it is still active
-    block.timeouts[0].start(block.timeout, block.tout_nickname)
     fsm.nr_retries = fsm.nr_retries + 1
     print "RESEND, retries", fsm.nr_retries
+    block.timeouts[0].cancel()    # in case it is still active
+    block.timeouts[0].start(block.timeout, block.tout_nickname)
     block.write_out(fsm.ev_sent)
     return
 
@@ -77,8 +77,9 @@ def push(fsm, ev, block):
     if block.buf_len == 0 or len(block.ls_buffer) < block.buf_len:
         block.ls_buffer.append(ev)    # add to end of list
     else:
-        print 'FSM push ERROR: buffer length exceeded'
+        raise ExceptionFSM('Buffer length exceeded')
     return
+
 
 def ack_ok(fsm, ev, block):
     '''ACK is correct, cancel timer, reset retries.
@@ -89,22 +90,27 @@ def ack_ok(fsm, ev, block):
 
 
 def stop(fsm, ev, block):
-    '''Retries in sending exceeded, stop sending.
+    '''Retries in sending of buffer exceeded, stop sending.
     '''
-    print 'FSM stopped, retries exceeded'
+    mutex_prt('FSM, send retries  or buffer exceeded')
     fsm.print_state(show=['transition', 'action'])
+    #raise ExceptionFSM('Send retries, exceeded')
+    return
+
 
 def fn_error(fsm, event, block):
     fsm.print_state(show=['transition', 'action'])
+    raise ExceptionFSM('fn_error, error in transition')
+    return
 
 
 
-# Conditions
+### Conditions
 # funcions must return True or False
 # conditions expressed as strings are accepted, i.e. 'a == b'
 
 
-# the FSM
+### the FSM
 
 def stop_wait_send_fsm(blk):
     '''The ARQ Stop and Wait FSM.
@@ -122,26 +128,33 @@ def stop_wait_send_fsm(blk):
     #f.add_transition_any ('Idle', None, 'Idle')
     #f.add_transition_any ('WaitAck', None, 'WaitAck')
 
-    f.add_transition ('DataData', 'Idle', send, 'WaitAck', None)
-    f.add_transition ('CtrlACK', 'Idle', None, 'Idle', \
-        ['fsm.wait in event.payload', # ack is ack waited for
-        'len(block.ls_buffer) == 0'])  # no event in buffer
+    f.add_transition('DataData', 'Idle', send, 'WaitAck', \
+        None)
+
+    f.add_transition('CtrlACK', 'WaitAck', ack_ok, 'Idle', \
+        ['self.wait in event.payload',  # ack is ack waited for
+        'len(block.ls_buffer) == 0'] )  # no event in buffer
 
     f.add_transition ('CtrlACK', 'WaitAck', send, 'WaitAck', \
-        ['self.wait in event.payload', # ack is ack waited for
-        'len(block.ls_buffer) > 0']) # event in buffer
-    f.add_transition ('CtrlACK', 'WaitAck', ack_ok, 'Idle', \
-        ['self.wait in event.payload', # ack is ack waited for
-        'len(block.ls_buffer) == 0'])  # no event in buffer
-    f.add_transition ('CtrlACK', 'WaitAck', resend, 'WaitAck', \
-        ['self.wait in event.payload']) # ack is NOT ack waited for
-    f.add_transition ('TimerACKTout', 'WaitAck', resend, 'WaitAck', 
-        ['self.nr_retries <= block.retries'])    # retries left
-    f.add_transition ('TimerACKTout', 'WaitAck', stop, 'Stop', 
-        ['self.nr_retries > block.retries'])     # retries exceeded
-    f.add_transition ('DataData', 'WaitAck', push, 'WaitAck', None)
+        ['self.wait in event.payload',  # ack is ack waited for
+        'len(block.ls_buffer) > 0'])    # event in buffer
 
-    f.add_transition_any ('Stop', None, 'Stop')
+    f.add_transition ('CtrlACK', 'WaitAck', resend, 'WaitAck', \
+        ['self.wait not in event.payload']) # ack is NOT ack waited for
+ 
+    f.add_transition ('TimerACKTout', 'WaitAck', resend, 'WaitAck', \
+        ['self.nr_retries <= block.retries'])    # retries left
+
+    f.add_transition ('TimerACKTout', 'WaitAck', stop, 'Stop', \
+        ['self.nr_retries > block.retries'])     # retries exceeded
+
+    f.add_transition ('DataData', 'WaitAck', push, 'WaitAck', \
+        ['len(block.ls_buffer) < block.buf_len'])  # buffer ok
+
+    f.add_transition ('DataData', 'WaitAck', None, 'Stop', \
+        ['len(block.ls_buffer) >= block.buf_len'])  # buffer max exceed
+
+    f.add_transition_any ('Stop', stop, 'Stop')
 
     #f.add_transition_list (['nak', 'ack0', 'tout'], \
     #                    'WaitAck', resend, 'WaitAck', wait1)
@@ -196,7 +209,7 @@ class stop_wait_send(gwnblock):
         '''Writes event, waits for ACK, retransmits.
 
         The received event is passed on to the process function of the FSM; actions in the FSM are provided with the received event and a reference to the present block, so that they can access this block's attributes and functions, in particular the write_out function to send events.
-        @param ev_rec: a received Event object.
+        @param ev: a received Event object.
         '''
         if self.debug:
             dbg_msg = '--- {0}, received ev: {1}, payload: {2}'. \

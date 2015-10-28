@@ -520,6 +520,8 @@ class gwnblock(gr.basic_block):
         '''Stops timers attached to this block.'''
         for timer in self.timers:
             timer.stop()
+        for timeout in self.timeouts:
+            timeout.cancel()
 
 
     def write_out(self, ev, port_nr=None):

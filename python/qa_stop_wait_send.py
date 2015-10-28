@@ -98,6 +98,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', \
             timeout=0.5, retries=2)
         blk_arq_send.debug = False   # prints complete Event
+        blk_arq_send.fsm.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
@@ -130,12 +131,13 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         blk_src.debug = True
         blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', timeout=1.5)
         blk_arq_send.debug = False #True   # prints complete Event
-        blk_arq_send.fsm.debug = False
+        blk_arq_send.fsm.debug = True
+        blk_arq_send.timeouts[0].debug = True
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
         ### block Stop and Wait Send --> Virtual Channel
-        blk_vch = virtual_channel('VirtualChannel', 'blk003', prob_loss=0.5)
+        blk_vch = virtual_channel('VirtualChannel', 'blk003', prob_loss=0.0)
         blk_vch.debug = True
         self.tb.msg_connect(blk_arq_send, blk_arq_send.ports_out[0].port, 
                             blk_vch, blk_vch.ports_in[0].port)
@@ -164,9 +166,9 @@ class qa_stop_wait_send (gr_unittest.TestCase):
 
         time.sleep(9)
 
-        print "Block Stop and Wait Send, buffer:", blk_arq_send.ls_buffer
-
         blk_snd.stop_timers()
+        print "Block Stop and Wait Send, buffer:", blk_arq_send.ls_buffer
+        blk_arq_send.stop_timers()
         print '\n--- sender, timers stopped'
         time.sleep(1)
 
