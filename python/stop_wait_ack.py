@@ -50,6 +50,7 @@ class stop_wait_ack(gwnblock):
             number_in=1, number_out=2, number_timers=0)
 
         self.ack_nickname = ack_nickname
+        self.ack = 'ack0'
         self.debug = False  # please set from outside for debug print
 
         return
@@ -61,15 +62,21 @@ class stop_wait_ack(gwnblock):
         @param ev: an Event object.
         '''
         if self.debug:
-            dbg_msg = '--- {0} received ev: {1}, payload: {2}'. \
-                format(self.blkname, ev.nickname, ev.payload)
+            dbg_msg = '--- {0} received ev: {1}, waited ack:{2}, payload: {3}'. \
+                format(self.blkname, ev.nickname, self.ack, ev.payload)
             mutex_prt(dbg_msg)
         if True:        # test for some condition, i.e. CRC OK 
-            ev_ack_payload = 'ACK, received event payload: ' + ev.payload
-            ev_ack = api_events.mkevent(self.ack_nickname, \
-                payload=ev_ack_payload)
-            self.write_out(ev, port_nr=0)		# write event on output
-            self.write_out(ev_ack, port_nr=1)   # write ACK event on output
+            if self.ack in ev.payload:    # new packet
+                ev_ack = api_events.mkevent(self.ack_nickname)
+                ev_ack.payload = ev.payload + self.ack
+                self.write_out(ev, port_nr=0)		# write event on output
+                self.write_out(ev_ack, port_nr=1)   # write ACK event on output
+                if self.ack == 'ack1':
+                    self.ack = 'ack0'
+                else:
+                    self.ack = 'ack1'
+            else:                        # repeated packet
+                pass
         else:
             pass
         return

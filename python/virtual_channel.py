@@ -69,8 +69,8 @@ class virtual_channel(gwnblock):
         '''
         rand_nr = random.random()
         if self.debug:
-            dbg_msg = '  prob_loss=' + str(self.prob_loss) + \
-                '; rand_nr=' + str(rand_nr)
+            dbg_msg = '--- Virtual Channel, prob_loss={0}; rand_nr={1}'.\
+                format(self.prob_loss, rand_nr)
             mutex_prt(dbg_msg)
         if rand_nr <= self.prob_loss:
             pass					# no output
@@ -86,8 +86,10 @@ class virtual_channel(gwnblock):
         '''
         rand_nr = random.random()
         if self.debug:
-            dbg_msg = '  prob_loss=' + str(self.prob_loss) + \
-                '; rand_nr=' + str(rand_nr)
+            dbg_msg = '--- Virtual Channel, prob_loss={0}; rand_nr={1}'.\
+                format(self.prob_loss, rand_nr)
+            #dbg_msg = '  prob_loss=' + str(self.prob_loss) + \
+            #    '; rand_nr=' + str(rand_nr)
             mutex_prt(dbg_msg)
         if rand_nr <= self.prob_loss:
             pass					# no output

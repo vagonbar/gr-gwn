@@ -49,7 +49,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         ### block Data Source --> Stop and Wait Send
         blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
         blk_snd.debug = True
-        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002')
+        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', buf_len=10)
         blk_arq_send.debug = True   # prints complete Event
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_arq_send, blk_arq_send.ports_in[0].port)
@@ -127,17 +127,17 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         '''Send over virtual channel.
         '''
         ### block Data Source --> Stop and Wait Send
-        blk_src = data_source('DataData', 'blk001', retry=6, interval=1.0)
+        blk_src = data_source('DataData', 'blk001', retry=3, interval=1.0)
         blk_src.debug = True
-        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', timeout=1.5)
-        blk_arq_send.debug = False #True   # prints complete Event
-        blk_arq_send.fsm.debug = True
-        blk_arq_send.timeouts[0].debug = True
+        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', timeout=1.5, retries= 10)
+        #blk_arq_send.debug = False #True   # prints complete Event
+        #blk_arq_send.fsm.debug = True
+        #blk_arq_send.timeouts[0].debug = True
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
         ### block Stop and Wait Send --> Virtual Channel
-        blk_vch = virtual_channel('VirtualChannel', 'blk003', prob_loss=0.0)
+        blk_vch = virtual_channel('VirtualChannel', 'blk003', prob_loss=0.3)
         blk_vch.debug = True
         self.tb.msg_connect(blk_arq_send, blk_arq_send.ports_out[0].port, 
                             blk_vch, blk_vch.ports_in[0].port)
@@ -157,18 +157,18 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         self.tb.msg_connect(blk_ack, blk_ack.ports_out[0].port, 
                             blk_snk_ev, blk_snk_ev.ports_in[0].port)
 
-        #self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
+        #self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
         #                    blk_snk_ev, blk_snk_ev.ports_in[0].port)
 
         self.tb.start() 
         mutex_prt(self.tb.msg_edge_list())
         #print tb.dump()
 
-        time.sleep(9)
+        time.sleep(15)
 
-        blk_snd.stop_timers()
-        print "Block Stop and Wait Send, buffer:", blk_arq_send.ls_buffer
-        blk_arq_send.stop_timers()
+        #print "Block Stop and Wait Send, buffer:", blk_arq_send.ls_buffer
+        blk_src.stop_timers()
+        #blk_arq_send.stop_timers()
         print '\n--- sender, timers stopped'
         time.sleep(1)
 

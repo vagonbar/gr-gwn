@@ -44,15 +44,24 @@ from utils.fsm.gwnfsm import FSM, ExceptionFSM
 ### Actions
 
 def send(fsm, event, block):
-    if not event:
-        if len(fsm.ls_buffer) > 0:
-            event = fsm.ls_buffer.pop(0)   # get first from list
-        else:
-            mutex_prt('FSM send ERROR: no event to send')
-            return None
-    if fsm.wait == 'ack0':
-        fsm.wait = 'ack1'
-    fsm.ev_sent = event       # for resend
+    '''Sends event received.
+    '''
+    fsm.ev_sent = event       # store for eventual resend
+    fsm.ev_sent.payload += " FSM Waited ACK: " + fsm.wait
+    block.timeouts[0].start(block.timeout, block.tout_nickname)
+    block.write_out(fsm.ev_sent)
+    return 
+
+
+def sendfrombuffer(fsm, event, block):
+    '''Sends event from buffer, first in list.
+    '''
+    if len(block.ls_buffer) > 0:
+        event = block.ls_buffer.pop(0)   # get first from list
+    else:
+        #mutex_prt('FSM send ERROR: no event to send')
+        return
+    fsm.ev_sent = event       # store for eventual resend
     fsm.ev_sent.payload += " FSM Waited ACK: " + fsm.wait
     block.timeouts[0].start(block.timeout, block.tout_nickname)
     block.write_out(fsm.ev_sent)
@@ -64,7 +73,8 @@ def resend(fsm, event, block):
     '''
     #fsm.print_state(show=['transition', 'action'])
     fsm.nr_retries = fsm.nr_retries + 1
-    print "RESEND, retries", fsm.nr_retries
+    if fsm.debug:
+        mutex_prt('    FSM RESEND, retries: ' + str(fsm.nr_retries))
     block.timeouts[0].cancel()    # in case it is still active
     block.timeouts[0].start(block.timeout, block.tout_nickname)
     block.write_out(fsm.ev_sent)
@@ -74,10 +84,14 @@ def resend(fsm, event, block):
 def push(fsm, ev, block):
     '''Pushes event into buffer.
     '''
-    if block.buf_len == 0 or len(block.ls_buffer) < block.buf_len:
+    if block.buffer_len == -1 or len(block.ls_buffer) < block.buffer_len:
         block.ls_buffer.append(ev)    # add to end of list
     else:
         raise ExceptionFSM('Buffer length exceeded')
+    block.ls_buffer.append(ev)    # add to end of list
+    if block.debug:
+        mutex_prt('    FSM PUSH, len buffer: ' + str(len(block.ls_buffer)) + \
+            'max buffer: ' + str(block.buffer_len))
     return
 
 
@@ -86,14 +100,23 @@ def ack_ok(fsm, ev, block):
     '''
     fsm.nr_retries = 0
     block.timeouts[0].cancel()
+    if fsm.wait == 'ack1':
+        fsm.wait = 'ack0'
+    else:
+        fsm.wait = 'ack1'
     return
 
 
 def stop(fsm, ev, block):
     '''Retries in sending of buffer exceeded, stop sending.
     '''
-    mutex_prt('FSM, send retries  or buffer exceeded')
-    fsm.print_state(show=['transition', 'action'])
+    if fsm.debug:
+        mutex_prt('    FSM, send retries or buffer exceeded')
+        mutex_prt('      max buffer length: ' + str(block.buffer_len) + \
+            ', buffer length: ' + str(len(block.ls_buffer)))
+        mutex_prt('      max retries: ' + str(block.retries) + \
+            ' retries: ' + str(fsm.nr_retries))
+        fsm.print_state(show=['transition', 'action'])
     #raise ExceptionFSM('Send retries, exceeded')
     return
 
@@ -118,8 +141,8 @@ def stop_wait_send_fsm(blk):
     @param blk: reference to the block to which this FSM is attached.
     '''
     f = FSM ('Idle') # 
-    f.debug = True
-    f.wait = 'ack1'
+    f.debug = False
+    f.wait = 'ack0'
     f.nr_retries = 0
 
     # transitions
@@ -135,11 +158,11 @@ def stop_wait_send_fsm(blk):
         ['self.wait in event.payload',  # ack is ack waited for
         'len(block.ls_buffer) == 0'] )  # no event in buffer
 
-    f.add_transition ('CtrlACK', 'WaitAck', send, 'WaitAck', \
+    f.add_transition ('CtrlACK', 'WaitAck', sendfrombuffer, 'WaitAck', \
         ['self.wait in event.payload',  # ack is ack waited for
         'len(block.ls_buffer) > 0'])    # event in buffer
 
-    f.add_transition ('CtrlACK', 'WaitAck', resend, 'WaitAck', \
+    f.add_transition ('CtrlACK', 'WaitAck', None, 'WaitAck', \
         ['self.wait not in event.payload']) # ack is NOT ack waited for
  
     f.add_transition ('TimerACKTout', 'WaitAck', resend, 'WaitAck', \
@@ -149,18 +172,20 @@ def stop_wait_send_fsm(blk):
         ['self.nr_retries > block.retries'])     # retries exceeded
 
     f.add_transition ('DataData', 'WaitAck', push, 'WaitAck', \
-        ['len(block.ls_buffer) < block.buf_len'])  # buffer ok
+        ['len(block.ls_buffer) < block.buffer_len'])  # buffer ok
 
-    f.add_transition ('DataData', 'WaitAck', None, 'Stop', \
-        ['len(block.ls_buffer) >= block.buf_len'])  # buffer max exceed
+    f.add_transition ('DataData', 'WaitAck', stop, 'Stop', \
+        ['len(block.ls_buffer) >= block.buffer_len'])  # buffer max exceed
 
     f.add_transition_any ('Stop', stop, 'Stop')
+    f.add_transition_any ('Idle', None, 'Idle')
 
     #f.add_transition_list (['nak', 'ack0', 'tout'], \
     #                    'WaitAck', resend, 'WaitAck', wait1)
 
-    print "--- FSM created, show state"
-    f.print_state(show='state')
+    if blk.debug:
+        print "--- FSM created, show state"
+        f.print_state(show='state')
 
     return f
 
@@ -179,13 +204,13 @@ class stop_wait_send(gwnblock):
     @param retries: number of times to resend event if ACK not received.
     @param tout_nickname: the nickname of the timer event waited for.
     @param timeout: the timeout in seconds.
-    @param buf_len: the buffer capacity, i.e. the maximum length of the list; default is 0, which means no limit.
+    @param buffer_len: the buffer capacity, i.e. the maximum length of the list; default is 0, which means no limit.
     '''
 
     def __init__(self, blkname='stop_wait_send', blkid='id_stop_wait_send',
             ack_nickname='CtrlACK', retries=3, \
             tout_nickname='TimerACKTout', timeout=1.0, \
-            buf_len=0):
+            buffer_len=1000):
 
         # invocation of ancestor constructor
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
@@ -197,7 +222,7 @@ class stop_wait_send(gwnblock):
         self.retries = retries
         self.tout_nickname = tout_nickname
         self.timeout = timeout
-        self.buf_len = buf_len
+        self.buffer_len = buffer_len
         self.ls_buffer = []     # length must be checked in process
         self.debug = False      # please set from outside for debug print
 

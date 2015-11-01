@@ -173,7 +173,8 @@ class GWNTimeout(GWNPort):
             msg_dbg = '    GWNTimeout timer thread does not exist.'
                  # 'timeout port %d in block %s' % \
                  # (self.port_nr, self.block.blkname)
-        mutex_prt(msg_dbg)
+        if self.debug:
+            mutex_prt(msg_dbg)
         # del(self.timer)      # not necessary if self.timeout set to None
         self.timer = None    # last reference, garbage collector will act
         return
