@@ -62,21 +62,31 @@ class stop_wait_ack(gwnblock):
         @param ev: an Event object.
         '''
         if self.debug:
-            dbg_msg = '--- {0} received ev: {1}, waited ack:{2}, payload: {3}'. \
-                format(self.blkname, ev.nickname, self.ack, ev.payload)
+            dbg_msg = '--- {0} received ev: {1}, seq nr: {2}'. \
+                format(self.blkname, ev.nickname, ev.ev_dc['seq_nr'])
+            dbg_msg += '\n    event ack:{0}, waited ack: {1}'. \
+                format(ev.ev_dc['ack'], self.ack)
+            if ev.payload:
+                dbg_msg += '\n    payload: ' + ev.payload
             mutex_prt(dbg_msg)
         if True:        # test for some condition, i.e. CRC OK 
-            if self.ack in ev.payload:    # new packet
+            if self.ack == ev.ev_dc['ack']:    # new packet
                 ev_ack = api_events.mkevent(self.ack_nickname)
-                ev_ack.payload = ev.payload + self.ack
+                #ev_ack.payload = ev.payload + self.ack
+                ev_ack.ev_dc['ack'] = ev.ev_dc['ack']
+                #self.write_out(ev)		# write event on all outputs
                 self.write_out(ev, port_nr=0)		# write event on output
                 self.write_out(ev_ack, port_nr=1)   # write ACK event on output
+                # revert ACK sequence number
                 if self.ack == 'ack1':
                     self.ack = 'ack0'
                 else:
                     self.ack = 'ack1'
-            else:                        # repeated packet
-                pass
+            else:                        # repeated event
+                if self.debug:
+                    msg_dbg = '    REPEATED, event ack: {0}, waited ack: {1}'.\
+                        format(ev.ev_dc['ack'], self.ack)
+                mutex_prt(msg_dbg)
         else:
             pass
         return

@@ -48,7 +48,7 @@ class qa_data_source (gr_unittest.TestCase):
         blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
         #blk_snd.timers[0].debug = True     # print debug on timer
         blk_snk = event_sink()
-        #blk_snk.debug = True
+        blk_snk.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_snk, blk_snk.ports_in[0].port)
         #self.tb.run()  # for flowgraphs that will stop on its own!

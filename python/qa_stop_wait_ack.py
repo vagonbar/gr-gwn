@@ -45,15 +45,18 @@ class qa_stop_wait_ack (gr_unittest.TestCase):
         '''Event and Ack to different Event Sink blocks.
         '''
         ### block Data Source --> Stop and Wait ACK
-        blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
+        blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0,\
+            ev_dc={'ack':'ack0'})
         blk_ack = stop_wait_ack('StopAndWaitACK', 'blk002')
+        blk_ack.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_ack, blk_ack.ports_in[0].port)
 
         ### block Stop and Wait ACK --> Event Sink 1, Event Sink 2
         blk_snk_ev = event_sink()
+        #blk_snk_ev.debug = True
         blk_snk_ack = event_sink()
-        #blk_snk.debug = True
+        #blk_snk_ack.debug = True
         self.tb.msg_connect(blk_ack, blk_ack.ports_out[0].port, 
                             blk_snk_ev, blk_snk_ev.ports_in[0].port)
         self.tb.msg_connect(blk_ack, blk_ack.ports_out[1].port, 

@@ -55,16 +55,15 @@ class event_sink(gwnblock):
     def process_data(self, ev):
         '''Receives events, prints.
         '''
-        dbg_msg = '--- {0}, received ev: {1}'.format(self.blkname, ev.nickname)
+        dbg_msg = '--- {0}, received ev: {1}'.\
+            format(self.blkname, ev.nickname)
+        if ev.ev_dc.has_key('seq_nr'):
+            dbg_msg += ', seq nr: {0}'.format(ev.ev_dc['seq_nr'])
         if ev.payload:
-            dbg_msg = dbg_msg + ', payload: {0}'.format(ev.payload)
+            dbg_msg += '\n    payload: {0}'.format(ev.payload)
         mutex_prt(dbg_msg)
         if self.debug:
             mutex_prt(ev)
-            try:
-                mutex_prt('    frame packet: ' + ev.frmpkt)
-            except:
-                pass
 
         return
 

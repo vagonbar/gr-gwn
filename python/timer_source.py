@@ -44,17 +44,19 @@ class timer_source(gwnblock):
     @param interrupt: if set to True, timer does not generate events.
     @param interval: time betweeen successive events.
     @param retry: how many events to produce.
+    @param payload: an optional payload, default the empty string.
     @param nickname1: event nickname of event to produce on each interval.
     @param nickname2: event nickname of event to produce when retry has exhausted.
     '''
     def __init__(self,  blkname='TimerSource', blkid='timer_source_id', 
-            interrupt=False, interval=1.0, retry=5, 
+            interrupt=False, interval=1.0, retry=5, payload='',
             nickname1='TimerTOR1', nickname2='TimerTOR2'):
 
         # invocation of ancestor constructor
         gwnblock.__init__(self, blkname, blkid,
             number_in=0, number_out=1, number_timers=1)
 
+        self.payload = payload
         self.debug = False  # please set from outside for debug print
         self.counter = 1
 
@@ -79,12 +81,13 @@ class timer_source(gwnblock):
 
         @param ev: an Event object.
         '''
-        ev.payload = 'Timer Event ' + str(self.counter)  # event payload
+        ev.payload = self.payload
         if self.debug:
-            ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
+            dbg_msg = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
                 format(self.blkname, ev.nickname, self.elapsed_time() )
-            mutex_prt(ss)
-            ev.frmpkt = 'Timer Event ' + str(self.counter)  # load frame packet
+            mutex_prt(dbg_msg)
+            ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
+        ev.ev_dc['seq_nr'] = self.counter
         self.counter += 1
         self.write_out(ev, port_nr=0)
 
