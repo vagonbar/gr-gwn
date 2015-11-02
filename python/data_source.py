@@ -45,15 +45,11 @@ class data_source(gwnblock):
     @param retry: how many events to produce.
     @param nickname: event nickname of event to produce on each interval.
     @param ev_dc: dictionary of other data info.
-    @param src_addr: source address.
-    @param dst_addr: destination address.
     @param payload: data to be carried from source to destination.
     '''
     def __init__(self,  blkname='data_source', blkid='data_source_id', 
-            interrupt=False, interval=1.0, retry=5, 
-            nickname='DataData', ev_dc={}, 
-            src_addr='', dst_addr='', payload=''):
-
+            interrupt=False, interval=1.0, retry=5,
+            nickname='DataData', ev_dc={}, payload=''):
 
         # invocation of ancestor constructor
         gwnblock.__init__(self, blkname, blkid,
@@ -66,8 +62,6 @@ class data_source(gwnblock):
         self.retry = retry
         self.nickname = nickname
         self.ev_dc = ev_dc
-        self.src_addr = src_addr
-        self.dst_addr = dst_addr
         self.payload = payload
 
         self.debug = False  # please set from outside for debug print

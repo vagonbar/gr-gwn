@@ -46,8 +46,10 @@ from utils.fsm.gwnfsm import FSM, ExceptionFSM
 def send(fsm, event, block):
     '''Sends event received.
     '''
-    fsm.ev_sent = event       # store for eventual resend
-    fsm.ev_sent.payload += " FSM Waited ACK: " + fsm.wait
+    if block.debug:
+        mutex_prt('    SEND event, seq nr: {0}'.format(event.ev_dc['seq_nr']))
+    fsm.ev_sent = event                    # store for eventual resend
+    fsm.ev_sent.ev_dc['ack'] = fsm.wait    # waited ack 
     block.timeouts[0].start(block.timeout, block.tout_nickname)
     block.write_out(fsm.ev_sent)
     return 
@@ -57,24 +59,26 @@ def sendfrombuffer(fsm, event, block):
     '''Sends event from buffer, first in list.
     '''
     if len(block.ls_buffer) > 0:
+        ack_ok(fsm, event, block)
         event = block.ls_buffer.pop(0)   # get first from list
+        if block.debug:
+            mutex_prt('    TO SEND, from buffer, seq nr: {0}'.\
+                format(event.ev_dc['seq_nr']))
+        send(fsm, event, block)
     else:
-        #mutex_prt('FSM send ERROR: no event to send')
-        return
-    fsm.ev_sent = event       # store for eventual resend
-    fsm.ev_sent.payload += " FSM Waited ACK: " + fsm.wait
-    block.timeouts[0].start(block.timeout, block.tout_nickname)
-    block.write_out(fsm.ev_sent)
-    return 
+        mutex_prt('FSM send ERROR: no event to send')
+    return
 
 
 def resend(fsm, event, block):
     '''Resends event not acknowledged.
     '''
+    # Beware! event to resend is fsm.ev_sent, not event in arguments
     #fsm.print_state(show=['transition', 'action'])
     fsm.nr_retries = fsm.nr_retries + 1
-    if fsm.debug:
-        mutex_prt('    FSM RESEND, retries: ' + str(fsm.nr_retries))
+    if block.debug:
+        mutex_prt('    RESEND event, seq nr: {0}, retries: {1}'.\
+            format(fsm.ev_sent.ev_dc['seq_nr'], fsm.nr_retries))
     block.timeouts[0].cancel()    # in case it is still active
     block.timeouts[0].start(block.timeout, block.tout_nickname)
     block.write_out(fsm.ev_sent)
@@ -88,7 +92,7 @@ def push(fsm, ev, block):
         block.ls_buffer.append(ev)    # add to end of list
     else:
         raise ExceptionFSM('Buffer length exceeded')
-    block.ls_buffer.append(ev)    # add to end of list
+    #block.ls_buffer.append(ev)    # add to end of list
     if block.debug:
         mutex_prt('    FSM PUSH, len buffer: ' + str(len(block.ls_buffer)) + \
             'max buffer: ' + str(block.buffer_len))
@@ -96,7 +100,7 @@ def push(fsm, ev, block):
 
 
 def ack_ok(fsm, ev, block):
-    '''ACK is correct, cancel timer, reset retries.
+    '''ACK was correct, cancel timer, reset retries.
     '''
     fsm.nr_retries = 0
     block.timeouts[0].cancel()
@@ -110,7 +114,7 @@ def ack_ok(fsm, ev, block):
 def stop(fsm, ev, block):
     '''Retries in sending of buffer exceeded, stop sending.
     '''
-    if fsm.debug:
+    if block.debug:
         mutex_prt('    FSM, send retries or buffer exceeded')
         mutex_prt('      max buffer length: ' + str(block.buffer_len) + \
             ', buffer length: ' + str(len(block.ls_buffer)))
@@ -155,15 +159,15 @@ def stop_wait_send_fsm(blk):
         None)
 
     f.add_transition('CtrlACK', 'WaitAck', ack_ok, 'Idle', \
-        ['self.wait in event.payload',  # ack is ack waited for
-        'len(block.ls_buffer) == 0'] )  # no event in buffer
+        ['self.wait in event.ev_dc["ack"]',  # ack is ack waited for
+        'len(block.ls_buffer) == 0'] )          # no event in buffer
 
     f.add_transition ('CtrlACK', 'WaitAck', sendfrombuffer, 'WaitAck', \
-        ['self.wait in event.payload',  # ack is ack waited for
-        'len(block.ls_buffer) > 0'])    # event in buffer
+        ['self.wait in event.ev_dc["ack"]',  # ack is ack waited for
+        'len(block.ls_buffer) > 0'])            # event in buffer
 
     f.add_transition ('CtrlACK', 'WaitAck', None, 'WaitAck', \
-        ['self.wait not in event.payload']) # ack is NOT ack waited for
+        ['self.wait not in event.ev_dc["ack"]'])  # ack is NOT ack waited for
  
     f.add_transition ('TimerACKTout', 'WaitAck', resend, 'WaitAck', \
         ['self.nr_retries <= block.retries'])    # retries left
@@ -237,8 +241,11 @@ class stop_wait_send(gwnblock):
         @param ev: a received Event object.
         '''
         if self.debug:
-            dbg_msg = '--- {0}, received ev: {1}, payload: {2}'. \
-                format(self.blkname, ev.nickname, ev.payload)
+            dbg_msg = '--- {0}, received ev: {1}'. \
+                format(self.blkname, ev.nickname)
+            # only for Data Events:
+            #dbg_msg = '--- {0}, received ev: {1}, seq nr: {2}'. \
+            #    format(self.blkname, ev.nickname, ev.ev_dc['seq_nr'])
             mutex_prt(dbg_msg)
         # handle event to FSM process functions
         self.fsm.process(ev.nickname, event=ev, block=self)

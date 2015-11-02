@@ -27,7 +27,8 @@ from gnuradio import blocks
 from ieee80211_framer import ieee80211_framer
 from ieee80211_deframer import ieee80211_deframer
 
-from timer_source import timer_source
+#from timer_source import timer_source
+from data_source import data_source
 from event_sink import event_sink
 import time
 from gwnblock import mutex_prt
@@ -46,8 +47,11 @@ class qa_ieee80211_deframer (gr_unittest.TestCase):
         '''
 
         # blocks Timer Source produces DataData event --> Framer
-        blk_src = timer_source('TimerSource', 'blk001', retry=2, \
-            nickname1='DataData', nickname2='DataData')
+        #blk_src = timer_source('TimerSource', 'blk001', retry=2, \
+        #    nickname1='DataData', nickname2='DataData')
+        blk_src = data_source('DataSource', 'blk001', retry=2, \
+            nickname='DataData', payload='Data Event payload',
+            ev_dc={'duration':0, 'src_addr':'AAAA', 'dst_addr':'BBBB'} )
         blk_frm = ieee80211_framer('Framer', 'blk002')
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_frm, blk_frm.ports_in[0].port)
