@@ -5,10 +5,10 @@
 ''' FSM for Stop and Wait ARQ protocol with sequence numbers.
 '''
 
-
-from gwnfsmstr import FSM
-
 import sys, os, traceback, optparse, time, string
+# add path to gwnfsm, gwnblock in FSM
+sys.path += ['..', '../../../../python/']
+from gwnfsm import FSM
 
 
 ### Actions

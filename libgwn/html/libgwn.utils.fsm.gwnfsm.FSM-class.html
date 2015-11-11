@@ -34,7 +34,7 @@
       <th class="navbar" align="right" width="100%">
         <table border="0" cellpadding="0" cellspacing="0">
           <tr><th class="navbar" align="center"
-            >libgwn</th>
+            >LibGWN</th>
           </tr></table></th>
   </tr>
 </table>
@@ -64,7 +64,11 @@
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
 <h1 class="epydoc">Class FSM</h1><p class="nomargin-top"><span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html#FSM">source&nbsp;code</a></span></p>
-<p>GWN Finite State Machine (GWN-FSM).</p>
+<p>GWN Finite State Machine (GWN-FSM) with string as symbols.</p>
+  <p>The GWN FSM uses strings as input symbols. However, any object can be 
+  passed to the action function as a parameter. The action function 
+  receives a reference to the FSM itself, which allows the action function 
+  access to all attributes in the FSM object.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -153,7 +157,7 @@
         <span class="summary-sig-arg">action</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">next_state</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">condition</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Adds the same transition for a list of input events.</td>
+      Adds the same transition for a list of input symbols.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html#FSM.add_transition_list">source&nbsp;code</a></span>
             
@@ -229,8 +233,10 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="libgwn.utils.fsm.gwnfsm.FSM-class.html#process" class="summary-sig-name">process</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">input_symbol</span>)</span><br />
-      Processes input, calls an action, changes state.</td>
+        <span class="summary-sig-arg">input_symbol</span>,
+        <span class="summary-sig-arg">event</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">block</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Receives input, calls an action, changes state.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html#FSM.process">source&nbsp;code</a></span>
             
@@ -265,7 +271,7 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="libgwn.utils.fsm.gwnfsm.FSM-class.html#print_state" class="summary-sig-name">print_state</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">show</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>)</span><br />
+        <span class="summary-sig-arg">show</span>=<span class="summary-sig-default">[]</span>)</span><br />
       Prints FSM state, transitions.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html#FSM.print_state">source&nbsp;code</a></span>
@@ -331,7 +337,7 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="input_symbol"></a><span class="summary-name">input_symbol</span><br />
-      the event received.
+      the symbol received.
     </td>
   </tr>
 <tr>
@@ -355,7 +361,7 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="libgwn.utils.fsm.gwnfsm.FSM-class.html#state_transitions" class="summary-name">state_transitions</a><br />
-      a dictionary { (input event, current state): [ (action, next statei, 
+      a dictionary { (input symbol, current state): [ (action, next state, 
       condition) ] }.
     </td>
   </tr>
@@ -431,7 +437,7 @@
   
   <p>Brings the machine back to its initial state.</p>
   <p>Sets the current state to the initial state and sets input_symbol to 
-  None.</p>
+  None. WARNING: memory is left untouched.</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -456,8 +462,8 @@
   </tr></table>
   
   <p>Adds a transition.</p>
-  <p>This function adds a transition from current state to another state. 
-  The transition is expressed through the association:</p>
+  <p>This function adds a transition from the current state to another 
+  state. The transition is expressed through the association:</p>
 <pre class="literalblock">
   (input_symbol, current_state) --&gt; [ (action, next_state, condition) ]
 </pre>
@@ -468,7 +474,7 @@
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>input_symbol</code></strong> - the received event.</li>
+        <li><strong class="pname"><code>input_symbol</code></strong> - the received symbol.</li>
         <li><strong class="pname"><code>state</code></strong> - the current state.</li>
         <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. This action may be set to 
           None in which case the process() method will ignore the action 
@@ -477,10 +483,10 @@
           state. If next_state is None, the current state will remain 
           unchanged.</li>
         <li><strong class="pname"><code>condition</code></strong> - a function or expression which returns True or False; if True, 
-          transition is performed, otherwise the transition is ignored, the
-          FSM remains in its state and action is not executed. If this 
-          parameter is None, no conditions are checked, and transition is 
-          performed.</li>
+          transition is performed, otherwise the transition is ignored, 
+          i.e. the FSM remains in its state and action is not executed. If 
+          this parameter is None, no conditions are checked, and transition
+          is performed.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -504,19 +510,26 @@
     </td>
   </tr></table>
   
-  <p>Adds the same transition for a list of input events.</p>
+  <p>Adds the same transition for a list of input symbols.</p>
   <p>The action may be set to None in which case the process() method will 
   ignore the action and only set the next_state. The next_state may be set 
   to None in which case the current state will be unchanged.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>list_input_symbols</code></strong> - a list of objects, or a string.</li>
+        <li><strong class="pname"><code>list_input_symbols</code></strong> - a list of symbols.</li>
         <li><strong class="pname"><code>state</code></strong> - the current state.</li>
-        <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. If None, no action is 
-          performed, but transition to the next state is unaffected.</li>
-        <li><strong class="pname"><code>next_state</code></strong> - the state which will become the current state. If None, current 
-          state is not altered.</li>
+        <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. This action may be set to 
+          None in which case the process() method will ignore the action 
+          and only set the next_state.</li>
+        <li><strong class="pname"><code>next_state</code></strong> - the state to which the machine will be moved and made the current
+          state. If next_state is None, the current state will remain 
+          unchanged.</li>
+        <li><strong class="pname"><code>condition</code></strong> - a function or expression which returns True or False; if True, 
+          transition is performed, otherwise the transition is ignored, 
+          i.e. the FSM remains in its state and action is not executed. If 
+          this parameter is None, no conditions are checked, and transition
+          is performed.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -551,11 +564,17 @@
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>state</code></strong> - the current state.</li>
-        <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. If None, no action is 
-          performed, but transition to the next state is unaffected.</li>
-        <li><strong class="pname"><code>next_state</code></strong> - the state which will become the current state. If None, current 
-          state is not altered.</li>
-        <li><strong class="pname"><code>condition</code></strong> - a function or expression which evaluates to True or False.</li>
+        <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. This action may be set to 
+          None in which case the process() method will ignore the action 
+          and only set the next_state.</li>
+        <li><strong class="pname"><code>next_state</code></strong> - the state to which the machine will be moved and made the current
+          state. If next_state is None, the current state will remain 
+          unchanged.</li>
+        <li><strong class="pname"><code>condition</code></strong> - a function or expression which returns True or False; if True, 
+          transition is performed, otherwise the transition is ignored, 
+          i.e. the FSM remains in its state and action is not executed. If 
+          this parameter is None, no conditions are checked, and transition
+          is performed.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -582,10 +601,12 @@
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. If None, no action will be 
-          performed, and transition to the next state is done.</li>
-        <li><strong class="pname"><code>next_state</code></strong> - the state which will become the current state. If None, current 
-          state is not altered.</li>
+        <li><strong class="pname"><code>action</code></strong> - a function to execute on transition. This action may be set to 
+          None in which case the process() method will ignore the action 
+          and only set the next_state.</li>
+        <li><strong class="pname"><code>next_state</code></strong> - the state to which the machine will be moved and made the current
+          state. If next_state is None, the current state will remain 
+          unchanged.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -629,14 +650,16 @@
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">process</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">input_symbol</span>)</span>
+        <span class="sig-arg">input_symbol</span>,
+        <span class="sig-arg">event</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">block</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html#FSM.process">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Processes input, calls an action, changes state.</p>
+  <p>Receives input, calls an action, changes state.</p>
   <p>This function calls get_transition() to find the action and next_state
   associated with the input_symbol and current_state. If the action is None
   only the current state is changed. This function processes a single input
@@ -646,6 +669,9 @@
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>input_symbol</code></strong> - the input symbol received.</li>
+        <li><strong class="pname"><code>event</code></strong> - an Event object, to pass on to the action function.</li>
+        <li><strong class="pname"><code>block</code></strong> - a reference to the block to which the FSM is attached, to pass on
+          to action functions.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -684,7 +710,7 @@
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">print_state</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">show</span>=<span class="sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>)</span>
+        <span class="sig-arg">show</span>=<span class="sig-default">[]</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html#FSM.print_state">source&nbsp;code</a></span>&nbsp;
@@ -739,9 +765,9 @@
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <h3 class="epydoc">state_transitions</h3>
-  a dictionary { (input event, current state): [ (action, next statei, 
+  a dictionary { (input symbol, current state): [ (action, next state, 
   condition) ] }. Defines a transition from the current state when a 
-  certain event is received.
+  certain symbol is received.
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -753,8 +779,8 @@
 <tr><td>
   <h3 class="epydoc">state_transitions_any</h3>
   a dictionary of tuples { (current_state): [ (action, next_state, 
-  condition) ] }. Defines a transition from the current state when an event
-  of any kind is received.
+  condition) ] }. Defines a transition from the current state when any 
+  symbol is received.
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -784,14 +810,14 @@
       <th class="navbar" align="right" width="100%">
         <table border="0" cellpadding="0" cellspacing="0">
           <tr><th class="navbar" align="center"
-            >libgwn</th>
+            >LibGWN</th>
           </tr></table></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Oct 15 21:51:50 2015
+    Generated by Epydoc 3.0.1 on Wed Nov 11 11:56:14 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

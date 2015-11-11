@@ -5,10 +5,10 @@
 ''' FSM example with states, transitions, actions, memory and conditions.
 '''
 
-
-from gwnfsmstr import FSM
-
 import sys, os, traceback, optparse, time, string
+# add path to gwnfsm, gwnblock in FSM
+sys.path += ['..', '../../../../python/']
+from gwnfsm import FSM
 
 
 ### Actions
@@ -56,7 +56,7 @@ def myfsm():
     f.add_transition_any  ('INIT', None, 'INIT')
     #f.add_transition      (' ', 'INIT', stay, 'INIT')
     f.add_transition      ('g', 'INIT', goto, 'State A', conditionA)
-    f.add_transition      ('g', 'INIT', goto, 'State B', conditionB)
+    f.add_transition      ('g', 'INIT', goto, 'State B', [conditionB])
     f.add_transition      ('r', 'State A', goinit, 'INIT')
     f.add_transition      ('r', 'State B', goinit, 'INIT')
     f.add_transition      ('c', 'INIT', change, 'State Chg')

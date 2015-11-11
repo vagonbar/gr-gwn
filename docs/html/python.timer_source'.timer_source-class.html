@@ -103,11 +103,12 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.timer_source%27.timer_source-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">timer_source</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">timer_source</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerSource</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">timer_source_id</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">interrupt</span>=<span class="summary-sig-default">False</span>,
         <span class="summary-sig-arg">interval</span>=<span class="summary-sig-default">1.0</span>,
         <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">5</span>,
+        <span class="summary-sig-arg">payload</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">nickname1</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR1</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">nickname2</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span><br />
       The GWN basic block constructor.</td>
@@ -245,11 +246,12 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">timer_source</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">timer_source</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerSource</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">timer_source_id</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">interrupt</span>=<span class="sig-default">False</span>,
         <span class="sig-arg">interval</span>=<span class="sig-default">1.0</span>,
         <span class="sig-arg">retry</span>=<span class="sig-default">5</span>,
+        <span class="sig-arg">payload</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">nickname1</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR1</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">nickname2</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span>
     <br /><em class="fname">(Constructor)</em>
@@ -271,6 +273,7 @@ gnuradio.gr.gateway.gateway_block --+
         <li><strong class="pname"><code>interrupt</code></strong> - if set to True, timer does not generate events.</li>
         <li><strong class="pname"><code>interval</code></strong> - time betweeen successive events.</li>
         <li><strong class="pname"><code>retry</code></strong> - how many events to produce.</li>
+        <li><strong class="pname"><code>payload</code></strong> - an optional payload, default the empty string.</li>
         <li><strong class="pname"><code>nickname1</code></strong> - event nickname of event to produce on each interval.</li>
         <li><strong class="pname"><code>nickname2</code></strong> - event nickname of event to produce when retry has exhausted.</li>
     </ul></dd>
@@ -361,7 +364,7 @@ gnuradio.gr.gateway.gateway_block --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Tue Oct  6 13:59:45 2015
+    Generated by Epydoc 3.0.1 on Wed Nov 11 11:53:23 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

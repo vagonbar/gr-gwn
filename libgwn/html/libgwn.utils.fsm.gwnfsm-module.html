@@ -34,7 +34,7 @@
       <th class="navbar" align="right" width="100%">
         <table border="0" cellpadding="0" cellspacing="0">
           <tr><th class="navbar" align="center"
-            >libgwn</th>
+            >LibGWN</th>
           </tr></table></th>
   </tr>
 </table>
@@ -63,37 +63,38 @@
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
 <h1 class="epydoc">Module gwnfsm</h1><p class="nomargin-top"><span class="codelink"><a href="libgwn.utils.fsm.gwnfsm-pysrc.html">source&nbsp;code</a></span></p>
-<p>GWN implementation of a Finite State Machine (FSM).</p>
+<p>A Finite State Machine (FSM).</p>
   <p>This module implements a Finite State Machine (FSM). In addition to 
   the usual states and transitions, the GWN FSM includes actions, memory, 
   and conditions.</p>
   <p>An action is a user written function executed on a transition, before 
-  setting the machine to the next state.</p>
+  moving the machine to the next state.</p>
   <p>Memory may be any object capable of recording and retrieving 
   information, in whatever acces mode the application may need (LIFO, FIFO,
   etc). The memory facility is not part of the FSM machine, but an 
   independent object. Memory may be handled in the action functions.</p>
-  <p>A conditions is a user written function or expressions which produce 
+  <p>A conditions is a user written function or expression which returns 
   True or False when executed or evaluated. The action function and the 
   transition are only executed if the condition evaluates to True. If the 
-  conditione evaluates to False, no action is executed and the machine 
-  remains in its current state.</p>
-  <p>The FSM is defined through tables of transitions. For a given input 
-  symbol the process() method uses these tables to decide which action to 
-  call and which the next state will be, if and only if the condition 
-  evaluates to True; otherwise, nothing happens.</p>
-  <p>The FSM has a table of transitions that associate:</p>
+  condition on a transition evaluates to False, the transition is not 
+  performed, and its related action is not executed.</p>
+  <p>The FSM is defined through tables of transitions. In a current state, 
+  for a given input symbol, the process() method uses these tables to 
+  decide which action to call and which the next state will be, if and only
+  if the condition evaluates to True; otherwise, nothing happens.</p>
+  <p>The table of transitions defines the following associations:</p>
 <pre class="literalblock">
-       (input_symbol, current_state) --&gt; (action, next_statei, condition)
+       (input_symbol, current_state) --&gt; (action, next_state, condition)
 </pre>
-  <p>where action is a function, and symbols and states can be any objects.
-  This table is maintained through the FSM methods add_transition() and 
+  <p>where action is a function, symbols and states can be any objects, and
+  condition is a function of an expression whith returns a boolean. This 
+  table is maintained through the FSM methods add_transition() and 
   add_transition_list().</p>
-  <p>The FSM also has a second table of transitions that associate:</p>
+  <p>A second table of transitions defines another kind of association:</p>
 <pre class="literalblock">
        (current_state) --&gt; (action, next_state, condition)
 </pre>
-  <p>which allows to add transitions valid for any input symbol. The table 
+  <p>This allows to add transitions valid for any input symbol. The table 
   of any symbol transitions is maintained through the FSM method 
   add_transition_any().</p>
   <p>The FSM has also one default transition not associated with any 
@@ -105,14 +106,15 @@
   following order:</p>
 <pre class="literalblock">
    1. The transitions table for (input_symbol, current_state).
-   2. The transition table for (current_state), valid for and any input symbol.
+   2. The transitions table for (current_state), valid for and any input symbol.
    3. The default transition.
    4. If no valid transition is found, the FSM will raise an exception.
 </pre>
   <p>Matched transitions with the former criteria may produce a list of 
-  (action, next_state, condition). Condition is evaluated for each tuple in
-  the list, and the first tuple on which the condition is found True is 
-  executed: the action function is called, and the next state is set.</p>
+  (action, next_state, condition). The condition is evaluated for each 
+  tuple in the list, and the first tuple on which the condition is found 
+  True is executed, the action function is called, and the next state is 
+  set as the current state.</p>
   <p>If no transition is defined for an input symbol, the FSM will raise an
   exception. This can be prevented by defining a default transition.</p>
   <p>The action function receives a reference to the FSM as a parameter, 
@@ -152,32 +154,7 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="libgwn.utils.fsm.gwnfsm.FSM-class.html" class="summary-name">FSM</a><br />
-      GWN Finite State Machine (GWN-FSM).
-    </td>
-  </tr>
-</table>
-<!-- ==================== VARIABLES ==================== -->
-<a name="section-Variables"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Variables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
+      GWN Finite State Machine (GWN-FSM) with string as symbols.
     </td>
   </tr>
 </table>
@@ -205,14 +182,14 @@
       <th class="navbar" align="right" width="100%">
         <table border="0" cellpadding="0" cellspacing="0">
           <tr><th class="navbar" align="center"
-            >libgwn</th>
+            >LibGWN</th>
           </tr></table></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Oct 15 21:51:50 2015
+    Generated by Epydoc 3.0.1 on Wed Nov 11 11:56:13 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

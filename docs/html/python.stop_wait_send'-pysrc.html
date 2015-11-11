@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>python.stop_wait_send'</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="python-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >GR-GWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="python-module.html">Package&nbsp;python</a> ::
+        Module&nbsp;stop_wait_send'
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="python.stop_wait_send%27-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="python.stop_wait_send%27-module.html">Module python.stop_wait_send'</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright 2015</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#   Instituto de Ingenieria Electrica, Facultad de Ingenieria,</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#   Universidad de la Republica, Uruguay.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># This is free software; you can redistribute it and/or modify</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation; either version 3, or (at your option)</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># This software is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># along with this software; see the file COPYING.  If not, write to</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, Inc., 51 Franklin Street,</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># Boston, MA 02110-1301, USA.</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">'''An ARQ Stop and Wait sender.</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">numpy</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">gnuradio</tt> <tt class="py-keyword">import</tt> <tt class="py-name">gr</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-comment"># GWN imports</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Class python.gwnblock'.gwnblock=python.gwnblock%27.gwnblock-class.html"><a title="python.gwnblock'.gwnblock" class="py-name" href="#" onclick="return doclink('link-0', 'gwnblock', 'link-0');">gwnblock</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name"><a title="python.gwnblock'.gwnblock" class="py-name" href="#" onclick="return doclink('link-1', 'gwnblock', 'link-0');">gwnblock</a></tt>           <tt class="py-comment"># for all GWN blocks</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="python.gwnblock'.gwnblock" class="py-name" href="#" onclick="return doclink('link-2', 'gwnblock', 'link-0');">gwnblock</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Function python.gwnblock'.mutex_prt()=python.gwnblock%27-module.html#mutex_prt"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-3', 'mutex_prt', 'link-3');">mutex_prt</a></tt>          <tt class="py-comment"># for tests</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">gwnevents</tt> <tt class="py-keyword">import</tt> <tt class="py-name">api_events</tt> <tt class="py-keyword">as</tt> <tt class="py-name">api_events</tt>   <tt class="py-comment"># to create ACK event</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">pmt</tt>                              <tt class="py-comment"># for messages and PDUs</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">utils</tt><tt class="py-op">.</tt><tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">gwnfsm</tt> <tt class="py-keyword">import</tt> <tt class="py-name">FSM</tt><tt class="py-op">,</tt> <tt class="py-name">ExceptionFSM</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-comment">###</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-comment">### FSM code</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-comment">###</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-comment">### Actions</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="send"></a><div id="send-def"><a name="L46"></a><tt class="py-lineno"> 46</tt> <a class="py-toggle" href="#" id="send-toggle" onclick="return toggle('send');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#send">send</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="send-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="send-expanded"><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">    <tt class="py-docstring">'''Sends event received.</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt id="link-4" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-4', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'    SEND event, seq nr: {0}'</tt><tt class="py-op">.</tt><tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">ev_dc</tt><tt class="py-op">[</tt><tt class="py-string">'seq_nr'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">    <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">ev_sent</tt> <tt class="py-op">=</tt> <tt class="py-name">event</tt>                    <tt class="py-comment"># store for eventual resend</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">    <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">ev_sent</tt><tt class="py-op">.</tt><tt class="py-name">ev_dc</tt><tt class="py-op">[</tt><tt class="py-string">'ack'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">wait</tt>    <tt class="py-comment"># waited ack </tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">timeouts</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method python.gwnblock'.GWNTimeout.start()=python.gwnblock%27.GWNTimeout-class.html#start,Method python.mytimeout.GWNTimeout.start()=python.mytimeout.GWNTimeout-class.html#start"><a title="python.gwnblock'.GWNTimeout.start
+python.mytimeout.GWNTimeout.start" class="py-name" href="#" onclick="return doclink('link-5', 'start', 'link-5');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt><tt class="py-op">,</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">tout_nickname</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">    <tt class="py-name">block</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method python.gwnblock'.gwnblock.write_out()=python.gwnblock%27.gwnblock-class.html#write_out"><a title="python.gwnblock'.gwnblock.write_out" class="py-name" href="#" onclick="return doclink('link-6', 'write_out', 'link-6');">write_out</a></tt><tt class="py-op">(</tt><tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">ev_sent</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt>  </tt>
+</div><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="sendfrombuffer"></a><div id="sendfrombuffer-def"><a name="L58"></a><tt class="py-lineno"> 58</tt> <a class="py-toggle" href="#" id="sendfrombuffer-toggle" onclick="return toggle('sendfrombuffer');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#sendfrombuffer">sendfrombuffer</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sendfrombuffer-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="sendfrombuffer-expanded"><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-docstring">'''Sends event from buffer, first in list.</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt id="link-7" class="py-name" targets="Function python.stop_wait_send'.ack_ok()=python.stop_wait_send%27-module.html#ack_ok"><a title="python.stop_wait_send'.ack_ok" class="py-name" href="#" onclick="return doclink('link-7', 'ack_ok', 'link-7');">ack_ok</a></tt><tt class="py-op">(</tt><tt class="py-name">fsm</tt><tt class="py-op">,</tt> <tt class="py-name">event</tt><tt class="py-op">,</tt> <tt class="py-name">block</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">event</tt> <tt class="py-op">=</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt>   <tt class="py-comment"># get first from list</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt id="link-8" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-8', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'    TO SEND, from buffer, seq nr: {0}'</tt><tt class="py-op">.</tt>\ </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">                <tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">ev_dc</tt><tt class="py-op">[</tt><tt class="py-string">'seq_nr'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Function python.stop_wait_send'.send()=python.stop_wait_send%27-module.html#send"><a title="python.stop_wait_send'.send" class="py-name" href="#" onclick="return doclink('link-9', 'send', 'link-9');">send</a></tt><tt class="py-op">(</tt><tt class="py-name">fsm</tt><tt class="py-op">,</tt> <tt class="py-name">event</tt><tt class="py-op">,</tt> <tt class="py-name">block</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt id="link-10" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-10', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'FSM send ERROR: no event to send'</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="resend"></a><div id="resend-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="resend-toggle" onclick="return toggle('resend');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#resend">resend</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="resend-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="resend-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-docstring">'''Resends event not acknowledged.</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-comment"># Beware! event to resend is fsm.ev_sent, not event in arguments</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">    <tt class="py-comment">#fsm.print_state(show=['transition', 'action'])</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">    <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">nr_retries</tt> <tt class="py-op">=</tt> <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">nr_retries</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt id="link-11" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-11', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'    RESEND event, seq nr: {0}, retries: {1}'</tt><tt class="py-op">.</tt>\ </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">ev_sent</tt><tt class="py-op">.</tt><tt class="py-name">ev_dc</tt><tt class="py-op">[</tt><tt class="py-string">'seq_nr'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">nr_retries</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">timeouts</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method python.gwnblock'.GWNTimeout.cancel()=python.gwnblock%27.GWNTimeout-class.html#cancel"><a title="python.gwnblock'.GWNTimeout.cancel" class="py-name" href="#" onclick="return doclink('link-12', 'cancel', 'link-12');">cancel</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt>    <tt class="py-comment"># in case it is still active</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">timeouts</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="python.gwnblock'.GWNTimeout.start
+python.mytimeout.GWNTimeout.start" class="py-name" href="#" onclick="return doclink('link-13', 'start', 'link-5');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt><tt class="py-op">,</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">tout_nickname</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-name">block</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="python.gwnblock'.gwnblock.write_out" class="py-name" href="#" onclick="return doclink('link-14', 'write_out', 'link-6');">write_out</a></tt><tt class="py-op">(</tt><tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">ev_sent</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="push"></a><div id="push-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="push-toggle" onclick="return toggle('push');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#push">push</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">ev</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="push-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="push-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">    <tt class="py-docstring">'''Pushes event into buffer.</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">buffer_len</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> <tt class="py-keyword">or</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">buffer_len</tt><tt class="py-op">:</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt id="link-15" class="py-name" targets="Variable python.prueba_pmt.ev=python.prueba_pmt-module.html#ev"><a title="python.prueba_pmt.ev" class="py-name" href="#" onclick="return doclink('link-15', 'ev', 'link-15');">ev</a></tt><tt class="py-op">)</tt>    <tt class="py-comment"># add to end of list</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">ExceptionFSM</tt><tt class="py-op">(</tt><tt class="py-string">'Buffer length exceeded'</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-comment">#block.ls_buffer.append(ev)    # add to end of list</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt id="link-16" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-16', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'    FSM PUSH, len buffer: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> \ </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-string">'max buffer: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">buffer_len</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="ack_ok"></a><div id="ack_ok-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="ack_ok-toggle" onclick="return toggle('ack_ok');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#ack_ok">ack_ok</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">ev</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ack_ok-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ack_ok-expanded"><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">    <tt class="py-docstring">'''ACK was correct, cancel timer, reset retries.</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">nr_retries</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">timeouts</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="python.gwnblock'.GWNTimeout.cancel" class="py-name" href="#" onclick="return doclink('link-17', 'cancel', 'link-12');">cancel</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">wait</tt> <tt class="py-op">==</tt> <tt class="py-string">'ack1'</tt><tt class="py-op">:</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">wait</tt> <tt class="py-op">=</tt> <tt class="py-string">'ack0'</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">wait</tt> <tt class="py-op">=</tt> <tt class="py-string">'ack1'</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="stop"></a><div id="stop-def"><a name="L114"></a><tt class="py-lineno">114</tt> <a class="py-toggle" href="#" id="stop-toggle" onclick="return toggle('stop');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#stop">stop</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">ev</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="stop-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="stop-expanded"><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-docstring">'''Retries in sending of buffer exceeded, stop sending.</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt id="link-18" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-18', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'    FSM, send retries or buffer exceeded'</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt id="link-19" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-19', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'      max buffer length: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">buffer_len</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> \ </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-string">', buffer length: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt id="link-20" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-20', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-string">'      max retries: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">block</tt><tt class="py-op">.</tt><tt class="py-name">retries</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> \ </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-string">' retries: '</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">nr_retries</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">print_state</tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt class="py-comment">#raise ExceptionFSM('Send retries, exceeded')</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="fn_error"></a><div id="fn_error-def"><a name="L128"></a><tt class="py-lineno">128</tt> <a class="py-toggle" href="#" id="fn_error-toggle" onclick="return toggle('fn_error');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#fn_error">fn_error</a><tt class="py-op">(</tt><tt class="py-param">fsm</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">,</tt> <tt class="py-param">block</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="fn_error-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="fn_error-expanded"><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">print_state</tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">'transition'</tt><tt class="py-op">,</tt> <tt class="py-string">'action'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-keyword">raise</tt> <tt class="py-name">ExceptionFSM</tt><tt class="py-op">(</tt><tt class="py-string">'fn_error, error in transition'</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-comment">### Conditions</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-comment"># funcions must return True or False</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-comment"># conditions expressed as strings are accepted, i.e. 'a == b'</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt class="py-comment">### the FSM</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="stop_wait_send_fsm"></a><div id="stop_wait_send_fsm-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="stop_wait_send_fsm-toggle" onclick="return toggle('stop_wait_send_fsm');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'-module.html#stop_wait_send_fsm">stop_wait_send_fsm</a><tt class="py-op">(</tt><tt class="py-param">blk</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="stop_wait_send_fsm-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="stop_wait_send_fsm-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">    <tt class="py-docstring">'''The ARQ Stop and Wait FSM.</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring">    @param blk: reference to the block to which this FSM is attached.</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">    <tt class="py-name">f</tt> <tt class="py-op">=</tt> <tt class="py-name">FSM</tt> <tt class="py-op">(</tt><tt class="py-string">'Idle'</tt><tt class="py-op">)</tt> <tt class="py-comment"># </tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">wait</tt> <tt class="py-op">=</tt> <tt class="py-string">'ack0'</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">nr_retries</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">    <tt class="py-comment"># transitions</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">set_default_transition</tt> <tt class="py-op">(</tt><tt id="link-21" class="py-name" targets="Function python.stop_wait_send'.fn_error()=python.stop_wait_send%27-module.html#fn_error"><a title="python.stop_wait_send'.fn_error" class="py-name" href="#" onclick="return doclink('link-21', 'fn_error', 'link-21');">fn_error</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Idle'</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">    <tt class="py-comment">#f.add_transition_any ('Idle', None, 'Idle')</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">    <tt class="py-comment">#f.add_transition_any ('WaitAck', None, 'WaitAck')</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt><tt class="py-op">(</tt><tt class="py-string">'DataData'</tt><tt class="py-op">,</tt> <tt class="py-string">'Idle'</tt><tt class="py-op">,</tt> <tt id="link-22" class="py-name"><a title="python.stop_wait_send'.send" class="py-name" href="#" onclick="return doclink('link-22', 'send', 'link-9');">send</a></tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-name">None</tt><tt class="py-op">)</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt><tt class="py-op">(</tt><tt class="py-string">'CtrlACK'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt id="link-23" class="py-name"><a title="python.stop_wait_send'.ack_ok" class="py-name" href="#" onclick="return doclink('link-23', 'ack_ok', 'link-7');">ack_ok</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Idle'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'self.wait in event.ev_dc["ack"]'</tt><tt class="py-op">,</tt>  <tt class="py-comment"># ack is ack waited for</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-string">'len(block.ls_buffer) == 0'</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt>          <tt class="py-comment"># no event in buffer</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt> <tt class="py-op">(</tt><tt class="py-string">'CtrlACK'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt id="link-24" class="py-name" targets="Function python.stop_wait_send'.sendfrombuffer()=python.stop_wait_send%27-module.html#sendfrombuffer"><a title="python.stop_wait_send'.sendfrombuffer" class="py-name" href="#" onclick="return doclink('link-24', 'sendfrombuffer', 'link-24');">sendfrombuffer</a></tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'self.wait in event.ev_dc["ack"]'</tt><tt class="py-op">,</tt>  <tt class="py-comment"># ack is ack waited for</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-string">'len(block.ls_buffer) &gt; 0'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>            <tt class="py-comment"># event in buffer</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt> <tt class="py-op">(</tt><tt class="py-string">'CtrlACK'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'self.wait not in event.ev_dc["ack"]'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>  <tt class="py-comment"># ack is NOT ack waited for</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">  </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt> <tt class="py-op">(</tt><tt class="py-string">'TimerACKTout'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt id="link-25" class="py-name" targets="Function python.stop_wait_send'.resend()=python.stop_wait_send%27-module.html#resend"><a title="python.stop_wait_send'.resend" class="py-name" href="#" onclick="return doclink('link-25', 'resend', 'link-25');">resend</a></tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'self.nr_retries &lt;= block.retries'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>    <tt class="py-comment"># retries left</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt> <tt class="py-op">(</tt><tt class="py-string">'TimerACKTout'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt id="link-26" class="py-name" targets="Method python.gwnblock'.GWNTimer.stop()=python.gwnblock%27.GWNTimer-class.html#stop,Method python.mytimeout.GWNTimeout.stop()=python.mytimeout.GWNTimeout-class.html#stop,Method python.mytimer.GWNTimer.stop()=python.mytimer.GWNTimer-class.html#stop,Function python.stop_wait_send'.stop()=python.stop_wait_send%27-module.html#stop"><a title="python.gwnblock'.GWNTimer.stop
+python.mytimeout.GWNTimeout.stop
+python.mytimer.GWNTimer.stop
+python.stop_wait_send'.stop" class="py-name" href="#" onclick="return doclink('link-26', 'stop', 'link-26');">stop</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Stop'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'self.nr_retries &gt; block.retries'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>     <tt class="py-comment"># retries exceeded</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt> <tt class="py-op">(</tt><tt class="py-string">'DataData'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt id="link-27" class="py-name" targets="Function python.stop_wait_send'.push()=python.stop_wait_send%27-module.html#push"><a title="python.stop_wait_send'.push" class="py-name" href="#" onclick="return doclink('link-27', 'push', 'link-27');">push</a></tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'len(block.ls_buffer) &lt; block.buffer_len'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>  <tt class="py-comment"># buffer ok</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition</tt> <tt class="py-op">(</tt><tt class="py-string">'DataData'</tt><tt class="py-op">,</tt> <tt class="py-string">'WaitAck'</tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name"><a title="python.gwnblock'.GWNTimer.stop
+python.mytimeout.GWNTimeout.stop
+python.mytimer.GWNTimer.stop
+python.stop_wait_send'.stop" class="py-name" href="#" onclick="return doclink('link-28', 'stop', 'link-26');">stop</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Stop'</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">'len(block.ls_buffer) &gt;= block.buffer_len'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>  <tt class="py-comment"># buffer max exceed</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition_any</tt> <tt class="py-op">(</tt><tt class="py-string">'Stop'</tt><tt class="py-op">,</tt> <tt id="link-29" class="py-name"><a title="python.gwnblock'.GWNTimer.stop
+python.mytimeout.GWNTimeout.stop
+python.mytimer.GWNTimer.stop
+python.stop_wait_send'.stop" class="py-name" href="#" onclick="return doclink('link-29', 'stop', 'link-26');">stop</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Stop'</tt><tt class="py-op">)</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">    <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">add_transition_any</tt> <tt class="py-op">(</tt><tt class="py-string">'Idle'</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-string">'Idle'</tt><tt class="py-op">)</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">    <tt class="py-comment">#f.add_transition_list (['nak', 'ack0', 'tout'], \</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">    <tt class="py-comment">#                    'WaitAck', resend, 'WaitAck', wait1)</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">blk</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"--- FSM created, show state"</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">print_state</tt><tt class="py-op">(</tt><tt class="py-name">show</tt><tt class="py-op">=</tt><tt class="py-string">'state'</tt><tt class="py-op">)</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">f</tt> </tt>
+</div><a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line"> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt class="py-comment">###</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt class="py-comment">### block class code</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"><tt class="py-comment">###</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"> </tt>
+<a name="stop_wait_send"></a><div id="stop_wait_send-def"><a name="L201"></a><tt class="py-lineno">201</tt> <a class="py-toggle" href="#" id="stop_wait_send-toggle" onclick="return toggle('stop_wait_send');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="python.stop_wait_send'.stop_wait_send-class.html">stop_wait_send</a><tt class="py-op">(</tt><tt class="py-base-class">gwnblock</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="stop_wait_send-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="stop_wait_send-expanded"><a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">    <tt class="py-docstring">'''An ARQ Stop and wait event sender.</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"><tt class="py-docstring">    Receives an event, starts a timeout, writes this event on output port 1, and waits for an ACK to the message sent. On receiving the appropriate ACK, sends next message. On timeout, resends the unacknowledged message. Received messages are buffered in a FIFO list.</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"><tt class="py-docstring">    @param blkname: block name.</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"><tt class="py-docstring">    @param blkid: block identifier.</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"><tt class="py-docstring">    @param ack_nickname: the nickname of the acknowledge event waited for.</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"><tt class="py-docstring">    @param retries: number of times to resend event if ACK not received.</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring">    @param tout_nickname: the nickname of the timer event waited for.</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt class="py-docstring">    @param timeout: the timeout in seconds.</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"><tt class="py-docstring">    @param buffer_len: the buffer capacity, i.e. the maximum length of the list; default is 0, which means no limit.</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"><tt class="py-docstring">    '''</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"> </tt>
+<a name="stop_wait_send.__init__"></a><div id="stop_wait_send.__init__-def"><a name="L214"></a><tt class="py-lineno">214</tt> <a class="py-toggle" href="#" id="stop_wait_send.__init__-toggle" onclick="return toggle('stop_wait_send.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'.stop_wait_send-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">blkname</tt><tt class="py-op">=</tt><tt class="py-string">'stop_wait_send'</tt><tt class="py-op">,</tt> <tt class="py-param">blkid</tt><tt class="py-op">=</tt><tt class="py-string">'id_stop_wait_send'</tt><tt class="py-op">,</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">            <tt class="py-param">ack_nickname</tt><tt class="py-op">=</tt><tt class="py-string">'CtrlACK'</tt><tt class="py-op">,</tt> <tt class="py-param">retries</tt><tt class="py-op">=</tt><tt class="py-number">3</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">            <tt class="py-param">tout_nickname</tt><tt class="py-op">=</tt><tt class="py-string">'TimerACKTout'</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt><tt class="py-op">=</tt><tt class="py-number">1.0</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">            <tt class="py-param">buffer_len</tt><tt class="py-op">=</tt><tt class="py-number">1000</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="stop_wait_send.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="stop_wait_send.__init__-expanded"><a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line"> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">        <tt class="py-comment"># invocation of ancestor constructor</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt id="link-30" class="py-name"><a title="python.gwnblock'.gwnblock" class="py-name" href="#" onclick="return doclink('link-30', 'gwnblock', 'link-0');">gwnblock</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method python.data_source'.data_source.__init__()=python.data_source%27.data_source-class.html#__init__,Method python.ev_to_pdu'.ev_to_pdu.__init__()=python.ev_to_pdu%27.ev_to_pdu-class.html#__init__,Method python.event_sink'.event_sink.__init__()=python.event_sink%27.event_sink-class.html#__init__,Method python.gwn_if_psk_rx.gwn_if_psk_rx.__init__()=python.gwn_if_psk_rx.gwn_if_psk_rx-class.html#__init__,Method python.gwn_if_psk_tx.gwn_if_psk_tx.__init__()=python.gwn_if_psk_tx.gwn_if_psk_tx-class.html#__init__,Method python.gwnblock'.GWNPort.__init__()=python.gwnblock%27.GWNPort-class.html#__init__,Method python.gwnblock'.GWNTimeout.__init__()=python.gwnblock%27.GWNTimeout-class.html#__init__,Method python.gwnblock'.GWNTimer.__init__()=python.gwnblock%27.GWNTimer-class.html#__init__,Method python.gwnblock'.gwnblock.__init__()=python.gwnblock%27.gwnblock-class.html#__init__,Method python.hier_rx_psk'.hier_rx_psk.__init__()=python.hier_rx_psk%27.hier_rx_psk-class.html#__init__,Method python.hier_tx_psk'.hier_tx_psk.__init__()=python.hier_tx_psk%27.hier_tx_psk-class.html#__init__,Method python.ieee80211_deframer'.ieee80211_deframer.__init__()=python.ieee80211_deframer%27.ieee80211_deframer-class.html#__init__,Method python.ieee80211_framer'.ieee80211_framer.__init__()=python.ieee80211_framer%27.ieee80211_framer-class.html#__init__,Method python.if_psk_rx'.if_psk_rx.__init__()=python.if_psk_rx%27.if_psk_rx-class.html#__init__,Method python.if_psk_tx'.if_psk_tx.__init__()=python.if_psk_tx%27.if_psk_tx-class.html#__init__,Method python.msg_receiver_m'.msg_receiver_m.__init__()=python.msg_receiver_m%27.msg_receiver_m-class.html#__init__,Method python.msg_sender_m'.msg_sender_m.__init__()=python.msg_sender_m%27.msg_sender_m-class.html#__init__,Method python.msg_to_event'.msg_to_event.__init__()=python.msg_to_event%27.msg_to_event-class.html#__init__,Method python.mytimeout.GWNTimeout.__init__()=python.mytimeout.GWNTimeout-class.html#__init__,Method python.mytimer.GWNTimer.__init__()=python.mytimer.GWNTimer-class.html#__init__,Method python.pdu_to_ev'.pdu_to_ev.__init__()=python.pdu_to_ev%27.pdu_to_ev-class.html#__init__,Method python.stop_wait_ack'.stop_wait_ack.__init__()=python.stop_wait_ack%27.stop_wait_ack-class.html#__init__,Method python.stop_wait_send'.stop_wait_send.__init__()=python.stop_wait_send%27.stop_wait_send-class.html#__init__,Method python.timer_source'.timer_source.__init__()=python.timer_source%27.timer_source-class.html#__init__,Method python.virtual_channel'.virtual_channel.__init__()=python.virtual_channel%27.virtual_channel-class.html#__init__"><a title="python.data_source'.data_source.__init__
+python.ev_to_pdu'.ev_to_pdu.__init__
+python.event_sink'.event_sink.__init__
+python.gwn_if_psk_rx.gwn_if_psk_rx.__init__
+python.gwn_if_psk_tx.gwn_if_psk_tx.__init__
+python.gwnblock'.GWNPort.__init__
+python.gwnblock'.GWNTimeout.__init__
+python.gwnblock'.GWNTimer.__init__
+python.gwnblock'.gwnblock.__init__
+python.hier_rx_psk'.hier_rx_psk.__init__
+python.hier_tx_psk'.hier_tx_psk.__init__
+python.ieee80211_deframer'.ieee80211_deframer.__init__
+python.ieee80211_framer'.ieee80211_framer.__init__
+python.if_psk_rx'.if_psk_rx.__init__
+python.if_psk_tx'.if_psk_tx.__init__
+python.msg_receiver_m'.msg_receiver_m.__init__
+python.msg_sender_m'.msg_sender_m.__init__
+python.msg_to_event'.msg_to_event.__init__
+python.mytimeout.GWNTimeout.__init__
+python.mytimer.GWNTimer.__init__
+python.pdu_to_ev'.pdu_to_ev.__init__
+python.stop_wait_ack'.stop_wait_ack.__init__
+python.stop_wait_send'.stop_wait_send.__init__
+python.timer_source'.timer_source.__init__
+python.virtual_channel'.virtual_channel.__init__" class="py-name" href="#" onclick="return doclink('link-31', '__init__', 'link-31');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">blkname</tt><tt class="py-op">=</tt><tt class="py-name">blkname</tt><tt class="py-op">,</tt> <tt class="py-name">blkid</tt><tt class="py-op">=</tt><tt class="py-name">blkid</tt><tt class="py-op">,</tt>  </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">            <tt class="py-name">number_in</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">number_out</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">number_timeouts</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line"> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">blkname</tt> <tt class="py-op">=</tt> <tt class="py-name">blkname</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">blkid</tt> <tt class="py-op">=</tt> <tt class="py-name">blkid</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ack_nickname</tt> <tt class="py-op">=</tt> <tt class="py-name">ack_nickname</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">retries</tt> <tt class="py-op">=</tt> <tt class="py-name">retries</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tout_nickname</tt> <tt class="py-op">=</tt> <tt class="py-name">tout_nickname</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt> <tt class="py-op">=</tt> <tt class="py-name">timeout</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buffer_len</tt> <tt class="py-op">=</tt> <tt class="py-name">buffer_len</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ls_buffer</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>     <tt class="py-comment"># length must be checked in process</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt>      <tt class="py-comment"># please set from outside for debug print</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line"> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fsm</tt> <tt class="py-op">=</tt> <tt id="link-32" class="py-name" targets="Function python.stop_wait_send'.stop_wait_send_fsm()=python.stop_wait_send%27-module.html#stop_wait_send_fsm"><a title="python.stop_wait_send'.stop_wait_send_fsm" class="py-name" href="#" onclick="return doclink('link-32', 'stop_wait_send_fsm', 'link-32');">stop_wait_send_fsm</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"> </tt>
+<a name="stop_wait_send.process_data"></a><div id="stop_wait_send.process_data-def"><a name="L237"></a><tt class="py-lineno">237</tt> <a class="py-toggle" href="#" id="stop_wait_send.process_data-toggle" onclick="return toggle('stop_wait_send.process_data');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="python.stop_wait_send'.stop_wait_send-class.html#process_data">process_data</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ev</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="stop_wait_send.process_data-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="stop_wait_send.process_data-expanded"><a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-docstring">'''Writes event, waits for ACK, retransmits.</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line"><tt class="py-docstring">        The received event is passed on to the process function of the FSM; actions in the FSM are provided with the received event and a reference to the present block, so that they can access this block's attributes and functions, in particular the write_out function to send events.</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"><tt class="py-docstring">        @param ev: a received Event object.</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">            <tt class="py-name">dbg_msg</tt> <tt class="py-op">=</tt> <tt class="py-string">'--- {0}, received ev: {1}'</tt><tt class="py-op">.</tt> \ </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">                <tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">blkname</tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name"><a title="python.prueba_pmt.ev" class="py-name" href="#" onclick="return doclink('link-33', 'ev', 'link-15');">ev</a></tt><tt class="py-op">.</tt><tt class="py-name">nickname</tt><tt class="py-op">)</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">            <tt class="py-comment"># only for Data Events:</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">            <tt class="py-comment">#dbg_msg = '--- {0}, received ev: {1}, seq nr: {2}'. \</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">            <tt class="py-comment">#    format(self.blkname, ev.nickname, ev.ev_dc['seq_nr'])</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">            <tt id="link-34" class="py-name"><a title="python.gwnblock'.mutex_prt" class="py-name" href="#" onclick="return doclink('link-34', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-name">dbg_msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">        <tt class="py-comment"># handle event to FSM process functions</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fsm</tt><tt class="py-op">.</tt><tt class="py-name">process</tt><tt class="py-op">(</tt><tt id="link-35" class="py-name"><a title="python.prueba_pmt.ev" class="py-name" href="#" onclick="return doclink('link-35', 'ev', 'link-15');">ev</a></tt><tt class="py-op">.</tt><tt class="py-name">nickname</tt><tt class="py-op">,</tt> <tt class="py-name">event</tt><tt class="py-op">=</tt><tt id="link-36" class="py-name"><a title="python.prueba_pmt.ev" class="py-name" href="#" onclick="return doclink('link-36', 'ev', 'link-15');">ev</a></tt><tt class="py-op">,</tt> <tt class="py-name">block</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div></div><a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="python-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >GR-GWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Nov 11 11:53:23 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
