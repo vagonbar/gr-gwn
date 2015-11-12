@@ -231,9 +231,14 @@ class FSM:
         '''Receives input, calls an action, changes state.
 
         This function calls get_transition() to find the action and next_state associated with the input_symbol and current_state. If the action is None only the current state is changed. This function processes a single input symbol. To process a list of symbols, or a string, process_list() may be called.
+
+        Action may be a single function or a list of functions. If action is list of functions, functions are executed in turn, and return values gathered in a list, which is returned.
+
+        Conditions may be a single condition or a list of conditions. If condition is a list of conditions, they are ANDed to determine if transition is valid. A condition may be a boolean function or an expression which evaluates to True or False.
         @param input_symbol: the input symbol received.
         @param event: an Event object, to pass on to the action function.
         @param block: a reference to the block to which the FSM is attached, to pass on to action functions.
+        @return: a list of the return values of actions executed, or None.
         '''
         if self.debug:
             mutex_prt( "\n    FSM process: " + input_symbol + ", " + \
@@ -248,7 +253,7 @@ class FSM:
             # consider no condition, one condition, a list of conditions
             if condition and type(condition) is not list:   # string or function
                condition = [condition]      # make it a list
-            if condition is None:           # no condition
+            if condition is None:           # no condition, aka no list
                 if self.debug:
                     mutex_prt("    FSM Condition: None")
                 cond_val = True
@@ -281,8 +286,9 @@ class FSM:
                 self.input_symbol = input_symbol
                 self.action = action
                 self.next_state = next_state
+
                 # execute action
-                if self.action is not None:
+                """if self.action is not None:
                     if event and block:
                         ret_val = self.action(self, event, block)
                     elif event:
@@ -293,6 +299,22 @@ class FSM:
                         ret_val = self.action(self)
                 else:
                     ret_val = None
+                """
+                # account for a list of actions
+                ret_val = []
+                if not self.action:
+                    self.action = []
+                elif self.action and type(self.action) is not list:
+                    self.action = [self.action]
+                for fn_act in self.action:
+                    if event and block:
+                        ret_val += [fn_act(self, event, block)]
+                    elif event:
+                        ret_val += [fn_act(self, event)]
+                    elif block:
+                        ret_val += [fn_act(self, block)]
+                    else:
+                        ret_val += [fn_act(self)]
 
                 if self.debug:
                     self.print_state(show=['transition'])
@@ -345,16 +367,17 @@ class FSM:
         if 'transition' in show:
             ss = '    FSM transition: ' + self.current_state + ' --- ' + \
                 str(self.input_symbol) + ' | '
-            if self.action:  # not None
-                ss += self.action.func_name 
-            else:
-                ss += "None"
+            #if self.action:  # not None
+            #    ss += self.action.func_name 
+            #else:
+            #    ss += "None"
             ss += ' --> ' + str(self.next_state)
             mutex_prt(ss)
         if 'action' in show and self.action:
-            ss = "    FSM action %s: state %s, symbol %s" % \
-                (self.action.func_name, self.current_state, \
-                self.input_symbol) # + "\n"
+            ss = "    FSM actions: state %s, symbol %s\n" % \
+                (self.current_state, self.input_symbol) # + "\n"
+            for fn_act in self.action:    # asumes it is a list
+                ss += '        action:' + fn_act.func_name + '\n'
             mutex_prt(ss)
 
         if 'memory' in show:
