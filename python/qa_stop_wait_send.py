@@ -43,9 +43,10 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         self.tb = None
 
 
-    def test_ack (self):
+    def notest_ack (self):
         '''Send and receive ACK.
-        '''
+        '''  
+        print "\n\n=== Test ACK ===\n"
         ### block Data Source --> Stop and Wait Send
         blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
         blk_snd.debug = True
@@ -92,6 +93,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
     def notest_retry (self):
         '''Send, timeout, retry, no ACK.
         '''
+        print "\n\n=== Test retry ===\n"
         ### block Data Source --> Stop and Wait Send
         blk_snd = data_source('DataData', 'blk001', retry=5, interval=1.0)
         blk_snd.debug = True
@@ -123,9 +125,10 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         return
 
 
-    def notest_with_loss (self):
+    def test_with_loss (self):
         '''Send over virtual channel.
         '''
+        print "\n\n=== Test with loss ===\n"
         ### block Data Source --> Stop and Wait Send
         blk_src = data_source('DataData', 'blk001', retry=6, interval=1.0)
         blk_src.debug = True

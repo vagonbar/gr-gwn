@@ -7,25 +7,29 @@
 
 import sys, os, traceback, optparse, time, string
 # add path to gwnfsm, gwnblock in FSM
-sys.path += ['..'] #, '../../../../python/']
+sys.path += ['..', '../../../python/']
 from gwnfsm import FSM
 
 
 ### Actions
 
+def fn_none(fsm):
+    print '\n--- FSM none, nothing done\n'
+    return
+
 def fn_goA(fsm):
-    print '--- FSM fn_goA:'
-    fsm.print_state(show=['transition', 'action'])
+    print '\n--- FSM fn_goA; symbol ' + fsm.input_symbol
+    fsm.print_state(show=['action', 'transition'])
     return
 
 def fn_goB(fsm):
-    print '--- FSM fn_goB:'
-    fsm.print_state(show=['transition', 'action'])
+    print '\n--- FSM fn_goB; symbol ' + fsm.input_symbol
+    fsm.print_state(show=['action', 'transition'])
     return
 
 def fn_init(fsm):
-    print '--- FSM fn_init:'
-    fsm.print_state(show=['transition', 'action'])
+    print '\n--- FSM fn_init; symbol ' + fsm.input_symbol
+    fsm.print_state(show=['action', 'transition'])
     return
 
 def fn_chgtoC(fsm):
@@ -33,8 +37,9 @@ def fn_chgtoC(fsm):
         fsm.to_c = False
     else:
         fsm.to_c = True
-    print '--- FSM fn_toC; to_c set to ' + str(fsm.to_c)
-    fsm.print_state(show=['transition', 'action'])
+    print '\n--- FSM fn_toC; symbol ' + fsm.input_symbol + \
+        '; to_c set to ' + str(fsm.to_c)
+    fsm.print_state(show=['action', 'transition'])
 
 def fn_chgwhr(fsm):
     if fsm.where == 'A':
@@ -43,16 +48,18 @@ def fn_chgwhr(fsm):
         fsm.where = 'C'
     else:
         fsm.where = 'A'
-    print '--- FSM fn_init; where set to ' + fsm.where
-    fsm.print_state(show=['transition', 'action'])
+    print '\n--- FSM fn_init; symbol ' + fsm.input_symbol + \
+        '; where set to ' + fsm.where
+    fsm.print_state(show=['action', 'transition'])
     return
 
 def show(fsm):
-    print '--- FSM show; where=' + fsm.where + ', to_c=' + str(fsm.to_c)
-    fsm.print_state(show=['transition', 'action'])
+    print '\n--- FSM show; symbol ' + fsm.input_symbol + \
+        '; where=' + fsm.where + ', to_c=' + str(fsm.to_c)
+    fsm.print_state(show=['action', 'transition'])
 
 def fn_error(fsm):
-    fsm.print_state(show=['transition', 'action'])
+    fsm.print_state(show=['action', 'transition'])
 
 
 ### Condition functions
@@ -75,7 +82,7 @@ def myfsm():
 
     # transitions for any input symbol
     f.add_transition_any ('INIT', None, 'INIT')
-    f.add_transition_any ('State A', None, 'State A')
+    f.add_transition_any ('State A', fn_none, 'State A')
 
     # add ordinary transitions
     f.add_transition ('s', 'INIT', show, 'INIT', None)
@@ -94,7 +101,7 @@ def myfsm():
     f.add_transition ('r', 'Chg ToC', fn_init, 'INIT', None)
 
 
-    print "--- FSM created, show state"
+    print "\n--- FSM created, show state"
     f.print_state(show='state')
 
     #inputevs = [] # list of input events
@@ -102,7 +109,8 @@ def myfsm():
     event = 'j'
     while event:
         event = raw_input('Event:')
-        f.process(event)
+        for ev in event:
+            f.process(ev)
 
 if __name__ == '__main__':
     try:
@@ -111,6 +119,9 @@ if __name__ == '__main__':
         parser.add_option ('-v', '--verbose', action='store_true', default=False, help='verbose output')
         (options, args) = parser.parse_args()
         if options.verbose: print time.asctime()
+        print 'Input events (chars). To test all functions at once, input'
+        print '    jsjsgrgjrwrsgrwrsgrcrsgrs'
+        print 'Press any key to start.'
         myfsm() #main()
         if options.verbose: print time.asctime()
         if options.verbose: print 'TOTAL TIME IN MINUTES:',

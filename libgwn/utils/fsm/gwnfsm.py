@@ -364,20 +364,16 @@ class FSM:
                 mutex_prt( '     ' + str(item) )
             mutex_prt ("    FSM default_transition:")
             mutex_prt ("     " + str(self.default_transition) + "\n")
+        if 'action' in show and self.action:
+            ss = "    FSM state %s, symbol %s" % \
+                (self.current_state, self.input_symbol) # + "\n"
+            for fn_act in self.action:    # asumes it is a list
+                ss += '\n        action:' + fn_act.func_name
+            mutex_prt(ss)
         if 'transition' in show:
             ss = '    FSM transition: ' + self.current_state + ' --- ' + \
                 str(self.input_symbol) + ' | '
-            #if self.action:  # not None
-            #    ss += self.action.func_name 
-            #else:
-            #    ss += "None"
             ss += ' --> ' + str(self.next_state)
-            mutex_prt(ss)
-        if 'action' in show and self.action:
-            ss = "    FSM actions: state %s, symbol %s\n" % \
-                (self.current_state, self.input_symbol) # + "\n"
-            for fn_act in self.action:    # asumes it is a list
-                ss += '        action:' + fn_act.func_name + '\n'
             mutex_prt(ss)
 
         if 'memory' in show:

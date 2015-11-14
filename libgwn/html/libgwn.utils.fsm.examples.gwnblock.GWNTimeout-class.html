@@ -64,7 +64,7 @@
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class GWNTimeout</h1><p class="nomargin-top"><span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class GWNTimeout</h1><p class="nomargin-top"></p>
 <pre class="base-tree">
 <a href="libgwn.utils.fsm.examples.gwnblock.GWNPort-class.html">GWNPort</a> --+
           |
@@ -110,7 +110,75 @@
         <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.__init__">source&nbsp;code</a></span>
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="libgwn.utils.fsm.examples.gwnblock.GWNTimeout-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="cancel"></a><span class="summary-sig-name">cancel</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops timer if action has not started.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="handle_msg"></a><span class="summary-sig-name">handle_msg</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg_pmt</span>)</span><br />
+      Timer message handler, regenerates event, passes to process_data.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="post_message"></a><span class="summary-sig-name">post_message</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Posts timer event and timer metadata on block port.</td>
+          <td align="right" valign="top">
+            
             
           </td>
         </tr>
@@ -129,75 +197,7 @@
         <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default">None</span>)</span><br />
       Starts timer until timeout.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.start">source&nbsp;code</a></span>
             
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="cancel"></a><span class="summary-sig-name">cancel</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      Stops timer if action has not started.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.cancel">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="post_message"></a><span class="summary-sig-name">post_message</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      Posts timer event and timer metadata on block port.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.post_message">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="handle_msg"></a><span class="summary-sig-name">handle_msg</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">msg_pmt</span>)</span><br />
-      Timer message handler, regenerates event, passes to process_data.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.handle_msg">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="libgwn.utils.fsm.examples.gwnblock.GWNTimeout-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.__str__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -240,7 +240,7 @@
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.__init__">source&nbsp;code</a></span>&nbsp;
+    >&nbsp;
     </td>
   </tr></table>
   
@@ -269,7 +269,7 @@
     <br /><em class="fname">(Informal representation operator)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="libgwn.utils.fsm.examples.gwnblock-pysrc.html#GWNTimeout.__str__">source&nbsp;code</a></span>&nbsp;
+    >&nbsp;
     </td>
   </tr></table>
   
@@ -313,7 +313,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Nov 11 11:56:14 2015
+    Generated by Epydoc 3.0.1 on Thu Nov 12 20:21:05 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
