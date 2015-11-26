@@ -42,11 +42,11 @@ class msg_receiver_m(gwnblock):
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Receives events, prints.
         '''
-        ss = '  --- receive {0}, blkid {1}, event:'.\
-            format(self.blkname, self.blkid)
+        ss = '  --- receive {0}, blkid {1}, port nr: {2}, event:'.\
+            format(self.blkname, self.blkid, port_nr)
         ss = ss +   ' ' + ev.nickname
         #ss = ss + '\n  ' + ev.__str__() + '\n'
         mutex_prt(ss)

@@ -76,15 +76,15 @@ class timer_source(gwnblock):
         return time.time() - self.time_init
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Sends timer events produced by the internal timer.
 
         @param ev: an Event object.
         '''
         ev.payload = self.payload
         if self.debug:
-            dbg_msg = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\
-                format(self.blkname, ev.nickname, self.elapsed_time() )
+            dbg_msg = '--- send {0}, ev nickname: {1}, port nr: {2}, time {3:4.1f}'.\
+                format(self.blkname, ev.nickname, port_nr, self.elapsed_time() )
             mutex_prt(dbg_msg)
             ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
         ev.ev_dc['seq_nr'] = self.counter

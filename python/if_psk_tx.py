@@ -46,7 +46,7 @@ class if_psk_tx(gwnblock):
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         payload = ev.frmpkt
         pkt = packet_utils.make_packet(payload,
             self._samp_per_sym,

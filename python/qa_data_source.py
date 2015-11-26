@@ -46,7 +46,8 @@ class qa_data_source (gr_unittest.TestCase):
         '''
         ### blocks Timer Source --> Message Debug
         blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
-        #blk_snd.timers[0].debug = True     # print debug on timer
+        blk_snd.debug = True
+        blk_snd.timers[0].debug = True     # print debug on timer
         blk_snk = event_sink()
         blk_snk.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 

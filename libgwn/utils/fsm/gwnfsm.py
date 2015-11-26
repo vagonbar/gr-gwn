@@ -345,20 +345,25 @@ class FSM:
         This function may be called in the action functions.
         @param show: whole or partial list of ["state", "transition", "memory"], shows accordingly.
         '''
-        if 'state' in show:    # TODO: convert to use mutex_prt
+        if 'state' in show:
             mutex_prt("    FSM initial_state: " + self.initial_state)
             mutex_prt("    FSM state_transitions:")
-            for item in self.state_transitions.items():
-                symbol, cur_state, dst_state, cond = \
-                    item[0][0], item[0][1], item[1][0][1], item[1][0][2]
-                if item[1][0][0]:
-                    function = item[1][0][0].func_name 
-                else:
-                    function = 'None' 
-                msg_dbg = '      {0} --- {1} | {2} --> {3}'.format( \
-                    cur_state, symbol, function, dst_state)
-                msg_dbg += '\n        cond = {0}'.format(cond)
-                mutex_prt(msg_dbg)
+
+            for key in self.state_transitions.keys():
+                symbol, cur_state = key
+                for item in self.state_transitions[key]:    
+                    function, dst_state, cond = \
+                        item[0], item[1], item[2]
+                    if type(function) is list:
+                        function = [fn.func_name for fn in function]
+                    else:
+                        function = function.func_name
+                    # should detect if condition is function, use name
+                    msg_dbg = '      {0} --- {1} | {2} --> {3}'.format( \
+                        cur_state, symbol, function, dst_state)
+                    msg_dbg += '\n        cond = {0}'.format(cond)
+                    mutex_prt(msg_dbg)
+
             mutex_prt("    FSM state_transitions_any:")
             for item in self.state_transitions_any.items():
                 mutex_prt( '     ' + str(item) )

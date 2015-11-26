@@ -55,7 +55,7 @@ class ieee80211_framer(gwnblock):
         self.message_port_register_out(pmt.intern('pdu'))
         return
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Receives an event, packs into a frame, loads in event attribute.
         '''
         #ev.frmpkt = '***ieee80211framer:_the_packed_frame***'

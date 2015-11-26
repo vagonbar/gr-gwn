@@ -52,7 +52,7 @@ class event_sink(gwnblock):
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Receives events, prints.
         '''
         dbg_msg = '--- {0}, received ev: {1}'.\

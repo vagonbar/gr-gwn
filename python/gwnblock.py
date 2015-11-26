@@ -86,14 +86,14 @@ class GWNInPort(GWNPort):
     def handle_msg(self, msg_pmt):
         '''Regenerates event from PMT, passes event to process_data.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
-        blkname, blkid, port, port_nr, ev_str = msg_ls[-1]
+        blkname, blkid, port, port_nr, ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
         #ss = '  --- handle_msg, blkname {0}, blkid {1}, port {2}, port nr {3}'.\
         #    format(msg_ls[0], msg_ls[1], msg_ls[2], msg_ls[3])
         #ss = ss + '\n  ' + ev.__str__() + '\n'
         #mutex_prt(ss)
         #lock_obj.acquire()  # BLOCKS! # mutually exclusive event handling
-        self.block.process_data(ev)    # handle event to process function
+        self.block.process_data(ev, port, port_nr)  # pass to process function
         #lock_obj.release()            # release lock
         return
 
@@ -190,7 +190,9 @@ class GWNTimeout(GWNPort):
         pmt_msg = pmt.cons(pmt.PMT_NIL, 
             pmt.pmt_to_python.python_to_pmt(msg_ls) )
         pmt_port = pmt.intern(self.port)
-        self.block.to_basic_block()._post(pmt_port, pmt_msg)
+        self.block.to_basic_block()._post(pmt_port, pmt.cons(pmt.PMT_NIL, 
+            pmt_msg) )
+        #self.block.to_basic_block()._post(pmt_port, pmt_msg)
         if self.debug:
             msg_dbg = '    GWN Timeout TIMEOUT REACHED, message: %s' % \
                 (self.nickname)
@@ -203,8 +205,11 @@ class GWNTimeout(GWNPort):
     def handle_msg(self, msg_pmt):
         '''Timer message handler, regenerates event, passes to process_data.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
-        ev = pickle.loads(msg_ls[-1])
-        self.block.process_data(ev)   # handle event to process function
+        blkname, blkid, port, port_nr, ev_str = msg_ls[1]
+        ev = pickle.loads(ev_str)
+        self.block.process_data(ev, port, port_nr)    # pass to process function
+        #ev = pickle.loads(msg_ls[-1])
+        #self.block.process_data(ev)   # handle event to process function
         return
 
 
@@ -333,21 +338,21 @@ class GWNTimer(GWNPort, threading.Thread):
         pmt_msg = pmt.cons(pmt.PMT_NIL, 
             pmt.pmt_to_python.python_to_pmt(msg_ls) )
         pmt_port = pmt.intern(self.port)
-        self.block.to_basic_block()._post(pmt_port, pmt_msg)
+        #self.block.to_basic_block()._post(pmt_port, pmt_msg)
+        self.block.to_basic_block()._post(pmt_port, pmt.cons(pmt.PMT_NIL, 
+            pmt_msg) )
         return
 
 
     def handle_msg(self, msg_pmt):
         '''Timer message handler, regenerates event, passes to process_data.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
-        ev = pickle.loads(msg_ls[-1])
-        #ss = '  --- handle_msg, blkname {0}, blkid {1}, port {2}, port nr {3}'.\
-        #    format(msg_ls[0], msg_ls[1], msg_ls[2], msg_ls[3])
-        #ss = ss + '\n  ' + ev.__str__() + '\n'
-        #mutex_prt(ss)
-        #lock_obj.acquire()  # BLOCKS!  # mutually exclusive event handling
-        self.block.process_data(ev)   # handle event to process function
-        #lock_obj.release()            # release lock
+        blkname, blkid, port, port_nr, ev_str = msg_ls[1]
+        ev = pickle.loads(ev_str)
+        #print "EN PROCESS_DATA DE TIMERRR", ev
+        self.block.process_data(ev, port, port_nr)    # pass to process function
+        #ev = pickle.loads(msg_ls[-1])
+        #self.block.process_data(ev)    # handle event to process function
         return
 
 
@@ -550,10 +555,13 @@ class gwnblock(gr.basic_block):
 
     def handle_msg(self):
         pass 
-    def process_data(self, ev):
-        '''To be overwritten by descendent block.
+    def process_data(self, ev, port, port_nr):
+        ''' Receives Event and port number, processes, produces event(s).
         
-        Receives Event object, processes, produces event(s).
+        To be overwritten by descendent block.
+        @param ev: the event received, to process.
+        @param port: reference to the list of ports in the block, in one of which the event must have been receivedw
+        @param port_nr: the port number on which the event was received.
         '''
         pass #mutex_prt(ev)
         return
@@ -574,8 +582,7 @@ if __name__ == "__main__":
     print "Run test on msg_receiver_.py"
     print "   python msg_receiver_.py"
 
-"""
-
+'''
     ### test timers and messages
 
     tb = gr.top_block()
@@ -610,4 +617,4 @@ if __name__ == "__main__":
 
     tb.stop()
     tb.wait()
-"""
+'''

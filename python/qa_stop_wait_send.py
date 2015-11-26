@@ -98,7 +98,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         blk_snd = data_source('DataData', 'blk001', retry=5, interval=1.0)
         blk_snd.debug = True
         blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', \
-            timeout=0.5, retries=2)
+            timeout=0.5, max_retries=2)
         blk_arq_send.debug = False   # prints complete Event
         blk_arq_send.fsm.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
@@ -132,7 +132,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         ### block Data Source --> Stop and Wait Send
         blk_src = data_source('DataData', 'blk001', retry=6, interval=1.0)
         blk_src.debug = True
-        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', timeout=1.5, retries= 4)
+        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', timeout=1.5, max_retries= 4)
         blk_arq_send.debug = True
         #blk_arq_send.fsm.debug = True
         #blk_arq_send.timeouts[0].debug = True

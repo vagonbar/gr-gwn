@@ -70,7 +70,7 @@ class msg_sender_m(gwnblock):
         return time.time() - self.time_init
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Sends timer events produced by the internal timers.'''
         if self.debug:
             ss = '--- send {0}, ev nickname {1}, time {2:4.1f}'.\

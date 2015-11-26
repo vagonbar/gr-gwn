@@ -25,6 +25,33 @@
     <type>string</type>
   </param>
 
+  <param>
+    <name>Max retries</name>
+    <key>max_retries</key>
+    <value>3</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Timeout nickname</name>
+    <key>tout_nickname</key>
+    <value>'TimerACKTout'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Timeout</name>
+    <key>timeout</key>
+    <value>2.0</value>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Buffer length</name>
+    <key>buffer_len</key>
+    <value>1000</value>
+    <type>int</type>
+  </param>
 
   <!-- event sink node -->
 

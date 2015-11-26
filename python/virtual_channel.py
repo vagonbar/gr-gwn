@@ -62,7 +62,7 @@ class virtual_channel(gwnblock):
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Receives an Event, outputs with probability loss.
 
         @param ev: an Event object.

@@ -59,7 +59,7 @@ class ev_to_pdu(gwnblock):
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Receives an Event, converts to PDU, writes on output.
         '''
         if self.in_type is 'event':

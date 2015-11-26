@@ -118,7 +118,7 @@ def stop(fsm, ev, block):
         mutex_prt('    FSM, send retries or buffer exceeded')
         mutex_prt('      max buffer length: ' + str(block.buffer_len) + \
             ', buffer length: ' + str(len(block.ls_buffer)))
-        mutex_prt('      max retries: ' + str(block.retries) + \
+        mutex_prt('      max retries: ' + str(block.max_retries) + \
             ' retries: ' + str(fsm.nr_retries))
         fsm.print_state(show=['transition', 'action'])
     #raise ExceptionFSM('Send retries, exceeded')
@@ -155,33 +155,36 @@ def stop_wait_send_fsm(blk):
     #f.add_transition_any ('Idle', None, 'Idle')
     #f.add_transition_any ('WaitAck', None, 'WaitAck')
 
+    # 1
     f.add_transition('DataData', 'Idle', send, 'WaitAck', \
         None)
-
+    # 2
     f.add_transition('CtrlACK', 'WaitAck', ack_ok, 'Idle', \
         ['self.wait in event.ev_dc["ack"]',  # ack is ack waited for
-        'len(block.ls_buffer) == 0'] )          # no event in buffer
-
+        'len(block.ls_buffer) == 0'] )       # no event in buffer
+    # 3
     f.add_transition ('CtrlACK', 'WaitAck', sendfrombuffer, 'WaitAck', \
         ['self.wait in event.ev_dc["ack"]',  # ack is ack waited for
-        'len(block.ls_buffer) > 0'])            # event in buffer
-
+        'len(block.ls_buffer) > 0'])         # event in buffer
+    # 4
     f.add_transition ('CtrlACK', 'WaitAck', None, 'WaitAck', \
         ['self.wait not in event.ev_dc["ack"]'])  # ack is NOT ack waited for
- 
+    # 5 
     f.add_transition ('TimerACKTout', 'WaitAck', resend, 'WaitAck', \
-        ['self.nr_retries <= block.retries'])    # retries left
-
+        ['self.nr_retries <= block.max_retries'])    # retries left
+    # 6
     f.add_transition ('TimerACKTout', 'WaitAck', stop, 'Stop', \
-        ['self.nr_retries > block.retries'])     # retries exceeded
-
+        ['self.nr_retries > block.max_retries'])     # retries exceeded
+    # 7
     f.add_transition ('DataData', 'WaitAck', push, 'WaitAck', \
         ['len(block.ls_buffer) < block.buffer_len'])  # buffer ok
-
+    # 8
     f.add_transition ('DataData', 'WaitAck', stop, 'Stop', \
         ['len(block.ls_buffer) >= block.buffer_len'])  # buffer max exceed
 
+    # 9
     f.add_transition_any ('Stop', stop, 'Stop')
+    # 10
     f.add_transition_any ('Idle', None, 'Idle')
 
     #f.add_transition_list (['nak', 'ack0', 'tout'], \
@@ -205,16 +208,16 @@ class stop_wait_send(gwnblock):
     @param blkname: block name.
     @param blkid: block identifier.
     @param ack_nickname: the nickname of the acknowledge event waited for.
-    @param retries: number of times to resend event if ACK not received.
+    @param max_retries: number of times to resend event if ACK not received.
     @param tout_nickname: the nickname of the timer event waited for.
     @param timeout: the timeout in seconds.
     @param buffer_len: the buffer capacity, i.e. the maximum length of the list; default is 0, which means no limit.
     '''
 
     def __init__(self, blkname='stop_wait_send', blkid='id_stop_wait_send',
-            ack_nickname='CtrlACK', retries=3, \
+            ack_nickname='CtrlACK', max_retries=3, \
             tout_nickname='TimerACKTout', timeout=1.0, \
-            buffer_len=1000):
+            buffer_len=1000, debug=False):
 
         # invocation of ancestor constructor
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
@@ -223,18 +226,19 @@ class stop_wait_send(gwnblock):
         self.blkname = blkname
         self.blkid = blkid
         self.ack_nickname = ack_nickname
-        self.retries = retries
+        self.max_retries = max_retries
         self.tout_nickname = tout_nickname
         self.timeout = timeout
         self.buffer_len = buffer_len
         self.ls_buffer = []     # length must be checked in process
-        self.debug = False      # please set from outside for debug print
+        #self.debug = False      # please set from outside for debug print
+        self.debug = debug
 
         self.fsm = stop_wait_send_fsm(self)
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Writes event, waits for ACK, retransmits.
 
         The received event is passed on to the process function of the FSM; actions in the FSM are provided with the received event and a reference to the present block, so that they can access this block's attributes and functions, in particular the write_out function to send events.

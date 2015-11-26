@@ -75,7 +75,7 @@ class data_source(gwnblock):
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Sends data events produced by the internal timer.
 
         @param ev: an Event object.

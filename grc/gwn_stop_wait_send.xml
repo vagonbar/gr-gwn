@@ -1,38 +1,78 @@
 <?xml version="1.0"?>
 <block>
-  <name>stop_wait_send</name>
+  <name>Stop and Wait send</name>
   <key>gwn_stop_wait_send</key>
-  <category>gwn</category>
+  <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.stop_wait_send()</make>
-  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
-       Sub-nodes:
-       * name
-       * key (makes the value accessible as $keyname, e.g. in the make node)
-       * type -->
+  <make>gwn.stop_wait_send($blkname, $blkid, $ack_nickname, $max_retries, $tout_nickname, $timeout, $buffer_len)</make>
+
   <param>
-    <name>...</name>
-    <key>...</key>
-    <type>...</type>
+    <name>Block Name</name>
+    <key>blkname</key>
+    <type>string</type>
   </param>
 
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
+  <param>
+    <name>Block Id</name>
+    <key>blkid</key>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>ACK nickname</name>
+    <key>ack_nickname</key>
+    <value>'CtrlACK'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Max retries</name>
+    <key>max_retries</key>
+    <value>3</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Timeout nickname</name>
+    <key>tout_nickname</key>
+    <value>'TimerACKTout'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Timeout</name>
+    <key>timeout</key>
+    <value>2.0</value>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Buffer length</name>
+    <key>buffer_len</key>
+    <value>1000</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <!-- event sink node -->
+
   <sink>
-    <name>in</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
   </sink>
 
-  <!-- Make one 'source' node per output. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
+  <!-- event source nodes -->
   <source>
-    <name>out</name>
-    <type><!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
   </source>
+
 </block>

@@ -43,7 +43,7 @@ class stop_wait_ack(gwnblock):
     '''
 
     def __init__(self, blkname='stop_wait_ack', blkid='id_stop_wait_ack',
-            ack_nickname='CtrlACK'):
+            ack_nickname='CtrlACK', debug=False):
 
         # invocation of ancestor constructor
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
@@ -51,12 +51,12 @@ class stop_wait_ack(gwnblock):
 
         self.ack_nickname = ack_nickname
         self.ack = 'ack0'
-        self.debug = False  # please set from outside for debug print
+        self.debug = debug
 
         return
 
 
-    def process_data(self, ev):
+    def process_data(self, ev, port, port_nr):
         '''Writes event and ACK on output ports.
 
         @param ev: an Event object.

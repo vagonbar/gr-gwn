@@ -108,10 +108,11 @@ gnuradio.gr.gateway.gateway_block --+
         <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">stop_wait_send</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">id_stop_wait_send</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">ack_nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">CtrlACK</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">retries</span>=<span class="summary-sig-default">3</span>,
+        <span class="summary-sig-arg">max_retries</span>=<span class="summary-sig-default">3</span>,
         <span class="summary-sig-arg">tout_nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerACKTout</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">1.0</span>,
-        <span class="summary-sig-arg">buffer_len</span>=<span class="summary-sig-default">1000</span>)</span><br />
+        <span class="summary-sig-arg">buffer_len</span>=<span class="summary-sig-default">1000</span>,
+        <span class="summary-sig-arg">debug</span>=<span class="summary-sig-default">False</span>)</span><br />
       The GWN basic block constructor.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.stop_wait_send%27-pysrc.html#stop_wait_send.__init__">source&nbsp;code</a></span>
@@ -129,7 +130,9 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.stop_wait_send%27.stop_wait_send-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">ev</span>)</span><br />
+        <span class="summary-sig-arg">ev</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">port_nr</span>)</span><br />
       Writes event, waits for ACK, retransmits.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.stop_wait_send%27-pysrc.html#stop_wait_send.process_data">source&nbsp;code</a></span>
@@ -233,10 +236,11 @@ gnuradio.gr.gateway.gateway_block --+
         <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">stop_wait_send</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">id_stop_wait_send</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">ack_nickname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">CtrlACK</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">retries</span>=<span class="sig-default">3</span>,
+        <span class="sig-arg">max_retries</span>=<span class="sig-default">3</span>,
         <span class="sig-arg">tout_nickname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerACKTout</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">timeout</span>=<span class="sig-default">1.0</span>,
-        <span class="sig-arg">buffer_len</span>=<span class="sig-default">1000</span>)</span>
+        <span class="sig-arg">buffer_len</span>=<span class="sig-default">1000</span>,
+        <span class="sig-arg">debug</span>=<span class="sig-default">False</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -254,7 +258,7 @@ gnuradio.gr.gateway.gateway_block --+
         <li><strong class="pname"><code>blkname</code></strong> - block name.</li>
         <li><strong class="pname"><code>blkid</code></strong> - block identifier.</li>
         <li><strong class="pname"><code>ack_nickname</code></strong> - the nickname of the acknowledge event waited for.</li>
-        <li><strong class="pname"><code>retries</code></strong> - number of times to resend event if ACK not received.</li>
+        <li><strong class="pname"><code>max_retries</code></strong> - number of times to resend event if ACK not received.</li>
         <li><strong class="pname"><code>tout_nickname</code></strong> - the nickname of the timer event waited for.</li>
         <li><strong class="pname"><code>timeout</code></strong> - the timeout in seconds.</li>
         <li><strong class="pname"><code>buffer_len</code></strong> - the buffer capacity, i.e. the maximum length of the list; default
@@ -275,7 +279,9 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">process_data</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">ev</span>)</span>
+        <span class="sig-arg">ev</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">port_nr</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.stop_wait_send%27-pysrc.html#stop_wait_send.process_data">source&nbsp;code</a></span>&nbsp;
@@ -330,7 +336,7 @@ gnuradio.gr.gateway.gateway_block --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Nov 11 11:53:23 2015
+    Generated by Epydoc 3.0.1 on Thu Nov 26 12:53:23 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
