@@ -22,7 +22,9 @@
 #
 # 
 
-'''GWN block with message inputs, message outputs and timers; inherits from gr.basic_block.
+'''GWN block with message inputs, message outputs and timers.
+
+The GWN block is an extension of the GNU Radio gr.basic_block; it inherits from gr.basic_block.
 '''
 
 #import numpy
@@ -106,8 +108,8 @@ class GWNOutPort(GWNPort):
     def post_message(self, ev):
         '''Converts Event to string, makes PMT message, posts on block port.
         
-        Message is a list which contains the serialized (string) Event, block name, block id, and block port on which message is posted'''
-
+        Message is a list which contains the serialized (string) Event, block name, block id, and block port on which message is posted.
+        '''
         ev_str = pickle.dumps(ev)
         msg_ls = [self.block.blkname, self.block.blkid, self.port, 
             self.port_nr, ev_str]
@@ -117,7 +119,6 @@ class GWNOutPort(GWNPort):
         self.block.message_port_pub(pmt_port, pmt.cons(pmt.PMT_NIL, 
             pmt_msg))
 #        self.block.to_basic_block()._post(pmt_port, pmt_msg)
-
         return
 
 
@@ -127,6 +128,7 @@ class GWNTimeout(GWNPort):
 
     Objects of this class can be attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed. A timeout object can be interrupted before its action starts, i.e. before it sends its message.
     '''
+
     def __init__(self, block, port, port_nr, timeout=1.0, nickname='TimerTOR2'):
         '''Constructor.
 
@@ -151,7 +153,11 @@ class GWNTimeout(GWNPort):
 
 
     def start(self, timeout=None, nickname=None):
-        '''Starts timer until timeout.'''
+        '''Starts timer until timeout.
+
+        @param timeout: a timeout value in seconds.
+        @param nickname: the nickname of the event to produce.
+        '''
         if timeout:
             self.timeout = timeout
         if nickname:
@@ -163,6 +169,7 @@ class GWNTimeout(GWNPort):
                 ', nickname ' + self.nickname
             mutex_prt(msg_dbg)
         return
+
 
     def cancel(self):
         '''Stops timer if action has not started.'''
@@ -203,7 +210,10 @@ class GWNTimeout(GWNPort):
 
 
     def handle_msg(self, msg_pmt):
-        '''Timer message handler, regenerates event, passes to process_data.'''
+        '''Timer message handler, regenerates event, passes to process_data.
+
+        @param msg_pmt: the received PMT message.
+        '''
         msg_ls = pmt.to_python(msg_pmt)[1]
         blkname, blkid, port, port_nr, ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
@@ -226,6 +236,7 @@ class GWNTimer(GWNPort, threading.Thread):
     Objects of this class can attached to a gwnblock to act as internal timers. An object of this class sends messages to the block to which it is attached, at regular intervals. A timer object sends a message for an specified number of times, then a final second message to indicate the first series has exhausted.
     Messages are sent only if the corresponding nicknames are given; no message sent if nicknames are the null string or None.
     '''
+
     def __init__(self, block, port, port_nr, interrupt=True, interval=1.0, \
             retry=1, nickname1='TimerTOR1', nickname2='TimerTOR2', add_info=None):
         '''Constructor.
@@ -327,7 +338,10 @@ class GWNTimer(GWNPort, threading.Thread):
 
     
     def post_message(self, nickname):
-        '''Posts timer event and timer metadata on block port.'''
+        '''Posts timer event and timer metadata on block port.
+
+        @param nickname: the nickname of the event to produce.
+        '''
         #ss = 'in post message, port:', self.port, ', blkid:', self.block.blkid,
         #    ', time:', time.time()
         #mutex_prt(ss)
@@ -345,7 +359,9 @@ class GWNTimer(GWNPort, threading.Thread):
 
 
     def handle_msg(self, msg_pmt):
-        '''Timer message handler, regenerates event, passes to process_data.'''
+        '''Timer message handler, regenerates event, passes to process_data.
+
+        @param msg_pmt: the received PMT message.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
         blkname, blkid, port, port_nr, ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
@@ -451,8 +467,6 @@ class gwnblock(gr.basic_block):
     ### timeout functions
 
     def set_timeout_size(self, number_timeouts):
-
-
         '''Creates a list of timeout objects, assigns to block.
 
         Creates a list of timeout objects with default values.
@@ -555,6 +569,8 @@ class gwnblock(gr.basic_block):
 
     def handle_msg(self):
         pass 
+
+
     def process_data(self, ev, port, port_nr):
         ''' Receives Event and port number, processes, produces event(s).
         
@@ -573,8 +589,6 @@ class gwnblock(gr.basic_block):
             format(self.blkname, self.blkid, len(self.ports_in), 
                 len(self.ports_out), len(self.timers) )
         return ss
-
-
 
 
 

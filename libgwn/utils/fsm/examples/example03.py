@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-''' FSM example with states, transitions, actions, memory and conditions.
+''' FSM example with memory and conditions.
 '''
 
 import sys, os, traceback, optparse, time, string

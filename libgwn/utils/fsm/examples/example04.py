@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-''' FSM for Stop and Wait ARQ protocol with sequence numbers.
+''' FSM for Stop and Wait ARQ protocol.
+
+An FSM for the Stop and Wait ARQ protocol with sequence numbers.
 '''
 
 import sys, os, traceback, optparse, time, string

@@ -106,20 +106,18 @@ def make_header(payload_len, whitener_offset=0):
 def make_packet(payload, samples_per_symbol, bits_per_symbol,
                 preamble=default_preamble, access_code=default_access_code,
                 pad_for_usrp=True, whitener_offset=0, whitening=True):
-    """
-    Build a packet, given access code, payload, and whitener offset
+    '''Build a packet, given access code, payload, and whitener offset.
 
-    Args:
-        payload: packet payload, len [0, 4096]
-        samples_per_symbol: samples per symbol (needed for padding calculation) (int)
-        bits_per_symbol: (needed for padding calculation) (int)
-        preamble: string of ascii 0's and 1's
-        access_code: string of ascii 0's and 1's
-        whitener_offset: offset into whitener string to use [0-16)
-    
     Packet will have access code at the beginning, followed by length, payload
     and finally CRC-32.
-    """
+    @param payload: packet payload, len [0, 4096].
+    @param samples_per_symbol: samples per symbol (needed for padding calculation) (int).
+    @param bits_per_symbol: (needed for padding calculation) (int)
+    @param preamble: string of ascii 0's and 1's
+    @param access_code: string of ascii 0's and 1's
+    @param whitener_offset: offset into whitener string to use [0-16)
+    @param whithening: default True.
+    '''
     if not is_1_0_string(preamble):
         raise ValueError, "preamble must be a string containing only 0's and 1's (%r)" % (preamble,)
 

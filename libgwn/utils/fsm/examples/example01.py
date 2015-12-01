@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-''' FSM example with states, transitions, actions.
+''' FSM with states, transitions, actions.
 
-Tnis FSM has no memory, and no conditions.
+A simple example with no memory, and no conditions.
 '''
 
 import sys, os, traceback, optparse, time, string

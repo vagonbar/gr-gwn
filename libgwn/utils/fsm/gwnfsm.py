@@ -20,13 +20,13 @@
 #    along with GNUWiNetwork.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-'''A Finite State Machine (FSM).
+'''A Finite State Machine (FSM) engine.
 
-This module implements a Finite State Machine (FSM). In addition to the usual states and transitions, the GWN FSM includes actions, memory, and conditions. 
+This module implements a Finite State Machine (FSM) engine. In addition to the usual states and transitions, the GWN FSM includes actions, memory, and conditions. 
 
 An action is a user written function executed on a transition, before moving the machine to the next state.
 
-Memory may be any object capable of recording and retrieving information, in whatever acces mode the application may need (LIFO, FIFO, etc). The memory facility is not part of the FSM machine, but an independent object. Memory may be handled in the action functions.
+Memory may be any object capable of recording and retrieving information, in whatever access mode the application may need (LIFO, FIFO, etc). The memory facility is not part of the FSM machine, but an independent object. Memory may be handled in the action functions.
 
 A conditions is a user written function or expression which returns True or False when executed or evaluated. The action function and the transition are only executed if the condition evaluates to True. If the condition on a transition evaluates to False, the transition is not performed, and its related action is not executed.
 
@@ -36,7 +36,7 @@ The table of transitions defines the following associations::
 
         (input_symbol, current_state) --> (action, next_state, condition)
 
-where action is a function, symbols and states can be any objects, and condition is a function of an expression whith returns a boolean. This table is maintained through the FSM methods add_transition() and add_transition_list().
+where action is a function, symbols and states can be any objects, and condition is a function or an expression whith returns a boolean. This table is maintained through the FSM methods add_transition() and add_transition_list().
 
 A second table of transitions defines another kind of association::
 
@@ -113,6 +113,7 @@ class FSM:
         self.memory = memory
 
         self.debug = False
+        return
 
 
     def reset (self):
@@ -136,9 +137,9 @@ class FSM:
         Transitions for a list of symbols may be added with the function add_transition_list().
         @param input_symbol: the received symbol.
         @param state: the current state.
-        @param action: a function to execute on transition. This action may be set to None in which case the process() method will ignore the action and only set the next_state.
+        @param action: a function to execute on transition. This action may be set to None in which case the process() method will ignore the action and only set the next_state. This parameter may be given as a list of functions.
         @param next_state: the state to which the machine will be moved and made the current state. If next_state is None, the current state will remain unchanged.
-        @param condition: a function or expression which returns True or False; if True, transition is performed, otherwise the transition is ignored, i.e. the FSM remains in its state and action is not executed. If this parameter is None, no conditions are checked, and transition is performed.
+        @param condition: a function or expression which returns True or False; if True, transition is performed, otherwise the transition is ignored, i.e. the FSM remains in its state and action is not executed. If this parameter is None, no conditions are checked, and transition is performed. This parameter may be given as a list of expressions or functions.
         '''
         if next_state is None:          # a loop transition, remains in state
             next_state = state
@@ -150,6 +151,7 @@ class FSM:
         else:
             self.state_transitions[(input_symbol, state)] = \
                 [ (action, next_state, condition) ]
+        return
 
 
     def add_transition_list (self, list_input_symbols, state, \
@@ -161,14 +163,15 @@ class FSM:
         set to None in which case the current state will be unchanged. 
         @param list_input_symbols: a list of symbols.
         @param state: the current state.
-        @param action: a function to execute on transition. This action may be set to None in which case the process() method will ignore the action and only set the next_state.
+        @param action: a function to execute on transition. This action may be set to None in which case the process() method will ignore the action and only set the next_state. This parameter may be given as a list of functions.
         @param next_state: the state to which the machine will be moved and made the current state. If next_state is None, the current state will remain unchanged.
-        @param condition: a function or expression which returns True or False; if True, transition is performed, otherwise the transition is ignored, i.e. the FSM remains in its state and action is not executed. If this parameter is None, no conditions are checked, and transition is performed.
+        @param condition: a function or expression which returns True or False; if True, transition is performed, otherwise the transition is ignored, i.e. the FSM remains in its state and action is not executed. If this parameter is None, no conditions are checked, and transition is performed. This parameter may be given as a list of expressions or functions.
         '''
         if next_state is None:          # a loop transition, remains in state
             next_state = state
         for input_symbol in list_input_symbols:
             self.add_transition (input_symbol, state, action, next_state, condition)
+        return
 
 
     def add_transition_any (self, state, action=None, next_state=None, condition=None):
@@ -182,7 +185,7 @@ class FSM:
         @param state: the current state.
         @param action: a function to execute on transition. This action may be set to None in which case the process() method will ignore the action and only set the next_state.
         @param next_state: the state to which the machine will be moved and made the current state. If next_state is None, the current state will remain unchanged.
-        @param condition: a function or expression which returns True or False; if True, transition is performed, otherwise the transition is ignored, i.e. the FSM remains in its state and action is not executed. If this parameter is None, no conditions are checked, and transition is performed.
+        @param condition: a function or expression which returns True or False; if True, transition is performed, otherwise the transition is ignored, i.e. the FSM remains in its state and action is not executed. If this parameter is None, no conditions are checked, and transition is performed. This parameter may be given as a list of expressions or functions.
         '''
 
         if next_state is None:
@@ -195,6 +198,7 @@ class FSM:
         else:
             self.state_transitions_any[state] = \
                 [ (action, next_state, condition) ]
+        return
 
 
     def set_default_transition (self, action, next_state):
@@ -287,20 +291,7 @@ class FSM:
                 self.action = action
                 self.next_state = next_state
 
-                # execute action
-                """if self.action is not None:
-                    if event and block:
-                        ret_val = self.action(self, event, block)
-                    elif event:
-                        ret_val = self.action(self, event)
-                    elif block:
-                        ret_val = self.action(self, block)
-                    else:
-                        ret_val = self.action(self)
-                else:
-                    ret_val = None
-                """
-                # account for a list of actions
+                # execute action, account for a list of actions
                 ret_val = []
                 if not self.action:
                     self.action = []
@@ -337,6 +328,7 @@ class FSM:
         '''
         for s in input_symbols:
             self.process (s)
+        return
 
 
     def print_state(self, show=[]):
