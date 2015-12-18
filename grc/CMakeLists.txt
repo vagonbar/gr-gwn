@@ -33,5 +33,7 @@ install(FILES
     gwn_virtual_channel.xml
     gwn_data_source.xml
     gwn_stop_wait_ack.xml
-    gwn_stop_wait_send.xml DESTINATION share/gnuradio/grc/blocks
+    gwn_stop_wait_send.xml
+    gwn_ev_psk_encode.xml
+    gwn_ev_psk_decode.xml DESTINATION share/gnuradio/grc/blocks
 )

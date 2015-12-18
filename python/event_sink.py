@@ -60,7 +60,7 @@ class event_sink(gwnblock):
         dbg_msg = '--- {0}, received ev: {1}'.\
             format(self.blkname, ev.nickname)
         if ev.ev_dc and self.debug:   # print dictionary content
-            dbg_msg += '\n  ev_dc: ' + str(ev.ev_dc)) + '\n'
+            dbg_msg += '\n  ev_dc: ' + str(ev.ev_dc) + '\n'
         if ev.payload:
             dbg_msg += '\n    payload: {0}'.format(ev.payload)
         mutex_prt(dbg_msg)

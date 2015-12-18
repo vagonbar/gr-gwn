@@ -73,6 +73,8 @@ from virtual_channel import virtual_channel
 from data_source import data_source
 from stop_wait_ack import stop_wait_ack
 from stop_wait_send import stop_wait_send
+from ev_psk_encode import ev_psk_encode
+from ev_psk_decode import ev_psk_decode
 
 
 

@@ -48,7 +48,9 @@ GR_PYTHON_INSTALL(
     virtual_channel.py
     data_source.py
     stop_wait_ack.py
-    stop_wait_send.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    stop_wait_send.py
+    ev_psk_encode.py
+    ev_psk_decode.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -75,3 +77,5 @@ GR_ADD_TEST(qa_virtual_channel ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/
 GR_ADD_TEST(qa_data_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_source.py)
 GR_ADD_TEST(qa_stop_wait_ack ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_ack.py)
 GR_ADD_TEST(qa_stop_wait_send ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_send.py)
+GR_ADD_TEST(qa_ev_psk_encode ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_psk_encode.py)
+GR_ADD_TEST(qa_ev_psk_decode ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_psk_decode.py)

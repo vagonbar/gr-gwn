@@ -19,18 +19,21 @@
 # along with this software; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-#
+# 
 # 
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from ev_to_pdu import ev_to_pdu
+from ev_psk_decode import ev_psk_decode
+
 from timer_source import timer_source
-import time
+from ev_to_pdu import ev_to_pdu
 from gwnblock import mutex_prt
+import time
 
 
-class qa_ev_to_pdu (gr_unittest.TestCase):
+
+class qa_ev_psk_decode (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -41,18 +44,27 @@ class qa_ev_to_pdu (gr_unittest.TestCase):
 
     def test_with_timer_source (self):
         '''Timer Source to Event To PDU to Message Debug.
+        
+        NOT TESTED, only copied from qa_if_psk_rx.
         '''
         
         ### blocks Timer Source --> Event To PDU --> Message Debug
         blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
-        blk_snd.debug = True  # to enable timer source print
+        blk_snd.debug = False  # to enable timer source print
         blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
-        blk_dbg = blocks.message_debug()
+        #blk_dbg = blocks.message_debug()
+        blk_rx = ev_psk_decode('If PSK Receive', 'blk003')
+        blk_rx.debug = True  # to enable print
+
 
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
             blk_ev2pdu, blk_ev2pdu.ports_in[0].port )
+        #self.tb.msg_connect(blk_ev2pdu, 'pdu', 
+        #                    blk_dbg, 'print')
         self.tb.msg_connect(blk_ev2pdu, 'pdu', 
-                            blk_dbg, 'print')
+                            blk_rx, 'pdu')
+        #                    blk_rx, blk_rx.ports_in[0].port)
+
         #self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
         #                    blk_dbg, 'print')
 
@@ -74,6 +86,5 @@ class qa_ev_to_pdu (gr_unittest.TestCase):
         
         return
 
-
 if __name__ == '__main__':
-    gr_unittest.run(qa_ev_to_pdu, "qa_ev_to_pdu.xml")
+    gr_unittest.run(qa_ev_psk_decode, "qa_ev_psk_decode.xml")
