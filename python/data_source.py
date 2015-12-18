@@ -49,7 +49,7 @@ class data_source(gwnblock):
     '''
     def __init__(self,  blkname='data_source', blkid='data_source_id', 
             interrupt=False, interval=1.0, retry=5,
-            nickname='DataData', ev_dc={}, payload=''):
+            nickname='DataData', payload='', ev_dc={}):
 
         # invocation of ancestor constructor
         gwnblock.__init__(self, blkname, blkid,

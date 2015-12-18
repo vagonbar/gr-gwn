@@ -2,7 +2,8 @@
 # mkdoc.sh: makes epydoc
 
 
-EXCLUDES="CMakeLists.*|__init__.*|build_utils_codes.*|qa_*" #build_utils.*"
+EXCLUDES="CMakeLists.*|__init__.*|qa_*|build_utils_codes.py|gwnblock_qa.py" #_codes.py"
+#EXCLUDES=""
 if [ ! "$1" ]
 then
   PRJNM=GR-GWN
@@ -24,6 +25,6 @@ HTMLDIR=$CURDIR       # directory where HTML docs are to be placed
 #echo $CURDIR
 #echo epydoc -v --name $PRJNM -o ${CURDIR}/html --exclude "$EXCLUDES" .
 cd ../python
-epydoc -v --name $PRJNM -o ${HTMLDIR}/html --exclude "$EXCLUDES" . #$CODEDIR
+epydoc -v --name $PRJNM -o ${HTMLDIR}/html --exclude $EXCLUDES . #$CODEDIR
 cd $CURDIR
 

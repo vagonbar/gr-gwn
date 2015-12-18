@@ -64,6 +64,9 @@ The GWN Finite State Machine implementation is an extension of Noah Spurrier's F
 '''
 
 # TODO ensure access to gwnblock!
+import sys
+#sys.path = sys.path + ['../../../python']
+sys.path = sys.path + ['/home/victor/IIE/GNURadio/gr-gwn/python']
 from gwnblock import mutex_prt
 
 
