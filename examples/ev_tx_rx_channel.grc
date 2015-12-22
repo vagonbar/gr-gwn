@@ -3,69 +3,6 @@
 <flow_graph>
   <timestamp>Fri Jul 17 10:41:05 2015</timestamp>
   <block>
-    <key>options</key>
-    <param>
-      <key>id</key>
-      <value>top_block</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value>Channel with Events</value>
-    </param>
-    <param>
-      <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value>Events from source to sink</value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1280, 1024</value>
-    </param>
-    <param>
-      <key>generate_options</key>
-      <value>qt_gui</value>
-    </param>
-    <param>
-      <key>category</key>
-      <value>Custom</value>
-    </param>
-    <param>
-      <key>run_options</key>
-      <value>prompt</value>
-    </param>
-    <param>
-      <key>run</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>max_nouts</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>realtime_scheduling</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(824, 11)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>id</key>
@@ -481,45 +418,6 @@
     </param>
   </block>
   <block>
-    <key>gwn_event_sink</key>
-    <param>
-      <key>id</key>
-      <value>gwn_event_sink_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value>Event Sink</value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value>evsink1</value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(936, 371)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_tagged_stream_to_pdu</key>
     <param>
       <key>id</key>
@@ -556,53 +454,6 @@
     <param>
       <key>_coordinate</key>
       <value>(352, 387)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_ev_psk_decode</key>
-    <param>
-      <key>id</key>
-      <value>gwn_ev_psk_decode_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(600, 371)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -661,6 +512,92 @@
     </param>
   </block>
   <block>
+    <key>gwn_ev_psk_decode</key>
+    <param>
+      <key>id</key>
+      <value>gwn_ev_psk_decode_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value></value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value></value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(600, 371)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_event_sink</key>
+    <param>
+      <key>id</key>
+      <value>gwn_event_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value>Event Sink</value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value>evsink1</value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(936, 371)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>gwn_data_source</key>
     <param>
       <key>id</key>
@@ -688,7 +625,7 @@
     </param>
     <param>
       <key>retry</key>
-      <value>3</value>
+      <value>5</value>
     </param>
     <param>
       <key>nickname</key>
@@ -696,7 +633,7 @@
     </param>
     <param>
       <key>payload</key>
-      <value>'a'*40</value>
+      <value>'a'*80</value>
     </param>
     <param>
       <key>alias</key>
@@ -717,6 +654,69 @@
     <param>
       <key>_coordinate</key>
       <value>(-8, 11)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>options</key>
+    <param>
+      <key>id</key>
+      <value>top_block</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>title</key>
+      <value>Channel with Events</value>
+    </param>
+    <param>
+      <key>author</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value>Events from source to sink</value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value>1280, 1024</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>no_gui</value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>Custom</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(824, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -760,12 +760,6 @@
     <sink_key>in0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gwn_ev_psk_decode_0</source_block_id>
-    <sink_block_id>gwn_event_sink_0</sink_block_id>
-    <source_key>out0</source_key>
-    <sink_key>in0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>gwn_ev_psk_encode_0</source_block_id>
     <sink_block_id>blocks_pdu_to_tagged_stream_0</sink_block_id>
     <source_key>pdu</source_key>
@@ -776,5 +770,11 @@
     <sink_block_id>gwn_ev_psk_decode_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>pdu</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_ev_psk_decode_0</source_block_id>
+    <sink_block_id>gwn_event_sink_0</sink_block_id>
+    <source_key>out0</source_key>
+    <sink_key>in0</sink_key>
   </connection>
 </flow_graph>
