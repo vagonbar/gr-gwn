@@ -80,14 +80,13 @@ class data_source(gwnblock):
 
         @param ev: an Event object.
         '''
-        #ev.payload = 'Data Event ' + str(self.counter)  # event payload
         if self.debug:
             ss = '--- {0}, send ev: {1}, counter: {2}'.\
                 format(self.blkname, ev.nickname, str(self.counter))
             mutex_prt(ss)
-            #ev.payload = 'Data Event ' + str(self.counter)  # load payoad
         ev.ev_dc = self.ev_dc
         ev.ev_dc['seq_nr'] = self.counter
+        ev.payload = self.payload
         self.counter += 1
         self.write_out(ev, port_nr=0)
 

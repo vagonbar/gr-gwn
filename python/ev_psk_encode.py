@@ -76,7 +76,7 @@ class ev_psk_encode(gwnblock):
         elif self.in_type is 'message':
             send_str = ev
 
-        send_str = 20*'a' + 20*'b' + 20*'c' + 20*'d' + 20*'e' + 20*'f'
+        #send_str = 20*'a' + 20*'b' + 20*'c' + 20*'d' + 20*'e' + 20*'f'
 
 
         if self.debug:
@@ -101,7 +101,7 @@ class ev_psk_encode(gwnblock):
         # create an empty PMT (contains only spaces):
         send_pmt = pmt.make_u8vector(len(send_pkt), ord(' '))
         # Copy all characters to the u8vector:
-        for i in range(len(send_str)):
+        for i in range(len(send_pkt)):
             pmt.u8vector_set(send_pmt, i, ord(send_pkt[i]))
 
         # Send the message:

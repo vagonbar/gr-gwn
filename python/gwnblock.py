@@ -90,6 +90,7 @@ class GWNInPort(GWNPort):
         msg_ls = pmt.to_python(msg_pmt)[1]
         blkname, blkid, port, port_nr, ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
+        #print "InPort handle_msg", ev
         #ss = '  --- handle_msg, blkname {0}, blkid {1}, port {2}, port nr {3}'.\
         #    format(msg_ls[0], msg_ls[1], msg_ls[2], msg_ls[3])
         #ss = ss + '\n  ' + ev.__str__() + '\n'
@@ -110,6 +111,7 @@ class GWNOutPort(GWNPort):
         
         Message is a list which contains the serialized (string) Event, block name, block id, and block port on which message is posted.
         '''
+        #print "OutPort post_message", ev
         ev_str = pickle.dumps(ev)
         msg_ls = [self.block.blkname, self.block.blkid, self.port, 
             self.port_nr, ev_str]

@@ -41,7 +41,6 @@ class ev_psk_decode(gwnblock):
     Receives a PDU, decodes from PSK, rebuilds event and writes on output port.
     @param blkname: block name.
     @param blkid: block identifier.
-    @param out_type: type of output, may be "event" or "message"
     @param debug: if True, shows details of process; default False.
     '''
     def __init__(self, blkname='ev_psk_encode', blkid='id_ev_pdk_encode', \
@@ -49,9 +48,9 @@ class ev_psk_decode(gwnblock):
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
             number_in=0, number_out=1, number_timers=0)
 
+        #@param out_type: type of output, may be "event" or "message"
         self.out_type = 'event' #out_type
         self.debug = debug
-        self.debug = True
 
         # register input port for PDUS and set function handler
         self.message_port_register_in(pmt.intern('pdu'))
@@ -83,10 +82,9 @@ class ev_psk_decode(gwnblock):
             mutex_prt(msg_dbg)
 
         if ok:
-            if self.out_type is 'event':
+            if self.out_type == 'event':
                 try:
                     ev = pickle.loads(rec_str)
-                    ev = rec_str
                 except:
                     print '    Error on unpickle to event'
                     return

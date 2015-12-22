@@ -70,7 +70,8 @@ if __name__ == "__main__":
 
     tb = gr.top_block()
     blk_snd = msg_sender_m('SendTimerEvs', 'blk001')
-    blk_ifz = gwn_if_psk_tx()
+    #blk_ifz = gwn_if_psk_tx()
+    blk_ifz = if_psk_tx()
     #blk_rec = msg_receiver_m('Receiver', 'blk002')
     blk_msg_dbg = message_debug()
 
