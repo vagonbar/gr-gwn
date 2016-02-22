@@ -3,18 +3,54 @@
 <flow_graph>
   <timestamp>Fri Jul 17 10:41:05 2015</timestamp>
   <block>
-    <key>variable</key>
+    <key>options</key>
     <param>
       <key>id</key>
-      <value>samp_rate</value>
+      <value>top_block</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>value</key>
-      <value>100000</value>
+      <key>title</key>
+      <value>Channel with Events</value>
+    </param>
+    <param>
+      <key>author</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value>Events from source to sink</value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value>1280, 1024</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>no_gui</value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>Custom</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
     </param>
     <param>
       <key>alias</key>
@@ -22,7 +58,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 163)</value>
+      <value>(824, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -50,6 +86,33 @@
     <param>
       <key>_coordinate</key>
       <value>(528, 11)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>100000</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(432, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -154,219 +217,6 @@
     </param>
   </block>
   <block>
-    <key>channels_channel_model</key>
-    <param>
-      <key>id</key>
-      <value>channels_channel_model_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>noise_voltage</key>
-      <value>0.0</value>
-    </param>
-    <param>
-      <key>freq_offset</key>
-      <value>0.0</value>
-    </param>
-    <param>
-      <key>epsilon</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>block_tags</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 203)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_hier_tx_psk</key>
-    <param>
-      <key>id</key>
-      <value>gwn_hier_tx_psk_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>constellation</key>
-      <value>[-1-1j, 1-1j, 1+1j, -1+1j]</value>
-    </param>
-    <param>
-      <key>samp_per_sym</key>
-      <value> 5 </value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>0.35</value>
-    </param>
-    <param>
-      <key>bits_per_sym</key>
-      <value> 2 </value>
-    </param>
-    <param>
-      <key>len_sym_srrc</key>
-      <value> 7 </value>
-    </param>
-    <param>
-      <key>out_const_mul</key>
-      <value> 0.4 </value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(160, 195)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_hier_rx_psk</key>
-    <param>
-      <key>id</key>
-      <value>gwn_hier_rx_psk_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>bw_clock_sync</key>
-      <value> 2*3.14/100 </value>
-    </param>
-    <param>
-      <key>bw_fll</key>
-      <value> 3.14/1600 </value>
-    </param>
-    <param>
-      <key>bw_costas</key>
-      <value> 2*3.14/100 </value>
-    </param>
-    <param>
-      <key>len_sym_srrc</key>
-      <value> 7 </value>
-    </param>
-    <param>
-      <key>n_filts</key>
-      <value> 32 </value>
-    </param>
-    <param>
-      <key>constellation</key>
-      <value>digital.constellation_calcdist([-1-1j, 1-1j, 1+1j, -1+1j], [], 4, 1).base()</value>
-    </param>
-    <param>
-      <key>samp_per_sym</key>
-      <value> 5 </value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>0.35</value>
-    </param>
-    <param>
-      <key>bits_per_sym</key>
-      <value> 2 </value>
-    </param>
-    <param>
-      <key>agc_attack_rate</key>
-      <value>0.1</value>
-    </param>
-    <param>
-      <key>agc_decay_rate</key>
-      <value>0.1</value>
-    </param>
-    <param>
-      <key>agc_reference</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>agc_gain</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>alpha_probe</key>
-      <value>0.1</value>
-    </param>
-    <param>
-      <key>th_probe</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(752, 123)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>digital_correlate_access_code_xx_ts</key>
     <param>
       <key>id</key>
@@ -461,57 +311,6 @@
     </param>
   </block>
   <block>
-    <key>gwn_ev_psk_encode</key>
-    <param>
-      <key>id</key>
-      <value>gwn_ev_psk_encode_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
-      <key>in_type</key>
-      <value>'event'</value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(304, 67)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>gwn_ev_psk_decode</key>
     <param>
       <key>id</key>
@@ -598,6 +397,337 @@
     </param>
   </block>
   <block>
+    <key>gwn_ev_psk_encode</key>
+    <param>
+      <key>id</key>
+      <value>gwn_ev_psk_encode_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value></value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value></value>
+    </param>
+    <param>
+      <key>in_type</key>
+      <value>'event'</value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(304, 67)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_hier_rx_psk</key>
+    <param>
+      <key>id</key>
+      <value>gwn_hier_rx_psk_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>bw_clock_sync</key>
+      <value> 2*3.14/100 </value>
+    </param>
+    <param>
+      <key>bw_fll</key>
+      <value> 3.14/1600 </value>
+    </param>
+    <param>
+      <key>bw_costas</key>
+      <value> 2*3.14/100 </value>
+    </param>
+    <param>
+      <key>len_sym_srrc</key>
+      <value> 7 </value>
+    </param>
+    <param>
+      <key>n_filts</key>
+      <value> 32 </value>
+    </param>
+    <param>
+      <key>constellation</key>
+      <value>digital.constellation_calcdist([-1-1j, 1-1j, 1+1j, -1+1j], [], 4, 1).base()</value>
+    </param>
+    <param>
+      <key>samp_per_sym</key>
+      <value> 5 </value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>0.35</value>
+    </param>
+    <param>
+      <key>bits_per_sym</key>
+      <value> 2 </value>
+    </param>
+    <param>
+      <key>agc_attack_rate</key>
+      <value>0.1</value>
+    </param>
+    <param>
+      <key>agc_decay_rate</key>
+      <value>0.1</value>
+    </param>
+    <param>
+      <key>agc_reference</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>agc_gain</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>alpha_probe</key>
+      <value>0.1</value>
+    </param>
+    <param>
+      <key>th_probe</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(760, 123)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>channels_channel_model</key>
+    <param>
+      <key>id</key>
+      <value>channels_channel_model_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>noise_voltage</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>freq_offset</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>epsilon</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>block_tags</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(568, 203)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_hier_tx_psk</key>
+    <param>
+      <key>id</key>
+      <value>gwn_hier_tx_psk_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>constellation</key>
+      <value>[-1-1j, 1-1j, 1+1j, -1+1j]</value>
+    </param>
+    <param>
+      <key>samp_per_sym</key>
+      <value> 5 </value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>0.35</value>
+    </param>
+    <param>
+      <key>bits_per_sym</key>
+      <value> 2 </value>
+    </param>
+    <param>
+      <key>len_sym_srrc</key>
+      <value> 7 </value>
+    </param>
+    <param>
+      <key>out_const_mul</key>
+      <value> 0.4 </value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(280, 195)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_timer_source</key>
+    <param>
+      <key>id</key>
+      <value>gwn_timer_source_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>blkname</key>
+      <value></value>
+    </param>
+    <param>
+      <key>blkid</key>
+      <value></value>
+    </param>
+    <param>
+      <key>interrupt</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>interval</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>retry</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>nickname1</key>
+      <value>TimerTOR1</value>
+    </param>
+    <param>
+      <key>nickname2</key>
+      <value>TimerTOR2</value>
+    </param>
+    <param>
+      <key>payload</key>
+      <value></value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(0, 163)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>gwn_data_source</key>
     <param>
       <key>id</key>
@@ -625,7 +755,7 @@
     </param>
     <param>
       <key>retry</key>
-      <value>5</value>
+      <value>3</value>
     </param>
     <param>
       <key>nickname</key>
@@ -633,7 +763,7 @@
     </param>
     <param>
       <key>payload</key>
-      <value>'a'*80</value>
+      <value>'a'*40</value>
     </param>
     <param>
       <key>alias</key>
@@ -654,69 +784,6 @@
     <param>
       <key>_coordinate</key>
       <value>(-8, 11)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>options</key>
-    <param>
-      <key>id</key>
-      <value>top_block</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value>Channel with Events</value>
-    </param>
-    <param>
-      <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value>Events from source to sink</value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1280, 1024</value>
-    </param>
-    <param>
-      <key>generate_options</key>
-      <value>no_gui</value>
-    </param>
-    <param>
-      <key>category</key>
-      <value>Custom</value>
-    </param>
-    <param>
-      <key>run_options</key>
-      <value>prompt</value>
-    </param>
-    <param>
-      <key>run</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>max_nouts</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>realtime_scheduling</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(824, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -774,6 +841,12 @@
   <connection>
     <source_block_id>gwn_ev_psk_decode_0</source_block_id>
     <sink_block_id>gwn_event_sink_0</sink_block_id>
+    <source_key>out0</source_key>
+    <sink_key>in0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_timer_source_0</source_block_id>
+    <sink_block_id>gwn_ev_psk_encode_0</sink_block_id>
     <source_key>out0</source_key>
     <sink_key>in0</sink_key>
   </connection>

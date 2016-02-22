@@ -85,6 +85,7 @@ class timer_source(gwnblock):
         if self.debug:
             dbg_msg = '--- send {0}, ev nickname: {1}, port nr: {2}, time {3:4.1f}'.\
                 format(self.blkname, ev.nickname, port_nr, self.elapsed_time() )
+            dbg_msg += '\n    payload: ' + ev.payload
             mutex_prt(dbg_msg)
             ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
         ev.ev_dc['seq_nr'] = self.counter

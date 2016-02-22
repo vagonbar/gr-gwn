@@ -4,7 +4,7 @@
   <key>gwn_timer_source</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.timer_source($blkname, $blkid, $interrupt, $interval, $retry, $nickname1, $nickname2)</make>
+  <make>gwn.timer_source($blkname, $blkid, $interrupt, $interval, $retry, $payload, $nickname1, $nickname2)</make>
 
  <param>
     <name>blkname</name>
@@ -44,6 +44,11 @@
     <name>nickname2</name>
     <key>nickname2</key>
     <value>TimerTOR2</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>payload</name>
+    <key>payload</key>
     <type>string</type>
   </param>
 

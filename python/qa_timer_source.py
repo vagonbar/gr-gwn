@@ -43,7 +43,8 @@ class qa_timer_source (gr_unittest.TestCase):
         '''Timer Source to Message Debug.
         '''
         ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=2)
+        blk_snd = timer_source('TimerSource', 'blk001', retry=2, \
+            payload='timer source payload test with message debug')
         blk_dbg = blocks.message_debug()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_dbg, 'print')
@@ -68,7 +69,8 @@ class qa_timer_source (gr_unittest.TestCase):
         '''Timer Source to Event Sink with interruption.
         '''
         ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=10, interval=1.0)
+        blk_snd = timer_source('TimerSource', 'blk001', retry=10, \
+            interval=1.0, payload='timer source payload with Event Sink')
         blk_snd.timers[0].debug = True     # print debug on timer
         blk_snk = event_sink()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 

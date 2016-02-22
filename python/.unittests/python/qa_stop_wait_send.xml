@@ -1,5 +1,5 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="19.013">
-  <testcase classname="__main__.qa_stop_wait_send" name="test_with_loss" time="19.0130"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="19.052">
+  <testcase classname="__main__.qa_stop_wait_send" name="test_with_loss" time="19.0516"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
