@@ -22,6 +22,9 @@
 # 
 # 
 
+'''Decodes PDU into an event or message.
+'''
+
 import numpy
 from gnuradio import gr
 
@@ -37,7 +40,7 @@ import gwnutils                         # for PSK packing
 
 class ev_psk_decode(gwnblock):
     '''Demodulates PDU from PSK into an event or message.
-
+    
     Receives a PDU, decodes from PSK, rebuilds event and writes on output port.
     @param blkname: block name.
     @param blkid: block identifier.

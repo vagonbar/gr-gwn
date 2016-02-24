@@ -22,6 +22,9 @@
 # 
 # 
 
+'''Encodes an event into a PDU for modulation.
+'''
+
 import numpy
 from gnuradio import gr
 

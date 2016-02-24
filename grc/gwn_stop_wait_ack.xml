@@ -2,7 +2,7 @@
 <block>
   <name>Stop and Wait ACK</name>
   <key>gwn_stop_wait_ack</key>
-  <category>GWN</category>
+  <category>GWN/ARQ</category>
   <import>import gwn</import>
   <make>gwn.stop_wait_ack($blkname, $blkid, $ack_nickname)</make>
 
