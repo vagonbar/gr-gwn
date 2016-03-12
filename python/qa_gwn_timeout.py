@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # 
@@ -30,7 +29,7 @@ print "=== Test of GWNTimeout\n"
 print "--- Test 1, normal timeout"
 import gwnblock
 import time
-blk = gwnblock.gwnblock('block', 'id', number_timeouts=1)
+blk = gwnblock.gwnblock(number_timeouts=1)
 blk.timeouts[0].debug = True
 print "    Timer thread object exists?", ; print blk.timeouts[0].timer
 blk.timeouts[0].start(2)
@@ -46,6 +45,6 @@ print "    Timer thread object exists?", ; print blk.timeouts[0].timer
 print "Try cancel on a cancelled timer thread:"
 blk.timeouts[0].cancel()
 
-print; print "--- Test 3, restart with other nickname"
-blk.timeouts[0].start(3, nickname='TimerTOH')
+print; print "--- Test 3, restart with additional info in ev_dc:"
+blk.timeouts[0].start(3, ev_dc={'name':'My Timeout!'})
 

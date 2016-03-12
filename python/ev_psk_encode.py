@@ -22,7 +22,7 @@
 # 
 # 
 
-'''Encodes an event into a PDU for modulation.
+'''Encodes an event or message into a PDU for modulation.
 '''
 
 import numpy
@@ -39,7 +39,7 @@ import gwnutils                         # for PSK packing
 
 
 class ev_psk_encode(gwnblock):
-    '''Converts event to PDU encoded for PSK modulation.
+    '''Encodes an event or message into a PDU for modulation.
 
     Receives an Event object on input port, serializes, adds fields for PSK modulation, produces a PDU (Protocol Data Unit) on its output port.
     @param blkname: block name.

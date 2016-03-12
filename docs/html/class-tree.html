@@ -60,6 +60,40 @@
 </b></center><br />
 <h1 class="epydoc">Class Hierarchy</h1>
 <ul class="nomargin-top">
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.GWNPort-class.html">python.gwnblock_bak.GWNPort</a></strong>:
+      <em class="summary">A class for GNU Radio message ports.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.GWNInPort-class.html">python.gwnblock_bak.GWNInPort</a></strong>:
+      <em class="summary">Input GWN Port.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.GWNOutPort-class.html">python.gwnblock_bak.GWNOutPort</a></strong>:
+      <em class="summary">Output GWN Port.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.GWNTimeout-class.html">python.gwnblock_bak.GWNTimeout</a></strong>:
+      <em class="summary">A time class to implement timeouts inside GWN blocks.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.GWNTimer-class.html">python.gwnblock_bak.GWNTimer</a></strong>:
+      <em class="summary">A timer class to add inside timers to GWN blocks.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.GWNPort-class.html">python.gwnblock_ant.GWNPort</a></strong>:
+      <em class="summary">A class for GNU Radio message ports.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.GWNInPort-class.html">python.gwnblock_ant.GWNInPort</a></strong>:
+      <em class="summary">Input GWN Port.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.GWNOutPort-class.html">python.gwnblock_ant.GWNOutPort</a></strong>:
+      <em class="summary">Output GWN Port.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.GWNTimeout-class.html">python.gwnblock_ant.GWNTimeout</a></strong>:
+      <em class="summary">A time class to implement timeouts inside GWN blocks.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.GWNTimer-class.html">python.gwnblock_ant.GWNTimer</a></strong>:
+      <em class="summary">A timer class to add inside timers to GWN blocks.</em>
+    </li>
+    </ul>
+    </li>
     <li> <strong class="uidlink"><a href="python.gwnblock%27.GWNPort-class.html">python.gwnblock'.GWNPort</a></strong>:
       <em class="summary">A class for GNU Radio message ports.</em>
     <ul>
@@ -70,7 +104,7 @@
       <em class="summary">Output GWN Port.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.gwnblock%27.GWNTimeout-class.html">python.gwnblock'.GWNTimeout</a></strong>:
-      <em class="summary">A time class to implement timeouts inside GWN blocks.</em>
+      <em class="summary">A timer class to implement timeouts inside GWN blocks.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.gwnblock%27.GWNTimer-class.html">python.gwnblock'.GWNTimer</a></strong>:
       <em class="summary">A timer class to add inside timers to GWN blocks.</em>
@@ -85,6 +119,12 @@
     <li> <strong class="uidlink">threading.Thread</strong>:
       <em class="summary">A class that represents a thread of control.</em>
     <ul>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.GWNTimer-class.html">python.gwnblock_ant.GWNTimer</a></strong>:
+      <em class="summary">A timer class to add inside timers to GWN blocks.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.GWNTimer-class.html">python.gwnblock_bak.GWNTimer</a></strong>:
+      <em class="summary">A timer class to add inside timers to GWN blocks.</em>
+    </li>
     <li> <strong class="uidlink"><a href="python.gwnblock%27.GWNTimer-class.html">python.gwnblock'.GWNTimer</a></strong>:
       <em class="summary">A timer class to add inside timers to GWN blocks.</em>
     </li>
@@ -103,13 +143,13 @@
       <em class="summary">Data events source, sends Data Events at regular intervals.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.ev_psk_decode%27.ev_psk_decode-class.html">python.ev_psk_decode'.ev_psk_decode</a></strong>:
-      <em class="summary">Demodulates PDU from PSK into an event or message.</em>
+      <em class="summary">Decodes a PDU into an event or message.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.ev_psk_encode%27.ev_psk_encode-class.html">python.ev_psk_encode'.ev_psk_encode</a></strong>:
-      <em class="summary">Converts event to PDU encoded for PSK modulation.</em>
+      <em class="summary">Encodes an event or message into a PDU for modulation.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.ev_to_pdu%27.ev_to_pdu-class.html">python.ev_to_pdu'.ev_to_pdu</a></strong>:
-      <em class="summary">Converts an Event object to PDU.</em>
+      <em class="summary">Converts an Event object or string to PDU.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.event_sink%27.event_sink-class.html">python.event_sink'.event_sink</a></strong>:
       <em class="summary">Event sink, receives and shows Event objects.</em>
@@ -136,7 +176,7 @@
       <em class="summary">Receives a message, creates a Data Event from it.</em>
     </li>
     <li> <strong class="uidlink"><a href="python.pdu_to_ev%27.pdu_to_ev-class.html">python.pdu_to_ev'.pdu_to_ev</a></strong>:
-      <em class="summary">Receives a PDU and produces an Event object from it.</em>
+      <em class="summary">Converts a PDU into an Event object</em>
     </li>
     <li> <strong class="uidlink"><a href="python.stop_wait_ack%27.stop_wait_ack-class.html">python.stop_wait_ack'.stop_wait_ack</a></strong>:
       <em class="summary">An ARQ Stop and wait ACK sender.</em>
@@ -151,6 +191,12 @@
       <em class="summary">A virtual channel, outputs items with probability loss.</em>
     </li>
     </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_ant.gwnblock-class.html">python.gwnblock_ant.gwnblock</a></strong>:
+      <em class="summary">The GWN basic block, from which all GWN blocks inherit.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="python.gwnblock_bak.gwnblock-class.html">python.gwnblock_bak.gwnblock</a></strong>:
+      <em class="summary">The GWN basic block, from which all GWN blocks inherit.</em>
     </li>
     </ul>
     </li>
@@ -201,7 +247,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Feb 24 10:58:34 2016
+    Generated by Epydoc 3.0.1 on Sat Mar 12 13:39:28 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

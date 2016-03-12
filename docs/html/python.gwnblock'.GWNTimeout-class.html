@@ -69,7 +69,7 @@
 </pre>
 
 <hr />
-<p>A time class to implement timeouts inside GWN blocks.</p>
+<p>A timer class to implement timeouts inside GWN blocks.</p>
   <p>Objects of this class can be attached to a gwnblock to act as internal
   timeouts. An object of this class sends a messages to the block to which 
   it is attached once the specified time has elapsed. A timeout object can 
@@ -104,7 +104,7 @@
         <span class="summary-sig-arg">port</span>,
         <span class="summary-sig-arg">port_nr</span>,
         <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">1.0</span>,
-        <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span><br />
+        <span class="summary-sig-arg">ev_dc</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.__init__">source&nbsp;code</a></span>
@@ -173,7 +173,7 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="post_message"></a><span class="summary-sig-name">post_message</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      Posts timer event and timer metadata on block port.</td>
+      Creates Timer Event and posts it on block port.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.post_message">source&nbsp;code</a></span>
             
@@ -191,8 +191,8 @@
         <tr>
           <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimeout-class.html#start" class="summary-sig-name">start</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Starts timer until timeout.</td>
+        <span class="summary-sig-arg">ev_dc</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span><br />
+      Starts timer, lives until timeout.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.start">source&nbsp;code</a></span>
             
@@ -233,7 +233,7 @@
         <span class="sig-arg">port</span>,
         <span class="sig-arg">port_nr</span>,
         <span class="sig-arg">timeout</span>=<span class="sig-default">1.0</span>,
-        <span class="sig-arg">nickname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>)</span>
+        <span class="sig-arg">ev_dc</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -245,9 +245,11 @@
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>block</code></strong> - block reference to which this instance is attached.</li>
+        <li><strong class="pname"><code>port</code></strong> - tag of port to which messages will be posted.</li>
+        <li><strong class="pname"><code>port_nr</code></strong> - port number, an index in list of ports in block.</li>
         <li><strong class="pname"><code>timeout</code></strong> - timeout in seconds.</li>
-        <li><strong class="pname"><code>nickname</code></strong> - message to send at timeut. #@param add_info: additional 
-          information for this timeout.</li>
+        <li><strong class="pname"><code>ev_dc</code></strong> - additional information for event to send on timeout.</li>
     </ul></dd>
     <dt>Overrides:
         <a href="python.gwnblock%27.GWNPort-class.html#__init__">GWNPort.__init__</a>
@@ -311,19 +313,19 @@
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">start</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">timeout</span>=<span class="sig-default">None</span>,
-        <span class="sig-arg">nickname</span>=<span class="sig-default">None</span>)</span>
+        <span class="sig-arg">ev_dc</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimeout.start">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Starts timer until timeout.</p>
+  <p>Starts timer, lives until timeout.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>timeout</code></strong> - a timeout value in seconds.</li>
-        <li><strong class="pname"><code>nickname</code></strong> - the nickname of the event to produce.</li>
+        <li><strong class="pname"><code>timeout</code></strong> - a timeout value in seconds. @param ev_dc_ dictionary of 
+          additional information to add to existing ev_dc on event.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -360,7 +362,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Feb 24 10:58:34 2016
+    Generated by Epydoc 3.0.1 on Sat Mar 12 13:39:28 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

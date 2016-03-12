@@ -21,7 +21,7 @@
 #  Boston, MA 02110-1301, USA.
 # 
 
-'''A PDU to event converter.
+'''Converts a PDU into an Event object.
 ''' 
 
 import numpy
@@ -37,7 +37,7 @@ import pmt
 
 
 class pdu_to_ev(gwnblock):
-    '''Receives a PDU and produces an Event object from it.
+    '''Converts a PDU into an Event object
 
     Receives a PDU message, deserializes content into an Event object, sends Event object on its output port.
     @param blkname: block name.

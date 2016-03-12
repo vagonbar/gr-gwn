@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>python.gwnblock_ant.gwnblock</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="python-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >GR-GWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="python-module.html">Package&nbsp;python</a> ::
+        <a href="python.gwnblock_ant-module.html">Module&nbsp;gwnblock_ant</a> ::
+        Class&nbsp;gwnblock
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="python.gwnblock_ant.gwnblock-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class gwnblock</h1><p class="nomargin-top"><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+                       object --+        
+                                |        
+gnuradio.gr.gateway.gateway_block --+    
+                                    |    
+      gnuradio.gr.gateway.basic_block --+
+                                        |
+                                       <strong class="uidshort">gwnblock</strong>
+</pre>
+
+<hr />
+<p>The GWN basic block, from which all GWN blocks inherit.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">blkname</span>,
+        <span class="summary-sig-arg">blkid</span>,
+        <span class="summary-sig-arg">number_in</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">number_out</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">number_timers</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">number_timeouts</span>=<span class="summary-sig-default">0</span>)</span><br />
+      The GWN basic block constructor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#forecast" class="summary-sig-name">forecast</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">noutput_items</span>,
+        <span class="summary-sig-arg">ninput_items_required</span>)</span><br />
+      forecast is only called from a general block this is the default 
+      implementation</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.forecast">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#general_work" class="summary-sig-name">general_work</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">input_items</span>,
+        <span class="summary-sig-arg">output_items</span>)</span><br />
+      general work to be overloaded in a derived class</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.general_work">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#set_in_size" class="summary-sig-name">set_in_size</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">number_in</span>)</span><br />
+      Creates a list of input message connections.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_in_size">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#set_out_size" class="summary-sig-name">set_out_size</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">number_out</span>)</span><br />
+      Creates a list of output message connections.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_out_size">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#set_timeout_size" class="summary-sig-name">set_timeout_size</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">number_timeouts</span>)</span><br />
+      Creates a list of timeout objects, assigns to block.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_timeout_size">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#set_timer_size" class="summary-sig-name">set_timer_size</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">number_timers</span>)</span><br />
+      Creates a list of inside timer objects, assigns to block.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_timer_size">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#set_timer" class="summary-sig-name">set_timer</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">index</span>,
+        <span class="summary-sig-arg">interrupt</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">interval</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">nickname1</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">nick1</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">nickname2</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">nick2</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">add_info</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Sets timer values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_timer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="start_timers"></a><span class="summary-sig-name">start_timers</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Starts timers attached to this block.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.start_timers">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="stop_timers"></a><span class="summary-sig-name">stop_timers</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops timers attached to this block.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.stop_timers">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#write_out" class="summary-sig-name">write_out</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ev</span>,
+        <span class="summary-sig-arg">port_nr</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Sends an event converted to PMT on an output port.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.write_out">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="handle_msg"></a><span class="summary-sig-name">handle_msg</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.handle_msg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ev</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">port_nr</span>)</span><br />
+      Receives Event and port number, processes, produces event(s).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.process_data">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock_ant.gwnblock-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.__str__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>gnuradio.gr.gateway.gateway_block</code></b>:
+      <code>set_msg_handler</code>,
+      <code>start</code>,
+      <code>stop</code>,
+      <code>to_basic_block</code>,
+      <code>work</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">blkname</span>,
+        <span class="sig-arg">blkid</span>,
+        <span class="sig-arg">number_in</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">number_out</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">number_timers</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">number_timeouts</span>=<span class="sig-default">0</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>The GWN basic block constructor.</p>
+  <p>The GWN basic block implements facilites used by all GWN blocks. A 
+  descendent of this class may call this constructor to fix the number of 
+  ports, timers and timeouts.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>blkname</code></strong> - the block's name.</li>
+        <li><strong class="pname"><code>blkid</code></strong> - a unique block identifier.</li>
+        <li><strong class="pname"><code>number_in</code></strong> - number of input ports.</li>
+        <li><strong class="pname"><code>number_out</code></strong> - number of output ports.</li>
+        <li><strong class="pname"><code>number_timers</code></strong> - number of internal timers.</li>
+        <li><strong class="pname"><code>number_timeouts</code></strong> - number of internal timeouts.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="forecast"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">forecast</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">noutput_items</span>,
+        <span class="sig-arg">ninput_items_required</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.forecast">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>forecast is only called from a general block this is the default 
+  implementation</p>
+  <dl class="fields">
+    <dt>Overrides:
+        gnuradio.gr.gateway.gateway_block.forecast
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="general_work"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">general_work</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">input_items</span>,
+        <span class="sig-arg">output_items</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.general_work">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>general work to be overloaded in a derived class</p>
+  <dl class="fields">
+    <dt>Overrides:
+        gnuradio.gr.gateway.gateway_block.general_work
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_in_size"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_in_size</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">number_in</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_in_size">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a list of input message connections.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>number_in</code></strong> - the number of input message connections.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_out_size"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_out_size</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">number_out</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_out_size">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a list of output message connections.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>number_out</code></strong> - the number of output message connections.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_timeout_size"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_timeout_size</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">number_timeouts</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_timeout_size">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a list of timeout objects, assigns to block.</p>
+  <p>Creates a list of timeout objects with default values.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>number_timeouts</code></strong> - the number of timeouts to create.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_timer_size"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_timer_size</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">number_timers</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_timer_size">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a list of inside timer objects, assigns to block.</p>
+  <p>Creates a list of inside timer objects with default values; timer 
+  characteristics can be set later with function set_timer().</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>number_timers</code></strong> - the number of timers to create.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_timer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_timer</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">index</span>,
+        <span class="sig-arg">interrupt</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">interval</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">retry</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">nickname1</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">nick1</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">nickname2</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">nick2</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">add_info</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.set_timer">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets timer values.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>index</code></strong> - the timer index position.</li>
+        <li><strong class="pname"><code>interrupt</code></strong> - if True interrupts timer event generation until set to False.</li>
+        <li><strong class="pname"><code>interval</code></strong> - the time between two successive timer events.</li>
+        <li><strong class="pname"><code>retry</code></strong> - the number of events to be generated; once this number is 
+          reached, the timer is interrupted until interrupt is set to 
+          False.</li>
+        <li><strong class="pname"><code>nickname1</code></strong> - the nickname of the event to be generated after each interval.</li>
+        <li><strong class="pname"><code>nickname2</code></strong> - the nickname of the event to be generated once reached the retry 
+          number.</li>
+        <li><strong class="pname"><code>add_info</code></strong> - additional info.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="write_out"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write_out</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ev</span>,
+        <span class="sig-arg">port_nr</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.write_out">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sends an event converted to PMT on an output port.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ev</code></strong> - an Event object.</li>
+        <li><strong class="pname"><code>port_nr</code></strong> - the output por number, an index of the output ports list. If not 
+          given, write out on all ports.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="process_data"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">process_data</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ev</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">port_nr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.process_data">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Receives Event and port number, processes, produces event(s).</p>
+  <p>To be overwritten by descendent block.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ev</code></strong> - the event received, to process.</li>
+        <li><strong class="pname"><code>port</code></strong> - reference to the list of ports in the block, in one of which the 
+          event must have been receivedw</li>
+        <li><strong class="pname"><code>port_nr</code></strong> - the port number on which the event was received.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__str__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock_ant-pysrc.html#gwnblock.__str__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>str(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__str__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="python-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >GR-GWN</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Mar 12 13:39:28 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

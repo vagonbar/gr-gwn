@@ -4,18 +4,8 @@
   <key>gwn_event_sink</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.event_sink($blkname, $blkid, $debug)</make>
+  <make>gwn.event_sink($debug)</make>
 
- <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
   <param>
     <name>Debug</name>
     <key>debug</key>

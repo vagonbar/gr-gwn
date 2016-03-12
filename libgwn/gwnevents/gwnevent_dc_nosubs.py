@@ -30,6 +30,7 @@ This module provides a dictionary of valid nicknames for events, and the attribu
 from gwnevent import Event, EventNameException
 
 timer_dc = { \
+    'EventTimer'      : ('Timer',  'Timer',    EventTimer  ), \
     'TimerTOH'        : ('Timer',  'TOH',      Event     ), \
     'TimerTOC'        : ('Timer',  'TOC',      Event     ), \
     'TimerTOR1'       : ('Timer',  'TOR1',     Event     ), \

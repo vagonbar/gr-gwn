@@ -1,0 +1,8 @@
+The following graph shows a FSM with memory; its code can be found [example02.py](https://github.com/vagonbar/gr-gwn/blob/master/libgwn/utils/fsm/example02.py):
+
+![A simple FSM](https://github.com/vagonbar/gr-gwn/blob/master/libgwn/utils/fsm/example02.png)
+
+The following graph shows a FSM with conditions; its code can be found in [example03.py](https://github.com/vagonbar/gr-gwn/blob/master/libgwn/utils/fsm/example03.py):
+
+![A simple FSM](https://github.com/vagonbar/gr-gwn/blob/master/libgwn/utils/fsm/example03.png)
+

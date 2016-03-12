@@ -22,7 +22,7 @@
 # 
 # 
 
-'''Decodes PDU into an event or message.
+'''Decodes a PDU into an event or message.
 '''
 
 import numpy
@@ -39,14 +39,14 @@ import gwnutils                         # for PSK packing
 
 
 class ev_psk_decode(gwnblock):
-    '''Demodulates PDU from PSK into an event or message.
+    '''Decodes a PDU into an event or message.
     
     Receives a PDU, decodes from PSK, rebuilds event and writes on output port.
     @param blkname: block name.
     @param blkid: block identifier.
     @param debug: if True, shows details of process; default False.
     '''
-    def __init__(self, blkname='ev_psk_encode', blkid='id_ev_pdk_encode', \
+    def __init__(self, blkname='ev_psk_encode', blkid='id_ev_psk_encode', \
             debug=False):
         gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
             number_in=0, number_out=1, number_timers=0)

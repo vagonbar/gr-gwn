@@ -105,8 +105,6 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.gwnblock%27.gwnblock-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">blkname</span>,
-        <span class="summary-sig-arg">blkid</span>,
         <span class="summary-sig-arg">number_in</span>=<span class="summary-sig-default">0</span>,
         <span class="summary-sig-arg">number_out</span>=<span class="summary-sig-default">0</span>,
         <span class="summary-sig-arg">number_timers</span>=<span class="summary-sig-default">0</span>,
@@ -200,10 +198,8 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.gwnblock%27.gwnblock-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">ev</span>,
-        <span class="summary-sig-arg">port</span>,
-        <span class="summary-sig-arg">port_nr</span>)</span><br />
-      Receives Event and port number, processes, produces event(s).</td>
+        <span class="summary-sig-arg">ev</span>)</span><br />
+      Receives Event, processes, produces output event(s).</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#gwnblock.process_data">source&nbsp;code</a></span>
             
@@ -278,9 +274,8 @@ gnuradio.gr.gateway.gateway_block --+
         <span class="summary-sig-arg">interrupt</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">interval</span>=<span class="summary-sig-default">1</span>,
         <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">1</span>,
-        <span class="summary-sig-arg">nickname1</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">nick1</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">nickname2</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">nick2</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">add_info</span>=<span class="summary-sig-default">None</span>)</span><br />
+        <span class="summary-sig-arg">ev_dc_1</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="summary-sig-arg">ev_dc_2</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span><br />
       Sets timer values.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#gwnblock.set_timer">source&nbsp;code</a></span>
@@ -438,8 +433,6 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">blkname</span>,
-        <span class="sig-arg">blkid</span>,
         <span class="sig-arg">number_in</span>=<span class="sig-default">0</span>,
         <span class="sig-arg">number_out</span>=<span class="sig-default">0</span>,
         <span class="sig-arg">number_timers</span>=<span class="sig-default">0</span>,
@@ -458,8 +451,6 @@ gnuradio.gr.gateway.gateway_block --+
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>blkname</code></strong> - the block's name.</li>
-        <li><strong class="pname"><code>blkid</code></strong> - a unique block identifier.</li>
         <li><strong class="pname"><code>number_in</code></strong> - number of input ports.</li>
         <li><strong class="pname"><code>number_out</code></strong> - number of output ports.</li>
         <li><strong class="pname"><code>number_timers</code></strong> - number of internal timers.</li>
@@ -554,24 +545,19 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">process_data</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">ev</span>,
-        <span class="sig-arg">port</span>,
-        <span class="sig-arg">port_nr</span>)</span>
+        <span class="sig-arg">ev</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#gwnblock.process_data">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Receives Event and port number, processes, produces event(s).</p>
+  <p>Receives Event, processes, produces output event(s).</p>
   <p>To be overwritten by descendent block.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>ev</code></strong> - the event received, to process.</li>
-        <li><strong class="pname"><code>port</code></strong> - reference to the list of ports in the block, in one of which the 
-          event must have been receivedw</li>
-        <li><strong class="pname"><code>port_nr</code></strong> - the port number on which the event was received.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -661,9 +647,8 @@ gnuradio.gr.gateway.gateway_block --+
         <span class="sig-arg">interrupt</span>=<span class="sig-default">True</span>,
         <span class="sig-arg">interval</span>=<span class="sig-default">1</span>,
         <span class="sig-arg">retry</span>=<span class="sig-default">1</span>,
-        <span class="sig-arg">nickname1</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">nick1</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">nickname2</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">nick2</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">add_info</span>=<span class="sig-default">None</span>)</span>
+        <span class="sig-arg">ev_dc_1</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="sig-arg">ev_dc_2</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#gwnblock.set_timer">source&nbsp;code</a></span>&nbsp;
@@ -680,10 +665,10 @@ gnuradio.gr.gateway.gateway_block --+
         <li><strong class="pname"><code>retry</code></strong> - the number of events to be generated; once this number is 
           reached, the timer is interrupted until interrupt is set to 
           False.</li>
-        <li><strong class="pname"><code>nickname1</code></strong> - the nickname of the event to be generated after each interval.</li>
-        <li><strong class="pname"><code>nickname2</code></strong> - the nickname of the event to be generated once reached the retry 
-          number.</li>
-        <li><strong class="pname"><code>add_info</code></strong> - additional info.</li>
+        <li><strong class="pname"><code>ev_dc_1</code></strong> - additional information for event to send at regular intervals for
+          retry times. Adds to existing dictionary.</li>
+        <li><strong class="pname"><code>ev_dc_2</code></strong> - additional information for event to send when retries have 
+          exhausted. Adds to existing dictionary.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -773,7 +758,7 @@ gnuradio.gr.gateway.gateway_block --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Feb 24 10:58:34 2016
+    Generated by Epydoc 3.0.1 on Sat Mar 12 13:39:28 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

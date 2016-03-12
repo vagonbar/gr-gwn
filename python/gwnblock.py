@@ -44,12 +44,13 @@ import sys
 from gwnevents import api_events as api_events 
 
 
-
 ### support classes and functions for gwnblock
 #from libgwnblock import GWNTimer, GWNOutPort, GWNInPort, mutex_prt
 
 def mutex_prt(msg):
     '''Mutually exclusive printing.
+
+    @param msg: string to print.
     '''
     lock_obj.acquire()
     print msg
@@ -64,21 +65,21 @@ class GWNPort():
     def __init__(self, block, port, port_nr):
         '''Constructor.
 
-        Attritubes and functions relative to a message port attached to a block.
-        @param block: block to which this instance is attached.
-        @param port: port in block to which messages will be posted.
+        Attributes and functions relative to a message port attached to a block. Ports need to know the block to which they are attached, and the port in block on whith they receive or send messages.
+        @param block: block reference to which this instance is attached.
+        @param port: tag of port to which messages will be posted.
         @param port_nr: port number, an index in list of ports in block.
         '''
         self.block = block
         self.port = port
         self.port_nr = port_nr
-        #mutex_prt ("GWNPort built, " + port_nr)
         return
 
     def __str__(self):
-        return  '  port %s index %d in block %s' % \
-            (self.port, self.port_nr, self.block.blkname)
+        return  '  port %s index %d in block id %d' % \
+            (self.port, self.port_nr, id(self.block))
         return
+
 
 
 class GWNInPort(GWNPort):
@@ -86,18 +87,14 @@ class GWNInPort(GWNPort):
     '''
 
     def handle_msg(self, msg_pmt):
-        '''Regenerates event from PMT, passes event to process_data.'''
+        '''Regenerates event from PMT, passes event to process_data.
+
+        Regenerated event is passed to process function in block to which this message input port is attached. 
+        @param msg_pmt: the PMT message received.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
-        blkname, blkid, port, port_nr, ev_str = msg_ls[1]
+        ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
-        #print "InPort handle_msg", ev
-        #ss = '  --- handle_msg, blkname {0}, blkid {1}, port {2}, port nr {3}'.\
-        #    format(msg_ls[0], msg_ls[1], msg_ls[2], msg_ls[3])
-        #ss = ss + '\n  ' + ev.__str__() + '\n'
-        #mutex_prt(ss)
-        #lock_obj.acquire()  # BLOCKS! # mutually exclusive event handling
-        self.block.process_data(ev, port, port_nr)  # pass to process function
-        #lock_obj.release()            # release lock
+        self.block.process_data(ev)  # pass to process function in block
         return
 
 
@@ -109,34 +106,34 @@ class GWNOutPort(GWNPort):
     def post_message(self, ev):
         '''Converts Event to string, makes PMT message, posts on block port.
         
-        Message is a list which contains the serialized (string) Event, block name, block id, and block port on which message is posted.
+        The PMT message is sent through a message port of the block to which this output port is attached.
+        @param ev: an Event object. 
         '''
-        #print "OutPort post_message", ev
         ev_str = pickle.dumps(ev)
-        msg_ls = [self.block.blkname, self.block.blkid, self.port, 
-            self.port_nr, ev_str]
         pmt_msg = pmt.cons(pmt.PMT_NIL, 
-            pmt.pmt_to_python.python_to_pmt(msg_ls) )
+            pmt.pmt_to_python.python_to_pmt(ev_str))
         pmt_port = pmt.intern(self.port)
         self.block.message_port_pub(pmt_port, pmt.cons(pmt.PMT_NIL, 
             pmt_msg))
-#        self.block.to_basic_block()._post(pmt_port, pmt_msg)
+        #self.block.to_basic_block()._post(pmt_port, pmt_msg)
         return
 
 
 
 class GWNTimeout(GWNPort):
-    '''A time class to implement timeouts inside GWN blocks.
+    '''A timer class to implement timeouts inside GWN blocks.
 
     Objects of this class can be attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed. A timeout object can be interrupted before its action starts, i.e. before it sends its message.
     '''
 
-    def __init__(self, block, port, port_nr, timeout=1.0, nickname='TimerTOR2'):
+    def __init__(self, block, port, port_nr, timeout=1.0, ev_dc={}):
         '''Constructor.
 
+        @param block: block reference to which this instance is attached.
+        @param port: tag of port to which messages will be posted.
+        @param port_nr: port number, an index in list of ports in block.
         @param timeout: timeout in seconds.
-        @param nickname: message to send at timeut.
-        #@param add_info: additional information for this timeout.
+        @param ev_dc: additional information for event to send on timeout.
         '''
         GWNPort.__init__(self, block, port, port_nr)
 
@@ -144,9 +141,10 @@ class GWNTimeout(GWNPort):
         self.port = port
         self.port_nr = port_nr
         self.timeout = timeout
-        self.nickname = nickname
+        self.ev_dc = ev_dc
+
+        self.nickname = 'EventTimer'    # the event to generate
         self.debug = False
-        #self.add_info = add_info
         self.timer = None
 
         if self.debug:
@@ -154,21 +152,21 @@ class GWNTimeout(GWNPort):
         return
 
 
-    def start(self, timeout=None, nickname=None):
-        '''Starts timer until timeout.
+    def start(self, timeout=None, ev_dc={}):
+        '''Starts timer, lives until timeout.
 
         @param timeout: a timeout value in seconds.
-        @param nickname: the nickname of the event to produce.
+        @param ev_dc_ dictionary of additional information to add to existing ev_dc on event.
         '''
         if timeout:
             self.timeout = timeout
-        if nickname:
-            self.nickname = nickname
+        self.ev_dc.update(ev_dc)    # adds or modifies existing ev_dc
         self.timer = threading.Timer(self.timeout, self.post_message)
         self.timer.start()
         if self.debug:
             msg_dbg = '    GWNTimeout STARTED, timeout=' + str(self.timeout) + \
-                ', nickname ' + self.nickname
+                ', event ' + self.nickname
+            msg_dbg = msg_dbg + '\n    ev_dc: ' + str(self.ev_dc)
             mutex_prt(msg_dbg)
         return
 
@@ -180,22 +178,20 @@ class GWNTimeout(GWNPort):
             msg_dbg = '    GWNTimeout CANCEL done'
         else:
             msg_dbg = '    GWNTimeout timer thread does not exist.'
-                 # 'timeout port %d in block %s' % \
-                 # (self.port_nr, self.block.blkname)
         if self.debug:
             mutex_prt(msg_dbg)
-        # del(self.timer)      # not necessary if self.timeout set to None
         self.timer = None    # last reference, garbage collector will act
+        # del(self.timer)    # not necessary if self.timeout set to None
         return
 
 
     def post_message(self):
-        '''Posts timer event and timer metadata on block port.'''
-        #ss = '  GWN Timeout, in post_message, nickname ' + self.nickname
+        '''Creates Timer Event and posts it on block port.'''
         evtimeout = api_events.mkevent(self.nickname)   # create timer event
+        evtimeout.ev_dc = self.ev_dc     # assign add info to event
+        # serialize, prepare and send event through block timer port
         ev_str = pickle.dumps(evtimeout)
-        msg_ls = [self.block.blkname, self.block.blkid, self.port, 
-            self.port_nr, ev_str]
+        msg_ls = [self.port, self.port_nr, ev_str]
         pmt_msg = pmt.cons(pmt.PMT_NIL, 
             pmt.pmt_to_python.python_to_pmt(msg_ls) )
         pmt_port = pmt.intern(self.port)
@@ -203,8 +199,8 @@ class GWNTimeout(GWNPort):
             pmt_msg) )
         #self.block.to_basic_block()._post(pmt_port, pmt_msg)
         if self.debug:
-            msg_dbg = '    GWN Timeout TIMEOUT REACHED, message: %s' % \
-                (self.nickname)
+            msg_dbg = '    GWN Timeout TIMEOUT REACHED, generated EVENT:\n'
+            msg_dbg += evtimeout.__str__()
             mutex_prt(msg_dbg)
         # del(self.timer)      # not necessary if self.timeout set to None
         self.timer = None    # last reference, garbage collector will act
@@ -217,17 +213,15 @@ class GWNTimeout(GWNPort):
         @param msg_pmt: the received PMT message.
         '''
         msg_ls = pmt.to_python(msg_pmt)[1]
-        blkname, blkid, port, port_nr, ev_str = msg_ls[1]
+        port, port_nr, ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
-        self.block.process_data(ev, port, port_nr)    # pass to process function
-        #ev = pickle.loads(msg_ls[-1])
-        #self.block.process_data(ev)   # handle event to process function
+        self.block.process_data(ev)    # pass to process function
         return
 
 
     def __str__(self):
-        return  '   GWNTimeout %s index %d in block %s' % \
-            (self.port, self.port_nr, self.block.blkname)
+        return  '   GWNTimeout %s index %d in block id %d' % \
+            (self.port, self.port_nr, id(self.block))
         return 
 
 
@@ -235,44 +229,48 @@ class GWNTimeout(GWNPort):
 class GWNTimer(GWNPort, threading.Thread):
     '''A timer class to add inside timers to GWN blocks.
 
-    Objects of this class can attached to a gwnblock to act as internal timers. An object of this class sends messages to the block to which it is attached, at regular intervals. A timer object sends a message for an specified number of times, then a final second message to indicate the first series has exhausted.
-    Messages are sent only if the corresponding nicknames are given; no message sent if nicknames are the null string or None.
+    Objects of this class can attached to a gwnblock to act as internal timers. An object of this class sends messages to the block to which it is attached, at regular intervals. It sends a message for an specified number of times, then a final second message to indicate the first series has exhausted.
     '''
 
     def __init__(self, block, port, port_nr, interrupt=True, interval=1.0, \
-            retry=1, nickname1='TimerTOR1', nickname2='TimerTOR2', add_info=None):
+            retry=1, ev_dc_1={}, ev_dc_2={}):
         '''Constructor.
 
+        @param block: block reference to which this instance is attached.
+        @param port: tag of port to which messages will be posted.
+        @param port_nr: port number, an index in list of ports in block.
         @param interrupt: if True, timer is interrupted, i.e. does not send any messages.
         @param interval: time between messages to send.
         @param retry: how many times to send message 1, then send message 2 once.
-        @param nickname1: message to send at regular intervals for retry times.
-        @param nickname2: message to send when retries have exhausted.
-        @param add_info: additional information for this timer.
+        @param ev_dc_1: additional information for event to send at regular intervals for retry times (as message 1).
+        @param ev_dc_2: additional information for event to send when retries have exhausted (as message 2).
         '''
         GWNPort.__init__(self, block, port, port_nr)
         threading.Thread.__init__(self)
 
-        #self.block = block
-        #self.port = port
-        #self.port_nr = port_nr
+        self.block = block
+        self.port = port
+        self.port_nr = port_nr
         self.interrupt = interrupt
         self.interval = interval
         self.retry = retry
-        self.nickname1 = nickname1
-        self.nickname2 = nickname2
-        self.add_info = add_info
+        self.ev_dc_1 = ev_dc_1
+        self.ev_dc_2 = ev_dc_2
 
+        self.nickname = 'EventTimer'    # the event to generate
         self.counter = 0
-        self.exit_flag = False   # if True, ends timer
-        self.debug = False  # please set from outside for debug print
+        self.exit_flag = False  # if True, ends timer
+        self.debug = False      # please set from outside for debug print
         if self.debug:
             mutex_prt ("    GWNTimer built, retry:" + str(self.retry))
         return
 
 
     def set_interrupt(self, interrupt):
-        '''Interrupts generation of timer messages.'''
+        '''Interrupts generation of timer messages.
+
+        @param interrupt: if True, timer is interrupted, i.e. does not send any messages.
+        '''
         #lock_obj.acquire()
         self.interrupt = interrupt
         #lock_obj.release()
@@ -282,12 +280,15 @@ class GWNTimer(GWNPort, threading.Thread):
 
 
     def stop(self):
-        '''Stops timer thread.'''
+        '''Stops timer thread... or intends to.
+
+        There is no clear way to stop a thread in Python. Here, interrupt is set to True; no messages will be sent, but thread remains alive.'''
         if self.debug:
-            msg_dbg = '    GWNTimer STOP, stopping timer %d in block %s' % \
-               (self.port_nr, self.block.blkname)
+            msg_dbg = '    GWNTimer STOP, stopping timer %d in block id %d' % \
+               (self.port_nr, id(self.block))
             mutex_prt(msg_dbg)
-        self.exit_flag = True
+        self.exit_flag = True   # no clear action on this flag
+        self.interrupt = True
         return
 
 
@@ -295,7 +296,7 @@ class GWNTimer(GWNPort, threading.Thread):
         '''Resets counter to 0, starts timing again.
 
         Sets interrupt to False and starts timing again, from 0 count.
-        @param retry: new retry value, default None.
+        @param retry: new retry value, optional; default None to keep former value.
         '''
         if retry:
             self.retry = retry
@@ -313,48 +314,46 @@ class GWNTimer(GWNPort, threading.Thread):
 
     def run(self):
         '''Runs timer thread, uses time.sleep.'''
-        while not self.exit_flag:               # timer not stopped
-            #if not self.interrupt:              # timer not interrupted
-                self.counter = 0
-                ## post timer messages
-                while self.counter < self.retry and not self.exit_flag: 
-                    # sends messages until count reaches number of retries
-                    self.counter = self.counter + 1
-                    if self.debug:
-                        mutex_prt("    GWNTimer, counter" + str(self.counter))
-                    if not self.interrupt and self.nickname1:
-                        # post message only if nickname1 given
-                        self.post_message(self.nickname1)
-                    else:                # interrupted, does send but counts
-                        pass #break  # no message sent
-                    time.sleep(self.interval)   # waits interval
-                ## post final message, only if nickname2 given
-                if not self.interrupt and not self.exit_flag:
-                    # test repetition required, things may have changed!
-                    if self.nickname2:
-                        self.post_message(self.nickname2)
-                    self.interrupt = True
-            #else:
-            #    time.sleep(1.0)
+        if not self.exit_flag:               # timer not stopped
+            self.counter = 0
+            ## post timer messages
+            while self.counter < self.retry and not self.exit_flag: 
+                # sends messages until count reaches number of retries
+                self.counter = self.counter + 1
+                if self.debug:
+                    mutex_prt("    GWNTimer, counter" + str(self.counter))
+                if not self.interrupt:
+                    self.post_message(final=False)   # regular messages
+                else:            # interrupted, does not send but counts
+                    pass         # no message sent
+                time.sleep(self.interval)   # waits interval
+            ## post final message
+            if not self.interrupt and not self.exit_flag:
+                # test repetition required, things may have changed!
+                self.post_message(final=True)        # final message
+                self.interrupt = True
+        #else:
+        #    raise Exception    # seems only way to stop thread
         return
 
     
-    def post_message(self, nickname):
-        '''Posts timer event and timer metadata on block port.
+    def post_message(self, final):
+        '''Creates Timer Event and posts it on block timer port.
 
-        @param nickname: the nickname of the event to produce.
+        @param final: if False, send message with ev_dc_1; if True, send last message with ev_dc_2.
         '''
-        #ss = 'in post message, port:', self.port, ', blkid:', self.block.blkid,
-        #    ', time:', time.time()
-        #mutex_prt(ss)
-        evtimer = api_events.mkevent(nickname)   # create timer event
+        evtimer = api_events.mkevent(self.nickname)   # create timer event
+        if final:
+            evtimer.ev_dc = self.ev_dc_2
+        else:
+            evtimer.ev_dc = self.ev_dc_1
+        evtimer.ev_dc['port'] = self.port
+        # serialize, prepare and send event through block timer port
         ev_str = pickle.dumps(evtimer)
-        msg_ls = [self.block.blkname, self.block.blkid, self.port, 
-            self.port_nr, ev_str]
+        msg_ls = [self.port, self.port_nr, ev_str]
         pmt_msg = pmt.cons(pmt.PMT_NIL, 
             pmt.pmt_to_python.python_to_pmt(msg_ls) )
         pmt_port = pmt.intern(self.port)
-        #self.block.to_basic_block()._post(pmt_port, pmt_msg)
         self.block.to_basic_block()._post(pmt_port, pmt.cons(pmt.PMT_NIL, 
             pmt_msg) )
         return
@@ -365,18 +364,15 @@ class GWNTimer(GWNPort, threading.Thread):
 
         @param msg_pmt: the received PMT message.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
-        blkname, blkid, port, port_nr, ev_str = msg_ls[1]
+        port, port_nr, ev_str = msg_ls[1]
         ev = pickle.loads(ev_str)
-        #print "EN PROCESS_DATA DE TIMERRR", ev
-        self.block.process_data(ev, port, port_nr)    # pass to process function
-        #ev = pickle.loads(msg_ls[-1])
-        #self.block.process_data(ev)    # handle event to process function
+        self.block.process_data(ev)     # pass to block process function
         return
 
 
     def __str__(self):
-        return  'GWNTimer %s index %d in block %s' % \
-            (self.port, self.port_nr, self.block.blkname)
+        return  'GWNTimer %s index %d in block id %d' % \
+            (self.port, self.port_nr, id(self.block))
         return 
 
 
@@ -385,13 +381,11 @@ class gwnblock(gr.basic_block):
     '''The GWN basic block, from which all GWN blocks inherit.
 
     '''
-    def __init__(self, blkname, blkid, number_in=0, number_out=0, \
+    def __init__(self, number_in=0, number_out=0, \
             number_timers=0, number_timeouts=0):
         '''The GWN basic block constructor.
 
         The GWN basic block implements facilites used by all GWN blocks. A descendent of this class may call this constructor to fix the number of ports, timers and timeouts.
-        @param blkname: the block's name.
-        @param blkid: a unique block identifier.
         @param number_in: number of input ports.
         @param number_out: number of output ports.
         @param number_timers: number of internal timers.
@@ -400,13 +394,12 @@ class gwnblock(gr.basic_block):
         gr.basic_block.__init__(self,
             name='gwnblock', in_sig=[], out_sig=[])  
 
-        self.blkname = blkname
-        self.blkid = blkid
         self.ports_in = []
         self.ports_out = []
         self.timeouts = []
         self.timers = []
         self.finished = False
+        self.debug = False
 
         self.set_timeout_size(number_timeouts)  # timeout input ports
         self.set_timer_size(number_timers)      # timer input ports
@@ -444,7 +437,8 @@ class gwnblock(gr.basic_block):
             in_port = 'in' + str(i)
             myport = GWNInPort(self, in_port, i)
             self.ports_in.append(myport)
-            mutex_prt(myport)           # for debug
+            if self.debug:
+                mutex_prt(myport)
             pmt_in_port = pmt.intern(in_port)
             self.message_port_register_in(pmt_in_port)
             self.set_msg_handler(pmt_in_port, myport.handle_msg)
@@ -460,7 +454,8 @@ class gwnblock(gr.basic_block):
             out_port = 'out' + str(i)
             myport = GWNOutPort(self, out_port, i)
             self.ports_out.append(myport)
-            mutex_prt(myport)           # for debug
+            if self.debug:
+                mutex_prt(myport)
             pmt_out_port = pmt.intern(out_port)
             self.message_port_register_out(pmt_out_port)
         return
@@ -478,7 +473,7 @@ class gwnblock(gr.basic_block):
             timeout_port = 'timeout' + str(i)
             mytimeout = GWNTimeout(self, timeout_port, i)
             self.timeouts.append(mytimeout)
-            if mytimeout.debug:
+            if self.debug:
                 mutex_prt(mytimeout)           # for debug
             pmt_timeout_port = pmt.intern(timeout_port)
             self.message_port_register_in(pmt_timeout_port)
@@ -498,7 +493,8 @@ class gwnblock(gr.basic_block):
             timer_port = 'timer' + str(i)
             mytimer = GWNTimer(self, timer_port, i)
             self.timers.append(mytimer)
-            mutex_prt(mytimer)           # for debug
+            if self.debug:
+                mutex_prt(mytimer)
             pmt_timer_port = pmt.intern(timer_port)
             self.message_port_register_in(pmt_timer_port)
             self.set_msg_handler(pmt_timer_port, mytimer.handle_msg)
@@ -507,23 +503,21 @@ class gwnblock(gr.basic_block):
 
 
     def set_timer(self, index, interrupt=True, interval=1, retry=1, \
-            nickname1="nick1", nickname2="nick2", add_info=None):
+            ev_dc_1={}, ev_dc_2={}):
         '''Sets timer values.
 
         @param index: the timer index position.
         @param interrupt: if True interrupts timer event generation until set to False.
         @param interval: the time between two successive timer events.
         @param retry: the number of events to be generated; once this number is reached, the timer is interrupted until interrupt is set to False.
-        @param nickname1: the nickname of the event to be generated after each interval.
-        @param nickname2: the nickname of the event to be generated once reached the retry number.
-        @param add_info: additional info.
+        @param ev_dc_1: additional information for event to send at regular intervals for retry times. Adds to existing dictionary.
+        @param ev_dc_2: additional information for event to send when retries have exhausted. Adds to existing dictionary.
         ''' 
         mytimer = self.timers[index]
         mytimer.interval = interval
         mytimer.retry = retry
-        mytimer.nickname1 = nickname1
-        mytimer.nickname2 = nickname2 
-        mytimer.add_info = add_info
+        mytimer.ev_dc_1.update(ev_dc_1)
+        mytimer.ev_dc_2.update(ev_dc_2)
         mytimer.interrupt = interrupt
         return
 
@@ -552,11 +546,6 @@ class gwnblock(gr.basic_block):
         @param ev: an Event object.
         @param port_nr: the output por number, an index of the output ports list. If not given, write out on all ports.
         '''
-        #'''ev_str = pickle.dumps(ev)
-        #msg_ls = [self.block.blkname, self.block.blkid, self.port_out, 
-        #    self.port_nr, ev_str]
-        #pmt_msg = pmt.cons(pmt.PMT_NIL, 
-        #    pmt.pmt_to_python.python_to_pmt(msg_ls) )'''
         if port_nr is None:        # output message in all ports
             for outport in self.ports_out:
                 lock_obj.acquire()
@@ -573,64 +562,28 @@ class gwnblock(gr.basic_block):
         pass 
 
 
-    def process_data(self, ev, port, port_nr):
-        ''' Receives Event and port number, processes, produces event(s).
+    def process_data(self, ev):
+        ''' Receives Event, processes, produces output event(s).
         
         To be overwritten by descendent block.
         @param ev: the event received, to process.
-        @param port: reference to the list of ports in the block, in one of which the event must have been receivedw
-        @param port_nr: the port number on which the event was received.
         '''
-        pass #mutex_prt(ev)
+        if self.debug:
+            mutex_prt(ev)
+        else:
+            pass
         return
         
 
     # other functiones
     def __str__(self):
-        ss = 'gwnblock {0}, id: {1}; {2} ports_in, {3} ports_out, {4} timers'. \
-            format(self.blkname, self.blkid, len(self.ports_in), 
+        ss = 'gwnblock id {0}, ports_in {1}, ports_out {2}, timers {3}'. \
+            format( id(self), len(self.ports_in), 
                 len(self.ports_out), len(self.timers) )
         return ss
 
 
 
 if __name__ == "__main__":
-    print "Run test on msg_receiver_.py"
-    print "   python msg_receiver_.py"
 
-'''
-    ### test timers and messages
-
-    tb = gr.top_block()
-    blk = gwnblock('blk001', 'FirsBlck', number_timers=2, number_in=1,
-        number_out=1)
-
-    #tb.nicknameconnect(blk, 'nicknameout', blk, 'timer0')
-    tb.msg_connect(blk, blk.ports_out[0], blk, blk.ports_in[0])
-    
-    tb.start()
-
-    blk.set_timer(0, interrupt=False, interval=2, retry=3, 
-        nickname1='tic-0', nickname2='TAC-0')
-    blk.set_timer(1, interrupt=False, interval=1, retry=8, 
-        nickname1='tic-1', nickname2='TAC-1')
-
-    print '  --- timers started'
-    blk.start_timers()
-
-    #blk.send(0, 5)
-    time.sleep(12)
-    #msg_pmt = pmt.intern('  ...message from outside')
-    #nicknamevec = pmt.cons(pmt.PMT_NIL, msg_pmt)
-    #blk.to_basic_block()._post(pmt.intern('timer0'), nicknamevec)
-    blk.timers[0].interrupt=False   # reset after retry exhausted
-    time.sleep(9)
-
-    #blk.timers[0].stop()
-    #blk.timers[1].stop()
-    blk.stop_timers()
-    print '  --- timers stopped'
-
-    tb.stop()
-    tb.wait()
-'''
+    print "Run tests qa_timer_source.py, qa_event_sink.py"

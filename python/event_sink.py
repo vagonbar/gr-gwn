@@ -39,33 +39,25 @@ class event_sink(gwnblock):
     '''Event sink, receives and shows Event objects.
 
     Receives an Event object, shows it.
-    @param blkname: block name.
-    @param blkid: block identifier.
     @param debug: shows whole details of event received; default False.
     '''
 
-    def __init__(self, blkname='EventSink', blkid='event_sink_id', \
-            debug=False):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid,
-            number_in=1, number_out=0, number_timers=0)
-
+    def __init__(self, debug=False):
+        gwnblock.__init__(self, number_in=1, number_out=0, number_timers=0)
         self.debug = debug
-
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev): #, port, port_nr):
         '''Receives events, prints.
+
+        @param ev: event received.
         '''
-        dbg_msg = '--- {0}, received ev: {1}'.\
-            format(self.blkname, ev.nickname)
-        if ev.ev_dc and self.debug:   # print dictionary content
-            dbg_msg += '\n  ev_dc: ' + str(ev.ev_dc)
-        if ev.payload:
-            dbg_msg += '\n  payload: {0}'.format(ev.payload)
-        mutex_prt(dbg_msg)
+        dbg_msg = '--- Event Sink id {0}, received ev: {1}'.\
+            format(str(id(self)), ev.nickname)
         if self.debug:
-            mutex_prt(ev)
+            dbg_msg += "\n" + ev.__str__()
+        mutex_prt(dbg_msg)
 
         return
 

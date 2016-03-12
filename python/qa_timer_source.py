@@ -43,8 +43,7 @@ class qa_timer_source (gr_unittest.TestCase):
         '''Timer Source to Message Debug.
         '''
         ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=2, \
-            payload='timer source payload test with message debug')
+        blk_snd = timer_source(retry=2, debug=True)
         blk_dbg = blocks.message_debug()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_dbg, 'print')
@@ -64,13 +63,10 @@ class qa_timer_source (gr_unittest.TestCase):
 
         return
 
-
     def test_interrupt(self):
         '''Timer Source to Event Sink with interruption.
         '''
-        ### blocks Timer Source --> Message Debug
-        blk_snd = timer_source('TimerSource', 'blk001', retry=10, \
-            interval=1.0, payload='timer source payload with Event Sink')
+        blk_snd = timer_source(retry=10, interval=1.0)
         blk_snd.timers[0].debug = True     # print debug on timer
         blk_snk = event_sink()
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
@@ -81,13 +77,17 @@ class qa_timer_source (gr_unittest.TestCase):
         #print tb.dump()
 
         time.sleep(4)
+        print '\n--- set interrupt to True, sleep 4 secs'
         blk_snd.timers[0].set_interrupt(True)
         time.sleep(4)
+        print '\n--- set interrupt to False, sleep 6 secs'
         blk_snd.timers[0].set_interrupt(False)
         time.sleep(6)
+        print '\n--- timer reset, retry 3, sleep 7 secs'
         blk_snd.timers[0].reset(retry=3)      # reset timer, adjust retry
         time.sleep(7)
 
+        print '\n--- stop timers'    ### blocks in next statement!!!
         blk_snd.stop_timers()
         print '\n--- sender, timers stopped'
         time.sleep(2)

@@ -39,30 +39,26 @@ class timer_source(gwnblock):
     '''Timer events source, sends Events produced by an internal timer.
     
     Timer events source block, produces Timer Event objects based on an internal timer set by the user.
-    @param blkname: block name.
-    @param blkid: block identifier.
     @param interrupt: if set to True, timer does not generate events.
     @param interval: time betweeen successive events.
     @param retry: how many events to produce.
-    @param payload: an optional payload, default the empty string.
-    @param nickname1: event nickname of event to produce on each interval.
-    @param nickname2: event nickname of event to produce when retry has exhausted.
+    @param ev_dc_1: additional information for event to send at regular intervals for retry times.
+    @param ev_dc_2: additional information for event to send when retries have exhausted.
     '''
-    def __init__(self,  blkname='TimerSource', blkid='timer_source_id', 
-            interrupt=False, interval=1.0, retry=5, payload='',
-            nickname1='TimerTOR1', nickname2='TimerTOR2'):
+    def __init__(self, interrupt=False, interval=1.0, retry=5, 
+            debug=False, ev_dc_1={}, ev_dc_2={}):
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, blkname, blkid,
-            number_in=0, number_out=1, number_timers=1)
+        gwnblock.__init__(self, number_in=0, number_out=1, number_timers=1)
 
-        self.payload = payload
-        self.debug = False  # please set from outside for debug print
+        self.ev_dc_1 = ev_dc_1
+        self.ev_dc_2 = ev_dc_2
+        self.debug = debug
         self.counter = 1
 
         self.time_init = time.time()    
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 
-            nickname1=nickname1, nickname2=nickname2)
+            ev_dc_1=self.ev_dc_1, ev_dc_2=self.ev_dc_2)
         self.start_timers()
 
         return
@@ -76,20 +72,19 @@ class timer_source(gwnblock):
         return time.time() - self.time_init
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Sends timer events produced by the internal timer.
 
         @param ev: an Event object.
         '''
-        ev.payload = self.payload
-        if self.debug:
-            dbg_msg = '--- send {0}, ev nickname: {1}, port nr: {2}, time {3:4.1f}'.\
-                format(self.blkname, ev.nickname, port_nr, self.elapsed_time() )
-            dbg_msg += '\n    payload: ' + ev.payload
-            mutex_prt(dbg_msg)
-            ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
         ev.ev_dc['seq_nr'] = self.counter
         self.counter += 1
+        if self.debug:
+            dbg_msg = '--- Timer Source, id {0}, time {1:4.1f}'.\
+                format(str(id(self)), self.elapsed_time() )
+            dbg_msg += '\n' + ev.__str__()
+            mutex_prt(dbg_msg)
+            #ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
         self.write_out(ev, port_nr=0)
 
         return

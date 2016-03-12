@@ -63,14 +63,11 @@ class Event:
         
     def __str__(self):
         ss = 'Event class name: ' + self.__class__.__name__
-        ss += "\n  Nickname: '%s'; Type: '%s'; SubType: '%s'"  % \
+        ss += "\nNickname: '%s'; Type: '%s'; SubType: '%s'"  % \
             (self.nickname, self.ev_type, self.ev_subtype)
-        for key in self.ev_dc.keys():
-            #if key in ['src_addr', 'dst_addr']:
-            #    ss += '\n  ' + key + ': ' + repr(self.ev_dc[key])
-            #else:
-            #    ss += '\n  ' + key + ': ' + str(self.ev_dc[key])
-            ss += '\n  ' + key + ': ' + str(self.ev_dc[key])
+        ss += '\nEvent dict: ' + str(self.ev_dc)
+        #for key in self.ev_dc.keys():
+        #    ss += '\n  ' + key + ': ' + str(self.ev_dc[key])
         return ss
 
     def getname(self):

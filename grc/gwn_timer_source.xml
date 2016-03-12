@@ -4,18 +4,8 @@
   <key>gwn_timer_source</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.timer_source($blkname, $blkid, $interrupt, $interval, $retry, $payload, $nickname1, $nickname2)</make>
+  <make>gwn.timer_source($interrupt, $interval, $retry, $debug, $ev_dc_1, $ev_dc_2)</make>
 
- <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
   <param>
     <name>interrupt</name>
     <key>interrupt</key>
@@ -35,21 +25,23 @@
     <type>int</type>
   </param>
   <param>
-    <name>nickname1</name>
-    <key>nickname1</key>
-    <value>TimerTOR1</value>
-    <type>string</type>
+    <name>debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <param>
+    <name>ev_dc_1</name>
+    <key>ev_dc_1</key>
+    <value>{}</value>
+    <type>raw</type>
   </param>
   <param>
-    <name>nickname2</name>
-    <key>nickname2</key>
-    <value>TimerTOR2</value>
-    <type>string</type>
-  </param>
-  <param>
-    <name>payload</name>
-    <key>payload</key>
-    <type>string</type>
+    <name>ev_dc_2</name>
+    <key>ev_dc_2</key>
+    <value>{}</value>
+    <type>raw</type>
   </param>
 
   <source>

@@ -23,7 +23,7 @@
 # 
 
 '''
-A converter from Event object to PDU.
+Converts an Event object or string to PDU.
 '''
 
 import numpy
@@ -39,7 +39,7 @@ import pmt
 
 
 class ev_to_pdu(gwnblock):
-    '''Converts an Event object to PDU.
+    '''Converts an Event object or string to PDU.
 
     Receives an Event object on input port, produces a PDU (Protocol Data Unit) on its output port.
     @param blkname: block name.

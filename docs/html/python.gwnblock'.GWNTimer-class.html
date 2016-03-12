@@ -78,11 +78,9 @@ threading._Verbose --+   |
 <p>A timer class to add inside timers to GWN blocks.</p>
   <p>Objects of this class can attached to a gwnblock to act as internal 
   timers. An object of this class sends messages to the block to which it 
-  is attached, at regular intervals. A timer object sends a message for an 
-  specified number of times, then a final second message to indicate the 
-  first series has exhausted. Messages are sent only if the corresponding 
-  nicknames are given; no message sent if nicknames are the null string or 
-  None.</p>
+  is attached, at regular intervals. It sends a message for an specified 
+  number of times, then a final second message to indicate the first series
+  has exhausted.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -114,9 +112,8 @@ threading._Verbose --+   |
         <span class="summary-sig-arg">interrupt</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">interval</span>=<span class="summary-sig-default">1.0</span>,
         <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">1</span>,
-        <span class="summary-sig-arg">nickname1</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR1</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">nickname2</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">add_info</span>=<span class="summary-sig-default">None</span>)</span><br />
+        <span class="summary-sig-arg">ev_dc_1</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="summary-sig-arg">ev_dc_2</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.__init__">source&nbsp;code</a></span>
@@ -169,8 +166,8 @@ threading._Verbose --+   |
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#post_message" class="summary-sig-name">post_message</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">nickname</span>)</span><br />
-      Posts timer event and timer metadata on block port.</td>
+        <span class="summary-sig-arg">final</span>)</span><br />
+      Creates Timer Event and posts it on block timer port.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.post_message">source&nbsp;code</a></span>
             
@@ -221,7 +218,7 @@ threading._Verbose --+   |
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="set_interrupt"></a><span class="summary-sig-name">set_interrupt</span>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#set_interrupt" class="summary-sig-name">set_interrupt</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">interrupt</span>)</span><br />
       Interrupts generation of timer messages.</td>
           <td align="right" valign="top">
@@ -239,8 +236,8 @@ threading._Verbose --+   |
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="stop"></a><span class="summary-sig-name">stop</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      Stops timer thread.</td>
+          <td><span class="summary-sig"><a href="python.gwnblock%27.GWNTimer-class.html#stop" class="summary-sig-name">stop</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Stops timer thread...</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.stop">source&nbsp;code</a></span>
             
@@ -351,9 +348,8 @@ threading._Verbose --+   |
         <span class="sig-arg">interrupt</span>=<span class="sig-default">True</span>,
         <span class="sig-arg">interval</span>=<span class="sig-default">1.0</span>,
         <span class="sig-arg">retry</span>=<span class="sig-default">1</span>,
-        <span class="sig-arg">nickname1</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR1</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">nickname2</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">TimerTOR2</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">add_info</span>=<span class="sig-default">None</span>)</span>
+        <span class="sig-arg">ev_dc_1</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="sig-arg">ev_dc_2</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -365,12 +361,16 @@ threading._Verbose --+   |
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>block</code></strong> - block reference to which this instance is attached.</li>
+        <li><strong class="pname"><code>port</code></strong> - tag of port to which messages will be posted.</li>
+        <li><strong class="pname"><code>port_nr</code></strong> - port number, an index in list of ports in block.</li>
         <li><strong class="pname"><code>interrupt</code></strong> - if True, timer is interrupted, i.e. does not send any messages.</li>
         <li><strong class="pname"><code>interval</code></strong> - time between messages to send.</li>
         <li><strong class="pname"><code>retry</code></strong> - how many times to send message 1, then send message 2 once.</li>
-        <li><strong class="pname"><code>nickname1</code></strong> - message to send at regular intervals for retry times.</li>
-        <li><strong class="pname"><code>nickname2</code></strong> - message to send when retries have exhausted.</li>
-        <li><strong class="pname"><code>add_info</code></strong> - additional information for this timer.</li>
+        <li><strong class="pname"><code>ev_dc_1</code></strong> - additional information for event to send at regular intervals for
+          retry times (as message 1).</li>
+        <li><strong class="pname"><code>ev_dc_2</code></strong> - additional information for event to send when retries have 
+          exhausted (as message 2).</li>
     </ul></dd>
     <dt>Overrides:
         object.__init__
@@ -434,18 +434,19 @@ threading._Verbose --+   |
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">post_message</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">nickname</span>)</span>
+        <span class="sig-arg">final</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.post_message">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Posts timer event and timer metadata on block port.</p>
+  <p>Creates Timer Event and posts it on block timer port.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>nickname</code></strong> - the nickname of the event to produce.</li>
+        <li><strong class="pname"><code>final</code></strong> - if False, send message with ev_dc_1; if True, send last message 
+          with ev_dc_2.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -470,7 +471,7 @@ threading._Verbose --+   |
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>retry</code></strong> - new retry value, default None.</li>
+        <li><strong class="pname"><code>retry</code></strong> - new retry value, optional; default None to keep former value.</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -494,6 +495,51 @@ threading._Verbose --+   |
     <dt>Overrides:
         threading.Thread.run
     </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_interrupt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_interrupt</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">interrupt</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.set_interrupt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Interrupts generation of timer messages.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>interrupt</code></strong> - if True, timer is interrupted, i.e. does not send any messages.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="stop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stop</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#GWNTimer.stop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Stops timer thread... or intends to.</p>
+  <p>There is no clear way to stop a thread in Python. Here, interrupt is 
+  set to True; no messages will be sent, but thread remains alive.</p>
+  <dl class="fields">
   </dl>
 </td></tr></table>
 </div>
@@ -529,7 +575,7 @@ threading._Verbose --+   |
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Feb 24 10:58:34 2016
+    Generated by Epydoc 3.0.1 on Sat Mar 12 13:39:28 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
