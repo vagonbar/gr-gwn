@@ -31,8 +31,6 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    msg_sender_m.py
-    msg_receiver_m.py
     gwnblock.py
     hier_rx_psk.py
     hier_tx_psk.py
@@ -60,8 +58,6 @@ include(GrTest)
 
 set(GR_TEST_TARGET_DEPS gnuradio-gwn)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
-GR_ADD_TEST(qa_msg_sender_m ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_sender_m.py)
-GR_ADD_TEST(qa_msg_receiver_m ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_receiver_m.py)
 GR_ADD_TEST(qa_hier_rx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hier_rx_psk.py)
 GR_ADD_TEST(qa_hier_tx_psk ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hier_tx_psk.py)
 GR_ADD_TEST(qa_ev_to_pdu ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_to_pdu.py)

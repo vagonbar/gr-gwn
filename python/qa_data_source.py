@@ -25,11 +25,11 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from data_source import data_source
-
-
 from event_sink import event_sink
+
 import time
 from gwnblock import mutex_prt
+
 
 
 class qa_data_source (gr_unittest.TestCase):
@@ -44,10 +44,12 @@ class qa_data_source (gr_unittest.TestCase):
     def test_data_source(self):
         '''Data Source to Event Sink.
         '''
-        ### blocks Timer Source --> Message Debug
-        blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
+        ### blocks Data Source --> Event Sink
+        blk_snd = data_source(retry=3, interval=1.0, \
+            src_addr='00:00:00:00:00:01', dst_addr='00:00:00:00:00:02', \
+            payload='DataSource QA test, payload')
         blk_snd.debug = True
-        blk_snd.timers[0].debug = True     # print debug on timer
+        blk_snd.timers[0].debug = False     # print debug on timer
         blk_snk = event_sink()
         blk_snk.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 

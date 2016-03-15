@@ -25,11 +25,13 @@
 '''
 A Data Event source, sends data events produced by an internal timer.
 '''
+
 import numpy
 from gnuradio import gr
 
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
+from gwnevents import api_events as api_events
 from gwnblock import mutex_prt 
 import time
 
@@ -37,57 +39,56 @@ import time
 class data_source(gwnblock):
     '''Data events source, sends Data Events at regular intervals.
     
-    Data events source block, produces DataComm Event objects at regular intervals. Number of events produced and interval are set by the user.
-    @param blkname: block name.
-    @param blkid: block identifier.
+    Data events source block, produces DataComm Event objects based on an internal timer set by the user.
     @param interrupt: if set to True, timer does not generate events.
     @param interval: time betweeen successive events.
     @param retry: how many events to produce.
-    @param nickname: event nickname of event to produce on each interval.
-    @param ev_dc: dictionary of other data info.
-    @param payload: data to be carried from source to destination.
+    @param ev_dc: additional information for event to send.
+    @param payload: user data to be carried from source to destination.
     '''
-    def __init__(self,  blkname='data_source', blkid='data_source_id', 
-            interrupt=False, interval=1.0, retry=5,
-            nickname='DataData', payload='', ev_dc={}):
+    def __init__(self, interrupt=False, interval=1.0, retry=5,
+            src_addr='', dst_addr='', payload='', ev_dc={}, debug=False ): 
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, blkname, blkid,
-            number_in=0, number_out=1, number_timers=1)
+        gwnblock.__init__(self, number_in=0, number_out=1, number_timers=1)
 
-        self.blkname = blkname
-        self.blkidid = blkid
-        self.interrupt = interrupt
-        self.interval = interval
-        self.retry = retry
-        self.nickname = nickname
+        #self.interrupt = interrupt
+        #self.interval = interval
+        #self.retry = retry
+        self.src_addr = src_addr
+        self.dst_addr = dst_addr
         self.ev_dc = ev_dc
         self.payload = payload
-
-        self.debug = False  # please set from outside for debug print
+        self.debug = debug
         self.counter = 1
 
+        self.nickname = 'DataOut'
         self.time_init = time.time()    
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 
-            nickname1=nickname, nickname2='')
+            ev_dc_1={'name':'retry'}, ev_dc_2={'name':'final'})
         self.start_timers()
 
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Sends data events produced by the internal timer.
 
         @param ev: an Event object.
         '''
+        if ev.ev_dc['name'] == 'final':    # nothing done
+            return
+        ev_data = api_events.mkevent(self.nickname, \
+            ev_dc=self.ev_dc, payload=self.payload)
+        ev_data.src_addr = self.src_addr
+        ev_data.dst_addr = self.dst_addr
+        ev_data.ev_dc['seq_nr'] = self.counter
         if self.debug:
-            ss = '--- {0}, send ev: {1}, counter: {2}'.\
-                format(self.blkname, ev.nickname, str(self.counter))
-            mutex_prt(ss)
-        ev.ev_dc = self.ev_dc
-        ev.ev_dc['seq_nr'] = self.counter
-        ev.payload = self.payload
+            dbg_msg = '--- Data Source, id {0}, counter: {1}'.\
+                format(id(self), str(self.counter))
+            dbg_msg += '\n' + ev_data.__str__()
+            mutex_prt(dbg_msg)
+        self.write_out(ev_data, port_nr=0)
         self.counter += 1
-        self.write_out(ev, port_nr=0)
 
         return

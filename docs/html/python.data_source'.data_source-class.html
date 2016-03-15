@@ -76,9 +76,8 @@ gnuradio.gr.gateway.gateway_block --+
 
 <hr />
 <p>Data events source, sends Data Events at regular intervals.</p>
-  <p>Data events source block, produces DataComm Event objects at regular 
-  intervals. Number of events produced and interval are set by the 
-  user.</p>
+  <p>Data events source block, produces DataComm Event objects based on an 
+  internal timer set by the user.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -104,14 +103,14 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.data_source%27.data_source-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">data_source</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">data_source_id</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">interrupt</span>=<span class="summary-sig-default">False</span>,
         <span class="summary-sig-arg">interval</span>=<span class="summary-sig-default">1.0</span>,
         <span class="summary-sig-arg">retry</span>=<span class="summary-sig-default">5</span>,
-        <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">DataData</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">src_addr</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">dst_addr</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">payload</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">ev_dc</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span><br />
+        <span class="summary-sig-arg">ev_dc</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="summary-sig-arg">debug</span>=<span class="summary-sig-default">False</span>)</span><br />
       The GWN basic block constructor.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.data_source%27-pysrc.html#data_source.__init__">source&nbsp;code</a></span>
@@ -129,9 +128,7 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.data_source%27.data_source-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">ev</span>,
-        <span class="summary-sig-arg">port</span>,
-        <span class="summary-sig-arg">port_nr</span>)</span><br />
+        <span class="summary-sig-arg">ev</span>)</span><br />
       Sends data events produced by the internal timer.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.data_source%27-pysrc.html#data_source.process_data">source&nbsp;code</a></span>
@@ -232,14 +229,14 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">data_source</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">data_source_id</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">interrupt</span>=<span class="sig-default">False</span>,
         <span class="sig-arg">interval</span>=<span class="sig-default">1.0</span>,
         <span class="sig-arg">retry</span>=<span class="sig-default">5</span>,
-        <span class="sig-arg">nickname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">DataData</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">src_addr</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">dst_addr</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">payload</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">ev_dc</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
+        <span class="sig-arg">ev_dc</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
+        <span class="sig-arg">debug</span>=<span class="sig-default">False</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -254,14 +251,11 @@ gnuradio.gr.gateway.gateway_block --+
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>blkname</code></strong> - block name.</li>
-        <li><strong class="pname"><code>blkid</code></strong> - block identifier.</li>
         <li><strong class="pname"><code>interrupt</code></strong> - if set to True, timer does not generate events.</li>
         <li><strong class="pname"><code>interval</code></strong> - time betweeen successive events.</li>
         <li><strong class="pname"><code>retry</code></strong> - how many events to produce.</li>
-        <li><strong class="pname"><code>nickname</code></strong> - event nickname of event to produce on each interval.</li>
-        <li><strong class="pname"><code>ev_dc</code></strong> - dictionary of other data info.</li>
-        <li><strong class="pname"><code>payload</code></strong> - data to be carried from source to destination.</li>
+        <li><strong class="pname"><code>ev_dc</code></strong> - additional information for event to send.</li>
+        <li><strong class="pname"><code>payload</code></strong> - user data to be carried from source to destination.</li>
     </ul></dd>
     <dt>Overrides:
         object.__init__
@@ -278,9 +272,7 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">process_data</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">ev</span>,
-        <span class="sig-arg">port</span>,
-        <span class="sig-arg">port_nr</span>)</span>
+        <span class="sig-arg">ev</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.data_source%27-pysrc.html#data_source.process_data">source&nbsp;code</a></span>&nbsp;
@@ -331,7 +323,7 @@ gnuradio.gr.gateway.gateway_block --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Mar 12 13:39:28 2016
+    Generated by Epydoc 3.0.1 on Tue Mar 15 11:36:56 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

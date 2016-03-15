@@ -93,6 +93,7 @@ class GWNInPort(GWNPort):
         @param msg_pmt: the PMT message received.'''
         msg_ls = pmt.to_python(msg_pmt)[1]
         ev_str = msg_ls[1]
+        #print "In port serialized ev", ev_str
         ev = pickle.loads(ev_str)
         self.block.process_data(ev)  # pass to process function in block
         return
@@ -110,6 +111,7 @@ class GWNOutPort(GWNPort):
         @param ev: an Event object. 
         '''
         ev_str = pickle.dumps(ev)
+        #print "Out port serialized ev", ev_str
         pmt_msg = pmt.cons(pmt.PMT_NIL, 
             pmt.pmt_to_python.python_to_pmt(ev_str))
         pmt_port = pmt.intern(self.port)

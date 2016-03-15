@@ -4,19 +4,7 @@
   <key>gwn_data_source</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.data_source($blkname, $blkid, $interrupt, $interval, $retry, $nickname, $payload)</make>
-
-  <param>
-    <name>Block Name</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-
-  <param>
-    <name>Block Id</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
+  <make>gwn.data_source($interrupt, $interval, $retry, $src_addr, $dst_addr, $payload, $ev_dc, $debug)</make>
 
   <param>
     <name>Interrupt</name>
@@ -24,42 +12,47 @@
     <value>False</value>
     <type>bool</type>
   </param>
-
   <param>
     <name>Interval</name>
     <key>interval</key>
     <value>1.0</value>
     <type>float</type>
   </param>
-
   <param>
     <name>Retry</name>
     <key>retry</key>
-    <value>10</value>
+    <value>3</value>
     <type>int</type>
   </param>
-
   <param>
-    <name>Data nickname</name>
-    <key>nickname</key>
-    <value>'DataData'</value>
+    <name>Source Addr</name>
+    <key>src_addr</key>
+    <value>'00:00:00:00:00:00'</value>
     <type>string</type>
   </param>
-
-<!--
+  <param>
+    <name>Dest Addr</name>
+    <key>dst_addr</key>
+    <value>'00:00:00:00:00:00'</value>
+    <type>string</type>
+  </param>
   <param>
     <name>Event Dict</name>
-    <key>ev_dict</key>
+    <key>ev_dc</key>
     <value>{}</value>
-    <type>dict</type>
+    <type>raw</type>
   </param>
--->
-
   <param>
     <name>Payload</name>
     <key>payload</key>
     <value>''</value>
     <type>string</type>
+  </param>
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
   </param>
 
   <!-- event source nodes -->

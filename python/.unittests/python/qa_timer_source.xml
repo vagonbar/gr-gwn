@@ -1,6 +1,6 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="28.037">
-  <testcase classname="__main__.qa_timer_source" name="test_interrupt" time="23.0273"></testcase>
-  <testcase classname="__main__.qa_timer_source" name="test_with_message_debug" time="5.0093"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="28.074">
+  <testcase classname="__main__.qa_timer_source" name="test_interrupt" time="23.0256"></testcase>
+  <testcase classname="__main__.qa_timer_source" name="test_with_message_debug" time="5.0477"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

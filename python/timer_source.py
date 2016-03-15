@@ -78,7 +78,6 @@ class timer_source(gwnblock):
         @param ev: an Event object.
         '''
         ev.ev_dc['seq_nr'] = self.counter
-        self.counter += 1
         if self.debug:
             dbg_msg = '--- Timer Source, id {0}, time {1:4.1f}'.\
                 format(str(id(self)), self.elapsed_time() )
@@ -86,6 +85,7 @@ class timer_source(gwnblock):
             mutex_prt(dbg_msg)
             #ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
         self.write_out(ev, port_nr=0)
+        self.counter += 1
 
         return
 

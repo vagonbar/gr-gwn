@@ -7,38 +7,38 @@
   <make>gwn.timer_source($interrupt, $interval, $retry, $debug, $ev_dc_1, $ev_dc_2)</make>
 
   <param>
-    <name>interrupt</name>
+    <name>Interrupt</name>
     <key>interrupt</key>
     <value>False</value>
     <type>bool</type>
   </param>
   <param>
-    <name>interval</name>
+    <name>Interval</name>
     <key>interval</key>
     <value>1.0</value>
     <type>float</type>
   </param>
   <param>
-    <name>retry</name>
+    <name>Retry</name>
     <key>retry</key>
     <value>3</value>
     <type>int</type>
   </param>
   <param>
-    <name>debug</name>
+    <name>Debug</name>
     <key>debug</key>
     <value>False</value>
     <type>bool</type>
   </param>
 
   <param>
-    <name>ev_dc_1</name>
+    <name>Event Dict 1</name>
     <key>ev_dc_1</key>
     <value>{}</value>
     <type>raw</type>
   </param>
   <param>
-    <name>ev_dc_2</name>
+    <name>Event Dict 2</name>
     <key>ev_dc_2</key>
     <value>{}</value>
     <type>raw</type>
