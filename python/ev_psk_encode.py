@@ -35,7 +35,7 @@ import time                             # for tests
 
 import pickle                           # to serialize event
 import pmt                              # for PDUs
-import gwnutils                         # for PSK packing
+import gwnutils                         # for packing
 
 
 class ev_psk_encode(gwnblock):

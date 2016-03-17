@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<block>
+  <name>L2 Framer</name>
+  <key>gwn_l2_framer</key>
+  <category>GWN</category>
+  <import>import gwn</import>
+  <make>gwn.l2_framer($pack)</make>
+
+  <param>
+    <name>Pack type</name>
+    <key>pack</key>
+    <type>enum</type>
+    <option>
+          <name>event</name>
+          <key>'event'</key>
+      </option>
+      <option>
+          <name>payload</name>
+          <key>'payload'</key>
+      </option>
+  </param>
+
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>

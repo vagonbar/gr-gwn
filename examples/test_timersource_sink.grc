@@ -93,6 +93,33 @@
     </param>
   </block>
   <block>
+    <key>blocks_message_debug</key>
+    <param>
+      <key>id</key>
+      <value>blocks_message_debug_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(472, 176)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>gwn_timer_source</key>
     <param>
       <key>id</key>
@@ -144,7 +171,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(152, 115)</value>
+      <value>(176, 67)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -175,34 +202,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 75)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_debug</key>
-    <param>
-      <key>id</key>
-      <value>blocks_message_debug_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(472, 176)</value>
+      <value>(472, 107)</value>
     </param>
     <param>
       <key>_rotation</key>

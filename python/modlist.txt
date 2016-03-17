@@ -21,9 +21,6 @@ ev_psk_encode.py
 
 ev_to_pdu.py
 
-gwnblock_ant.py
-  old version, just kept as handy reference, may disappear.
-
 gwnblock.py
     updated 2016-03-12; test with qa_timer_source.py, qa_event_sink.py.
 

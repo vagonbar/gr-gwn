@@ -48,7 +48,9 @@ GR_PYTHON_INSTALL(
     stop_wait_ack.py
     stop_wait_send.py
     ev_psk_encode.py
-    ev_psk_decode.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    ev_psk_decode.py
+    l2_framer.py
+    l2_deframer.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -75,3 +77,5 @@ GR_ADD_TEST(qa_stop_wait_ack ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa
 GR_ADD_TEST(qa_stop_wait_send ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_send.py)
 GR_ADD_TEST(qa_ev_psk_encode ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_psk_encode.py)
 GR_ADD_TEST(qa_ev_psk_decode ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_psk_decode.py)
+GR_ADD_TEST(qa_l2_framer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l2_framer.py)
+GR_ADD_TEST(qa_l2_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l2_deframer.py)

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<block>
+  <name>L2_Deframer</name>
+  <key>gwn_l2_deframer</key>
+  <category>GWN</category>
+  <import>import gwn</import>
+  <make>gwn.l2_deframer($pack)</make>
+
+  <param>
+    <name>Pack type</name>
+    <key>pack</key>
+    <type>enum</type>
+    <option>
+          <name>event</name>
+          <key>'event'</key>
+      </option>
+      <option>
+          <name>payload</name>
+          <key>'payload'</key>
+      </option>
+  </param>
+
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+
+</block>
