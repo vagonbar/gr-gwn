@@ -40,8 +40,8 @@ class if_psk_rx(gwnblock):
 
     Receives a PDU, extracts content, rebuilds into string and outputs content as a string message (not a PDU).
     '''
-    def __init__(self, blkname="gwn_if_psk_tx", blkid='0'):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+    def __init__(self):
+        gwnblock.__init__(self, name='if_psk_rx', 
             number_in=0, number_out=0, number_timers=0)
 
         self.debug = False

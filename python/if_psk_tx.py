@@ -33,8 +33,8 @@ class if_psk_tx(gwnblock):
     '''Receives an Event object, inserts into a packet.
     
     Receives an event, extracts payload, inserts payload into a packet, outputs packet as a message.'''
-    def __init__(self, blkname='if_psk_tx', blkid='if_psk_tx'):
-        gwnblock.__init__(self, blkname="gwn_if_psk_tx", blkid='0', 
+    def __init__(self):
+        gwnblock.__init__(self, name='if_psk_tx', 
             number_in=1, number_out=1, number_timers=0)
 
         self._samp_per_sym = 5
@@ -46,9 +46,8 @@ class if_psk_tx(gwnblock):
         return
 
 
-    def process_data(self, ev, port, port_nr):
-        payload = ev.frmpkt
-        pkt = packet_utils.make_packet(payload,
+    def process_data(self, ev):
+        pkt = packet_utils.make_packet(ev.payload,
             self._samp_per_sym,
             self._bits_per_sym,
             self._preamble,

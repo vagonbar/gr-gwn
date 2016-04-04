@@ -47,7 +47,7 @@ class l2_framer(gwnblock):
     '''
 
     def __init__(self, pack='event'):
-        gwnblock.__init__(self, name="l2_framer", number_in=1, \
+        gwnblock.__init__(self, name='l2_framer', number_in=1, \
             number_out=1, number_timers=0)
 
         self.pack = pack
@@ -60,7 +60,7 @@ class l2_framer(gwnblock):
             if self.pack == 'event':
                ev.frmpkt = pickle.dumps(ev)
             elif self.pack == 'payload':
-                self.frmpkt = ev.payload
+                ev.frmpkt = ev.payload
             else:
                 return    # not recognized pack action, just copy on output
             self.write_out(ev, port_nr=0)

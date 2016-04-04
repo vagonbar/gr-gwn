@@ -4,18 +4,8 @@
   <key>gwn_ev_to_pdu</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.ev_to_pdu($blkname, $blkid, $in_type)</make>
+  <make>gwn.ev_to_pdu($in_type)</make>
 
-  <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
   <param>
     <name>in_type</name>
     <key>in_type</key>
@@ -23,6 +13,10 @@
     <option>
           <name>event</name>
           <key>'event'</key>
+      </option>
+      <option>
+          <name>payload</name>
+          <key>'payload'</key>
       </option>
       <option>
           <name>message</name>

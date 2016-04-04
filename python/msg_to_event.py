@@ -44,8 +44,8 @@ class msg_to_event(gwnblock):
     @param blkname: block name.
     @param blkid: block identifier.
     '''
-    def __init__(self, blkname='msg_to_event', blkid='msg_to_event'):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid,
+    def __init__(self):
+        gwnblock.__init__(self, name='msg_to:event',
             number_in=0, number_out=1, number_timers=0)
 
         self.debug = True

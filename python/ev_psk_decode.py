@@ -35,6 +35,7 @@ from gwnblock import mutex_prt          # for tests
 import pickle                           # to serialize event
 import pmt                              # for PDUs
 import gwnutils                         # for PSK packing
+from gwnevents import api_events as api_events
 
 
 
@@ -42,19 +43,17 @@ class ev_psk_decode(gwnblock):
     '''Decodes a PDU into an event or message.
     
     Receives a PDU, decodes from PSK, rebuilds event and writes on output port.
-    @param blkname: block name.
-    @param blkid: block identifier.
+    @param out_type: type of output, may be "event", "payload", or "message".
     @param debug: if True, shows details of process; default False.
     '''
-    def __init__(self, blkname='ev_psk_encode', blkid='id_ev_psk_encode', \
-            debug=False):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+    def __init__(self, out_type='event', debug=False):
+        gwnblock.__init__(self, name='ev_psk_decode', 
             number_in=0, number_out=1, number_timers=0)
 
         #@param out_type: type of output, may be "event" or "message"
-        self.out_type = 'event' #out_type
+        self.out_type = out_type
         self.debug = debug
-
+        self.out_nickname = 'DataOut'   # event to load payload into
         # register input port for PDUS and set function handler
         self.message_port_register_in(pmt.intern('pdu'))
         self.set_msg_handler(pmt.intern('pdu'), self.handle_pdu_msg)
@@ -91,6 +90,8 @@ class ev_psk_decode(gwnblock):
                 except:
                     print '    Error on unpickle to event'
                     return
+            elif self.out_type == 'payload':
+                ev = api_events.mkevent(self.out_nickname, payload=rec_str) 
             else:
                 ev = rec_str
             self.process_data(ev)

@@ -43,7 +43,8 @@ class event_sink(gwnblock):
     '''
 
     def __init__(self, debug=False):
-        gwnblock.__init__(self, number_in=1, number_out=0, number_timers=0)
+        gwnblock.__init__(self, name='event_sink', \
+            number_in=1, number_out=0, number_timers=0)
         self.debug = debug
         return
 

@@ -4,18 +4,7 @@
   <key>gwn_if_psk_tx</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.if_psk_tx($blkname, $blkid)</make>
-
-  <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
+  <make>gwn.if_psk_tx()</make>
 
   <sink>
     <name>in0</name>

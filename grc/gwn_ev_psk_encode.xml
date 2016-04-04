@@ -4,19 +4,8 @@
   <key>gwn_ev_psk_encode</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.ev_psk_encode($blkname, $blkid, $in_type, $debug)</make>
+  <make>gwn.ev_psk_encode($in_type, $debug)</make>
 
-
-  <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
   <param>
     <name>in_type</name>
     <key>in_type</key>
@@ -24,6 +13,10 @@
     <option>
           <name>event</name>
           <key>'event'</key>
+      </option>
+    <option>
+          <name>payload</name>
+          <key>'payload'</key>
       </option>
       <option>
           <name>message</name>

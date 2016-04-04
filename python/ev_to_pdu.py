@@ -44,26 +44,27 @@ class ev_to_pdu(gwnblock):
     Receives an Event object on input port, produces a PDU (Protocol Data Unit) on its output port.
     @param blkname: block name.
     @param blkid: block identifier.
-    @param in_type: type of input, may be "event" or "message".
+    @param in_type: type of input, may be "event", "payload" or "message".
     '''
-    def __init__(self, blkname='ev_to_pdu', blkid='id_ev_to_pdu',
-            in_type='event'):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+    def __init__(self, in_type='event'):
+        gwnblock.__init__(self, name='ev_to_pdu', 
             number_in=1, number_out=0, number_timers=0)
 
         self.in_type = in_type
-        self.debug = False  # please set from outside for debug print
+        self.debug = False
 
         # register output port for PDUs
         self.message_port_register_out(pmt.intern('pdu'))
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Receives an Event, converts to PDU, writes on output.
         '''
         if self.in_type is 'event':
             send_str = pickle.dumps(ev)    # serializes Event object
+        elif self.in_type is 'payload':
+            send_str = ev.payload
         elif self.in_type is 'message':
             send_str = ev
         #send_str = '10101010'

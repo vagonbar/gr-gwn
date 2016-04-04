@@ -40,6 +40,7 @@ class data_source(gwnblock):
     '''Data events source, sends Data Events at regular intervals.
     
     Data events source block, produces DataComm Event objects based on an internal timer set by the user.
+    @param name: a name for this block.
     @param interrupt: if set to True, timer does not generate events.
     @param interval: time betweeen successive events.
     @param retry: how many events to produce.
@@ -50,11 +51,12 @@ class data_source(gwnblock):
             src_addr='', dst_addr='', payload='', ev_dc={}, debug=False ): 
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, number_in=0, number_out=1, number_timers=1)
+        gwnblock.__init__(self, name='data_source', \
+            number_in=0, number_out=1, number_timers=1)
 
-        #self.interrupt = interrupt
-        #self.interval = interval
-        #self.retry = retry
+        #self.interrupt = interrupt  # immediately passed to timer
+        #self.interval = interval    # same
+        #self.retry = retry          # same
         self.src_addr = src_addr
         self.dst_addr = dst_addr
         self.ev_dc = ev_dc

@@ -4,19 +4,7 @@
   <key>gwn_pdu_to_ev</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.pdu_to_ev($blkname, $blkid)</make>
-
- <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
-
+  <make>gwn.pdu_to_ev()</make>
 
   <sink>
     <name>pdu</name>

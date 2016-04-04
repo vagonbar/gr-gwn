@@ -42,14 +42,11 @@ class ev_psk_encode(gwnblock):
     '''Encodes an event or message into a PDU for modulation.
 
     Receives an Event object on input port, serializes, adds fields for PSK modulation, produces a PDU (Protocol Data Unit) on its output port.
-    @param blkname: block name.
-    @param blkid: block identifier.
-    @param in_type: type of input, may be "event" or "message".
+    @param in_type: type of input, may be "event", "payload", or "message".
     @param debug: if True, shows details of process; default False.
     '''
-    def __init__(self, blkname='ev_psk_encode', blkid='id_ev_pdk_encode', \
-            in_type='event', debug=False):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+    def __init__(self, in_type='event', debug=False):
+        gwnblock.__init__(self, name='ev_psk_encode', 
             number_in=1, number_out=0, number_timers=0)
 
         self.in_type = in_type
@@ -69,18 +66,17 @@ class ev_psk_encode(gwnblock):
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Receives Event or message, encodes, outputs as PDU.
         '''
 
         # create string to send
         if self.in_type is 'event':
             send_str = pickle.dumps(ev)    # serializes Event object
+        elif self.in_type is 'payload':
+            send_str = ev.payload
         elif self.in_type is 'message':
             send_str = ev
-
-        #send_str = 20*'a' + 20*'b' + 20*'c' + 20*'d' + 20*'e' + 20*'f'
-
 
         if self.debug:
             msg_dbg = '[Send str] : ' + repr(send_str) + '\n'

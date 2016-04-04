@@ -28,6 +28,7 @@ from pdu_to_ev import pdu_to_ev
 
 from ev_to_pdu import ev_to_pdu
 from timer_source import timer_source
+from data_source import data_source
 from event_sink import event_sink
 import time
 from gwnblock import mutex_prt
@@ -47,14 +48,14 @@ class qa_pdu_to_ev (gr_unittest.TestCase):
         '''
         
         ### Timer Source --> Event To PDU --> PDU To Event --> Message Debug
-        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
+        blk_snd = data_source(retry=2, payload='PDU to Event test')
         blk_snd.debug = False      # set to True to enable debug print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
+        blk_ev2pdu = ev_to_pdu()
         blk_ev2pdu.debug = False   # set to True to enable debug print
-        blk_pdu2ev = pdu_to_ev('PDUToEv', 'blk003')
+        blk_pdu2ev = pdu_to_ev()
         blk_pdu2ev.debug = False  # set to True to enable debug print
         #blk_dbg = blocks.message_debug()
-        blk_evsink = event_sink('EventSink', 'blk004')
+        blk_evsink = event_sink()
 
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_ev2pdu, blk_ev2pdu.ports_in[0].port )

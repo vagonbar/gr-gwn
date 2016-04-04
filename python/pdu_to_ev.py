@@ -43,8 +43,8 @@ class pdu_to_ev(gwnblock):
     @param blkname: block name.
     @param blkid: block identifier.
     '''
-    def __init__(self, blkname='pdu_to_ev', blkid='pdu_to_ev'):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid,
+    def __init__(self):
+        gwnblock.__init__(self, name='pdu_to_ev',
             number_in=0, number_out=1, number_timers=0)
 
         self.debug = False  # please set from outside for debug print

@@ -27,6 +27,7 @@ from gnuradio import blocks
 from ev_psk_decode import ev_psk_decode
 
 from timer_source import timer_source
+from data_source import data_source
 from ev_to_pdu import ev_to_pdu
 from gwnblock import mutex_prt
 import time
@@ -49,11 +50,11 @@ class qa_ev_psk_decode (gr_unittest.TestCase):
         '''
         
         ### blocks Timer Source --> Event To PDU --> Message Debug
-        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
+        blk_snd = data_source(retry=2, payload='Test ev_psk_decode')
         blk_snd.debug = False  # to enable timer source print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
+        blk_ev2pdu = ev_to_pdu()
         #blk_dbg = blocks.message_debug()
-        blk_rx = ev_psk_decode('If PSK Receive', 'blk003')
+        blk_rx = ev_psk_decode()
         blk_rx.debug = True  # to enable print
 
 
