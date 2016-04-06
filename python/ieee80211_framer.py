@@ -45,8 +45,8 @@ class ieee80211_framer(gwnblock):
     @param blkname: block name.
     @param blkid: block identifier.
     '''
-    def __init__(self, blkname='ieee80211_framer', blkid='id_ieee80211_framer'):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+    def __init__(self):
+        gwnblock.__init__(self, name='ieee80211_framer', 
             number_in=1, number_out=0, number_timers=0)
 
         self.debug = False  # please set from outside for debug print
@@ -55,7 +55,7 @@ class ieee80211_framer(gwnblock):
         self.message_port_register_out(pmt.intern('pdu'))
         return
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Receives an event, packs into a frame, loads in event attribute.
         '''
         #ev.frmpkt = '***ieee80211framer:_the_packed_frame***'

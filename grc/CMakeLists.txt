@@ -34,8 +34,6 @@ install(FILES
     gwn_stop_wait_send.xml
     gwn_ev_psk_encode.xml
     gwn_ev_psk_decode.xml
-    gwn_l2_framer.xml
-    gwn_l2_deframer.xml
     gwn_l1_framer.xml
     gwn_l1_deframer.xml DESTINATION share/gnuradio/grc/blocks
 )

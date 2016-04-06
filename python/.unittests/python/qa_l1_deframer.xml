@@ -1,0 +1,12 @@
+<testsuite errors="1" failures="0" name="unittest.suite.TestSuite" tests="1" time="0.003">
+  <testcase classname="__main__.qa_l1_deframer" name="test_l1_deframer" time="0.0031">
+    <error type="exceptions.IndexError">list index out of range
+  File "/usr/lib/python2.7/unittest/case.py", line 331, in run
+    testMethod()
+  File "qa_l1_deframer.py", line 62, in test_l1_deframer
+    self.tb.msg_connect(blk_l1_frm, blk_l1_frm.ports_out[0].port,
+    </error>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

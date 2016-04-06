@@ -4,19 +4,7 @@
   <key>gwn_ieee80211_deframer</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.ieee80211_deframer($blkname, $blkid)</make>
-
-
- <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
+  <make>gwn.ieee80211_deframer()</make>
 
   <sink>
     <name>pdu</name>

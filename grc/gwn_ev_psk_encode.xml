@@ -42,4 +42,6 @@
     <optional>1</optional>
   </source>
 
+  <doc>DEPRECATED, use L1 Framer instead</doc>
+
 </block>

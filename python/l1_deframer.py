@@ -22,7 +22,8 @@
 # 
 # 
 
-'''Decodes a PDU into an event or message.
+
+'''Extracts prefix and postfix fields from L1 frame.
 '''
 
 import numpy
@@ -31,6 +32,7 @@ from gnuradio import gr
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # for tests
+import gwnutils                         # for L1 packing
 
 import pickle                           # to serialize event
 import pmt                              # for PDUs
@@ -38,21 +40,21 @@ import gwnutils                         # for PSK packing
 from gwnevents import api_events as api_events
 
 
+class l1_deframer(gwnblock):
+    '''Extracts prefix and postfix fields from L1 frame.
 
-class ev_psk_decode(gwnblock):
-    '''Decodes a PDU into an event or message.
-    
-    Receives a PDU, decodes from PSK, rebuilds event and writes on output port.
+    Receives a PDU, extracts access code, length, CRC32; optionally re-creates a whole event, an event with received data in payload, or an event with a message in frmpkt; writes on output. 
     @param out_type: type of output, may be "event", "payload", or "message".
     @param debug: if True, shows details of process; default False.
     '''
     def __init__(self, out_type='event', debug=False):
-        gwnblock.__init__(self, name='ev_psk_decode', 
+        gwnblock.__init__(self, name='l1_deframer', \
             number_in=0, number_out=1, number_timers=0)
 
         self.out_type = out_type
         self.debug = debug
         self.out_nickname = 'DataOut'   # event to load payload into
+
         # register input port for PDUS and set function handler
         self.message_port_register_in(pmt.intern('pdu'))
         self.set_msg_handler(pmt.intern('pdu'), self.handle_pdu_msg)
@@ -91,8 +93,11 @@ class ev_psk_decode(gwnblock):
                     return
             elif self.out_type == 'payload':
                 ev = api_events.mkevent(self.out_nickname, payload=rec_str) 
+            elif self.out_type == 'message':
+                ev = api_events.mkevent(self.out_nickname, payload='') 
+                ev.frmpkt = rec_str
             else:
-                ev = rec_str
+                mutex_prt('    Invalid out_data type: ' + self.out_data) 
             self.process_data(ev)
         else:
             mutex_prt('   Invalid CRC, discarding packet')
@@ -105,4 +110,5 @@ class ev_psk_decode(gwnblock):
         '''
         self.write_out(ev)
         return
+
 

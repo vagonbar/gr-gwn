@@ -103,14 +103,6 @@
       <value>True</value>
     </param>
     <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
       <key>interrupt</key>
       <value>False</value>
     </param>
@@ -123,12 +115,16 @@
       <value>3</value>
     </param>
     <param>
-      <key>nickname1</key>
-      <value>TimerTOR1</value>
+      <key>debug</key>
+      <value>False</value>
     </param>
     <param>
-      <key>nickname2</key>
-      <value>TimerTOR2</value>
+      <key>ev_dc_1</key>
+      <value>{}</value>
+    </param>
+    <param>
+      <key>ev_dc_2</key>
+      <value>{}</value>
     </param>
     <param>
       <key>alias</key>
@@ -166,12 +162,8 @@
       <value>True</value>
     </param>
     <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
+      <key>in_type</key>
+      <value>'event'</value>
     </param>
     <param>
       <key>alias</key>
@@ -199,6 +191,37 @@
     </param>
   </block>
   <block>
+    <key>gwn_event_sink</key>
+    <param>
+      <key>id</key>
+      <value>gwn_event_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(680, 155)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>gwn_pdu_to_ev</key>
     <param>
       <key>id</key>
@@ -207,14 +230,6 @@
     <param>
       <key>_enabled</key>
       <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
     </param>
     <param>
       <key>alias</key>
@@ -234,42 +249,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 155)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_event_sink</key>
-    <param>
-      <key>id</key>
-      <value>gwn_event_sink_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(680, 155)</value>
+      <value>(504, 160)</value>
     </param>
     <param>
       <key>_rotation</key>

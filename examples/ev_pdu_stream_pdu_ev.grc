@@ -103,14 +103,6 @@
       <value>True</value>
     </param>
     <param>
-      <key>blkname</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value></value>
-    </param>
-    <param>
       <key>interrupt</key>
       <value>False</value>
     </param>
@@ -123,12 +115,16 @@
       <value>3</value>
     </param>
     <param>
-      <key>nickname1</key>
-      <value>TimerTOR1</value>
+      <key>debug</key>
+      <value>False</value>
     </param>
     <param>
-      <key>nickname2</key>
-      <value>TimerTOR2</value>
+      <key>ev_dc_1</key>
+      <value>{}</value>
+    </param>
+    <param>
+      <key>ev_dc_2</key>
+      <value>{}</value>
     </param>
     <param>
       <key>alias</key>
@@ -156,22 +152,18 @@
     </param>
   </block>
   <block>
-    <key>blocks_tagged_stream_to_pdu</key>
+    <key>gwn_ev_to_pdu</key>
     <param>
       <key>id</key>
-      <value>blocks_tagged_stream_to_pdu_0</value>
+      <value>gwn_ev_to_pdu_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>packet_len</value>
+      <key>in_type</key>
+      <value>'event'</value>
     </param>
     <param>
       <key>alias</key>
@@ -191,7 +183,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(664, 291)</value>
+      <value>(296, 155)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -199,22 +191,14 @@
     </param>
   </block>
   <block>
-    <key>blocks_pdu_to_tagged_stream</key>
+    <key>gwn_pdu_to_ev</key>
     <param>
       <key>id</key>
-      <value>blocks_pdu_to_tagged_stream_0</value>
+      <value>gwn_pdu_to_ev_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>packet_len</value>
     </param>
     <param>
       <key>alias</key>
@@ -234,7 +218,38 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 291)</value>
+      <value>(552, 155)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_event_sink</key>
+    <param>
+      <key>id</key>
+      <value>gwn_event_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(728, 155)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -285,7 +300,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(480, 291)</value>
+      <value>(440, 291)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -293,22 +308,22 @@
     </param>
   </block>
   <block>
-    <key>gwn_ev_to_pdu</key>
+    <key>blocks_pdu_to_tagged_stream</key>
     <param>
       <key>id</key>
-      <value>gwn_ev_to_pdu_0</value>
+      <value>blocks_pdu_to_tagged_stream_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>blkname</key>
-      <value></value>
+      <key>type</key>
+      <value>byte</value>
     </param>
     <param>
-      <key>blkid</key>
-      <value></value>
+      <key>tag</key>
+      <value>packet_len</value>
     </param>
     <param>
       <key>alias</key>
@@ -328,7 +343,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(296, 155)</value>
+      <value>(208, 291)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -336,22 +351,22 @@
     </param>
   </block>
   <block>
-    <key>gwn_pdu_to_ev</key>
+    <key>blocks_tagged_stream_to_pdu</key>
     <param>
       <key>id</key>
-      <value>gwn_pdu_to_ev_0</value>
+      <value>blocks_tagged_stream_to_pdu_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>blkname</key>
-      <value></value>
+      <key>type</key>
+      <value>byte</value>
     </param>
     <param>
-      <key>blkid</key>
-      <value></value>
+      <key>tag</key>
+      <value>packet_len</value>
     </param>
     <param>
       <key>alias</key>
@@ -371,72 +386,13 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 155)</value>
+      <value>(624, 291)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
   </block>
-  <block>
-    <key>gwn_event_sink</key>
-    <param>
-      <key>id</key>
-      <value>gwn_event_sink_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>blkname</key>
-      <value>Event Receiver</value>
-    </param>
-    <param>
-      <key>blkid</key>
-      <value>evrec</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(728, 155)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <connection>
-    <source_block_id>blocks_copy_0</source_block_id>
-    <sink_block_id>blocks_tagged_stream_to_pdu_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_pdu_to_tagged_stream_0</source_block_id>
-    <sink_block_id>blocks_copy_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gwn_ev_to_pdu_0</source_block_id>
-    <sink_block_id>blocks_pdu_to_tagged_stream_0</sink_block_id>
-    <source_key>pdu</source_key>
-    <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_tagged_stream_to_pdu_0</source_block_id>
-    <sink_block_id>gwn_pdu_to_ev_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>pdu</sink_key>
-  </connection>
   <connection>
     <source_block_id>gwn_pdu_to_ev_0</source_block_id>
     <sink_block_id>gwn_event_sink_0</sink_block_id>
@@ -448,5 +404,29 @@
     <sink_block_id>gwn_ev_to_pdu_0</sink_block_id>
     <source_key>out0</source_key>
     <sink_key>in0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_tagged_stream_to_pdu_0</source_block_id>
+    <sink_block_id>gwn_pdu_to_ev_0</sink_block_id>
+    <source_key>pdus</source_key>
+    <sink_key>pdu</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_ev_to_pdu_0</source_block_id>
+    <sink_block_id>blocks_pdu_to_tagged_stream_0</sink_block_id>
+    <source_key>pdu</source_key>
+    <sink_key>pdus</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_pdu_to_tagged_stream_0</source_block_id>
+    <sink_block_id>blocks_copy_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0</source_block_id>
+    <sink_block_id>blocks_tagged_stream_to_pdu_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
 </flow_graph>

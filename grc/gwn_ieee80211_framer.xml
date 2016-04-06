@@ -4,18 +4,7 @@
   <key>gwn_ieee80211_framer</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.ieee80211_framer($blkname, $blkid)</make>
-
- <param>
-    <name>blkname</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>blkid</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
+  <make>gwn.ieee80211_framer()</make>
 
   <sink>
     <name>in0</name>

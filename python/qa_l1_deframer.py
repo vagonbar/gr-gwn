@@ -24,15 +24,18 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from l2_deframer import l2_deframer
-from l2_framer import l2_framer
-from event_sink import event_sink
+from l1_deframer import l1_deframer
+
+from l1_framer import l1_framer
 from data_source import data_source
+from event_sink import event_sink
 
 import time
 from gwnblock import mutex_prt
 
-class qa_l2_deframer (gr_unittest.TestCase):
+
+
+class qa_l1_deframer (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -40,19 +43,25 @@ class qa_l2_deframer (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_l2_deframer (self):
-        '''Data source to l2_framer to l2_deframer to event sink.
+    def test_l1_deframer (self):
+        '''Data source to l1 framer, to...
+
+        NOT finished, test on GRC flowgraph with channel model.
         '''
         blk_src = data_source(retry=3, interval=1.0, \
-            payload='L2 Framer QA test, payload')
+            payload='L1 Framer QA test, rebuilds whole event')
         blk_dst = event_sink(debug=True)
-        blk_frm = l2_framer()
-        blk_dfr = l2_deframer()
+        blk_l1_frm = l1_framer()
+        blk_l1_dfr = l1_deframer(debug=True)
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
-                            blk_frm, blk_frm.ports_in[0].port)
-        self.tb.msg_connect(blk_frm, blk_frm.ports_out[0].port, 
-                            blk_dfr, blk_dfr.ports_in[0].port)
-        self.tb.msg_connect(blk_dfr, blk_dfr.ports_out[0].port, 
+                            blk_l2_frm, blk_l2_frm.ports_in[0].port)
+        self.tb.msg_connect(blk_l2_frm, blk_l2_frm.ports_out[0].port, 
+                            blk_l1_frm, blk_l1_frm.ports_in[0].port)
+        self.tb.msg_connect(blk_l1_frm, blk_l1_frm.ports_out[0].port, 
+                            blk_l1_dfr, blk_l1_dfr.ports_in[0].port)
+        self.tb.msg_connect(blk_l1_dfr, blk_l1_dfr.ports_out[0].port, 
+                            blk_l2_dfr, blk_l2_dfr.ports_in[0].port)
+        self.tb.msg_connect(blk_l2_dfr, blk_l2_dfr.ports_out[0].port, 
                             blk_dst, blk_dst.ports_in[0].port)
 
         #self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
@@ -73,5 +82,9 @@ class qa_l2_deframer (gr_unittest.TestCase):
 
         return
 
+
+
+
+
 if __name__ == '__main__':
-    gr_unittest.run(qa_l2_deframer, "qa_l2_deframer.xml")
+    gr_unittest.run(qa_l1_deframer, "qa_l1_deframer.xml")

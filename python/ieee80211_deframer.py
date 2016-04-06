@@ -47,8 +47,8 @@ class ieee80211_deframer(gwnblock):
     @param blkid: block identifier. 
     '''
 
-    def __init__(self, blkname='ieee80211_deframer', blkid='id_ieee80211_deframer'):
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+    def __init__(self):
+        gwnblock.__init__(self, name='ieee80211_deframer', 
             number_in=0, number_out=1, number_timers=0)
 
         self.debug = False  # please set from outside for debug print

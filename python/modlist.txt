@@ -20,9 +20,9 @@ l2_framer
 l2_deframer
     created, updated 2016-03-29
 
-qa_l1_framer
+l1_framer
 
-qa_l1_deframer
+l1_deframer
 
 ev_psk_decode.py
 

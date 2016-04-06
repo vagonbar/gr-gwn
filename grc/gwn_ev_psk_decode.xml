@@ -42,6 +42,7 @@
     <optional>1</optional>
   </source>
 
+  <doc>DEPRECATED, use L1 Deframer instead</doc>
 
 
 </block>
