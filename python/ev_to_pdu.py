@@ -42,8 +42,6 @@ class ev_to_pdu(gwnblock):
     '''Converts an Event object or string to PDU.
 
     Receives an Event object on input port, produces a PDU (Protocol Data Unit) on its output port.
-    @param blkname: block name.
-    @param blkid: block identifier.
     @param in_type: type of input, may be "event", "payload" or "message".
     '''
     def __init__(self, in_type='event'):

@@ -40,8 +40,6 @@ class pdu_to_ev(gwnblock):
     '''Converts a PDU into an Event object
 
     Receives a PDU message, deserializes content into an Event object, sends Event object on its output port.
-    @param blkname: block name.
-    @param blkid: block identifier.
     '''
     def __init__(self):
         gwnblock.__init__(self, name='pdu_to_ev',

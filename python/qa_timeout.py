@@ -12,7 +12,7 @@ class GWNTimeout(GWNPort):
 
     Objects of this class can attached to a gwnblock to act as internal timeouts. An object of this class sends a messages to the block to which it is attached once the specified time has elapsed.
     '''
-    def __init__(self, block, port, port_nr, timeout=1.0, nickname='TimerTOR2'):
+    def __init__(self, block, port, port_nr, timeout=1.0, nickname='EventTimer'):
         '''Constructor.
 
         @param timeout: timeout in seconds.

@@ -44,11 +44,11 @@ class qa_if_psk_rx (gr_unittest.TestCase):
         '''
         
         ### blocks Timer Source --> Event To PDU --> Message Debug
-        blk_snd = timer_source('TimerEvSource', 'blk001', retry=2)
+        blk_snd = timer_source(retry=2)
         blk_snd.debug = False  # to enable timer source print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
+        blk_ev2pdu = ev_to_pdu()
         #blk_dbg = blocks.message_debug()
-        blk_rx = if_psk_rx('If PSK Receive', 'blk003')
+        blk_rx = if_psk_rx()
         blk_rx.debug = True  # to enable print
 
 

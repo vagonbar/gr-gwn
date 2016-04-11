@@ -46,21 +46,23 @@ class qa_ieee80211_deframer (gr_unittest.TestCase):
         '''Test deframer with Timer Source, IEEE802.11 Framer.
         '''
 
-        # blocks Timer Source produces DataData event --> Framer
-        #blk_src = timer_source('TimerSource', 'blk001', retry=2, \
-        #    nickname1='DataData', nickname2='DataData')
-        blk_src = data_source('DataSource', 'blk001', retry=2, \
-            nickname='DataData', payload='Data Event payload',
-            ev_dc={'duration':0, 'src_addr':'AAAA', 'dst_addr':'BBBB'} )
-        blk_frm = ieee80211_framer('Framer', 'blk002')
+        # Data Source --> Framer
+        blk_src = data_source(retry=2, \
+            src_addr='aa:bb:cc:dd:ff:11', dst_addr='22:33:44:55:66:77', \
+            payload='Test IEEE 802.11 deframer', \
+            ev_dc={'duration':0, \
+                'src_addr':'11:11:11:11:11:11', \
+                'dst_addr':'22:22:22:22:22:22'} )
+        blk_src.debug = False
+        blk_frm = ieee80211_framer()
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_frm, blk_frm.ports_in[0].port)
-        # blocks Framer --> Deframer
-        blk_dfrm = ieee80211_deframer('Deframer', 'blk003')
+        # Framer --> Deframer
+        blk_dfrm = ieee80211_deframer()
         self.tb.msg_connect(blk_frm, 'pdu', 
                             blk_dfrm, 'pdu')
         # blocks Deframer --> Event Sink
-        blk_evsink = event_sink('EventSink', 'blk004')
+        blk_evsink = event_sink(debug=True)
         self.tb.msg_connect(blk_dfrm, blk_dfrm.ports_out[0].port, 
                             blk_evsink, blk_evsink.ports_in[0].port)
 

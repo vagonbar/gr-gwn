@@ -77,7 +77,12 @@ gnuradio.gr.gateway.gateway_block --+
 <hr />
 <p>Generates IEEE 802.11 frame from event.</p>
   <p>Receives an Event object on input port, generates an IEEE 802.11 frame
-  from it, ouputs frame as a PDU on output port.</p>
+  from it, ouputs frame as a PDU on output port. From the event received, 
+  an IEEE 802.11 compatible Event object is created. Objects of the IEEE 
+  802.11 compatible class can be converted into an IEEE 802.11 Frame 
+  object, which allows for the construction of an IEEE 802.11 frame. Fields
+  of frame are extracted from fields source and destination addresses, the 
+  ev_dc dictionary of field names and values, and the payload.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -103,8 +108,7 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.ieee80211_framer%27.ieee80211_framer-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">blkname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">ieee80211_framer</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">blkid</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">id_ieee80211_framer</code><code class="variable-quote">'</code></span>)</span><br />
+        <span class="summary-sig-arg">nickname</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">DataData</code><code class="variable-quote">'</code></span>)</span><br />
       The GWN basic block constructor.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.ieee80211_framer%27-pysrc.html#ieee80211_framer.__init__">source&nbsp;code</a></span>
@@ -122,10 +126,8 @@ gnuradio.gr.gateway.gateway_block --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="python.ieee80211_framer%27.ieee80211_framer-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">ev</span>,
-        <span class="summary-sig-arg">port</span>,
-        <span class="summary-sig-arg">port_nr</span>)</span><br />
-      Receives an event, packs into a frame, loads in event attribute.</td>
+        <span class="summary-sig-arg">ev</span>)</span><br />
+      Receives an event, packs into a frame, outputs as a PDU.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.ieee80211_framer%27-pysrc.html#ieee80211_framer.process_data">source&nbsp;code</a></span>
             
@@ -225,8 +227,7 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">blkname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">ieee80211_framer</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">blkid</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">id_ieee80211_framer</code><code class="variable-quote">'</code></span>)</span>
+        <span class="sig-arg">nickname</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">DataData</code><code class="variable-quote">'</code></span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -241,8 +242,7 @@ gnuradio.gr.gateway.gateway_block --+
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>blkname</code></strong> - block name.</li>
-        <li><strong class="pname"><code>blkid</code></strong> - block identifier.</li>
+        <li><strong class="pname"><code>nickname</code></strong> - nickname of an IEEE 802.11 compatible Event object.</li>
     </ul></dd>
     <dt>Overrides:
         object.__init__
@@ -259,16 +259,14 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">process_data</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">ev</span>,
-        <span class="sig-arg">port</span>,
-        <span class="sig-arg">port_nr</span>)</span>
+        <span class="sig-arg">ev</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="python.ieee80211_framer%27-pysrc.html#ieee80211_framer.process_data">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Receives an event, packs into a frame, loads in event attribute.</p>
+  <p>Receives an event, packs into a frame, outputs as a PDU.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
@@ -312,7 +310,7 @@ gnuradio.gr.gateway.gateway_block --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Mar 17 15:12:59 2016
+    Generated by Epydoc 3.0.1 on Mon Apr 11 15:39:45 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

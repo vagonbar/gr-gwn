@@ -41,8 +41,6 @@ class msg_to_event(gwnblock):
     '''Receives a message, creates a Data Event from it.
 
     Warning: received item is a "messsage", but not a "PDU": received message contents is a string, while content in PDUs must be a vector.
-    @param blkname: block name.
-    @param blkid: block identifier.
     '''
     def __init__(self):
         gwnblock.__init__(self, name='msg_to:event',

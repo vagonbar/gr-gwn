@@ -40,7 +40,6 @@ class data_source(gwnblock):
     '''Data events source, sends Data Events at regular intervals.
     
     Data events source block, produces DataComm Event objects based on an internal timer set by the user.
-    @param name: a name for this block.
     @param interrupt: if set to True, timer does not generate events.
     @param interval: time betweeen successive events.
     @param retry: how many events to produce.

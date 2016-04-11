@@ -46,9 +46,10 @@ class qa_ev_psk_decode (gr_unittest.TestCase):
     def test_with_timer_source (self):
         '''Timer Source to Event To PDU to Message Debug.
         
-        NOT TESTED, only copied from qa_if_psk_rx.
         '''
-        
+        print "Test in GRC; DEPRECATED, use l1_deframer"
+
+        """ 
         ### blocks Timer Source --> Event To PDU --> Message Debug
         blk_snd = data_source(retry=2, payload='Test ev_psk_decode')
         blk_snd.debug = False  # to enable timer source print
@@ -84,7 +85,7 @@ class qa_ev_psk_decode (gr_unittest.TestCase):
         self.tb.stop()
         self.tb.wait()
         print '\n--- top block stopped'
-        
+        """
         return
 
 if __name__ == '__main__':

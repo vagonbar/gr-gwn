@@ -38,16 +38,13 @@ class virtual_channel(gwnblock):
     '''A virtual channel, outputs items with probability loss.
 
     Receives an Event on its Event input port, outputs the same item on corresponding output port with a probability of loss.
-    @param blkname: block name.
-    @param blkid: block identifier.
     @param prob_loss: probability of loss, float value in [0,1].
     '''
 
-    def __init__(self, blkname='virtual_chanel', blkid='id_virtual_channel', 
-            prob_loss=0):
+    def __init__(self, prob_loss=0):
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+        gwnblock.__init__(self, name='virtual_channel', \
             number_in=1, number_out=1, number_timers=0)
 
         self.prob_loss = prob_loss
@@ -62,7 +59,7 @@ class virtual_channel(gwnblock):
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Receives an Event, outputs with probability loss.
 
         @param ev: an Event object.

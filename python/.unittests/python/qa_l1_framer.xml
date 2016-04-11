@@ -1,6 +1,6 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="10.023">
-  <testcase classname="__main__.qa_l1_framer" name="test_l1_framer" time="5.0128"></testcase>
-  <testcase classname="__main__.qa_l1_framer" name="test_l2_framer" time="5.0096"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="2" time="10.020">
+  <testcase classname="__main__.qa_l1_framer" name="test_l1_framer" time="5.0111"></testcase>
+  <testcase classname="__main__.qa_l1_framer" name="test_l2_framer" time="5.0091"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

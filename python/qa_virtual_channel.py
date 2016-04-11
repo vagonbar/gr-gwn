@@ -48,11 +48,11 @@ class qa_virtual_channel (gr_unittest.TestCase):
         '''
         
         ### blocks Timer Source --> Virtual Channel --> Event Sink
-        blk_snd = timer_source('EvSource', 'blk001', retry=10)
+        blk_snd = timer_source(retry=10)
         #blk_snd.debug = True  # to enable timer source print
-        blk_vchan = virtual_channel('VirChannel', 'blk002', 0.5)
+        blk_vchan = virtual_channel(0.5)
         blk_vchan.debug = True  # to see probability of loss
-        blk_snk = event_sink('EventSink', 'blk003')
+        blk_snk = event_sink()
 
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
             				blk_vchan, blk_vchan.ports_in[0].port )
@@ -84,10 +84,10 @@ class qa_virtual_channel (gr_unittest.TestCase):
         '''
         
         ### Timer Source --> EvToPDU --> Virtual Channel --> Msg Debug
-        blk_snd = timer_source('EvSource', 'blk001', retry=10)
+        blk_snd = timer_source(retry=10)
         #blk_snd.debug = True  # to enable timer source print
-        blk_ev2pdu = ev_to_pdu('EvToPDU', 'blk002')
-        blk_vchan = virtual_channel('VirChannel', 'blk002', 0.5)
+        blk_ev2pdu = ev_to_pdu()
+        blk_vchan = virtual_channel(0.5)
         blk_vchan.debug = True  # to see probability of loss
         blk_dbg = blocks.message_debug()
 

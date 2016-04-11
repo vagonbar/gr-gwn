@@ -23,7 +23,7 @@
 # 
 
 '''
-An IEEE 802.11 deframer, converts frame to Event.
+An IEEE 802.11 deframer, converts frame to Event objrct.
 '''
 
 import numpy
@@ -33,23 +33,21 @@ import pmt
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # for tests
+from gwnevents import api_events as api_events
 
-import sys
 import utils.framers.ieee80211.api_frmevs as api_frmevs
 import utils.framers.ieee80211.api_frames as api_frames
+import utils.framers.ieee80211.frames as frames
 
 
 class ieee80211_deframer(gwnblock):
-    '''Generates an Event object from a PDU.
+    '''Generates an Event object from a PDU with a frame.
 
-   Receives a PDU, generates an Event object from it, outputs Event object on output port.
-    @param blkname: block name.
-    @param blkid: block identifier. 
+   Receives a PDU, extracts an IEEE 802.11 frame, generates an Event object from it, outputs Event object on output port.
     '''
 
     def __init__(self):
-        gwnblock.__init__(self, name='ieee80211_deframer', 
-            number_in=0, number_out=1, number_timers=0)
+        gwnblock.__init__(self, number_in=0, number_out=1, number_timers=0)
 
         self.debug = False  # please set from outside for debug print
 
@@ -76,10 +74,14 @@ class ieee80211_deframer(gwnblock):
                 mutex_prt ("[METADATA]: " + meta)
             mutex_prt ("[CONTENTS]: " + msg_str )
 
-        # create Event object from frame, pass on to process_data
+        # create Frame object from frame, pass on to process_data
         try:
             frm_obj = api_frames.objfrompkt(msg_str)
             ev = api_frmevs.frmtoev(frm_obj)
+            #ev.src_addr = frames.addrpkt2mac(ev.ev_dc['src_addr'])
+            #ev.dst_addr = frames.addrpkt2mac(ev.ev_dc['dst_addr'])
+            ev.ev_dc['src_addr'] = frames.addrpkt2mac(ev.ev_dc['src_addr'])
+            ev.ev_dc['dst_addr'] = frames.addrpkt2mac(ev.ev_dc['dst_addr'])
         except:
             mutex_prt("Error trying to create Event from frame\n")
             if meta is not None:

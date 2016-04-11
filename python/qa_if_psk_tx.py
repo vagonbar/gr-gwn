@@ -35,8 +35,9 @@ class qa_if_psk_tx (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
+        print "Test in qa_if_psk_rx.py"
         # set up fg
-        self.tb.run ()
+        #self.tb.run ()
         # check data
 
 

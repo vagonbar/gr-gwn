@@ -26,7 +26,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from ieee80211_framer import ieee80211_framer
 
-from timer_source import timer_source
+from data_source import data_source
 from event_sink import event_sink
 import time
 from gwnblock import mutex_prt 
@@ -44,10 +44,12 @@ class qa_ieee80211_framer (gr_unittest.TestCase):
         '''Test framer with Timer Source, Message Debug.
         '''
 
-        # blocks Timer Source produces DataData event --> Framer
-        blk_src = timer_source('TimerSource', 'blk001', retry=2, \
-            nickname1='DataData', nickname2='DataData')
-        blk_frm = ieee80211_framer('Framer', 'blk002')
+        # Data Source --> Framer --> Message Debug
+        blk_src = data_source(retry=2, \
+            src_addr='24:fd:52:1a:2a:cc', dst_addr='ab:ab:ab:ab:ab:ab', \
+            payload='Test IEEE 802.11 framer')
+        blk_src.debug = True
+        blk_frm = ieee80211_framer()
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_frm, blk_frm.ports_in[0].port)
         # blocks Framer --> Message Debug

@@ -254,7 +254,7 @@ class GWNTimer(GWNPort, threading.Thread):
         self.port = port
         self.port_nr = port_nr
         self.interrupt = interrupt
-        self.interval = interval
+        self.interval = float(interval)
         self.retry = retry
         self.ev_dc_1 = ev_dc_1
         self.ev_dc_2 = ev_dc_2
@@ -517,7 +517,7 @@ class gwnblock(gr.basic_block):
         @param ev_dc_2: additional information for event to send when retries have exhausted. Adds to existing dictionary.
         ''' 
         mytimer = self.timers[index]
-        mytimer.interval = interval
+        mytimer.interval = float(interval)
         mytimer.retry = retry
         mytimer.ev_dc_1.update(ev_dc_1)
         mytimer.ev_dc_2.update(ev_dc_2)
