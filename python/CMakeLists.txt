@@ -38,17 +38,12 @@ GR_PYTHON_INSTALL(
     pdu_to_ev.py
     event_sink.py
     timer_source.py
-    if_psk_rx.py
-    msg_to_event.py
-    if_psk_tx.py
     ieee80211_framer.py
     ieee80211_deframer.py
     virtual_channel.py
     data_source.py
     stop_wait_ack.py
     stop_wait_send.py
-    ev_psk_encode.py
-    ev_psk_decode.py
     l1_framer.py
     l1_deframer.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
@@ -66,16 +61,11 @@ GR_ADD_TEST(qa_ev_to_pdu ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_
 GR_ADD_TEST(qa_pdu_to_ev ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pdu_to_ev.py)
 GR_ADD_TEST(qa_event_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_event_sink.py)
 GR_ADD_TEST(qa_timer_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_timer_source.py)
-GR_ADD_TEST(qa_if_psk_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_if_psk_rx.py)
-GR_ADD_TEST(qa_msg_to_event ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_msg_to_event.py)
-GR_ADD_TEST(qa_if_psk_tx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_if_psk_tx.py)
 GR_ADD_TEST(qa_ieee80211_framer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ieee80211_framer.py)
 GR_ADD_TEST(qa_ieee80211_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ieee80211_deframer.py)
 GR_ADD_TEST(qa_virtual_channel ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_virtual_channel.py)
 GR_ADD_TEST(qa_data_source ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_source.py)
 GR_ADD_TEST(qa_stop_wait_ack ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_ack.py)
 GR_ADD_TEST(qa_stop_wait_send ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stop_wait_send.py)
-GR_ADD_TEST(qa_ev_psk_encode ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_psk_encode.py)
-GR_ADD_TEST(qa_ev_psk_decode ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ev_psk_decode.py)
 GR_ADD_TEST(qa_l1_framer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l1_framer.py)
 GR_ADD_TEST(qa_l1_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l1_deframer.py)

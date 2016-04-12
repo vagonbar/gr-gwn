@@ -47,7 +47,7 @@ class qa_l1_deframer (gr_unittest.TestCase):
         '''Data source to l1 framer, to...
 
         '''
-        print "Test in GRC flowgraph ev_tx_rx_l1framer.grc"
+        print "===> TEST in GRC flowgraph ev_tx_rx_l1framer.grc"
         """
         blk_src = data_source(retry=3, interval=1.0, \
             payload='L1 Framer QA test, rebuilds whole event')
@@ -82,9 +82,6 @@ class qa_l1_deframer (gr_unittest.TestCase):
         print '\n--- top block stopped'
         """
         return
-
-
-
 
 
 if __name__ == '__main__':

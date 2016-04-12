@@ -1,8 +1,10 @@
 GWN Module List
 
-Full revision started 2016-03-11; some blocks may not work, since the GWN parent block, gwnblock, is being updated. Blocks marked "updated" are working, as verified by their corresponding "qa_".
-
-State at 2016-03-12
+Main changes:
+  - suppressed blkname, blkid; gwnblock inherits a 'name' value which can be obtained with function name(); this name is initialized with the name of the block class.
+  - suppressed if_psk_?x blocks, use l1_framer, l2_deframer
+  - suppressed ev_psk_??code blocks, use l1_framer, l2_deframer
+  - suppressed msg_sender, msg_receiver; use timer_source, data_source.
 
 === Module list
 
@@ -10,40 +12,52 @@ build_utils_codes.py
 
 build_utils.py
 
+timer_source.py
+    updated, test OK
 data_source.py
-    updated 2016-03-15, 2016-03-29
+    updated, test OK
 event_sink.py
-    updated 2016-03-12, 2016-03-29
+    updated, test OK
 
 l2_framer
-    created, updated 2016-03-09
+    DEPRECATED, unnecessary
 l2_deframer
-    created, updated 2016-03-29
+    DEPRECATED, unnecessary
 
 l1_framer
-
+    created, test OK
 l1_deframer
+   created, test OK in GRC flowgraph ev_tx_rx_l1framer.grc
+WARNING: l1_framer is not reversed by l1_deframer, i.e. l1_framer --> l1_deframer does not recover the original event; though, it works; please see examples/ev_tx_rx_l1framer.grc for a working example.
 
 ev_psk_decode.py
-
+    DEPRECATED, use l1_framer
 ev_psk_encode.py
+    DEPRECATED, use l1_deframer
 
 ev_to_pdu.py
+    updated, test OK
+pdu_to_ev.py
+    updated, test OK
 
 gwnblock.py
-    updated 2016-03-12; test with qa_timer_source.py, qa_event_sink.py.
+    updated; test with qa_timer_source.py, qa_event_sink.py
 
 hier_rx_psk.py
-
+    test OK, examples/test_hier_blocks.grc
 hier_tx_psk.py
+    test OK, examples/test_hier_blocks.grc
 
 ieee80211_deframer.py
-
+    updated, test OK
 ieee80211_framer.py
+    updated, test OK
+WARNING: IEEE 802.11 libraries, APIs, and relation (events, frame objects, frames) must be revised; use may be simplified.
 
 if_psk_rx.py
-
+    DEPRECATED, use l1_framer
 if_psk_tx.py
+    DEPRECATED, use l1_deframer
 
 __init__.py
 
@@ -51,17 +65,17 @@ msg_receiver_m.py
     ELIMINADO
 msg_sender_m.py
     ELIMINADO
+
 msg_to_event.py
-
-pdu_to_ev.py
-
-stop_wait_ack.py
-
-stop_wait_send.py
-
-timer_source.py
-    updated 2016-03-12
+    DEPRECATED, unnecessary
 
 virtual_channel.py
+    updated, test OK
 
+
+=== ARQ example
+stop_wait_ack.py
+    updated, test OK
+stop_wait_send.py
+    updated, test OK
 

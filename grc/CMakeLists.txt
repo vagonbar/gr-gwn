@@ -23,17 +23,12 @@ install(FILES
     gwn_pdu_to_ev.xml
     gwn_event_sink.xml
     gwn_timer_source.xml
-    gwn_msg_to_event.xml
-    gwn_if_psk_rx.xml
-    gwn_if_psk_tx.xml
     gwn_ieee80211_framer.xml
     gwn_ieee80211_deframer.xml
     gwn_virtual_channel.xml
     gwn_data_source.xml
     gwn_stop_wait_ack.xml
     gwn_stop_wait_send.xml
-    gwn_ev_psk_encode.xml
-    gwn_ev_psk_decode.xml
     gwn_l1_framer.xml
     gwn_l1_deframer.xml DESTINATION share/gnuradio/grc/blocks
 )

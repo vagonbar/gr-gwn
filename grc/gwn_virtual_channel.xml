@@ -4,18 +4,8 @@
   <key>gwn_virtual_channel</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.virtual_channel($blkname, $blkid, $prob_loss)</make>
+  <make>gwn.virtual_channel($prob_loss)</make>
 
-  <param>
-    <name>Block Name</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-  <param>
-    <name>Block Id</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
   <param>
     <name>Probability Loss</name>
     <key>prob_loss</key>

@@ -205,8 +205,6 @@ class stop_wait_send(gwnblock):
     '''An ARQ Stop and wait event sender.
 
     Receives an event, starts a timeout, writes this event on output port 1, and waits for an ACK to the message sent. On receiving the appropriate ACK, sends next message. On timeout, resends the unacknowledged message. Received messages are buffered in a FIFO list.
-    @param blkname: block name.
-    @param blkid: block identifier.
     @param ack_nickname: the nickname of the acknowledge event waited for.
     @param max_retries: number of times to resend event if ACK not received.
     @param tout_nickname: the nickname of the timer event waited for.
@@ -214,17 +212,14 @@ class stop_wait_send(gwnblock):
     @param buffer_len: the buffer capacity, i.e. the maximum length of the list; default is 0, which means no limit.
     '''
 
-    def __init__(self, blkname='stop_wait_send', blkid='id_stop_wait_send',
-            ack_nickname='CtrlACK', max_retries=3, \
+    def __init__(self, ack_nickname='CtrlACK', max_retries=3, \
             tout_nickname='TimerACKTout', timeout=1.0, \
             buffer_len=1000, debug=False):
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+        gwnblock.__init__(self, name='stop_wait_send', \
             number_in=1, number_out=1, number_timeouts=1)
 
-        self.blkname = blkname
-        self.blkid = blkid
         self.ack_nickname = ack_nickname
         self.max_retries = max_retries
         self.tout_nickname = tout_nickname
@@ -238,7 +233,7 @@ class stop_wait_send(gwnblock):
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Writes event, waits for ACK, retransmits.
 
         The received event is passed on to the process function of the FSM; actions in the FSM are provided with the received event and a reference to the present block, so that they can access this block's attributes and functions, in particular the write_out function to send events.
@@ -246,10 +241,10 @@ class stop_wait_send(gwnblock):
         '''
         if self.debug:
             dbg_msg = '--- {0}, received ev: {1}'. \
-                format(self.blkname, ev.nickname)
+                format(self.name(), ev.nickname)
             # only for Data Events:
             #dbg_msg = '--- {0}, received ev: {1}, seq nr: {2}'. \
-            #    format(self.blkname, ev.nickname, ev.ev_dc['seq_nr'])
+            #    format(self.name(), ev.nickname, ev.ev_dc['seq_nr'])
             mutex_prt(dbg_msg)
         # handle event to FSM process functions
         self.fsm.process(ev.nickname, event=ev, block=self)

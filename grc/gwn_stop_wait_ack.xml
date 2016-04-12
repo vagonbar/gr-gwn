@@ -4,19 +4,7 @@
   <key>gwn_stop_wait_ack</key>
   <category>GWN/ARQ</category>
   <import>import gwn</import>
-  <make>gwn.stop_wait_ack($blkname, $blkid, $ack_nickname)</make>
-
-  <param>
-    <name>Block Name</name>
-    <key>blkname</key>
-    <type>string</type>
-  </param>
-
-  <param>
-    <name>Block Id</name>
-    <key>blkid</key>
-    <type>string</type>
-  </param>
+  <make>gwn.stop_wait_ack($ack_nickname)</make>
 
   <param>
     <name>ACK nickname</name>

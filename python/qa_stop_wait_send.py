@@ -48,15 +48,15 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         '''  
         print "\n\n=== Test ACK ===\n"
         ### block Data Source --> Stop and Wait Send
-        blk_snd = data_source('DataData', 'blk001', retry=3, interval=1.0)
+        blk_snd = data_source(retry=3, interval=1.0)
         blk_snd.debug = True
-        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', buffer_len=10)
+        blk_arq_send = stop_wait_send(buffer_len=10)
         blk_arq_send.debug = True   # prints complete Event
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
         ### block Stop and Wait ACK <--> Stop and Wait ACK
-        blk_ack = stop_wait_ack('StopAndWaitACK', 'blk003')
+        blk_ack = stop_wait_ack()
         blk_ack.debug = True
         self.tb.msg_connect(blk_arq_send, blk_arq_send.ports_out[0].port, 
                             blk_ack, blk_ack.ports_in[0].port)
@@ -64,7 +64,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
         ### block Stop and Wait ACK --> Event Sink
-        blk_snk_ev = event_sink('EventSink', 'blk004')
+        blk_snk_ev = event_sink()
         #blk_snk_ev.debug = True    # print complete Event
         self.tb.msg_connect(blk_ack, blk_ack.ports_out[0].port, 
                             blk_snk_ev, blk_snk_ev.ports_in[0].port)
@@ -95,17 +95,16 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         '''
         print "\n\n=== Test retry ===\n"
         ### block Data Source --> Stop and Wait Send
-        blk_snd = data_source('DataData', 'blk001', retry=5, interval=1.0)
+        blk_snd = data_source(retry=5, interval=1.0)
         blk_snd.debug = True
-        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', \
-            timeout=0.5, max_retries=2)
+        blk_arq_send = stop_wait_send(timeout=0.5, max_retries=2)
         blk_arq_send.debug = False   # prints complete Event
         blk_arq_send.fsm.debug = True
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
         ### block Stop and Wait Send --> Event Sink
-        blk_snk_ev = event_sink('EventSink', 'blk004')
+        blk_snk_ev = event_sink()
         #blk_snk_ev.debug = True    # print complete Event
         self.tb.msg_connect(blk_arq_send, blk_arq_send.ports_out[0].port, 
                             blk_snk_ev, blk_snk_ev.ports_in[0].port)
@@ -130,9 +129,9 @@ class qa_stop_wait_send (gr_unittest.TestCase):
         '''
         print "\n\n=== Test with loss ===\n"
         ### block Data Source --> Stop and Wait Send
-        blk_src = data_source('DataData', 'blk001', retry=6, interval=1.0)
+        blk_src = data_source(retry=6, interval=1.0)
         blk_src.debug = True
-        blk_arq_send = stop_wait_send('StopAndWaitSend', 'blk002', timeout=1.5, max_retries= 4)
+        blk_arq_send = stop_wait_send(timeout=1.5, max_retries= 4)
         blk_arq_send.debug = True
         #blk_arq_send.fsm.debug = True
         #blk_arq_send.timeouts[0].debug = True
@@ -140,13 +139,13 @@ class qa_stop_wait_send (gr_unittest.TestCase):
                             blk_arq_send, blk_arq_send.ports_in[0].port)
 
         ### block Stop and Wait Send --> Virtual Channel
-        blk_vch = virtual_channel('VirtualChannel', 'blk003', prob_loss=0.5)
+        blk_vch = virtual_channel(prob_loss=0.5)
         blk_vch.debug = True
         self.tb.msg_connect(blk_arq_send, blk_arq_send.ports_out[0].port, 
                             blk_vch, blk_vch.ports_in[0].port)
 
         ### block Virtual Channel --> Stop and Wait ACK
-        blk_ack = stop_wait_ack('StopAndWaitACK', 'blk004')
+        blk_ack = stop_wait_ack()
         blk_ack.debug = True
         self.tb.msg_connect(blk_vch, blk_vch.ports_out[0].port, 
                             blk_ack, blk_ack.ports_in[0].port)
@@ -155,7 +154,7 @@ class qa_stop_wait_send (gr_unittest.TestCase):
 
 
         ### block Virtual Channel --> Event Sink
-        blk_snk_ev = event_sink('EventSink', 'blk005')
+        blk_snk_ev = event_sink()
         #blk_snk_ev.debug = True    # print complete Event
         self.tb.msg_connect(blk_ack, blk_ack.ports_out[0].port, 
                             blk_snk_ev, blk_snk_ev.ports_in[0].port)

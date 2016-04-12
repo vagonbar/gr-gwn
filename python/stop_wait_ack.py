@@ -38,15 +38,12 @@ class stop_wait_ack(gwnblock):
     '''An ARQ Stop and wait ACK sender.
 
     Receives an event, writes this event on output port 1, generates an ACK event, writes it out on output port 2.
-    @param blkname: block name.
-    @param blkid: block identifier.
     '''
 
-    def __init__(self, blkname='stop_wait_ack', blkid='id_stop_wait_ack',
-            ack_nickname='CtrlACK', debug=False):
+    def __init__(self, ack_nickname='CtrlACK', debug=False):
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, blkname=blkname, blkid=blkid, 
+        gwnblock.__init__(self, name='stop_wait_ack', \
             number_in=1, number_out=2, number_timers=0)
 
         self.ack_nickname = ack_nickname
@@ -56,14 +53,14 @@ class stop_wait_ack(gwnblock):
         return
 
 
-    def process_data(self, ev, port, port_nr):
+    def process_data(self, ev):
         '''Writes event and ACK on output ports.
 
         @param ev: an Event object.
         '''
         if self.debug:
             dbg_msg = '--- {0} received ev: {1}, seq nr: {2}'. \
-                format(self.blkname, ev.nickname, ev.ev_dc['seq_nr'])
+                format(self.name(), ev.nickname, ev.ev_dc['seq_nr'])
             dbg_msg += '\n    event ack:{0}, waited ack: {1}'. \
                 format(ev.ev_dc['ack'], self.ack)
             if ev.payload:

@@ -1,5 +1,5 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="5.008">
-  <testcase classname="__main__.qa_ieee80211_framer" name="test_framer_1" time="5.0082"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="5.014">
+  <testcase classname="__main__.qa_ieee80211_framer" name="test_framer_1" time="5.0133"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
