@@ -3,7 +3,7 @@
 # Gnuradio Python Flow Graph
 # Title: Channel with Events
 # Description: Events from source to sink
-# Generated: Tue Apr 12 11:09:15 2016
+# Generated: Wed Apr 13 10:15:57 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.
@@ -36,17 +36,17 @@ class ev_tx_rx_usrp(gr.top_block):
         # Blocks
         ##################################################
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=E0R11Y0B1", "")),
+        	",".join(("", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_center_freq(850000000.0, 0)
+        self.uhd_usrp_source_0.set_center_freq(851000000.0, 0)
         self.uhd_usrp_source_0.set_gain(15, 0)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
-        	",".join(("serial=E0R11Y4B1", "")),
+        	",".join(("", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
