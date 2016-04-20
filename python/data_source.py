@@ -23,7 +23,7 @@
 # 
 
 '''
-A Data Event source, sends data events produced by an internal timer.
+A Data Event source, sends data events at regular intervals.
 '''
 
 import numpy
@@ -43,8 +43,9 @@ class data_source(gwnblock):
     @param interrupt: if set to True, timer does not generate events.
     @param interval: time betweeen successive events.
     @param retry: how many events to produce.
-    @param ev_dc: additional information for event to send.
     @param payload: user data to be carried from source to destination.
+    @param ev_dc: additional information for event to send.
+    @param debug: print additional information; default False.
     '''
     def __init__(self, interrupt=False, interval=1.0, retry=5,
             src_addr='', dst_addr='', payload='', ev_dc={}, debug=False ): 
@@ -53,9 +54,6 @@ class data_source(gwnblock):
         gwnblock.__init__(self, name='data_source', \
             number_in=0, number_out=1, number_timers=1)
 
-        #self.interrupt = interrupt  # immediately passed to timer
-        #self.interval = interval    # same
-        #self.retry = retry          # same
         self.src_addr = src_addr
         self.dst_addr = dst_addr
         self.ev_dc = ev_dc
@@ -93,3 +91,4 @@ class data_source(gwnblock):
         self.counter += 1
 
         return
+

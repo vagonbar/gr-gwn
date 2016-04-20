@@ -47,7 +47,7 @@ class virtual_channel(gwnblock):
         gwnblock.__init__(self, name='virtual_channel', \
             number_in=1, number_out=1, number_timers=0)
 
-        self.prob_loss = prob_loss
+        self.prob_loss = float(prob_loss)
         self.debug = False  # please set from outside for debug print
 
         # register input port for PDUS and set function handler
@@ -82,12 +82,10 @@ class virtual_channel(gwnblock):
         @param msg_pmt: a PDU.
         '''
         rand_nr = random.random()
-        if self.debug:
-            dbg_msg = '--- Virtual Channel, prob_loss={0}; rand_nr={1}'.\
-                format(self.prob_loss, rand_nr)
-            #dbg_msg = '  prob_loss=' + str(self.prob_loss) + \
-            #    '; rand_nr=' + str(rand_nr)
-            mutex_prt(dbg_msg)
+        #if self.debug:
+        #    dbg_msg = '--- Virtual Channel, prob_loss={0}; rand_nr={1}'.\
+        #        format(self.prob_loss, rand_nr)
+        #    mutex_prt(dbg_msg)
         if rand_nr <= self.prob_loss:
             pass					# no output
         else:

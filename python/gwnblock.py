@@ -158,7 +158,7 @@ class GWNTimeout(GWNPort):
         '''Starts timer, lives until timeout.
 
         @param timeout: a timeout value in seconds.
-        @param ev_dc_ dictionary of additional information to add to existing ev_dc on event.
+        @param ev_dc: additional information for event to send.
         '''
         if timeout:
             self.timeout = timeout
@@ -394,6 +394,7 @@ class gwnblock(gr.basic_block):
         @param number_timers: number of internal timers.
         @param number_timeouts: number of internal timeouts.
         '''
+        # invocation of GR basic block constructor
         gr.basic_block.__init__(self,
             name=name, in_sig=[], out_sig=[])  
 

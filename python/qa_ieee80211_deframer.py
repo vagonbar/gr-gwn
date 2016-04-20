@@ -59,6 +59,7 @@ class qa_ieee80211_deframer (gr_unittest.TestCase):
                             blk_frm, blk_frm.ports_in[0].port)
         # Framer --> Deframer
         blk_dfrm = ieee80211_deframer()
+        blk_dfrm.debug = True
         self.tb.msg_connect(blk_frm, 'pdu', 
                             blk_dfrm, 'pdu')
         # blocks Deframer --> Event Sink

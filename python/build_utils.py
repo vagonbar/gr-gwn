@@ -21,7 +21,7 @@
 # Boston, MA 02110-1301, USA.
 #
 
-'''Misc utilities used at build time.
+'''Miscellaneous utilities used at build time.
 '''
 
 import re, os, os.path
@@ -72,7 +72,9 @@ def open_and_log_name (name, dir):
     return f
 
 def expand_template (d, template_filename, extra = ""):
-    '''Given a dictionary D and a TEMPLATE_FILENAME, expand template into output file
+    '''Expand template into output file.
+
+    Given a dictionary D and a TEMPLATE_FILENAME, expand template into output file
     '''
     global do_sources
     output_extension = extract_extension (template_filename)
@@ -226,3 +228,4 @@ def standard_impl_dict2 (name, code3, package):
     d['TAP_TYPE'] = tap_type (code3)
     d['IS_COMPLEX'] = is_complex (code3)
     return d
+

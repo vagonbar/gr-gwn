@@ -75,14 +75,16 @@ class ieee80211_framer(gwnblock):
 
         # create an empty PMT (contains only spaces):
         send_pmt = pmt.make_u8vector(len(send_str), ord(' '))
-        # Copy all characters to the u8vector:
+        # copy all characters to the u8vector:
         for i in range(len(send_str)):
             pmt.u8vector_set(send_pmt, i, ord(send_str[i]))
         if self.debug:
-            mutex_prt('[Event]\n' + ev.__str__() )
-            mutex_prt('[frame]\n' + send_str)
-            mutex_prt('[PMT message]')
-            mutex_prt(send_pmt)
+            msg_dbg = '--- IEEE 802.11 framer, id {0}\n'.\
+                format(id(self), )
+            msg_dbg += '[Event]\n' + ev.__str__() + "\n"
+            msg_dbg += '[frame]\n' + send_str # + "\n"
+            msg_dbg += '[PMT message]\n' + str(send_pmt) + "\n"
+            mutex_prt(msg_dbg)
         # Send the message:
         self.message_port_pub( pmt.intern('pdu'), 
             pmt.cons(pmt.PMT_NIL, send_pmt) )

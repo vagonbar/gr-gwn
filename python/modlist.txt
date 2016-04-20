@@ -1,33 +1,36 @@
-GWN Module List
+========================
+   GWN update April 2016
+   Module List
+========================
 
 Main changes:
-  - suppressed blkname, blkid; gwnblock inherits a 'name' value which can be obtained with function name(); this name is initialized with the name of the block class.
+  - suppressed blkname, blkid; gwnblock inherits from gr.basic_block a 'name' attribute which can be obtained with function name(); in GWN this name is initialized with the name of the block class.
   - suppressed if_psk_?x blocks, use l1_framer, l2_deframer
   - suppressed ev_psk_??code blocks, use l1_framer, l2_deframer
   - suppressed msg_sender, msg_receiver; use timer_source, data_source.
 
+
 === Module list
 
 build_utils_codes.py
+  no change.
 
 build_utils.py
+  no change, just some very small doc details.
 
 timer_source.py
-    updated, test OK
+    updated, test OK; doc updated
 data_source.py
-    updated, test OK
+    updated, test OK; doc updated
 event_sink.py
-    updated, test OK
-
-l2_framer
-    DEPRECATED, unnecessary
-l2_deframer
-    DEPRECATED, unnecessary
+    updated, test OK; doc updated
 
 l1_framer
-    created, test OK
+    created, test OK; doc updated
 l1_deframer
-   created, test OK in GRC flowgraph ev_tx_rx_l1framer.grc
+   created, test OK; doc updated.
+   Test with GRC, flowgraph examples/ev_tx_rx_l1framer.grc, or with 
+   python examples/ev_tx_rx_l1framer.py 
 WARNING: l1_framer is not reversed by l1_deframer, i.e. l1_framer --> l1_deframer does not recover the original event; though, it works; please see examples/ev_tx_rx_l1framer.grc for a working example.
 
 ev_psk_decode.py
@@ -36,12 +39,13 @@ ev_psk_encode.py
     DEPRECATED, use l1_deframer
 
 ev_to_pdu.py
-    updated, test OK
+    updated, test OK, doc updated
 pdu_to_ev.py
-    updated, test OK
+    updated, test OK; doc updated
 
 gwnblock.py
-    updated; test with qa_timer_source.py, qa_event_sink.py
+    updated, test OK; doc updated
+    test with qa_timer_source.py, qa_event_sink.py
 
 hier_rx_psk.py
     test OK, examples/test_hier_blocks.grc
@@ -49,9 +53,9 @@ hier_tx_psk.py
     test OK, examples/test_hier_blocks.grc
 
 ieee80211_deframer.py
-    updated, test OK
+    updated, test OK; doc updated
 ieee80211_framer.py
-    updated, test OK
+    updated, test OK: doc updated
 WARNING: IEEE 802.11 libraries, APIs, and relation (events, frame objects, frames) must be revised; use may be simplified.
 
 if_psk_rx.py
@@ -70,10 +74,11 @@ msg_to_event.py
     DEPRECATED, unnecessary
 
 virtual_channel.py
-    updated, test OK
+    updated, test OK: doc updated
 
 
-=== ARQ example
+=== ARQ example:
+    to be substituted by Randall - Romero (RR) ARQ implementation 
 stop_wait_ack.py
     updated, test OK
 stop_wait_send.py

@@ -46,13 +46,15 @@ class l1_framer(gwnblock):
     '''
 
     def __init__(self, in_type='event', debug=False):
+
+        # invocation of ancestor constructor
         gwnblock.__init__(self, name='l1_framer', \
             number_in=1, number_out=1, number_timers=0)
 
         self.in_type = in_type
         self.debug = debug
 
-        # values for PSK encoding
+        # values for encoding
         self._samp_per_sym = 5
         self._bits_per_sym = 2
         self._preamble = gwnutils.default_preamble
@@ -74,12 +76,13 @@ class l1_framer(gwnblock):
         if self.in_type is 'event':
             send_str = pickle.dumps(ev)    # serializes Event object
         elif self.in_type is 'payload':
-            send_str = ev.payload
+            send_str = ev.payload          # payload goes as such
         elif self.in_type is 'message':
-            send_str = ev
+            send_str = ev                  # ev is a PMT message
 
         if self.debug:
-            msg_dbg = '[Send str] : ' + repr(send_str) + '\n'
+            msg_dbg = '--- L1 framer, id {0}\n'.format(id(self),)
+            msg_dbg += '[Send str] : ' + repr(send_str) + '\n'
             msg_dbg += '[Send str len] : ' + str(len(send_str)) + '\n'
             mutex_prt(msg_dbg)
 
@@ -91,14 +94,10 @@ class l1_framer(gwnblock):
             self._access_code,
             self._pad_for_usrp,
             self._whitener_offset)
-        #print "send pkt =", repr(send_pkt)
-        #print "send len pkt =", len(send_pkt)
-        #print
-        #msg = gr.message_from_string(pkt)
 
         # create an empty PMT (contains only spaces):
         send_pmt = pmt.make_u8vector(len(send_pkt), ord(' '))
-        # Copy all characters to the u8vector:
+        # copy all characters to the u8vector:
         for i in range(len(send_pkt)):
             pmt.u8vector_set(send_pmt, i, ord(send_pkt[i]))
         # send the message:

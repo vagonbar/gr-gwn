@@ -150,7 +150,7 @@ python.timer_source'.timer_source.__init__
 python.virtual_channel'.virtual_channel.__init__" class="py-name" href="#" onclick="return doclink('link-5', '__init__', 'link-5');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">name</tt><tt class="py-op">=</tt><tt class="py-string">'virtual_channel'</tt><tt class="py-op">,</tt> \ </tt>
 <a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">            <tt class="py-name">number_in</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">number_out</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">number_timers</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
 <a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"> </tt>
-<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prob_loss</tt> <tt class="py-op">=</tt> <tt class="py-name">prob_loss</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prob_loss</tt> <tt class="py-op">=</tt> <tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">prob_loss</tt><tt class="py-op">)</tt> </tt>
 <a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt>  <tt class="py-comment"># please set from outside for debug print</tt> </tt>
 <a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"> </tt>
 <a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-comment"># register input port for PDUS and set function handler</tt> </tt>
@@ -189,21 +189,17 @@ python.gwnblock_bak.gwnblock.write_out" class="py-name" href="#" onclick="return
 <a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"><tt class="py-docstring">        @param msg_pmt: a PDU.</tt> </tt>
 <a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
 <a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line">        <tt class="py-name">rand_nr</tt> <tt class="py-op">=</tt> <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">random</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
-<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">:</tt> </tt>
-<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line">            <tt class="py-name">dbg_msg</tt> <tt class="py-op">=</tt> <tt class="py-string">'--- Virtual Channel, prob_loss={0}; rand_nr={1}'</tt><tt class="py-op">.</tt>\ </tt>
-<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">                <tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prob_loss</tt><tt class="py-op">,</tt> <tt class="py-name">rand_nr</tt><tt class="py-op">)</tt> </tt>
-<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line">            <tt class="py-comment">#dbg_msg = '  prob_loss=' + str(self.prob_loss) + \</tt> </tt>
-<a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">            <tt class="py-comment">#    '; rand_nr=' + str(rand_nr)</tt> </tt>
-<a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line">            <tt id="link-9" class="py-name"><a title="python.gwnblock'.mutex_prt
-python.gwnblock_ant.mutex_prt
-python.gwnblock_bak.mutex_prt" class="py-name" href="#" onclick="return doclink('link-9', 'mutex_prt', 'link-3');">mutex_prt</a></tt><tt class="py-op">(</tt><tt class="py-name">dbg_msg</tt><tt class="py-op">)</tt> </tt>
-<a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">rand_nr</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prob_loss</tt><tt class="py-op">:</tt> </tt>
-<a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt>                                        <tt class="py-comment"># no output</tt> </tt>
-<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
-<a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line">            <tt class="py-comment"># send the message on PDU output port</tt> </tt>
-<a name="L95"></a><tt class="py-lineno">95</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">message_port_pub</tt><tt class="py-op">(</tt> <tt class="py-name">pmt</tt><tt class="py-op">.</tt><tt class="py-name">intern</tt><tt class="py-op">(</tt><tt class="py-string">'pdu'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">msg_pmt</tt><tt class="py-op">)</tt> </tt>
-<a name="L96"></a><tt class="py-lineno">96</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
-</div></div><a name="L97"></a><tt class="py-lineno">97</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">        <tt class="py-comment">#if self.debug:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line">        <tt class="py-comment">#    dbg_msg = '--- Virtual Channel, prob_loss={0}; rand_nr={1}'.\</tt> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">        <tt class="py-comment">#        format(self.prob_loss, rand_nr)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line">        <tt class="py-comment">#    mutex_prt(dbg_msg)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">rand_nr</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prob_loss</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt>                                        <tt class="py-comment"># no output</tt> </tt>
+<a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line">            <tt class="py-comment"># send the message on PDU output port</tt> </tt>
+<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">message_port_pub</tt><tt class="py-op">(</tt> <tt class="py-name">pmt</tt><tt class="py-op">.</tt><tt class="py-name">intern</tt><tt class="py-op">(</tt><tt class="py-string">'pdu'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">msg_pmt</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div></div><a name="L95"></a><tt class="py-lineno">95</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -241,7 +237,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Tue Apr 12 12:12:03 2016
+    Generated by Epydoc 3.0.1 on Wed Apr 20 14:29:39 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

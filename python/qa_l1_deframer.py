@@ -48,6 +48,7 @@ class qa_l1_deframer (gr_unittest.TestCase):
 
         '''
         print "===> TEST in GRC flowgraph ev_tx_rx_l1framer.grc"
+        print "      or with:    python ../examples/ev_tx_rx_l1framer.py"
         """
         blk_src = data_source(retry=3, interval=1.0, \
             payload='L1 Framer QA test, rebuilds whole event')

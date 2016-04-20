@@ -23,7 +23,7 @@
 # 
 
 '''
-A timer Event source, sends events produced by an internal timer.
+A timer Event source, sends Timer events at regular intervals.
 '''
 
 import numpy
@@ -36,7 +36,7 @@ import time
 
 
 class timer_source(gwnblock):
-    '''Timer events source, sends Events produced by an internal timer.
+    '''Timer Event source, sends Timer events at regular intervals.
     
     Timer events source block, produces Timer Event objects based on an internal timer set by the user.
     @param interrupt: if set to True, timer does not generate events.
@@ -44,21 +44,21 @@ class timer_source(gwnblock):
     @param retry: how many events to produce.
     @param ev_dc_1: additional information for event to send at regular intervals for retry times.
     @param ev_dc_2: additional information for event to send when retries have exhausted.
+    @param debug: print additional information; default False.
     '''
     def __init__(self, interrupt=False, interval=1.0, retry=5, 
             debug=False, ev_dc_1={}, ev_dc_2={}):
 
         # invocation of ancestor constructor
-        gwnblock.__init__(self, number_in=0, number_out=1, number_timers=1)
+        gwnblock.__init__(self, name='timer_source', \
+            number_in=0, number_out=1, number_timers=1)
 
-        self.ev_dc_1 = ev_dc_1
-        self.ev_dc_2 = ev_dc_2
         self.debug = debug
         self.counter = 1
 
         self.time_init = time.time()    
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 
-            ev_dc_1=self.ev_dc_1, ev_dc_2=self.ev_dc_2)
+            ev_dc_1=ev_dc_1, ev_dc_2=ev_dc_2)
         self.start_timers()
 
         return
@@ -83,7 +83,6 @@ class timer_source(gwnblock):
                 format(str(id(self)), self.elapsed_time() )
             dbg_msg += '\n' + ev.__str__()
             mutex_prt(dbg_msg)
-            #ev.frmpkt = dbg_msg + str(self.counter) # transmission debug
         self.write_out(ev, port_nr=0)
         self.counter += 1
 

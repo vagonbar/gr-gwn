@@ -42,6 +42,8 @@ class pdu_to_ev(gwnblock):
     Receives a PDU message, deserializes content into an Event object, sends Event object on its output port.
     '''
     def __init__(self):
+
+        # invocation of ancestor constructor
         gwnblock.__init__(self, name='pdu_to_ev',
             number_in=0, number_out=1, number_timers=0)
 
@@ -55,15 +57,15 @@ class pdu_to_ev(gwnblock):
 
     def handle_pdu_msg(self, msg_pmt):
         # code taken from chat_blocks in GNURadio tutorial 5
-        # Collect metadata, convert to Python format:
+        # collect metadata, convert to Python format:
         meta = pmt.to_python(pmt.car(msg_pmt))
-        # Collect message, convert to Python format:
+        # collect message, convert to Python format:
         msg = pmt.cdr(msg_pmt)
-        # Make sure it's a u8vector
+        # make sure it's a u8vector
         if not pmt.is_u8vector(msg):
             print "[ERROR] Received invalid message type.\n"
             return
-        # Convert to string:
+        # convert to string:
         msg_str = "".join([chr(x) for x in pmt.u8vector_elements(msg)])
         if self.debug:
             if meta is not None:

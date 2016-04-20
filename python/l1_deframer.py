@@ -45,7 +45,7 @@ class l1_deframer(gwnblock):
 
     Receives a PDU, extracts access code, length, CRC32; optionally re-creates a whole event, an event with received data in payload, or an event with a message in frmpkt; writes on output. 
     @param out_type: type of output, may be "event", "payload", or "message".
-    @param debug: if True, shows details of process; default False.
+    @param debug: print additional information; default False.
     '''
     def __init__(self, out_type='event', debug=False):
         gwnblock.__init__(self, name='l1_deframer', \
@@ -79,7 +79,8 @@ class l1_deframer(gwnblock):
         #print "rec len pkt =", len(rec_str)
 
         if self.debug:
-            msg_dbg = '[CRC ok] : ' + str(ok) + '\n'
+            msg_dbg = '--- L1 deframer, id {0}\n'.format(id(self),)
+            msg_dbg += '[CRC ok] : ' + str(ok) + '\n'
             msg_dbg += '[Rec str] : ' + repr(rec_str) + '\n'
             msg_dbg += '[Rec str len] : ' + str(len(rec_str)) + '\n'
             mutex_prt(msg_dbg)

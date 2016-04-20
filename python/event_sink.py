@@ -22,7 +22,8 @@
 # 
 # 
 
-'''An Event sink block; receives and prints event information.
+'''
+An Event sink block; receives and prints event information.
 '''
 
 import numpy
@@ -32,7 +33,6 @@ from gnuradio import gr
 from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # block specific, for this block
 import time                             # block specific, for this block
-
 
 
 class event_sink(gwnblock):

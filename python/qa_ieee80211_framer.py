@@ -50,6 +50,7 @@ class qa_ieee80211_framer (gr_unittest.TestCase):
             payload='Test IEEE 802.11 framer')
         blk_src.debug = True
         blk_frm = ieee80211_framer()
+        blk_frm.debug = True
         self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
                             blk_frm, blk_frm.ports_in[0].port)
         # blocks Framer --> Message Debug

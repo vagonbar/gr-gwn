@@ -65,17 +65,16 @@ class ev_to_pdu(gwnblock):
             send_str = ev.payload
         elif self.in_type is 'message':
             send_str = ev
-        #send_str = '10101010'
-        # Create an empty PMT (contains only spaces):
+        # create an empty PMT (contains only spaces):
         send_pmt = pmt.make_u8vector(len(send_str), ord(' '))
-        # Copy all characters to the u8vector:
+        # copy all characters to the u8vector:
         for i in range(len(send_str)):
             pmt.u8vector_set(send_pmt, i, ord(send_str[i]))
         if self.debug:
             mutex_prt('[PMT message]')
             mutex_prt(send_pmt)
 
-        # Send the message:
+        # send the message:
         self.message_port_pub( pmt.intern('pdu'), 
             pmt.cons(pmt.PMT_NIL, send_pmt) )
 
