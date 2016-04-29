@@ -43,7 +43,7 @@ class qa_l1_framer (gr_unittest.TestCase):
 
 
     def test_l1_framer (self):
-        '''Data source to l2_framer to l1_framer to event sink, whole event.
+        '''Data source to l1_framer to message debug.
         '''
 
         blk_src = data_source(retry=3, interval=1.0, \
@@ -72,37 +72,6 @@ class qa_l1_framer (gr_unittest.TestCase):
         self.tb.wait()
         print '\n--- top block stopped'
 
-
-
-    def test_l2_framer (self):
-        '''Data source to l2_framer to l1_framer to event sink, on payload.
-        '''
-
-        blk_src = data_source(retry=3, interval=1.0, \
-            payload='L1 Framer QA test, payload only')
-        #blk_dst = event_sink(debug=True)
-        blk_l1_frm = l1_framer(in_type='payload', debug=True)
-        blk_dbg = blocks.message_debug()
-        self.tb.msg_connect(blk_src, blk_src.ports_out[0].port, 
-                            blk_l1_frm, blk_l1_frm.ports_in[0].port)
-        self.tb.msg_connect(blk_l1_frm, 'pdu', 
-                            blk_dbg, 'print_pdu')
-
-        self.tb.start()
-        mutex_prt(self.tb.msg_edge_list())
-        #print tb.dump()
-        
-        secs = 5
-        print '--- sender, timer started, waiting %d seconds\n' % (secs,)
-        time.sleep(secs)
-        
-        blk_src.stop_timers()
-        print '\n--- sender, timers stopped'
-        #time.sleep(2)
-
-        self.tb.stop()
-        self.tb.wait()
-        print '\n--- top block stopped'
 
 
 if __name__ == '__main__':

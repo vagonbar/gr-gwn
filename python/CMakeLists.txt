@@ -45,7 +45,8 @@ GR_PYTHON_INSTALL(
     stop_wait_ack.py
     stop_wait_send.py
     l1_framer.py
-    l1_deframer.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    l1_deframer.py
+    DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################

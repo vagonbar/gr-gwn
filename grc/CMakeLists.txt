@@ -30,5 +30,6 @@ install(FILES
     gwn_stop_wait_ack.xml
     gwn_stop_wait_send.xml
     gwn_l1_framer.xml
-    gwn_l1_deframer.xml DESTINATION share/gnuradio/grc/blocks
+    gwn_l1_deframer.xml
+    DESTINATION share/gnuradio/grc/blocks
 )

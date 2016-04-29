@@ -4,7 +4,22 @@
   <key>gwn_pdu_to_ev</key>
   <category>GWN</category>
   <import>import gwn</import>
-  <make>gwn.pdu_to_ev()</make>
+  <make>gwn.pdu_to_ev($in_type)</make>
+
+  <param>
+    <name>Input type</name>
+    <key>in_type</key>
+    <value>event</value>
+    <type>enum</type>
+    <option>
+          <name>event</name>
+          <key>'event'</key>
+      </option>
+    <option>
+          <name>payload</name>
+          <key>'payload'</key>
+      </option>
+  </param>
 
   <sink>
     <name>pdu</name>
