@@ -32,6 +32,7 @@ import pmt
 
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
+from gwnblock import pdu_to_msg
 from gwnblock import mutex_prt          # for tests
 from gwnevents import api_events as api_events
 
@@ -59,23 +60,10 @@ class ieee80211_deframer(gwnblock):
 
 
     def handle_pdu_msg(self, msg_pmt):
-        # code taken from chat_blocks in GNURadio tutorial 5
-        # collect metadata, convert to Python format:
-        meta = pmt.to_python(pmt.car(msg_pmt))
-        # collect message, convert to Python format:
-        msg = pmt.cdr(msg_pmt)
-        # make sure it's a u8vector
-        if not pmt.is_u8vector(msg):
-            mutex_prt("[ERROR] Received invalid message type.\n")
-            return
-        # convert to string:
-        msg_str = "".join([chr(x) for x in pmt.u8vector_elements(msg)])
         if self.debug:
             msg_dbg = '--- IEEE 802.11 deframer, id {0}\n'.format(id(self), )
-            if meta is not None:
-                msg_dbg += "[METADATA]: " + meta + "\n"
-            msg_dbg += "[CONTENTS]: " + msg_str + "\n"
             mutex_prt(msg_dbg)
+        meta, msg_str = pdu_to_msg(msg_pmt, debug=self.debug)
 
         # create Frame object from frame, pass on to process_data
         try:

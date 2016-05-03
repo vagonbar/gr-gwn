@@ -30,6 +30,7 @@ from gnuradio import gr
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # for tests
+from gwnblock import pdu_to_msg
 import time                             # for tests
 
 import pickle
@@ -42,7 +43,7 @@ class pdu_to_ev(gwnblock):
     '''Converts a PDU into an Event object
 
     Receives a PDU message, deserializes content into an Event object, sends Event object on its output port.
-    @param in_type: if 'event', PDU content is deserialized into an Event object; if 'payload', a Data Event is built and PDU content is loaded into the payload attribute of this new event.
+    @param in_type: type of input, may be "event", "payload" or "message". If "event", PDU content is deserialized into an Event object. If "payload" or "message", a Data Event is built and PDU content is loaded into the payload attribute of this new event.
     '''
     def __init__(self, in_type='event'):
 
@@ -60,34 +61,19 @@ class pdu_to_ev(gwnblock):
         return
 
 
-    def handle_pdu_msg(self, msg_pmt):
-        # code taken from chat_blocks in GNURadio tutorial 5
-        # collect metadata, convert to Python format:
-        meta = pmt.to_python(pmt.car(msg_pmt))
-        # collect message, convert to Python format:
-        msg = pmt.cdr(msg_pmt)
-        # make sure it's a u8vector
-        if not pmt.is_u8vector(msg):
-            print "[ERROR] Received invalid message type.\n"
-            return
-        # convert to string:
-        msg_str = "".join([chr(x) for x in pmt.u8vector_elements(msg)])
-        if self.debug:
-            if meta is not None:
-                mutex_prt ("[METADATA]: " + meta)
-            mutex_prt ("[CONTENTS]: " + msg_str )
-
+    def handle_pdu_msg(self, pdu):
+        meta, msg_str = pdu_to_msg(pdu, debug=self.debug)
         if self.in_type == 'event':
             # deserialize into Event object, pass on to process_data
             try:
                 ev = pickle.loads(msg_str)
             except:
-                print "Error on unpickle to event"
+                print "pdu_to ev: Error on unpickle to event"
                 return
-        elif self.in_type == 'payload':
+        elif self.in_type == 'payload' or self.in_type == 'message':
             ev = api_events.mkevent(self.out_nickname, payload=msg_str)
         else:
-            mutex_prt('    Invalid in_data type: ' + self.n_type)
+            mutex_prt('    pdu_to_ev: Invalid in_data type: ' + self.n_type)
         self.process_data(ev)
         return
 

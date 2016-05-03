@@ -47,6 +47,50 @@ from gwnevents import api_events as api_events
 ### support classes and functions for gwnblock
 #from libgwnblock import GWNTimer, GWNOutPort, GWNInPort, mutex_prt
 
+
+def pdu_to_msg(pdu, debug=False):
+    '''Extracts message from PDU.
+
+    @param pdu: a PDU.
+    @param debug: print additional information, default False.
+    @return: (metadata, contents).
+    '''
+    # code taken from chat_blocks in GNURadio tutorial 5
+    # collect metadata, convert to Python format:
+    meta = pmt.to_python(pmt.car(pdu))
+    # collect message, convert to Python format:
+    msg = pmt.cdr(pdu)
+    # make sure it's a u8vector
+    if not pmt.is_u8vector(msg):
+        print "[ERROR] Received invalid message type.\n"
+        return ('', '')
+    # convert to string:
+    msg_str = "".join([chr(x) for x in pmt.u8vector_elements(msg)])
+    if debug:
+        if meta is not None:
+            mutex_prt ("[METADATA]: " + meta)
+        mutex_prt ("[CONTENTS]: " + msg_str )
+    return (meta, msg_str)
+
+def msg_to_pdu(msg, debug=False):
+    '''Inserts message into a PDU.
+
+    @param msg: a string to insert as content of the PDU.
+    @param debug: print additional information, default False.
+    @return: a PDU, a pair (metadata, content) in PMT data types; metadata is None.
+    '''
+    # create an empty PMT (contains only spaces):
+    send_pmt = pmt.make_u8vector(len(msg), ord(' '))
+    # copy all characters to the u8vector:
+    for i in range(len(msg)):
+        pmt.u8vector_set(send_pmt, i, ord(msg[i]))
+    if debug:
+        mutex_prt('[PMT message]')
+        mutex_prt(send_pmt)
+    pdu = pmt.cons(pmt.PMT_NIL, send_pmt) 
+    return pdu
+
+
 def mutex_prt(msg):
     '''Mutually exclusive printing.
 

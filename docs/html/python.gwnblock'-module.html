@@ -154,10 +154,46 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock%27-module.html#msg_to_pdu" class="summary-sig-name">msg_to_pdu</a>(<span class="summary-sig-arg">msg</span>,
+        <span class="summary-sig-arg">debug</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Inserts message into a PDU.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#msg_to_pdu">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="python.gwnblock%27-module.html#mutex_prt" class="summary-sig-name">mutex_prt</a>(<span class="summary-sig-arg">msg</span>)</span><br />
       Mutually exclusive printing.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.gwnblock%27-pysrc.html#mutex_prt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="python.gwnblock%27-module.html#pdu_to_msg" class="summary-sig-name">pdu_to_msg</a>(<span class="summary-sig-arg">pdu</span>,
+        <span class="summary-sig-arg">debug</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Extracts message from PDU.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.gwnblock%27-pysrc.html#pdu_to_msg">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -194,7 +230,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="lock_obj"></a><span class="summary-name">lock_obj</span> = <code title="&lt;thread.lock object at 0x7fdc4c25d5f0&gt;">&lt;thread.lock object at 0x7fdc4c25d5f0&gt;</code>
+        <a name="lock_obj"></a><span class="summary-name">lock_obj</span> = <code title="&lt;thread.lock object at 0x7f736b41c5f0&gt;">&lt;thread.lock object at 0x7f736b41c5f0&gt;</code>
     </td>
   </tr>
 </table>
@@ -216,6 +252,34 @@
   </td>
 </tr>
 </table>
+<a name="msg_to_pdu"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">msg_to_pdu</span>(<span class="sig-arg">msg</span>,
+        <span class="sig-arg">debug</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#msg_to_pdu">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Inserts message into a PDU.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>msg</code></strong> - a string to insert as content of the PDU.</li>
+        <li><strong class="pname"><code>debug</code></strong> - print additional information, default False.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>a PDU, a pair (metadata, content) in PMT data types; metadata is 
+          None.</dd>
+  </dl>
+</td></tr></table>
+</div>
 <a name="mutex_prt"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -236,6 +300,33 @@
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>msg</code></strong> - string to print.</li>
     </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="pdu_to_msg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">pdu_to_msg</span>(<span class="sig-arg">pdu</span>,
+        <span class="sig-arg">debug</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.gwnblock%27-pysrc.html#pdu_to_msg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Extracts message from PDU.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>pdu</code></strong> - a PDU.</li>
+        <li><strong class="pname"><code>debug</code></strong> - print additional information, default False.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>(metadata, contents).</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -271,7 +362,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Apr 20 14:29:38 2016
+    Generated by Epydoc 3.0.1 on Tue May  3 11:35:54 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

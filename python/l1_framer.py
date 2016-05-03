@@ -30,7 +30,9 @@ from gnuradio import gr
 
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
+from gwnblock import msg_to_pdu
 from gwnblock import mutex_prt          # for tests
+
 import pickle                           # to serialize event
 import pmt                              # for PDUs
 import gwnutils                         # for packing
@@ -95,14 +97,8 @@ class l1_framer(gwnblock):
             self._pad_for_usrp,
             self._whitener_offset)
 
-        # create an empty PMT (contains only spaces):
-        send_pmt = pmt.make_u8vector(len(send_pkt), ord(' '))
-        # copy all characters to the u8vector:
-        for i in range(len(send_pkt)):
-            pmt.u8vector_set(send_pmt, i, ord(send_pkt[i]))
-        # send the message:
-        self.message_port_pub( pmt.intern('pdu'), 
-            pmt.cons(pmt.PMT_NIL, send_pmt) )
+        pdu = msg_to_pdu(send_pkt, debug=self.debug)
+        self.message_port_pub( pmt.intern('pdu'), pdu)
 
         return
 

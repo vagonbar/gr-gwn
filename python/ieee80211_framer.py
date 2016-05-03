@@ -33,6 +33,7 @@ import pmt
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # for tests
+from gwnblock import msg_to_pdu
 from gwnevents import api_events as api_events
 
 import utils.framers.ieee80211.api_frmevs as api_frmevs
@@ -73,21 +74,14 @@ class ieee80211_framer(gwnblock):
         frmobj = api_frmevs.evtofrm(new_ev, fr_dc_fldvals=new_ev.ev_dc)
         send_str = api_frames.pktfromobj(frmobj)
 
-        # create an empty PMT (contains only spaces):
-        send_pmt = pmt.make_u8vector(len(send_str), ord(' '))
-        # copy all characters to the u8vector:
-        for i in range(len(send_str)):
-            pmt.u8vector_set(send_pmt, i, ord(send_str[i]))
         if self.debug:
             msg_dbg = '--- IEEE 802.11 framer, id {0}\n'.\
                 format(id(self), )
             msg_dbg += '[Event]\n' + ev.__str__() + "\n"
             msg_dbg += '[frame]\n' + send_str # + "\n"
-            msg_dbg += '[PMT message]\n' + str(send_pmt) + "\n"
             mutex_prt(msg_dbg)
-        # Send the message:
-        self.message_port_pub( pmt.intern('pdu'), 
-            pmt.cons(pmt.PMT_NIL, send_pmt) )
+        pdu = msg_to_pdu(send_str, debug=self.debug)
+        self.message_port_pub( pmt.intern('pdu'), pdu)
 
         return
 

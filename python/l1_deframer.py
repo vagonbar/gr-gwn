@@ -90,7 +90,7 @@ class l1_deframer(gwnblock):
                 try:
                     ev = pickle.loads(rec_str)
                 except:
-                    print '    Error on unpickle to event'
+                    print '    l1_deframer: Error on unpickle to event'
                     return
             elif self.out_type == 'payload':
                 ev = api_events.mkevent(self.out_nickname, payload=rec_str) 

@@ -32,6 +32,7 @@ from gnuradio import gr
 # GWN imports
 from gwnblock import gwnblock           # for all GWN blocks
 from gwnblock import mutex_prt          # for tests
+from gwnblock import msg_to_pdu
 import time                             # for tests
 
 import pickle
@@ -42,7 +43,7 @@ class ev_to_pdu(gwnblock):
     '''Converts an Event object or string to PDU.
 
     Receives an Event object on input port, produces a PDU (Protocol Data Unit) on its output port.
-    @param in_type: type of input, may be "event", "payload" or "message".
+    @param in_type: type of input, may be "event", "payload", "message". If "event", the received event is serialized and stored as the content of the PDU. If "payload", the event's payload is stored as the content of the PDU. If "message", the received string is stored as the content of the PDU.
     '''
     def __init__(self, in_type='event'):
         gwnblock.__init__(self, name='ev_to_pdu', 
@@ -65,18 +66,9 @@ class ev_to_pdu(gwnblock):
             send_str = ev.payload
         elif self.in_type is 'message':
             send_str = ev
-        # create an empty PMT (contains only spaces):
-        send_pmt = pmt.make_u8vector(len(send_str), ord(' '))
-        # copy all characters to the u8vector:
-        for i in range(len(send_str)):
-            pmt.u8vector_set(send_pmt, i, ord(send_str[i]))
-        if self.debug:
-            mutex_prt('[PMT message]')
-            mutex_prt(send_pmt)
 
-        # send the message:
-        self.message_port_pub( pmt.intern('pdu'), 
-            pmt.cons(pmt.PMT_NIL, send_pmt) )
+        pdu = msg_to_pdu(send_str, debug=self.debug)
+        self.message_port_pub( pmt.intern('pdu'), pdu)
 
         return
 

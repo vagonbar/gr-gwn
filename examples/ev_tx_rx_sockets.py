@@ -3,7 +3,7 @@
 # Gnuradio Python Flow Graph
 # Title: Channel with Events
 # Description: Events from source to sink
-# Generated: Mon May  2 11:21:27 2016
+# Generated: Tue May  3 11:25:00 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.
@@ -20,7 +20,7 @@ from optparse import OptionParser
 import gwn
 import gwnutils
 
-class ev_tx_rx_l1framer(gr.top_block):
+class ev_tx_rx_sockets(gr.top_block):
 
     def __init__(self):
         gr.top_block.__init__(self, "Channel with Events")
@@ -86,7 +86,7 @@ class ev_tx_rx_l1framer(gr.top_block):
 if __name__ == '__main__':
     parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
     (options, args) = parser.parse_args()
-    tb = ev_tx_rx_l1framer()
+    tb = ev_tx_rx_sockets()
     tb.start()
     try:
         raw_input('Press Enter to quit: ')
