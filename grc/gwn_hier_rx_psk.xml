@@ -82,7 +82,7 @@
   <param>
     <name>AGC gain </name>
     <key>agc_gain</key>
-    <value>1.0</value> 
+    <value>15.0</value> 
     <type>float</type>
   </param>
   <param>

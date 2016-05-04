@@ -2,7 +2,7 @@
 ##################################################
 # Gnuradio Python Flow Graph
 # Title: Ev Socket
-# Generated: Fri Apr 29 17:02:25 2016
+# Generated: Wed May  4 13:51:27 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.
@@ -62,11 +62,11 @@ class ev_socket(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
         self.gwn_pdu_to_ev_0 = gwn.pdu_to_ev('event')
-        self.gwn_event_sink_0 = gwn.event_sink(False)
+        self.gwn_event_sink_0 = gwn.event_sink(True)
         self.gwn_ev_to_pdu_0 = gwn.ev_to_pdu('event')
         self.gwn_data_source_0 = gwn.data_source(False, 1.0, 10, '00:00:00:00:00:00', '00:00:00:00:00:00', "SERVER payload", {}, False)
-        self.blocks_socket_pdu_0_0 = blocks.socket_pdu("TCP_SERVER", "", "50007", 10000, False)
-        self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_CLIENT", "", "50007", 10000, False)
+        self.blocks_socket_pdu_0_0 = blocks.socket_pdu("UDP_CLIENT", '127.0.0.1', "50007", 10000, False)
+        self.blocks_socket_pdu_0 = blocks.socket_pdu("UDP_SERVER", '127.0.0.1', "50007", 10000, False)
 
         ##################################################
         # Connections
