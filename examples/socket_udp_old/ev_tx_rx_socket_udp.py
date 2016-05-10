@@ -3,7 +3,7 @@
 # Gnuradio Python Flow Graph
 # Title: Channel with Events
 # Description: Events from source to sink
-# Generated: Wed May  4 13:30:21 2016
+# Generated: Tue May 10 14:12:01 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.
@@ -51,8 +51,8 @@ class ev_tx_rx_socket_udp(gr.top_block):
         	block_tags=False
         )
         self.blocks_tagged_stream_to_pdu_0 = blocks.tagged_stream_to_pdu(blocks.byte_t, "correlate")
-        self.blocks_socket_pdu_0_0 = blocks.socket_pdu("UDP_CLIENT", '127.0.0.1', "50008", 10000, False)
-        self.blocks_socket_pdu_0 = blocks.socket_pdu("UDP_SERVER", '127.0.0.1', "50007", 10000, False)
+        self.blocks_socket_pdu_0_0 = blocks.socket_pdu("TCP_CLIENT", '127.0.0.1', "50008", 10000, False)
+        self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '127.0.0.1', "50007", 10000, False)
         self.blocks_pdu_to_tagged_stream_0 = blocks.pdu_to_tagged_stream(blocks.byte_t, "packet_len")
 
         ##################################################

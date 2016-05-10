@@ -3,18 +3,54 @@
 <flow_graph>
   <timestamp>Fri Jul 17 10:41:05 2015</timestamp>
   <block>
-    <key>variable</key>
+    <key>options</key>
     <param>
       <key>id</key>
-      <value>access_code</value>
+      <value>ev_tx_rx_socket_udp</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>value</key>
-      <value>gwnutils.default_access_code</value>
+      <key>title</key>
+      <value>Channel with Events</value>
+    </param>
+    <param>
+      <key>author</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value>Events from source to sink</value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value>1280, 1024</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>no_gui</value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>Custom</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
     </param>
     <param>
       <key>alias</key>
@@ -22,7 +58,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 11)</value>
+      <value>(896, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -50,6 +86,33 @@
     <param>
       <key>_coordinate</key>
       <value>(432, 11)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>access_code</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>gwnutils.default_access_code</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(528, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -491,6 +554,45 @@
     </param>
   </block>
   <block>
+    <key>gwn_ev_to_pdu</key>
+    <param>
+      <key>id</key>
+      <value>gwn_ev_to_pdu_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>in_type</key>
+      <value>'payload'</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(800, 363)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>gwn_hier_rx_psk</key>
     <param>
       <key>id</key>
@@ -586,45 +688,6 @@
     </param>
   </block>
   <block>
-    <key>gwn_ev_to_pdu</key>
-    <param>
-      <key>id</key>
-      <value>gwn_ev_to_pdu_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>in_type</key>
-      <value>'payload'</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(800, 363)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_socket_pdu</key>
     <param>
       <key>id</key>
@@ -636,11 +699,11 @@
     </param>
     <param>
       <key>type</key>
-      <value>"TCP_CLIENT"</value>
+      <value>"UDP_SERVER"</value>
     </param>
     <param>
       <key>host</key>
-      <value></value>
+      <value>'127.0.0.1'</value>
     </param>
     <param>
       <key>port</key>
@@ -691,11 +754,11 @@
     </param>
     <param>
       <key>type</key>
-      <value>"TCP_SERVER"</value>
+      <value>"UDP_CLIENT"</value>
     </param>
     <param>
       <key>host</key>
-      <value></value>
+      <value>'127.0.0.1'</value>
     </param>
     <param>
       <key>port</key>
@@ -728,69 +791,6 @@
     <param>
       <key>_coordinate</key>
       <value>(960, 339)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>options</key>
-    <param>
-      <key>id</key>
-      <value>ev_tx_rx_sockets</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value>Channel with Events</value>
-    </param>
-    <param>
-      <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value>Events from source to sink</value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1280, 1024</value>
-    </param>
-    <param>
-      <key>generate_options</key>
-      <value>no_gui</value>
-    </param>
-    <param>
-      <key>category</key>
-      <value>Custom</value>
-    </param>
-    <param>
-      <key>run_options</key>
-      <value>prompt</value>
-    </param>
-    <param>
-      <key>run</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>max_nouts</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>realtime_scheduling</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(896, 11)</value>
     </param>
     <param>
       <key>_rotation</key>
