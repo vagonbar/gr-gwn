@@ -201,7 +201,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>"TCP_SERVER"</value>
+      <value>"UDP_SERVER"</value>
     </param>
     <param>
       <key>host</key>

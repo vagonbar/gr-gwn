@@ -3,7 +3,7 @@
 # Gnuradio Python Flow Graph
 # Title: Channel with Events
 # Description: Events from source to sink
-# Generated: Tue May 10 14:43:53 2016
+# Generated: Wed May 18 14:39:56 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.

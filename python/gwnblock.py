@@ -187,7 +187,8 @@ class GWNTimeout(GWNPort):
         self.port = port
         self.port_nr = port_nr
         self.timeout = timeout
-        self.ev_dc = ev_dc
+        self.ev_dc = dict()
+        self.ev_dc.update(ev_dc)
 
         self.nickname = 'EventTimer'    # the event to generate
         self.debug = False
@@ -210,9 +211,10 @@ class GWNTimeout(GWNPort):
         self.timer = threading.Timer(self.timeout, self.post_message)
         self.timer.start()
         if self.debug:
-            msg_dbg = '    GWNTimeout STARTED, timeout=' + str(self.timeout) + \
-                ', event ' + self.nickname
-            msg_dbg = msg_dbg + '\n    ev_dc: ' + str(self.ev_dc)
+            msg_dbg = '    Block '+self.block.name() + ': ' + self.port + '\n'
+            msg_dbg += '    GWNTimeout STARTED, timeout=' + \
+                str(self.timeout) + ', event ' + self.nickname
+            msg_dbg = msg_dbg + '\n    ev_dc: ' + str(self.ev_dc) + '\n'
             mutex_prt(msg_dbg)
         return
 
@@ -300,8 +302,10 @@ class GWNTimer(GWNPort, threading.Thread):
         self.interrupt = interrupt
         self.interval = float(interval)
         self.retry = retry
-        self.ev_dc_1 = ev_dc_1
-        self.ev_dc_2 = ev_dc_2
+        self.ev_dc_1 = dict()
+        self.ev_dc_1.update(ev_dc_1)
+        self.ev_dc_2 = dict()
+        self.ev_dc_2.update(ev_dc_2)
 
         self.nickname = 'EventTimer'    # the event to generate
         self.counter = 0
