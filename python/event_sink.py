@@ -46,6 +46,7 @@ class event_sink(gwnblock):
         gwnblock.__init__(self, name='event_sink', \
             number_in=1, number_out=0, number_timers=0)
         self.debug = debug
+        self.nr_rec = 0      # number events received
         return
 
 
@@ -54,11 +55,14 @@ class event_sink(gwnblock):
 
         @param ev: event received.
         '''
-        dbg_msg = '--- Event Sink id {0}, received ev: {1}'.\
-            format(str(id(self)), ev.nickname)
+        self.nr_rec += 1
+        dbg_msg = '--- Event Sink id {0}, received ev: {1}; total rec: {2}'.\
+            format(str(id(self)), ev.nickname, str(self.nr_rec))
         if self.debug:
             dbg_msg += "\n" + ev.__str__()
         mutex_prt(dbg_msg)
 
         return
 
+
+        
