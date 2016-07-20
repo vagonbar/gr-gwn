@@ -59,10 +59,11 @@ class data_source(gwnblock):
         self.ev_dc = ev_dc
         self.payload = payload
         self.debug = debug
-        self.counter = 1
+        self.nr_sent =0 
 
         self.nickname = 'DataOut'
-        self.time_init = time.time()    
+        self.ev_dc['interval'] = interval
+        self.ev_dc['retry'] = retry
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 
             ev_dc_1={'name':'retry'}, ev_dc_2={'name':'final'})
         self.start_timers()
@@ -77,18 +78,24 @@ class data_source(gwnblock):
         '''
         if ev.ev_dc['name'] == 'final':    # nothing done
             return
+        self.nr_sent += 1
+        if self.nr_sent == 1:        # first event
+            self.ev_dc['time_init'] = time.time()
         ev_data = api_events.mkevent(self.nickname, \
             ev_dc=self.ev_dc, payload=self.payload)
         ev_data.src_addr = self.src_addr
         ev_data.dst_addr = self.dst_addr
-        ev_data.ev_dc['seq_nr'] = self.counter
+        ev_data.ev_dc['seq_nr'] = self.nr_sent
+        ev_data.ev_dc['time_now'] = time.time()
         if self.debug:
-            dbg_msg = '--- Data Source, id {0}, counter: {1}'.\
-                format(id(self), str(self.counter))
+            dbg_msg = '--- Data Source, id {0}, nr_sent: {1}'.\
+                format(id(self), str(self.nr_sent))
+            dbg_msg += '\n    time_init: {0}, time_now: {1}, time elapsed: {2}'.\
+                format(ev_data.ev_dc['time_init'], ev_data.ev_dc['time_now'], \
+                ev_data.ev_dc['time_now']-ev_data.ev_dc['time_init'])
             dbg_msg += '\n' + ev_data.__str__()
             mutex_prt(dbg_msg)
         self.write_out(ev_data, port_nr=0)
-        self.counter += 1
 
         return
 

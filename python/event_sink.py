@@ -56,9 +56,14 @@ class event_sink(gwnblock):
         @param ev: event received.
         '''
         self.nr_rec += 1
+        if self.nr_rec == 1:
+            self.time_init = time.time()
         dbg_msg = '--- Event Sink id {0}, received ev: {1}; total rec: {2}'.\
             format(str(id(self)), ev.nickname, str(self.nr_rec))
         if self.debug:
+            time_now = time.time()
+            dbg_msg += '\n    time_init: {0}, time_now: {1}, time elapsed: {2}'.\
+                format(self.time_init, time_now, time_now-self.time_init)
             dbg_msg += "\n" + ev.__str__()
         mutex_prt(dbg_msg)
 

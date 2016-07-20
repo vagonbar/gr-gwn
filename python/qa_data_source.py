@@ -51,7 +51,7 @@ class qa_data_source (gr_unittest.TestCase):
         blk_snd.debug = True
         blk_snd.timers[0].debug = False     # print debug on timer
         blk_snk = event_sink()
-        blk_snk.debug = True
+        blk_snk.debug = False 
         self.tb.msg_connect(blk_snd, blk_snd.ports_out[0].port, 
                             blk_snk, blk_snk.ports_in[0].port)
         #self.tb.run()  # for flowgraphs that will stop on its own!
