@@ -1,0 +1,5 @@
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="15.040">
+  <testcase classname="__main__.qa_Selective_Repeat_FSM" name="test_Sel_Rep" time="15.0395"></testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
