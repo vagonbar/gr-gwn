@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<block>
+  <name>Probe Medium</name>
+  <key>gwn_probe_medium</key>
+  <category>GWN</category>
+  <import>import gwn</import>
+  <make>gwn.probe_medium($transmit_threshold, $signal_strength, $debug)</make>
+  <callback>set_signal_strength($signal_strength)</callback>
+
+  <param>
+    <name>Transmit threshold</name>
+    <key>transmit_threshold</key>
+    <value>1.0</value>
+    <type>real</type>
+  </param>
+
+  <param>
+    <name>Signal strength</name>
+    <key>signal_strength</key>
+    <value>0.0</value>
+    <type>real</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>

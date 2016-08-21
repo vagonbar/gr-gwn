@@ -88,8 +88,8 @@ class data_source(gwnblock):
         ev_data.ev_dc['seq_nr'] = self.nr_sent
         ev_data.ev_dc['time_now'] = time.time()
         if self.debug:
-            dbg_msg = '--- Data Source, id {0}, nr_sent: {1}'.\
-                format(id(self), str(self.nr_sent))
+            dbg_msg = '--- Data Source, id {0}, seq_nr: {1}, nr_sent: {2}'.\
+                format(id(self), str(self.nr_sent), str(self.nr_sent))
             dbg_msg += '\n    time_init: {0}, time_now: {1}, time elapsed: {2}'.\
                 format(ev_data.ev_dc['time_init'], ev_data.ev_dc['time_now'], \
                 ev_data.ev_dc['time_now']-ev_data.ev_dc['time_init'])

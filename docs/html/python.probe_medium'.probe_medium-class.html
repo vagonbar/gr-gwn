@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>python.event_sink'.event_sink</title>
+  <title>python.probe_medium'.probe_medium</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -43,8 +43,8 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="python-module.html">Package&nbsp;python</a> ::
-        <a href="python.event_sink%27-module.html">Module&nbsp;event_sink'</a> ::
-        Class&nbsp;event_sink
+        <a href="python.probe_medium%27-module.html">Module&nbsp;probe_medium'</a> ::
+        Class&nbsp;probe_medium
       </span>
     </td>
     <td>
@@ -54,14 +54,14 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="python.event_sink%27.event_sink-class.html"
+            >]&nbsp;|&nbsp;<a href="python.probe_medium%27.probe_medium-class.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class event_sink</h1><p class="nomargin-top"><span class="codelink"><a href="python.event_sink%27-pysrc.html#event_sink">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class probe_medium</h1><p class="nomargin-top"><span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium">source&nbsp;code</a></span></p>
 <pre class="base-tree">
                        object --+            
                                 |            
@@ -71,12 +71,15 @@ gnuradio.gr.gateway.gateway_block --+
                                         |    
                        <a href="python.gwnblock%27.gwnblock-class.html">gwnblock'.gwnblock</a> --+
                                             |
-                                           <strong class="uidshort">event_sink</strong>
+                                           <strong class="uidshort">probe_medium</strong>
 </pre>
 
 <hr />
-<p>Event sink, receives and shows Event objects.</p>
-  <p>Receives an Event object, shows it.</p>
+<p>Probe shared transmission medium to detect if busy.</p>
+  <p>This block receives an event and outputs it only if the instant signal
+  strength is lower than the transmit threshold. The instant signal 
+  strength is typically read from an external variable, such as the one 
+  produce by GNU Radio block Function Probe.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -101,11 +104,13 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.event_sink%27.event_sink-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="python.probe_medium%27.probe_medium-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">transmit_threshold</span>=<span class="summary-sig-default">1.0</span>,
+        <span class="summary-sig-arg">signal_strength</span>=<span class="summary-sig-default">0.0</span>,
         <span class="summary-sig-arg">debug</span>=<span class="summary-sig-default">False</span>)</span><br />
-      The GWN basic block constructor.</td>
+      Constructor.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.event_sink%27-pysrc.html#event_sink.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -119,11 +124,29 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="python.event_sink%27.event_sink-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="python.probe_medium%27.probe_medium-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">ev</span>)</span><br />
-      Receives events, prints.</td>
+      Receives Event, processes, produces output event(s).</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.event_sink%27-pysrc.html#event_sink.process_data">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.process_data">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_signal_strength"></a><span class="summary-sig-name">set_signal_strength</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">signal_strength</span>)</span><br />
+      Set signal strength, required in XML file to read external variable.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.set_signal_strength">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -221,26 +244,26 @@ gnuradio.gr.gateway.gateway_block --+
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">transmit_threshold</span>=<span class="sig-default">1.0</span>,
+        <span class="sig-arg">signal_strength</span>=<span class="sig-default">0.0</span>,
         <span class="sig-arg">debug</span>=<span class="sig-default">False</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.event_sink%27-pysrc.html#event_sink.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>The GWN basic block constructor.</p>
-  <p>The GWN basic block implements facilites used by all GWN blocks. A 
-  descendent of this class may call this constructor to fix the number of 
-  ports, timers and timeouts.</p>
+  <p>Constructor.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>debug</code></strong> - shows whole details of event received; default False.</li>
+        <li><strong class="pname"><code>transmit_threshold</code></strong> - the signal power under which transmission happens.</li>
+        <li><strong class="pname"><code>signal_strength</code></strong> - instant power value of the signal, read from external variable.</li>
+        <li><strong class="pname"><code>debug</code></strong> - print additional information; default False.</li>
     </ul></dd>
     <dt>Overrides:
         object.__init__
-        <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
 </td></tr></table>
@@ -256,18 +279,20 @@ gnuradio.gr.gateway.gateway_block --+
         <span class="sig-arg">ev</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="python.event_sink%27-pysrc.html#event_sink.process_data">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.process_data">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Receives events, prints.</p>
+  <p>Receives Event, processes, produces output event(s).</p>
+  <p>To be overwritten by descendent block.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>ev</code></strong> - event received.</li>
+        <li><strong class="pname"><code>ev</code></strong> - the event received, to process.</li>
     </ul></dd>
     <dt>Overrides:
         <a href="python.gwnblock%27.gwnblock-class.html#process_data">gwnblock'.gwnblock.process_data</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
 </td></tr></table>
