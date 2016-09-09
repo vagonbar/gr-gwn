@@ -2,7 +2,9 @@
 ##################################################
 # Gnuradio Python Flow Graph
 # Title: Test Probe Medium
-# Generated: Sun Aug 21 12:32:10 2016
+# Author: The GWN team
+# Description: Tests Probe medium block
+# Generated: Fri Sep  9 11:38:07 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.
@@ -67,10 +69,11 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.probe = blocks.probe_signal_f()
+        self.probe_signal = blocks.probe_signal_f()
+        self.probe_avg_mag_sqrd = analog.probe_avg_mag_sqrd_f(0, 1)
         def _cos_ampl_probe():
             while True:
-                val = self.probe.level()
+                val = self.probe_signal.level()
                 try:
                     self.set_cos_ampl(val)
                 except AttributeError:
@@ -163,13 +166,21 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
         
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
-        self.gwn_probe_medium_0 = gwn.probe_medium(0.5, cos_ampl, False)
-        self.gwn_event_sink_0 = gwn.event_sink(True)
+        self.gwn_probe_medium_0 = gwn.probe_medium(0.1, True)
+        get_level = self.probe_avg_mag_sqrd.level
+        try:
+            self.gwn_probe_medium_0.set_get_level(get_level)
+        except AttributeError:
+            print "Probe Medium XML, AttributeError in setting get_level function"
+        except:
+            print "Probe Medium XML, another error in setting get_level function"
+          
+        self.gwn_event_sink_0 = gwn.event_sink(False)
         self.gwn_data_source_0 = gwn.data_source(False, 0.5, 300, '00:00:00:00:00:00', '00:00:00:00:00:00', 'Data to transmit. ', {}, False)
         self.blocks_throttle_1 = blocks.throttle(gr.sizeof_float*1, 1000000,True)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, 1000000,True)
-        self.analog_sig_source_x_1 = analog.sig_source_f(1000000, analog.GR_COS_WAVE, 10000, cos_ampl, 0)
-        self.analog_sig_source_x_0 = analog.sig_source_f(1000000, analog.GR_TRI_WAVE, 0.1, 1, 0)
+        self.analog_sig_source_x_1 = analog.sig_source_f(1000000, analog.GR_COS_WAVE, 20000, cos_ampl, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_f(1000000, analog.GR_TRI_WAVE, 0.05, 1, 0)
 
         ##################################################
         # Connections
@@ -178,8 +189,9 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
         self.msg_connect((self.gwn_probe_medium_0, 'out0'), (self.gwn_event_sink_0, 'in0'))    
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_throttle_0, 0))    
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_throttle_1, 0))    
-        self.connect((self.blocks_throttle_0, 0), (self.probe, 0))    
+        self.connect((self.blocks_throttle_0, 0), (self.probe_signal, 0))    
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_time_sink_x_0, 0))    
+        self.connect((self.blocks_throttle_1, 0), (self.probe_avg_mag_sqrd, 0))    
         self.connect((self.blocks_throttle_1, 0), (self.qtgui_time_sink_x_1, 0))    
 
     def closeEvent(self, event):
@@ -199,7 +211,6 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
     def set_cos_ampl(self, cos_ampl):
         self.cos_ampl = cos_ampl
         self.analog_sig_source_x_1.set_amplitude(self.cos_ampl)
-        self.gwn_probe_medium_0.set_signal_strength(self.cos_ampl)
 
 if __name__ == '__main__':
     parser = OptionParser(option_class=eng_option, usage="%prog: [options]")

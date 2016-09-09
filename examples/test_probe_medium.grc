@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='ASCII'?>
 <?grc format='1' created='3.7.7'?>
 <flow_graph>
-  <timestamp>Sat Aug 20 23:48:46 2016</timestamp>
+  <timestamp>Thu Sep  8 11:34:34 2016</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -14,15 +14,15 @@
     </param>
     <param>
       <key>title</key>
-      <value></value>
+      <value>Test Probe Medium</value>
     </param>
     <param>
       <key>author</key>
-      <value></value>
+      <value>The GWN team</value>
     </param>
     <param>
       <key>description</key>
-      <value></value>
+      <value>Tests Probe medium block</value>
     </param>
     <param>
       <key>window_size</key>
@@ -58,7 +58,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 11)</value>
+      <value>(8, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -85,227 +85,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 83)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>analog_sig_source_x</key>
-    <param>
-      <key>id</key>
-      <value>analog_sig_source_x_1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>1000000</value>
-    </param>
-    <param>
-      <key>waveform</key>
-      <value>analog.GR_COS_WAVE</value>
-    </param>
-    <param>
-      <key>freq</key>
-      <value>10000</value>
-    </param>
-    <param>
-      <key>amp</key>
-      <value>cos_ampl</value>
-    </param>
-    <param>
-      <key>offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(112, 203)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>analog_sig_source_x</key>
-    <param>
-      <key>id</key>
-      <value>analog_sig_source_x_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>1000000</value>
-    </param>
-    <param>
-      <key>waveform</key>
-      <value>analog.GR_TRI_WAVE</value>
-    </param>
-    <param>
-      <key>freq</key>
-      <value>0.1</value>
-    </param>
-    <param>
-      <key>amp</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(112, 83)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_throttle</key>
-    <param>
-      <key>id</key>
-      <value>blocks_throttle_1</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>samples_per_second</key>
-      <value>1000000</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>ignoretag</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(288, 235)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_throttle</key>
-    <param>
-      <key>id</key>
-      <value>blocks_throttle_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>samples_per_second</key>
-      <value>1000000</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>ignoretag</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(296, 115)</value>
+      <value>(184, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -652,7 +432,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 99)</value>
+      <value>(344, 139)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -660,10 +440,10 @@
     </param>
   </block>
   <block>
-    <key>blocks_probe_signal_x</key>
+    <key>blocks_throttle</key>
     <param>
       <key>id</key>
-      <value>probe</value>
+      <value>blocks_throttle_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -674,6 +454,18 @@
       <value>float</value>
     </param>
     <param>
+      <key>samples_per_second</key>
+      <value>1000000</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>ignoretag</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -682,8 +474,75 @@
       <value></value>
     </param>
     <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>_coordinate</key>
-      <value>(472, 40)</value>
+      <value>(176, 155)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_sig_source_x</key>
+    <param>
+      <key>id</key>
+      <value>analog_sig_source_x_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1000000</value>
+    </param>
+    <param>
+      <key>waveform</key>
+      <value>analog.GR_TRI_WAVE</value>
+    </param>
+    <param>
+      <key>freq</key>
+      <value>0.05</value>
+    </param>
+    <param>
+      <key>amp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(8, 123)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1030,7 +889,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 219)</value>
+      <value>(344, 227)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1038,69 +897,30 @@
     </param>
   </block>
   <block>
-    <key>variable_function_probe</key>
+    <key>blocks_throttle</key>
     <param>
       <key>id</key>
-      <value>cos_ampl</value>
+      <value>blocks_throttle_1</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>value</key>
-      <value>0</value>
+      <key>type</key>
+      <value>float</value>
     </param>
     <param>
-      <key>block_id</key>
-      <value>probe</value>
+      <key>samples_per_second</key>
+      <value>1000000</value>
     </param>
     <param>
-      <key>function_name</key>
-      <value>level</value>
+      <key>vlen</key>
+      <value>1</value>
     </param>
     <param>
-      <key>function_args</key>
-      <value></value>
-    </param>
-    <param>
-      <key>poll_rate</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(640, 43)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gwn_probe_medium</key>
-    <param>
-      <key>id</key>
-      <value>gwn_probe_medium_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
+      <key>ignoretag</key>
       <value>True</value>
-    </param>
-    <param>
-      <key>transmit_threshold</key>
-      <value>0.5</value>
-    </param>
-    <param>
-      <key>signal_strength</key>
-      <value>cos_ampl</value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>False</value>
     </param>
     <param>
       <key>alias</key>
@@ -1120,7 +940,66 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(888, 203)</value>
+      <value>(168, 299)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_sig_source_x</key>
+    <param>
+      <key>id</key>
+      <value>analog_sig_source_x_1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1000000</value>
+    </param>
+    <param>
+      <key>waveform</key>
+      <value>analog.GR_COS_WAVE</value>
+    </param>
+    <param>
+      <key>freq</key>
+      <value>20000</value>
+    </param>
+    <param>
+      <key>amp</key>
+      <value>cos_ampl</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(8, 267)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1139,7 +1018,7 @@
     </param>
     <param>
       <key>debug</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>alias</key>
@@ -1151,7 +1030,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1112, 219)</value>
+      <value>(976, 203)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1218,13 +1097,193 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 163)</value>
+      <value>(536, 147)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
   </block>
+  <block>
+    <key>blocks_probe_signal_x</key>
+    <param>
+      <key>id</key>
+      <value>probe_signal</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 96)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_function_probe</key>
+    <param>
+      <key>id</key>
+      <value>cos_ampl</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>block_id</key>
+      <value>probe_signal</value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>level</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value></value>
+    </param>
+    <param>
+      <key>poll_rate</key>
+      <value>100</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(448, 19)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_probe_avg_mag_sqrd_x</key>
+    <param>
+      <key>id</key>
+      <value>probe_avg_mag_sqrd</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>f</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(760, 291)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gwn_probe_medium</key>
+    <param>
+      <key>id</key>
+      <value>gwn_probe_medium_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>transmit_threshold</key>
+      <value>0.1</value>
+    </param>
+    <param>
+      <key>debug</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>block_id</key>
+      <value>probe_avg_mag_sqrd</value>
+    </param>
+    <param>
+      <key>function_name</key>
+      <value>level</value>
+    </param>
+    <param>
+      <key>function_args</key>
+      <value></value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(760, 179)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <connection>
+    <source_block_id>gwn_data_source_0</source_block_id>
+    <sink_block_id>gwn_probe_medium_0</sink_block_id>
+    <source_key>out0</source_key>
+    <sink_key>in0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gwn_probe_medium_0</source_block_id>
+    <sink_block_id>gwn_event_sink_0</sink_block_id>
+    <source_key>out0</source_key>
+    <sink_key>in0</sink_key>
+  </connection>
   <connection>
     <source_block_id>analog_sig_source_x_1</source_block_id>
     <sink_block_id>blocks_throttle_1</sink_block_id>
@@ -1244,27 +1303,21 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_throttle_0</source_block_id>
-    <sink_block_id>probe</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_throttle_1</source_block_id>
     <sink_block_id>qtgui_time_sink_x_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gwn_probe_medium_0</source_block_id>
-    <sink_block_id>gwn_event_sink_0</sink_block_id>
-    <source_key>out0</source_key>
-    <sink_key>in0</sink_key>
+    <source_block_id>blocks_throttle_1</source_block_id>
+    <sink_block_id>probe_avg_mag_sqrd</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gwn_data_source_0</source_block_id>
-    <sink_block_id>gwn_probe_medium_0</sink_block_id>
-    <source_key>out0</source_key>
-    <sink_key>in0</sink_key>
+    <source_block_id>blocks_throttle_0</source_block_id>
+    <sink_block_id>probe_signal</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
 </flow_graph>

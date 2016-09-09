@@ -77,9 +77,14 @@ gnuradio.gr.gateway.gateway_block --+
 <hr />
 <p>Probe shared transmission medium to detect if busy.</p>
   <p>This block receives an event and outputs it only if the instant signal
-  strength is lower than the transmit threshold. The instant signal 
-  strength is typically read from an external variable, such as the one 
-  produce by GNU Radio block Function Probe.</p>
+  strength is lower than the transmit threshold, else event is discarded. 
+  The instant signal strength is obtained through invocation of a function 
+  in another block, such as function level() in GNU Radio block Probe Avg 
+  Mag^2 (probe average magnitude squared). In GRC, this block parameters 
+  Block ID, Function Name, and Funcion Args must be initialized to refer to
+  the external block identifier, the function name, and optionally the 
+  function args. These parameters are defined in the XML file for this 
+  block.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -106,7 +111,6 @@ gnuradio.gr.gateway.gateway_block --+
         <tr>
           <td><span class="summary-sig"><a href="python.probe_medium%27.probe_medium-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">transmit_threshold</span>=<span class="summary-sig-default">1.0</span>,
-        <span class="summary-sig-arg">signal_strength</span>=<span class="summary-sig-default">0.0</span>,
         <span class="summary-sig-arg">debug</span>=<span class="summary-sig-default">False</span>)</span><br />
       Constructor.</td>
           <td align="right" valign="top">
@@ -126,7 +130,7 @@ gnuradio.gr.gateway.gateway_block --+
         <tr>
           <td><span class="summary-sig"><a href="python.probe_medium%27.probe_medium-class.html#process_data" class="summary-sig-name">process_data</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">ev</span>)</span><br />
-      Receives Event, processes, produces output event(s).</td>
+      Transmits or discards event according to signal strength.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.process_data">source&nbsp;code</a></span>
             
@@ -142,11 +146,11 @@ gnuradio.gr.gateway.gateway_block --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="set_signal_strength"></a><span class="summary-sig-name">set_signal_strength</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">signal_strength</span>)</span><br />
-      Set signal strength, required in XML file to read external variable.</td>
+          <td><span class="summary-sig"><a href="python.probe_medium%27.probe_medium-class.html#set_get_level" class="summary-sig-name">set_get_level</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">get_level</span>)</span><br />
+      Sets function to interrogate signal level in other block.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.set_signal_strength">source&nbsp;code</a></span>
+            <span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.set_get_level">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -190,6 +194,32 @@ gnuradio.gr.gateway.gateway_block --+
       <code>__sizeof__</code>,
       <code>__subclasshook__</code>
       </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="get_level"></a><span class="summary-name">get_level</span><br />
+      a reference to a function in an external block.
     </td>
   </tr>
 </table>
@@ -245,7 +275,6 @@ gnuradio.gr.gateway.gateway_block --+
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">transmit_threshold</span>=<span class="sig-default">1.0</span>,
-        <span class="sig-arg">signal_strength</span>=<span class="sig-default">0.0</span>,
         <span class="sig-arg">debug</span>=<span class="sig-default">False</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
@@ -258,8 +287,9 @@ gnuradio.gr.gateway.gateway_block --+
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>transmit_threshold</code></strong> - the signal power under which transmission happens.</li>
-        <li><strong class="pname"><code>signal_strength</code></strong> - instant power value of the signal, read from external variable.</li>
+        <li><strong class="pname"><code>transmit_threshold</code></strong> - the signal power under which transmission happens, i.e. event is 
+          transferred to output if signal_strength value is lower than this
+          value.</li>
         <li><strong class="pname"><code>debug</code></strong> - print additional information; default False.</li>
     </ul></dd>
     <dt>Overrides:
@@ -283,17 +313,41 @@ gnuradio.gr.gateway.gateway_block --+
     </td>
   </tr></table>
   
-  <p>Receives Event, processes, produces output event(s).</p>
-  <p>To be overwritten by descendent block.</p>
+  <p>Transmits or discards event according to signal strength.</p>
+  <p>Obtains signal power level signal; if less than threshold transmits, 
+  else discards event.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>ev</code></strong> - the event received, to process.</li>
+        <li><strong class="pname"><code>ev</code></strong> - an Event object.</li>
     </ul></dd>
     <dt>Overrides:
         <a href="python.gwnblock%27.gwnblock-class.html#process_data">gwnblock'.gwnblock.process_data</a>
-        <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_get_level"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_get_level</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">get_level</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="python.probe_medium%27-pysrc.html#probe_medium.set_get_level">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sets function to interrogate signal level in other block.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>get_level</code></strong> - a reference to a function in an external block.</li>
+    </ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -329,7 +383,7 @@ gnuradio.gr.gateway.gateway_block --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sun Aug 21 12:34:39 2016
+    Generated by Epydoc 3.0.1 on Fri Sep  9 11:40:36 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

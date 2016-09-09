@@ -46,7 +46,8 @@ GR_PYTHON_INSTALL(
     stop_wait_send.py
     l1_framer.py
     l1_deframer.py
-    probe_medium.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    probe_medium.py
+    DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
