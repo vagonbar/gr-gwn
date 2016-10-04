@@ -210,7 +210,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>"TCP_CLIENT"</value>
+      <value>"UDP_CLIENT"</value>
     </param>
     <param>
       <key>host</key>

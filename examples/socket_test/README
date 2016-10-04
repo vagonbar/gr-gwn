@@ -13,12 +13,12 @@ Help and arguments for tester applications socket_client.py and socket_server.py
 Before performing this test, please verify protocol and port numbers in server test app, flowgraph and client test app.
 
 1. In a terminal, start the socket server app,
-    $ python sock_server.py -P udp -p 50008
+    $ python socket_server.py -P udp -p 50008
 
 2. In GNU Radio Companion, start ev_tx_rx_socket.grc.
 
 3. In another terminal, start sock client app, 
-     python sock_receiver_test.py -P udp -p 50007
+     python socket_client.py -P udp -p 50007
 
 4. In terminal opened in step 1, you should see something like:
   SERVER, received message: CLIENT, sending message 8
@@ -41,27 +41,20 @@ Socket server in flowgraph, socket client in app.
 
 === Socket receiver test
 
-1. In a terminal, start sock server app,
-    $ python sock_server.py -P udp -p 50008
+1. In a terminal, start socket server app,
+    $ python socket_server.py -P udp -p 50008
 
-2. In GNU Radio Companion, start sock_client.grc.
+2. In GNU Radio Companion, start socket_client.grc.
 
-3. In the GNU Radio Companion ouput window you should see something like: 
-
-  --- Event Sink id 139991041620688, received ev: DataOut
-  Event class name: EventComm
-  Nickname: 'DataOut'; Type: 'Data'; SubType: 'DataOut'
-  Event dict: {}
-    src_addr: 
-    dst_addr: 
-    payload: SEND message 23
-    frmpk: ''
+3. In the terminal, you should see something like:
+  SERVER, received message: Socket Sender message in event payload
+  SERVER, received message: Socket Sender message in event payload
 
 
 === Sock sender and receiver test only with apps:
 In the case of UDP order of steps 1 and 2 is irrelevant.
 
-1. In a terminal, start sock server app,
+1. In a terminal, start socket server app,
     $ python sock_server.py -P udp -p 50008
 
 2. In a terminal, start socket client app, 

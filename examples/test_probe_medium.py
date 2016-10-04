@@ -4,7 +4,7 @@
 # Title: Test Probe Medium
 # Author: The GWN team
 # Description: Tests Probe medium block
-# Generated: Fri Sep  9 11:38:07 2016
+# Generated: Fri Sep  9 19:00:58 2016
 ##################################################
 
 # Call XInitThreads as the _very_ first thing.
@@ -82,6 +82,48 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
         _cos_ampl_thread = threading.Thread(target=_cos_ampl_probe)
         _cos_ampl_thread.daemon = True
         _cos_ampl_thread.start()
+        self.qtgui_time_sink_x_1_0 = qtgui.time_sink_f(
+        	1024, #size
+        	1000000, #samp_rate
+        	"", #name
+        	1 #number of inputs
+        )
+        self.qtgui_time_sink_x_1_0.set_update_time(0.10)
+        self.qtgui_time_sink_x_1_0.set_y_axis(-1, 1)
+        
+        self.qtgui_time_sink_x_1_0.set_y_label("Amplitude", "")
+        
+        self.qtgui_time_sink_x_1_0.enable_tags(-1, True)
+        self.qtgui_time_sink_x_1_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_1_0.enable_autoscale(False)
+        self.qtgui_time_sink_x_1_0.enable_grid(False)
+        
+        labels = ["", "", "", "", "",
+                  "", "", "", "", ""]
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "blue"]
+        styles = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        markers = [-1, -1, -1, -1, -1,
+                   -1, -1, -1, -1, -1]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_time_sink_x_1_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_time_sink_x_1_0.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_1_0.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_1_0.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_1_0.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_1_0.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_1_0.set_line_alpha(i, alphas[i])
+        
+        self._qtgui_time_sink_x_1_0_win = sip.wrapinstance(self.qtgui_time_sink_x_1_0.pyqwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_time_sink_x_1_0_win)
         self.qtgui_time_sink_x_1 = qtgui.time_sink_f(
         	1024, #size
         	1000000, #samp_rate
@@ -180,7 +222,7 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
         self.blocks_throttle_1 = blocks.throttle(gr.sizeof_float*1, 1000000,True)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, 1000000,True)
         self.analog_sig_source_x_1 = analog.sig_source_f(1000000, analog.GR_COS_WAVE, 20000, cos_ampl, 0)
-        self.analog_sig_source_x_0 = analog.sig_source_f(1000000, analog.GR_TRI_WAVE, 0.05, 1, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_f(1000000, analog.GR_SQR_WAVE, 0.05, 1, 0)
 
         ##################################################
         # Connections
@@ -193,6 +235,7 @@ class test_probe_medium(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_time_sink_x_0, 0))    
         self.connect((self.blocks_throttle_1, 0), (self.probe_avg_mag_sqrd, 0))    
         self.connect((self.blocks_throttle_1, 0), (self.qtgui_time_sink_x_1, 0))    
+        self.connect((self.blocks_throttle_1, 0), (self.qtgui_time_sink_x_1_0, 0))    
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "test_probe_medium")
