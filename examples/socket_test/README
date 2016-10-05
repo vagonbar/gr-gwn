@@ -9,34 +9,35 @@ Help and arguments for tester applications socket_client.py and socket_server.py
 
 
 === Transmit and Receive flowgraph on a virtual channel.
+This test emulates a channel which receives data from the operating system on an origin machine, transmits these data through a virtual channel, and delivers these data to the operating system in the destination machine.
 
-Before performing this test, please verify protocol and port numbers in server test app, flowgraph and client test app.
+Before performing this test, please verify protocol and port numbers in server test app, GRC flowgraph and client test app.
 
 1. In a terminal, start the socket server app,
     $ python socket_server.py -P udp -p 50008
 
-2. In GNU Radio Companion, start ev_tx_rx_socket.grc.
+2. In GNU Radio Companion, start ev_tx_rx_socket.grc. In GRC, server must be an UDP server on port 50007, and client must be an UDP client on port 50008.
 
 3. In another terminal, start sock client app, 
      python socket_client.py -P udp -p 50007
 
 4. In terminal opened in step 1, you should see something like:
-  SERVER, received message: CLIENT, sending message 8
-  SERVER, received message: CLIENT, sending message 9
+  SERVER, received message: CLIENT, sending message 0 
+  SERVER, received message: CLIENT, sending message 1
 
 
 === Socket sender test
 
-Socket server in flowgraph, socket client in app.
+Socket server in GRC flowgraph, socket client in app.
 
 1. In GNU Radio Companion, start socket_server.grc.
 
 2. In a terminal, start socket client app, 
     $ python socket_client.py -P udp -p 50007
 
-3. In the terminal, you should see something like:
-  SERVER, received message: Socket Sender message in event payload
-  SERVER, received message: Socket Sender message in event payload
+3. In the GRC terminal, you should see something like:
+--- Event Sink id 140232780877392, received ev: DataOut; total rec: 2
+--- Event Sink id 140232780877392, received ev: DataOut; total rec: 3
 
 
 === Socket receiver test
@@ -58,8 +59,9 @@ In the case of UDP order of steps 1 and 2 is irrelevant.
     $ python sock_server.py -P udp -p 50008
 
 2. In a terminal, start socket client app, 
-    $ python socket_client.py -P udp -p 50007
+    $ python socket_client.py -P udp -p 50008
 
 3. In terminal 1 you should see something like:
-    SERVER, received message: CLIENT, sending message 8
-    SERVER, received message: CLIENT, sending message 9
+    SERVER, received message: CLIENT, sending message 0
+    SERVER, received message: CLIENT, sending message 1
+
