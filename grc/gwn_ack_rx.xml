@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<block>
+  <name>ACK RX</name>
+  <key>gwn_ack_rx</key>
+  <category>GWN/RR-ARQ</category>
+  <import>import gwn</import>
+  <make>gwn.ack_rx($ack_nickname, $debug)</make>
+
+  <param>
+    <name>ACK nickname</name>
+    <key>ack_nickname</key>
+    <value>'CtrlACK'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <!-- Make one 'sink' node per input -->
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output -->
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>out1</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+  <doc></doc>
+
+</block>

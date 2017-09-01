@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<block>
+  <name>Event Constructor</name>
+  <key>gwn_event_constructor</key>
+  <category>GWN/CSMA</category>
+  <import>import gwn</import>
+  <make>gwn.event_constructor($src_address, $Destination, $seq_nr, $dst_address, $debug)</make>
+
+  <param>
+    <name>Source Address</name>
+    <key>src_address</key>
+    <value>''</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Destination</name>
+    <key>Destination</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <param>
+    <name>Sequence Number</name>
+    <key>seq_nr</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Destination Address</name>
+    <key>dst_address</key>
+    <value>''</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <!-- Make one 'sink' node per input -->
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output -->
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+  <doc></doc>
+
+</block>

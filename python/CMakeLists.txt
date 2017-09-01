@@ -48,7 +48,12 @@ GR_PYTHON_INSTALL(
     l1_deframer.py
     probe_medium.py
     sel_rep.py
-    ack_rep.py DESTINATION ${GR_PYTHON_DIR}/gwn
+    ack_rep.py
+    CSMA_FSM.py
+    event_constructor.py
+    event_guider.py
+    event_guider.py
+    ack_rx.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -75,3 +80,8 @@ GR_ADD_TEST(qa_l1_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l
 GR_ADD_TEST(qa_probe_medium ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_probe_medium.py)
 GR_ADD_TEST(qa_sel_rep ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sel_rep.py)
 GR_ADD_TEST(qa_ack_rep ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ack_rep.py)
+GR_ADD_TEST(qa_CSMA_FSM ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_CSMA_FSM.py)
+GR_ADD_TEST(qa_event_constructor ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_event_constructor.py)
+GR_ADD_TEST(qa_event_guider ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_event_guider.py)
+GR_ADD_TEST(qa_event_guider ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_event_guider.py)
+GR_ADD_TEST(qa_ack_rx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ack_rx.py)

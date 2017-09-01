@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<block>
+  <name>CSMA FSM</name>
+  <key>gwn_CSMA_FSM</key>
+  <category>GWN/CSMA</category>
+  <import>import gwn</import>
+  <make>#slurp
+gwn.CSMA_FSM($ack_nickname, $max_retries, $tout_nickname, $timeout, $tout_backoff, $timeout_backoff, $buffer_len, $transmit_threshold, $fsm_debug, $debug)
+
+#set $obj = 'self' + ('.' + $block_id() if $block_id() else '')
+get_level = $(obj).$(function_name())
+print(str(get_level))
+
+try:
+    self.$(id).set_get_level(get_level)
+except AttributeError:
+    print "Probe Medium XML, AttributeError in setting get_level function"
+except:
+    print "Probe Medium XML, another error in setting get_level function"
+  </make>
+
+  <param>
+    <name>ACK nickname</name>
+    <key>ack_nickname</key>
+    <value>'CtrlACK'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Max retries</name>
+    <key>max_retries</key>
+    <value>3</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Timeout nickname</name>
+    <key>tout_nickname</key>
+    <value>'EventTimer'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Timeout</name>
+    <key>timeout</key>
+    <value>1.0</value>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Timeout BackOff Event Type</name>
+    <key>tout_backoff</key>
+    <value>'TimerTOH'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Timeout BackOff</name>
+    <key>timeout_backoff</key>
+    <value>0.01</value>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Buffer length</name>
+    <key>buffer_len</key>
+    <value>1000</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Transmit threshold</name>
+    <key>transmit_threshold</key>
+    <value>1.0</value>
+    <type>real</type>
+  </param>
+
+  <param>
+    <name>FSM Debug</name>
+    <key>fsm_debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <!-- variables for setting external block function and parameters -->
+  <param>
+    <name>Block ID</name>
+    <key>block_id</key>
+    <value>my_block_0</value>
+    <type>string</type>
+    </param>
+  <param>
+    <name>Function Name</name>
+    <key>function_name</key>
+    <value>get_number</value>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Function Args</name>
+    <key>function_args</key>
+    <value></value>
+    <type>string</type>
+    <hide>#if $function_args() then 'none' else 'part'#</hide>
+  </param>
+
+  <!-- event sink node -->
+
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- event source nodes -->
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+  <!-- event source nodes -->
+  <source>
+    <name>out1</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>
