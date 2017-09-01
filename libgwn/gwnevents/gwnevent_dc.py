@@ -50,8 +50,8 @@ config_dc = { \
 # change type to Config in all nicknames!
 
 data_dc = { \
-    'DataIn'           : ('Data',   'DataIn',  EventComm  ), \
-    'DataOut'          : ('Data',   'DataOut', EventComm  )  \
+    'DataIn'           : ('Data',   'DataIn',   EventComm  ), \
+    'DataOut'          : ('Data',   'DataOut',  EventComm  ) \
     }
 
 ctrl_dc = { \

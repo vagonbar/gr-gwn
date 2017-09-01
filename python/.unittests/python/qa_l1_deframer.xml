@@ -1,4 +1,4 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="0.000">
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="0.001">
   <testcase classname="__main__.qa_l1_deframer" name="test_l1_deframer" time="0.0002"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

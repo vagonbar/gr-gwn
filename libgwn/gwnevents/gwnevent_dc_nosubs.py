@@ -25,6 +25,8 @@
 
 This module provides a dictionary of valid nicknames for events, and the attributes corresponding to each nickname.
 @var ev_dc_nicknames: a dictionary {nichname: (ev_type, ev_subtype, ev_class)} to determine type, subtype and event class corresponding to a certain nickname.
+
+WARNING: this file differs from gwnevent_dc in that many events inherit directly from Event insted of subclasses, e.g. TimerTOH here inherits from Event, while in gwnevent_dc inherits from EventTimer. This file is currently not being used.
 '''
 
 from gwnevent import Event, EventNameException
@@ -50,8 +52,8 @@ config_dc = { \
 # change type to Config in all nicknames!
 
 data_dc = { \
-        'DataIn'           : ('Data',   'DataIn',  Event     ), \
-        'DataOut'          : ('Data',   'DataOut', Event     )  \
+        'DataIn'           : ('Data',   'DataIn',   Event     ), \
+        'DataOut'          : ('Data',   'DataOut',  Event     ) \
     }
 
 ctrl_dc = { \
