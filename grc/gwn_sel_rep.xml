@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<block>
+  <name>Selective Repeat</name>
+  <key>gwn_sel_rep</key>
+  <category>GWN/RR-ARQ</category>
+  <import>import gwn</import>
+  <make>gwn.sel_rep($ack_nickname, $buff_tam, $win_tam, $time_out, $debug)</make>
+
+
+  <param>
+    <name>ACK nickname</name>
+    <key>ack_nickname</key>
+    <value>'DataOut'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Buffer size</name>
+    <key>buff_tam</key>
+    <value>10</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Window size</name>
+    <key>win_tam</key>
+    <value>5</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Timeout</name>
+    <key>time_out</key>
+    <value>1</value>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. -->
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <sink>
+    <name>in1</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output.-->
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>

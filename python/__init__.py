@@ -80,6 +80,8 @@ from stop_wait_send import stop_wait_send
 from l1_framer import l1_framer
 from l1_deframer import l1_deframer
 from probe_medium import probe_medium
+from sel_rep import sel_rep
+from ack_rep import ack_rep
 
 
 

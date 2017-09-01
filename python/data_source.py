@@ -61,7 +61,7 @@ class data_source(gwnblock):
         self.debug = debug
         self.nr_sent =0 
 
-        self.nickname = 'DataOut'
+        self.nickname = 'DataData'
         self.ev_dc['interval'] = interval
         self.ev_dc['retry'] = retry
         self.set_timer(0, interrupt=interrupt, interval=interval, retry=retry, 

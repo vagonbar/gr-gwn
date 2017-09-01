@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<block>
+  <name>ACK Rep</name>
+  <key>gwn_ack_rep</key>
+  <category>GWN/RR-ARQ</category>
+  <import>import gwn</import>
+  <make>gwn.ack_rep($ack_nickname, $nak_nickname, $win_tam, $debug)</make>
+  
+  <param>
+    <name>ACK nickname</name>
+    <key>ack_nickname</key>
+    <value>'DataOut'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>NAK nickname</name>
+    <key>nak_nickname</key>
+    <value>'DataIn'</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Window Size</name>
+    <key>win_tam</key>
+    <value> 5 </value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+  </param>
+
+  <!-- Make one 'sink' node per input -->
+  <sink>
+    <name>in0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output -->
+  <source>
+    <name>out0</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>out1</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+  <doc></doc>
+
+</block>

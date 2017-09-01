@@ -32,5 +32,6 @@ install(FILES
     gwn_l1_framer.xml
     gwn_l1_deframer.xml
     gwn_probe_medium.xml
-    DESTINATION share/gnuradio/grc/blocks
+    gwn_sel_rep.xml
+    gwn_ack_rep.xml DESTINATION share/gnuradio/grc/blocks
 )

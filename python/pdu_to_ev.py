@@ -51,7 +51,7 @@ class pdu_to_ev(gwnblock):
         gwnblock.__init__(self, name='pdu_to_ev',
             number_in=0, number_out=1, number_timers=0)
 
-        self.out_nickname = 'DataOut'   # event to load payload into
+        self.out_nickname = 'DataData'   # event to load payload into
         self.in_type = in_type
         self.debug = False  # please set from outside for debug print
                 

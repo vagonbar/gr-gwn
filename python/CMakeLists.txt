@@ -47,7 +47,8 @@ GR_PYTHON_INSTALL(
     l1_framer.py
     l1_deframer.py
     probe_medium.py
-    DESTINATION ${GR_PYTHON_DIR}/gwn
+    sel_rep.py
+    ack_rep.py DESTINATION ${GR_PYTHON_DIR}/gwn
 )
 
 ########################################################################
@@ -72,3 +73,5 @@ GR_ADD_TEST(qa_stop_wait_send ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/q
 GR_ADD_TEST(qa_l1_framer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l1_framer.py)
 GR_ADD_TEST(qa_l1_deframer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_l1_deframer.py)
 GR_ADD_TEST(qa_probe_medium ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_probe_medium.py)
+GR_ADD_TEST(qa_sel_rep ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sel_rep.py)
+GR_ADD_TEST(qa_ack_rep ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ack_rep.py)
