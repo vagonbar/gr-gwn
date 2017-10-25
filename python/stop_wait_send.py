@@ -50,7 +50,7 @@ def send(fsm, event, block):
         mutex_prt('    SEND event, seq nr: {0}'.format(event.ev_dc['seq_nr']))
     fsm.ev_sent = event                    # store for eventual resend
     fsm.ev_sent.ev_dc['ack'] = fsm.wait    # waited ack 
-    block.timeouts[0].start(block.timeout, block.tout_nickname)
+    block.timeouts[0].start(timeout=block.timeout, nickname=block.tout_nickname)
     block.write_out(fsm.ev_sent)
     return 
 
@@ -80,7 +80,7 @@ def resend(fsm, event, block):
         mutex_prt('    RESEND event, seq nr: {0}, retries: {1}'.\
             format(fsm.ev_sent.ev_dc['seq_nr'], fsm.nr_retries))
     block.timeouts[0].cancel()    # in case it is still active
-    block.timeouts[0].start(block.timeout, block.tout_nickname)
+    block.timeouts[0].start(timeout=block.timeout, nickname=block.tout_nickname)
     block.write_out(fsm.ev_sent)
     return
 
@@ -145,7 +145,7 @@ def stop_wait_send_fsm(blk):
     @param blk: reference to the block to which this FSM is attached.
     '''
     f = FSM ('Idle') # 
-    f.debug = False
+    f.debug = True
     f.wait = 'ack0'
     f.nr_retries = 0
 

@@ -7,7 +7,7 @@
 
 import sys, os, traceback, optparse, time, string
 # add path to gwnfsm, gwnblock in FSM
-sys.path += ['..', '../../../python/']
+#sys.path += ['..', '../../../python/']
 from gwnfsm import FSM
 
 

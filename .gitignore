@@ -14,3 +14,7 @@ gwn/logs/
 *.sh~
 *~
 top_block.py
+python/.unittests/
+python/.unittests/*
+
+

@@ -63,11 +63,7 @@ The action function receives a reference to the FSM as a parameter, hence the ac
 The GWN Finite State Machine implementation is an extension of Noah Spurrier's FSM 20020822, C{http://www.noah.org/python/FSM/}.
 '''
 
-# TODO ensure access to gwnblock!
 import sys
-#sys.path = sys.path + ['../../../python']
-sys.path = sys.path + ['/home/victor/IIE/GNURadio/gr-gwn/python']
-from gwnblock import mutex_prt
 
 
 class ExceptionFSM(Exception):
@@ -248,8 +244,8 @@ class FSM:
         @return: a list of the return values of actions executed, or None.
         '''
         if self.debug:
-            mutex_prt( "\n    FSM process: " + input_symbol + ", " + \
-                self.current_state)
+            print "\n    FSM process: " + input_symbol + ", " + \
+                self.current_state
         # list of possible destinations for (input_symbol, current_state):
         ls_dest = self.get_transition (input_symbol, self.current_state)
 
@@ -262,7 +258,7 @@ class FSM:
                condition = [condition]      # make it a list
             if condition is None:           # no condition, aka no list
                 if self.debug:
-                    mutex_prt("    FSM Condition: None")
+                    print "    FSM Condition: None"
                 cond_val = True
             elif type(condition) is list:   # a list of conditions
                 cond_val = True
@@ -280,13 +276,13 @@ class FSM:
                             this_cond_val = cond(self)
                         cond_val = cond_val and this_cond_val
                     if self.debug:
-                        mutex_prt("    FSM Condition in list: " + \
-                            str(cond) + ", value: " + str(cond_val))
+                        print "    FSM Condition in list: " + \
+                            str(cond) + ", value: " + str(cond_val)
             else:
                 raise ExceptionFSM ('Condition must be a list of functions ' +\
                     'or expressions')
             if self.debug:
-                mutex_prt("    FSM cond_val: " + str(cond_val))
+                print "    FSM cond_val: " + str(cond_val)
 
             ### do transition
             if cond_val:  # no condition or all conditions True
@@ -312,8 +308,8 @@ class FSM:
 
                 if self.debug:
                     self.print_state(show=['transition'])
-                    mutex_prt("    FSM change state to: " + \
-                        self.next_state + "\n")
+                    print "    FSM change state to: " + \
+                        self.next_state + "\n"
 
                 self.current_state = self.next_state   # change state
                 self.next_state = None
@@ -334,15 +330,15 @@ class FSM:
         return
 
 
-    def print_state(self, show=[]):
-        '''Prints FSM state, transitions.
+    def mesg_state(self, show=[]):
+        '''Returns a string describing FSM state, transitions.
 
-        This function may be called in the action functions.
         @param show: whole or partial list of ["state", "transition", "memory"], shows accordingly.
         '''
+	ss = ''     # a string variable to build up message
         if 'state' in show:
-            mutex_prt("    FSM initial_state: " + self.initial_state)
-            mutex_prt("    FSM state_transitions:")
+            ss += "    FSM initial_state: " + self.initial_state + "\n"
+            ss += "    FSM state_transitions:" + "\n"
 
             for key in self.state_transitions.keys():
                 symbol, cur_state = key
@@ -357,27 +353,35 @@ class FSM:
                     msg_dbg = '      {0} --- {1} | {2} --> {3}'.format( \
                         cur_state, symbol, function, dst_state)
                     msg_dbg += '\n        cond = {0}'.format(cond)
-                    mutex_prt(msg_dbg)
+                    ss += msg_dbg + "\n"
 
-            mutex_prt("    FSM state_transitions_any:")
+            ss += "    FSM state_transitions_any:\n"
             for item in self.state_transitions_any.items():
-                mutex_prt( '     ' + str(item) )
-            mutex_prt ("    FSM default_transition:")
-            mutex_prt ("     " + str(self.default_transition) + "\n")
+                ss += '     ' + str(item) + "\n"
+            ss += "    FSM default_transition:\n"
+            ss += "     " + str(self.default_transition) + "\n"
         if 'action' in show and self.action:
-            ss = "    FSM state %s, symbol %s" % \
+            ss += "    FSM state %s, symbol %s" % \
                 (self.current_state, self.input_symbol) # + "\n"
             for fn_act in self.action:    # asumes it is a list
-                ss += '\n        action:' + fn_act.func_name
-            mutex_prt(ss)
+                ss += '\n        action:' + fn_act.func_name + "\n"
+
         if 'transition' in show:
-            ss = '    FSM transition: ' + self.current_state + ' --- ' + \
+            ss += '    FSM transition: ' + self.current_state + ' --- ' + \
                 str(self.input_symbol) + ' | '
-            ss += ' --> ' + str(self.next_state)
-            mutex_prt(ss)
+            ss += ' --> ' + str(self.next_state) + "\n"
 
         if 'memory' in show:
-            mutex_prt ('    FSM memory: ' + str(self.memory) )
-        return
+            ss += '    FSM memory: ' + str(self.memory) + "\n"
+        return ss
 
+
+    def print_state(self, show=[]):
+        '''Prints FSM state, transitions.
+
+        This function may be called in the action functions.
+        @param show: whole or partial list of ["state", "transition", "memory"], shows accordingly.
+        '''
+        print self.mesg_state(show)
+	return
 

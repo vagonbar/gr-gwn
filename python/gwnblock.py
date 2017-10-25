@@ -190,7 +190,7 @@ class GWNTimeout(GWNPort):
         self.ev_dc = dict()
         self.ev_dc.update(ev_dc)
 
-        self.nickname = 'EventTimer'    # the event to generate
+        self.nickname = 'EventTimer'    # default Event type to generate
         self.debug = False
         self.timer = None
 
@@ -199,12 +199,14 @@ class GWNTimeout(GWNPort):
         return
 
 
-    def start(self, timeout=None, ev_dc={}):
+    def start(self, timeout=None, nickname='EventTimer', ev_dc={}):
         '''Starts timer, lives until timeout.
 
         @param timeout: a timeout value in seconds.
+	@param nickname: Event nickname to generate.
         @param ev_dc: additional information for event to send.
         '''
+	self.nickname = nickname
         if timeout:
             self.timeout = timeout
         self.ev_dc.update(ev_dc)    # adds or modifies existing ev_dc
